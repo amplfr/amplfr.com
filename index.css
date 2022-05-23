@@ -1,0 +1,541 @@
+html {
+  scroll-behavior: smooth;
+}
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  vertical-align: middle;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  /* padding-top: 56px; */
+  background-color: rgb(33, 33, 33);
+  background-position: center;
+  background-size: cover;
+}
+
+#header {
+  position: fixed;
+  top: 0px;
+  display: flex;
+  margin: 0 auto;
+  background-color: #231f20;
+  box-shadow: 0px 3px 5px 3px #030303;
+  height: 56px;
+  width: 100%;
+  z-index: 10;
+}
+#header > #logo {
+  filter: drop-shadow(2px 2px 0px rgba(255, 255, 255, 1));
+  height: 48px;
+}
+#header > #logo > .wide-only {
+  padding-top: 9px;
+}
+#header > *,
+#header > #logo,
+#header.fadeout > #logo > .wide-only {
+  /* https://stackoverflow.com/a/20910008 */
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+#header.fadeout {
+  background-color: unset !important;
+  box-shadow: unset !important;
+}
+#header.fadeout > #logo {
+  filter: unset !important;
+  transition: 0.5s linear;
+}
+#header.fadeout > *,
+#header.fadeout > #logo > .wide-only {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
+}
+
+#logo {
+  font-size: 48px;
+  font-weight: bold;
+  color: #231f20;
+  text-shadow: 2px 2px 0px rgb(255 255 255);
+  line-height: 44px;
+  display: inline-flex;
+}
+#logo > svg {
+  filter: drop-shadow(2px 2px 0px rgba(255, 255, 255, 0));
+  height: 48px;
+}
+#nowplaying {
+  /* font-size: 46px;
+    font-weight: bold;
+    color: #231f20; */
+  /* text-shadow: 2px 2px 0px rgb(255 255 255); */
+  line-height: 44px;
+  width: 100%;
+  text-align: center;
+  padding-left: 81px; /* compensate for #headerIcons being wider than #logo */
+  padding-top: 4px;
+}
+.nowplaying {
+  font-size: 46px;
+  /* color: #231f20; */
+  color: #fff;
+  /* text-shadow: 2px 2px 0px rgb(255 255 255); */
+  line-height: 44px;
+  text-align: center;
+  display: inline;
+  /* vertical-align: middle; */
+}
+.nowplaying#npTitle {
+  font-weight: bold;
+}
+.nowplaying#npArtist {
+  font-size: 36px !important;
+}
+#headerIcons {
+  display: flex;
+  font-size: 56px;
+  display: flex;
+  margin-right: 4px;
+  float: right;
+}
+.material-icons {
+  font-size: 56px !important;
+}
+i.headerButton {
+  background-color: #231f20;
+  color: white;
+}
+#headerIcons > .selected > i,
+.selected > .headerButton {
+  filter: invert();
+}
+#progressBar {
+  height: 3px;
+  width: 0px;
+  background-color: #ff0000;
+  transition: width 0.5s linear;
+  -webkit-transition: width 0.5s linear; /* For Safari 3.1 to 6.0 */
+  position: absolute;
+  float: left;
+  top: 52px;
+  box-shadow: 0px 3px 5px 3px #030303;
+  z-index: 15;
+}
+#progressSeeker {
+  height: 18px;
+  left: 0px;
+  background-color: #ff0000;
+  transition: width 0.5s linear;
+  -webkit-transition: width 0.5s linear; /* For Safari 3.1 to 6.0 */
+  position: absolute;
+  float: left;
+  top: 52px;
+  box-shadow: 0px 3px 5px 3px #030303;
+  z-index: 15;
+}
+#spacer {
+  height: 56px;
+}
+#searchbox {
+  transition: width 0.5s ease-in-out, left 0.6;
+  transition-property: width, left;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+  left: 0%;
+  position: relative;
+  width: 100%;
+  margin: auto 0px;
+  display: block;
+}
+#searchinput {
+  margin-left: 15px;
+  font-size: 22px;
+  /* width: 80%; */
+  width: 98%;
+  background-color: #3e3638;
+  color: white;
+  border: none;
+}
+
+/* .hidden {
+    /* from https://stackoverflow.com/a/951888 */
+/* height: 0px !important;
+    min-height: 0px !important;
+    overflow: hidden; */
+/* } */
+.rollup {
+  max-height: 0px !important;
+}
+.rollable {
+  overflow-y: hidden;
+  max-height: 500px; /* approximate max height */
+
+  transition-property: all;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
+}
+
+.container {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0 auto;
+  vertical-align: middle;
+  clear: both;
+  /* position: relative;  */
+  /* needed to be able to get offsetTop of tiles */
+  scroll-margin-top: 52px;
+}
+main .container {
+  backdrop-filter: blur(5px) contrast(0.8); /* https://css-tricks.com/the-backdrop-filter-css-property/ */
+}
+.container#recommended {
+  font-size: 0;
+}
+.container-title {
+  width: 100%;
+  height: 50px;
+  font-size: 48px;
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 2px 2px 0px #030303;
+}
+@media (max-height: 450px) {
+  #player > div > a > i.playerButton {
+    /* i.playerButton { */
+    margin: 0px !important;
+  }
+}
+@media (min-width: 0px) {
+  .container,
+  .contents {
+    max-width: 100%;
+  }
+  .tile {
+    width: 100vw;
+    height: 100vw;
+  }
+  .tile1x2 {
+    width: 100vw;
+    height: 200vw;
+  }
+  .tile2x1 {
+    width: 100vw;
+    height: 50vw;
+  }
+  .tile3x2 {
+    width: 100vw;
+    height: 75vw;
+  }
+  .contents > .contents-close {
+    margin-top: 395px;
+  }
+}
+@media (max-width: 450px) {
+  .wide-only {
+    display: none !important;
+  }
+  .box {
+    width: 100%;
+  }
+  .container,
+  .contents {
+    max-width: 100%;
+  }
+  .tile {
+    width: 50vw;
+    height: 50vw;
+  }
+  .tile1x2 {
+    width: 50vw;
+    height: 100vw;
+  }
+  .tile2x1 {
+    width: 100vw;
+    height: 50vw;
+  }
+  .tile2x2 {
+    width: 100vw;
+    height: 100vw;
+  }
+  .tile3x2 {
+    width: 100vw;
+    height: 75vw;
+  }
+  i.playerButton {
+    margin: 0px !important;
+  }
+}
+@media (min-width: 450px) {
+  .box {
+    width: 400px;
+  }
+  .container,
+  .contents {
+    max-width: 400px;
+  }
+  .container > nav {
+    display: inline-block;
+    min-width: 400px;
+    width: 100%;
+  }
+  .tile {
+    width: 200px;
+    height: 200px;
+  }
+  .tile1x2 {
+    width: 200px;
+    height: 400px;
+  }
+  .tile2x1 {
+    width: 400px;
+    height: 200px;
+  }
+  .tile2x2 {
+    width: 400px;
+    height: 400px;
+  }
+  .tile3x2 {
+    width: 400px;
+    height: 266px;
+  }
+  /* .contents > .items > li.item {
+        width: 400px;
+    } */
+  .contents > .albumart {
+    width: 400px !important;
+    height: 400px !important;
+  }
+  /* .contents > .items {
+        margin-left: 400px;
+    } */
+}
+@media (min-width: 650px) {
+  .box {
+    width: 600px;
+  }
+  .container,
+  .contents {
+    max-width: 600px;
+  }
+  .tile3x2 {
+    width: 600px;
+    height: 400px;
+  }
+  .container#billboard {
+    /* height: 400px; /* ~== 1 tiles tall */
+  }
+  .contents > .albumart {
+    width: 600px !important;
+    height: 600px !important;
+  }
+  /* .contents > .items {
+        margin-left: 600px;
+    } */
+  .contents > .contents-close {
+    margin-top: 595px;
+  }
+}
+@media (max-width: 650px) {
+  i.linkButton {
+    margin: 0px !important;
+  }
+}
+@media (min-width: 850px) {
+  .box {
+    width: 800px;
+  }
+  .container,
+  .contents {
+    max-width: 800px;
+  }
+  .container#billboard {
+    /* height: 600px; /* ~== 1.5 tiles tall */
+  }
+  .contents > .albumart {
+    width: 400px !important;
+    height: 400px !important;
+  }
+  .contents > .items {
+    margin-left: 400px;
+  }
+  .contents > .contents-close {
+    margin-top: 0px;
+  }
+}
+@media (min-width: 1250px) {
+  .box {
+    width: 1200px;
+  }
+  .container,
+  .contents {
+    max-width: 1200px;
+  }
+  .contents > .albumart {
+    width: 600px !important;
+    height: 600px !important;
+  }
+  .contents > .items {
+    margin-left: 600px;
+  }
+}
+@media (min-width: 1850px) {
+  .box {
+    width: 1800px;
+  }
+  .container,
+  .contents {
+    max-width: 1800px;
+  }
+  .contents > .items {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(15, auto);
+  }
+}
+@media (min-width: 2450px) {
+  .box {
+    width: 2400px;
+  }
+  .container,
+  .contents {
+    max-width: 2400px;
+  }
+}
+#billboard {
+  /* height: 600px; */
+  /* background-position: center center;
+    background-size: cover; */
+
+  position: fixed;
+  top: 56px;
+  width: 100vw;
+  height: 45vw;
+  z-index: -1;
+}
+.tile {
+  /* display: block; */
+  display: inline-flex;
+  /* float: left; */
+  padding: 0px;
+  margin: 0px;
+  position: static;
+  top: 0px;
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 2px 2px 0px rgb(0 0 0);
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+.tile.hidden {
+  left: -200vw !important;
+}
+a.tile {
+  text-decoration: none;
+}
+.tile .title {
+  display: table;
+  font-size: 38px;
+}
+.tile .artists {
+  display: table;
+  font-size: 32px;
+}
+.tile * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tile2x2 {
+  float: right;
+}
+.contents {
+  z-index: 9;
+  top: inherit;
+  position: absolute;
+  background-color: white;
+  width: 100vw;
+
+  /* needed for the transition to work properly */
+  height: 0px;
+  min-height: 0px;
+
+  transition: all ease 0.5s 0.1s;
+  overflow: hidden;
+  font-size: 16px;
+}
+.contents.playlist {
+  position: inherit;
+  top: inherit;
+  height: 100%;
+  width: 600px;
+  left: inherit;
+  float: left;
+}
+.contents.playlist > .albumart {
+  display: none;
+}
+.contents.playlist > ol.items {
+  margin-left: inherit !important;
+  display: block;
+}
+.contents > .title {
+  font-size: 48px;
+  width: auto;
+  overflow: hidden;
+  padding-left: 5px;
+}
+.contents > .artists {
+  font-size: 36px;
+  width: auto;
+  overflow: hidden;
+  padding-left: 10px;
+}
+.contents > .released {
+  width: auto;
+  overflow: hidden;
+  padding-left: 10px;
+}
+.contents > ol.items > li.item {
+  width: 550px;
+}
+.contents > ol.items > li.item:nth-child(even) {
+  background-color: #dddddd;
+}
+.contents.playlist > ol.items > li.item {
+  width: 550px;
+}
+/* .contents.playlist > ol.items > li.item:nth-child(even) {
+  background-color: #dddddd;
+} */
+
+nav > ul {
+  padding-left: 0;
+  margin: 0px;
+  list-style: none;
+  justify-content: space-between;
+  display: table;
+  float: right;
+}
+nav.container {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+nav > ul > li {
+  float: right;
+  width: 100px;
+  text-align: center;
+  /* margin: 0px 2%; */
+  /* margin: 0px 2.5vw; */
+}
+nav > ul > li > a {
+  /* color: rgba(255, 255, 255, 0.5); */
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 2px 2px 0px rgb(0 0 0);
+}
+nav > ul > li > a > .material-icons {
+  font-size: 96px !important;
+}

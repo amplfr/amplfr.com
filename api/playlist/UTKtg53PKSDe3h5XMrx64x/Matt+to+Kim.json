@@ -1,0 +1,285 @@
+{
+    "title": "matt to kim",
+    "id": "UTKtg53PKSDe3h5XMrx64x",
+    "status": "private",
+    "url": "/api/playlist/UTKtg53PKSDe3h5XMrx64x/matt to kim",
+    "items": [
+        {
+            "id": "hdhjfv5sbnGhm6gvvBQmBD",
+            "title": "My Annie",
+            "artists": [
+                {
+                    "id": "oAf7C1VHUL8qy2UujSgnsw",
+                    "name": "Craig's Brother",
+                    "area": "US"
+                }
+            ],
+            "duration": 184,
+            "status": "pending",
+            "mbid": "6ef1d268-ca3d-4e48-aafa-f5e733fb64e1",
+            "links": [
+                "https://musicbrainz.org/recording/6ef1d268-ca3d-4e48-aafa-f5e733fb64e1"
+            ],
+            "url": "http://0.0.0.0:3000/api/hdhjfv5sbnGhm6gvvBQmBD/My+Annie",
+            "visibility": "public"
+        },
+        {
+            "id": "gmuTeBxnnid8KQjcvH1AhW",
+            "title": "Tonight",
+            "artists": [
+                {
+                    "id": "4H8sXVu5NufvLcNgEaumDh",
+                    "name": "Ace Troubleshooter",
+                    "area": "US"
+                }
+            ],
+            "duration": 266,
+            "status": "pending",
+            "mbid": "b231a874-687f-412a-81df-80ccb93cc8b1",
+            "links": [
+                "https://musicbrainz.org/recording/b231a874-687f-412a-81df-80ccb93cc8b1"
+            ],
+            "url": "http://0.0.0.0:3000/api/gmuTeBxnnid8KQjcvH1AhW/Tonight",
+            "visibility": "public"
+        },
+        {
+            "id": "txQvgvWnPWdLHW9DW7bvfq",
+            "title": "All the Small Things",
+            "artists": [
+                {
+                    "id": "gyZsiRtH5hjM5d9VTtHdrn",
+                    "name": "blink‐182",
+                    "area": "Poway, US"
+                }
+            ],
+            "duration": 171,
+            "status": "pending",
+            "mbid": "f36d9818-019b-4379-ad13-5080feb9ad8a",
+            "links": [
+                "https://musicbrainz.org/recording/f36d9818-019b-4379-ad13-5080feb9ad8a"
+            ],
+            "url": "http://0.0.0.0:3000/api/txQvgvWnPWdLHW9DW7bvfq/All+the+Small+Things",
+            "visibility": "public"
+        },
+        {
+            "id": "tf3uJ2TNR1KLdz6s8oRMcN",
+            "title": "Glycerine",
+            "artists": [
+                {
+                    "id": "gF4pLdmP6ovLxTTjUCGF2Z",
+                    "name": "Bush",
+                    "area": "London, GB"
+                }
+            ],
+            "status": "pending",
+            "mbid": "b31b11c3-3b37-45ab-aa61-a8370d36766e",
+            "url": "http://0.0.0.0:3000/api/tf3uJ2TNR1KLdz6s8oRMcN/Glycerine",
+            "visibility": "public"
+        },
+        {
+            "id": "rsBWzxmQ9LwFBtRb31Mj23",
+            "title": "Wish You Were Here",
+            "artists": [
+                {
+                    "id": "hAKd1NiDwkKkhg7AFSipSd",
+                    "name": "Incubus",
+                    "area": "Calabasas, US"
+                }
+            ],
+            "status": "pending",
+            "mbid": "e18092c2-b4af-4926-b69c-e00b8e459279",
+            "url": "http://0.0.0.0:3000/api/rsBWzxmQ9LwFBtRb31Mj23/Wish+You+Were+Here",
+            "visibility": "public"
+        },
+        {
+            "id": "tWpRnyZyWD44CPKLwwcSfZ",
+            "title": "Life in General (demo version)",
+            "artists": [
+                {
+                    "id": "ofbASQte84TRaheSJM264j",
+                    "name": "MxPx",
+                    "area": "Bremerton, US"
+                }
+            ],
+            "duration": 113,
+            "status": "pending",
+            "mbid": "ac93cb0b-f235-45db-ae29-bc44591d79cd",
+            "links": [
+                "https://musicbrainz.org/recording/ac93cb0b-f235-45db-ae29-bc44591d79cd"
+            ],
+            "url": "http://0.0.0.0:3000/api/tWpRnyZyWD44CPKLwwcSfZ/Life+in+General+(demo+version)",
+            "visibility": "public"
+        },
+        {
+            "id": "spBbhyHi1TEFhxZaPRZamD",
+            "title": "Stellar (acoustic)",
+            "artists": [
+                {
+                    "id": "hAKd1NiDwkKkhg7AFSipSd",
+                    "name": "Incubus",
+                    "area": "Calabasas, US"
+                }
+            ],
+            "duration": 196,
+            "status": "pending",
+            "mbid": "0b3773b6-771b-4da8-ab0e-c2810fb57dbb",
+            "links": [
+                "https://musicbrainz.org/recording/0b3773b6-771b-4da8-ab0e-c2810fb57dbb"
+            ],
+            "url": "http://0.0.0.0:3000/api/spBbhyHi1TEFhxZaPRZamD/Stellar+(acoustic)",
+            "visibility": "public"
+        },
+        {
+            "id": "1JMU2dVwk4Tse4JrNH2wrf",
+            "title": "Swing Set Girl",
+            "artists": [
+                {
+                    "id": "ofbASQte84TRaheSJM264j",
+                    "name": "MxPx",
+                    "area": "Bremerton, US"
+                }
+            ],
+            "duration": 136,
+            "status": "pending",
+            "mbid": "da17c37c-2f37-470d-8458-5fb5421e83d9",
+            "links": [
+                "https://musicbrainz.org/recording/da17c37c-2f37-470d-8458-5fb5421e83d9"
+            ],
+            "url": "http://0.0.0.0:3000/api/1JMU2dVwk4Tse4JrNH2wrf/Swing+Set+Girl",
+            "visibility": "public"
+        },
+        {
+            "id": "eLHYqusNXyXsGNnaEpSZc3",
+            "title": "Want Ad",
+            "artists": [
+                {
+                    "id": "ofbASQte84TRaheSJM264j",
+                    "name": "MxPx",
+                    "area": "Bremerton, US"
+                }
+            ],
+            "duration": 83,
+            "status": "pending",
+            "mbid": "76d98743-920a-40b3-93fa-b3fd640d82c5",
+            "links": [
+                "https://musicbrainz.org/recording/76d98743-920a-40b3-93fa-b3fd640d82c5"
+            ],
+            "url": "http://0.0.0.0:3000/api/eLHYqusNXyXsGNnaEpSZc3/Want+Ad",
+            "visibility": "public"
+        },
+        {
+            "id": "g6dPkFpMNavXRPQWzPiwc7",
+            "title": "Let It Happen",
+            "artists": [
+                {
+                    "id": "ofbASQte84TRaheSJM264j",
+                    "name": "MxPx",
+                    "area": "Bremerton, US"
+                }
+            ],
+            "duration": 178,
+            "status": "pending",
+            "mbid": "e10dcc3a-1b57-4fc5-ae34-620d44350ad4",
+            "links": [
+                "https://musicbrainz.org/recording/e10dcc3a-1b57-4fc5-ae34-620d44350ad4"
+            ],
+            "url": "http://0.0.0.0:3000/api/g6dPkFpMNavXRPQWzPiwc7/Let+It+Happen",
+            "visibility": "public"
+        },
+        {
+            "id": "hKLP4hegPYT8RBCJnyczMX",
+            "title": "I Think I Love You",
+            "artists": [
+                {
+                    "id": "chpMxgi7VtCfQp7q5FQHA3",
+                    "name": "Less Than Jake",
+                    "area": "Gainesville, US"
+                }
+            ],
+            "duration": 123,
+            "status": "pending",
+            "mbid": "23dc3082-0e2f-40c8-b892-6780a2cf95ce",
+            "links": [
+                "https://musicbrainz.org/recording/23dc3082-0e2f-40c8-b892-6780a2cf95ce"
+            ],
+            "url": "http://0.0.0.0:3000/api/hKLP4hegPYT8RBCJnyczMX/I+Think+I+Love+You",
+            "visibility": "public"
+        },
+        {
+            "id": "bEsmYXGenLbvSPAPYqKS3V",
+            "title": "The Final Slowdance",
+            "artists": [
+                {
+                    "id": "ofbASQte84TRaheSJM264j",
+                    "name": "MxPx",
+                    "area": "Bremerton, US"
+                }
+            ],
+            "duration": 119,
+            "status": "pending",
+            "mbid": "8217ab73-04f4-4d27-9f63-c06296d8e436",
+            "links": [
+                "https://musicbrainz.org/recording/8217ab73-04f4-4d27-9f63-c06296d8e436"
+            ],
+            "url": "http://0.0.0.0:3000/api/bEsmYXGenLbvSPAPYqKS3V/The+Final+Slowdance",
+            "visibility": "public"
+        },
+        {
+            "id": "gknRiqZsoao8NwHSxTFeQN",
+            "title": "Ugly Day / [just one more quick song]",
+            "artists": [
+                {
+                    "id": "ftx2b46qRtcgAk4Hnikafb",
+                    "name": "Five Iron Frenzy",
+                    "area": null
+                }
+            ],
+            "duration": 279,
+            "status": "pending",
+            "mbid": "5cc6b760-ba5d-4c9d-80a0-6ad9509f3607",
+            "links": [
+                "https://musicbrainz.org/recording/5cc6b760-ba5d-4c9d-80a0-6ad9509f3607"
+            ],
+            "url": "http://0.0.0.0:3000/api/gknRiqZsoao8NwHSxTFeQN/Ugly+Day+%2F+%5Bjust+one+more+quick+song%5D",
+            "visibility": "public"
+        },
+        {
+            "id": "cBAqG8qHRqX1mQYDnpqRNa",
+            "title": "Summer Romance (Anti‐Gravity Love Song)",
+            "artists": [
+                {
+                    "id": "hAKd1NiDwkKkhg7AFSipSd",
+                    "name": "Incubus",
+                    "area": "Calabasas, US"
+                }
+            ],
+            "duration": 266,
+            "status": "pending",
+            "mbid": "0fbada70-3293-41f7-9e6a-818080981d73",
+            "links": [
+                "https://musicbrainz.org/recording/0fbada70-3293-41f7-9e6a-818080981d73"
+            ],
+            "url": "http://0.0.0.0:3000/api/cBAqG8qHRqX1mQYDnpqRNa/Summer+Romance+(Anti%E2%80%90Gravity+Love+Song)",
+            "visibility": "public"
+        },
+        {
+            "id": "gRGM55EnJLyGvxWNTEQkCx",
+            "title": "Cool",
+            "artists": [
+                {
+                    "id": "rSve27nDFJUSDx9VSvvLAQ",
+                    "name": "The Simpsons",
+                    "area": "United States, US"
+                }
+            ],
+            "duration": 43,
+            "status": "pending",
+            "mbid": "05db4be3-c29d-4a1c-baa1-3d38d2a17b11",
+            "links": [
+                "https://musicbrainz.org/recording/05db4be3-c29d-4a1c-baa1-3d38d2a17b11"
+            ],
+            "url": "http://0.0.0.0:3000/api/gRGM55EnJLyGvxWNTEQkCx/Cool",
+            "visibility": "public"
+        }
+    ]
+}
