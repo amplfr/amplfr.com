@@ -1,0 +1,14 @@
+!.github/.*
+/coverage
+/mochawesome-report
+/node_modules
+package-lock.json
+*.pem
+albumart/*.jpg
+albumart/item/*.jpg
+albumart/*.png
+**.mp3
+img/apple*jpg
+img/manifest-icon-*.png
+img/icons/
+favicon.ico

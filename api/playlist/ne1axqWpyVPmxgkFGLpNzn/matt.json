@@ -1,0 +1,391 @@
+{
+  "id": "ne1axqWpyVPmxgkFGLpNzn",
+  "title": "matt",
+  "items": [
+    {
+      "id": "2tveNrvdLkq4WUkYfB7ocE",
+      "title": "Southtown",
+      "artists": [
+        {
+          "id": "sfALJAKKYVEHdWfPCmYTLq",
+          "name": "P.O.D.",
+          "area": "San Diego, US",
+          "url": "http://0.0.0.0:3000/api/artist/sfALJAKKYVEHdWfPCmYTLq/P.O.D."
+        }
+      ],
+      "duration": 270,
+      "status": "pending",
+      "mbid": "332d67b4-b2bf-45ef-9697-25387c34c656",
+      "links": [
+        "https://musicbrainz.org/recording/332d67b4-b2bf-45ef-9697-25387c34c656"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/2tveNrvdLkq4WUkYfB7ocE/Southtown",
+      "visibility": "public"
+    },
+    {
+      "id": "88zPpJGQDQY2wJNTCYnvpR",
+      "title": "Sweet Child of Mine",
+      "artists": [
+        {
+          "id": "hHEaPNXiwqm2RJJRbyHs6q",
+          "name": "Guns N’ Roses",
+          "area": "Los Angeles, US",
+          "url": "http://0.0.0.0:3000/api/artist/hHEaPNXiwqm2RJJRbyHs6q/Guns+N%E2%80%99+Roses"
+        }
+      ],
+      "duration": 426,
+      "status": "pending",
+      "mbid": "70cbf2f4-018e-405d-bd1c-1b03635c96a2",
+      "links": [
+        "https://musicbrainz.org/recording/70cbf2f4-018e-405d-bd1c-1b03635c96a2"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/88zPpJGQDQY2wJNTCYnvpR/Sweet+Child+of+Mine",
+      "visibility": "public"
+    },
+    {
+      "id": "a7tsKF4yH6TeX6j4rhCcon",
+      "title": "Sleep Now in the Fire",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://0.0.0.0:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 205,
+      "status": "pending",
+      "mbid": "b7c5afec-aa10-42bb-982e-768dac599940",
+      "links": [
+        "https://musicbrainz.org/recording/b7c5afec-aa10-42bb-982e-768dac599940"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/a7tsKF4yH6TeX6j4rhCcon/Sleep+Now+in+the+Fire",
+      "visibility": "public"
+    },
+    {
+      "id": "kqF4NrAj6h4jydQmxNYX5Y",
+      "title": "Ex-Girlfriend",
+      "artists": [
+        {
+          "id": "18cxFqYXqu3LgoSWfQSsEF",
+          "name": "No Doubt",
+          "area": "Anaheim, US",
+          "url": "http://0.0.0.0:3000/api/artist/18cxFqYXqu3LgoSWfQSsEF/No+Doubt"
+        }
+      ],
+      "duration": 274,
+      "status": "pending",
+      "mbid": "120fb533-1610-4177-829c-6a90791b8efe",
+      "links": [
+        "https://musicbrainz.org/recording/120fb533-1610-4177-829c-6a90791b8efe"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/kqF4NrAj6h4jydQmxNYX5Y/Ex-Girlfriend",
+      "visibility": "public"
+    },
+    {
+      "id": "wjJLTcmmtfVUH9jMPyBjsd",
+      "title": "Bullet with Butterfly Wings",
+      "artists": [
+        {
+          "id": "fE3sQzzR7PVMwTjtTFmszK",
+          "name": "The Smashing Pumpkins",
+          "area": "Chicago, US",
+          "url": "http://0.0.0.0:3000/api/artist/fE3sQzzR7PVMwTjtTFmszK/The+Smashing+Pumpkins"
+        }
+      ],
+      "duration": 261,
+      "status": "pending",
+      "mbid": "dcd92e91-c4ec-4e95-981f-131ede35284c",
+      "links": [
+        "https://musicbrainz.org/recording/dcd92e91-c4ec-4e95-981f-131ede35284c"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/wjJLTcmmtfVUH9jMPyBjsd/Bullet+with+Butterfly+Wings",
+      "visibility": "public"
+    },
+    {
+      "id": "fKJ1toR9Vv6G5REDE1ZZ2E",
+      "title": "Mudshovel",
+      "artists": [
+        {
+          "id": "wmieuvREJDSUuingkdpnoB",
+          "name": "Staind",
+          "area": "Springfield, US",
+          "url": "http://0.0.0.0:3000/api/artist/wmieuvREJDSUuingkdpnoB/Staind"
+        }
+      ],
+      "duration": 288,
+      "status": "pending",
+      "mbid": "3e36eee5-9b1c-4914-8bb6-767b1eefbffa",
+      "links": [
+        "https://musicbrainz.org/recording/3e36eee5-9b1c-4914-8bb6-767b1eefbffa"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/fKJ1toR9Vv6G5REDE1ZZ2E/Mudshovel",
+      "visibility": "public"
+    },
+    {
+      "id": "a7aTMU4E2x1mBH9np6xEJY",
+      "title": "I Disappear",
+      "artists": [
+        {
+          "id": "8CV1SBRZsH9Rs13pL4fWgw",
+          "name": "Metallica",
+          "area": "Los Angeles, US",
+          "url": "http://0.0.0.0:3000/api/artist/8CV1SBRZsH9Rs13pL4fWgw/Metallica"
+        }
+      ],
+      "duration": 266,
+      "status": "pending",
+      "isrc": ["USHR10024401", "USHR10024403"],
+      "mbid": "84f54cf7-b0dc-4883-a924-e4c80e2f4217",
+      "links": [
+        "https://musicbrainz.org/recording/84f54cf7-b0dc-4883-a924-e4c80e2f4217"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/a7aTMU4E2x1mBH9np6xEJY/I+Disappear",
+      "visibility": "public"
+    },
+    {
+      "id": "vHmz6s9QcNCtpZSsctE9Y3",
+      "title": "Take a Look Around",
+      "artists": [
+        {
+          "id": "gWrP9xJ3LCsd96nZ2pVZcK",
+          "name": "Limp Bizkit",
+          "area": "Jacksonville, US",
+          "url": "http://0.0.0.0:3000/api/artist/gWrP9xJ3LCsd96nZ2pVZcK/Limp+Bizkit"
+        }
+      ],
+      "duration": 335,
+      "status": "pending",
+      "mbid": "6aedfbb1-5747-4fe6-9f96-45c4adc6c901",
+      "links": [
+        "https://musicbrainz.org/recording/6aedfbb1-5747-4fe6-9f96-45c4adc6c901"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/vHmz6s9QcNCtpZSsctE9Y3/Take+a+Look+Around",
+      "visibility": "public"
+    },
+    {
+      "id": "4uvKACcypMebutwNAMVxWK",
+      "title": "Everlong",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://0.0.0.0:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 250,
+      "status": "pending",
+      "mbid": "ea11c50d-1da4-4ea8-989e-2350008f73ea",
+      "links": [
+        "https://musicbrainz.org/recording/ea11c50d-1da4-4ea8-989e-2350008f73ea"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/4uvKACcypMebutwNAMVxWK/Everlong",
+      "visibility": "public"
+    },
+    {
+      "id": "vo6X7wfJj9VfdBiKRNLZus",
+      "title": "Monkey Wrench",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://0.0.0.0:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 233,
+      "status": "pending",
+      "mbid": "34953406-af87-4364-96a5-6e400e320d49",
+      "links": [
+        "https://musicbrainz.org/recording/34953406-af87-4364-96a5-6e400e320d49"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/vo6X7wfJj9VfdBiKRNLZus/Monkey+Wrench",
+      "visibility": "public"
+    },
+    {
+      "id": "pTaJB1LxMiQox195k6vkdM",
+      "title": "Take On Me",
+      "artists": [
+        {
+          "id": "ofbASQte84TRaheSJM264j",
+          "name": "MxPx",
+          "area": "Bremerton, US",
+          "url": "http://0.0.0.0:3000/api/artist/ofbASQte84TRaheSJM264j/MxPx"
+        }
+      ],
+      "duration": 215,
+      "status": "pending",
+      "mbid": "6450fa18-5fa3-40b2-89fe-e756fe213a6c",
+      "links": [
+        "https://musicbrainz.org/recording/6450fa18-5fa3-40b2-89fe-e756fe213a6c"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/pTaJB1LxMiQox195k6vkdM/Take+On+Me",
+      "visibility": "public"
+    },
+    {
+      "id": "bEsmYXGenLbvSPAPYqKS3V",
+      "title": "The Final Slowdance",
+      "artists": [
+        {
+          "id": "ofbASQte84TRaheSJM264j",
+          "name": "MxPx",
+          "area": "Bremerton, US",
+          "url": "http://0.0.0.0:3000/api/artist/ofbASQte84TRaheSJM264j/MxPx"
+        }
+      ],
+      "duration": 119,
+      "status": "pending",
+      "mbid": "8217ab73-04f4-4d27-9f63-c06296d8e436",
+      "links": [
+        "https://musicbrainz.org/recording/8217ab73-04f4-4d27-9f63-c06296d8e436"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/bEsmYXGenLbvSPAPYqKS3V/The+Final+Slowdance",
+      "visibility": "public"
+    },
+    {
+      "id": "uRiVa21gwrLbeaAgoNueRk",
+      "title": "Do Your Feet Hurt",
+      "artists": [
+        {
+          "id": "ofbASQte84TRaheSJM264j",
+          "name": "MxPx",
+          "area": "Bremerton, US",
+          "url": "http://0.0.0.0:3000/api/artist/ofbASQte84TRaheSJM264j/MxPx"
+        }
+      ],
+      "duration": 190,
+      "status": "pending",
+      "mbid": "b24def54-77df-4601-8bcb-a4f3ca6cb8e5",
+      "links": [
+        "https://musicbrainz.org/recording/b24def54-77df-4601-8bcb-a4f3ca6cb8e5"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/uRiVa21gwrLbeaAgoNueRk/Do+Your+Feet+Hurt",
+      "visibility": "public"
+    },
+    {
+      "id": "6W4jBPd9Cr8uwm3NQfZPcs",
+      "title": "KKK Took My Baby Away",
+      "artists": [
+        {
+          "id": "ofbASQte84TRaheSJM264j",
+          "name": "MxPx",
+          "area": "Bremerton, US",
+          "url": "http://0.0.0.0:3000/api/artist/ofbASQte84TRaheSJM264j/MxPx"
+        }
+      ],
+      "duration": 114,
+      "status": "pending",
+      "mbid": "b561436c-f53e-4e40-8532-a71e3194820b",
+      "links": [
+        "https://musicbrainz.org/recording/b561436c-f53e-4e40-8532-a71e3194820b"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/6W4jBPd9Cr8uwm3NQfZPcs/KKK+Took+My+Baby+Away",
+      "visibility": "public"
+    },
+    {
+      "id": "waFfnrDPJeVxaety7fxgwa",
+      "title": "Under Lock and Key",
+      "artists": [
+        {
+          "id": "ofbASQte84TRaheSJM264j",
+          "name": "MxPx",
+          "area": "Bremerton, US",
+          "url": "http://0.0.0.0:3000/api/artist/ofbASQte84TRaheSJM264j/MxPx"
+        }
+      ],
+      "duration": 152,
+      "status": "pending",
+      "mbid": "51be0564-be10-4fb2-b1b8-b4db894261b3",
+      "links": [
+        "https://musicbrainz.org/recording/51be0564-be10-4fb2-b1b8-b4db894261b3"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/waFfnrDPJeVxaety7fxgwa/Under+Lock+and+Key",
+      "visibility": "public"
+    },
+    {
+      "id": "qmFhGkzLGVomzugfSwDPE3",
+      "title": "The Theme Fiasco",
+      "artists": [
+        {
+          "id": "ofbASQte84TRaheSJM264j",
+          "name": "MxPx",
+          "area": "Bremerton, US",
+          "url": "http://0.0.0.0:3000/api/artist/ofbASQte84TRaheSJM264j/MxPx"
+        }
+      ],
+      "duration": 193,
+      "status": "pending",
+      "mbid": "e9f639ce-fd52-4055-a842-fe92355e0da8",
+      "links": [
+        "https://musicbrainz.org/recording/e9f639ce-fd52-4055-a842-fe92355e0da8"
+      ],
+      "url": "http://0.0.0.0:3000/api/playlist/qmFhGkzLGVomzugfSwDPE3/The+Theme+Fiasco",
+      "visibility": "public"
+    }
+  ],
+  "url": "http://0.0.0.0:3000/api/playlist/ne1axqWpyVPmxgkFGLpNzn/matt",
+  "visibility": "private",
+  "artists": [
+    {
+      "id": "sfALJAKKYVEHdWfPCmYTLq",
+      "name": "P.O.D.",
+      "area": "San Diego, US",
+      "url": "http://0.0.0.0:3000/api/artist/sfALJAKKYVEHdWfPCmYTLq/P.O.D."
+    },
+    {
+      "id": "hHEaPNXiwqm2RJJRbyHs6q",
+      "name": "Guns N’ Roses",
+      "area": "Los Angeles, US",
+      "url": "http://0.0.0.0:3000/api/artist/hHEaPNXiwqm2RJJRbyHs6q/Guns+N%E2%80%99+Roses"
+    },
+    {
+      "id": "gtAoAntvnCG9qPsU9gcHv1",
+      "name": "Rage Against the Machine",
+      "area": "Los Angeles, US",
+      "url": "http://0.0.0.0:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+    },
+    {
+      "id": "18cxFqYXqu3LgoSWfQSsEF",
+      "name": "No Doubt",
+      "area": "Anaheim, US",
+      "url": "http://0.0.0.0:3000/api/artist/18cxFqYXqu3LgoSWfQSsEF/No+Doubt"
+    },
+    {
+      "id": "fE3sQzzR7PVMwTjtTFmszK",
+      "name": "The Smashing Pumpkins",
+      "area": "Chicago, US",
+      "url": "http://0.0.0.0:3000/api/artist/fE3sQzzR7PVMwTjtTFmszK/The+Smashing+Pumpkins"
+    },
+    {
+      "id": "wmieuvREJDSUuingkdpnoB",
+      "name": "Staind",
+      "area": "Springfield, US",
+      "url": "http://0.0.0.0:3000/api/artist/wmieuvREJDSUuingkdpnoB/Staind"
+    },
+    {
+      "id": "8CV1SBRZsH9Rs13pL4fWgw",
+      "name": "Metallica",
+      "area": "Los Angeles, US",
+      "url": "http://0.0.0.0:3000/api/artist/8CV1SBRZsH9Rs13pL4fWgw/Metallica"
+    },
+    {
+      "id": "gWrP9xJ3LCsd96nZ2pVZcK",
+      "name": "Limp Bizkit",
+      "area": "Jacksonville, US",
+      "url": "http://0.0.0.0:3000/api/artist/gWrP9xJ3LCsd96nZ2pVZcK/Limp+Bizkit"
+    },
+    {
+      "id": "mTKCx7T69sv7EkfSHaDtPb",
+      "name": "Foo Fighters",
+      "area": "Seattle, US",
+      "url": "http://0.0.0.0:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+    },
+    {
+      "id": "ofbASQte84TRaheSJM264j",
+      "name": "MxPx",
+      "area": "Bremerton, US",
+      "url": "http://0.0.0.0:3000/api/artist/ofbASQte84TRaheSJM264j/MxPx"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+@media only screen and (min-width: 700px) {
+    .ArtistContainer {
+        width: 700px;
+    }
+}
+@media only screen and (max-width: 699px) {
+    .ArtistContainer {
+        width: 100%;
+    }
+}
+
+body, html, 
+.ArtistContainer {
+    margin: 0 auto;
+    padding: 0;
+    height: 100%;
+    /* width: 700px; */
+    font-family: Helvetica, Arial, sans-serif;
+}
+.menu {
+    width: 35%;
+    height: 100%;
+    overflow: hidden;
+    position: fixed;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+#menublank {
+    display: hidden;
+    width: 35%;
+}
+#menu-center {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow-y: hidden;
+
+    color:#C8C7C8;
+    font: 34px/26px Helvetica, Arial, sans-serif;
+    color: rgba(255,255,255,0.5);
+    text-shadow: 2px 2px 0px rgba(0,0,0,1);
+
+    /*padding-top: 50px;*/
+}
+#menu-center div {
+    /* responsive square (height==width) */
+    height: 0;
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    font: 34px/26px Helvetica, Arial, sans-serif;
+    color: rgba(255,255,255,0.5);
+    text-shadow: 2px 2px 0px rgba(0,0,0,1);
+    overflow: hidden;
+}
+#menu-center .active div, 
+#menu-center div:hover {
+    color: #fff !important;
+}
+#menu-center .active {
+    font-family:'Droid Sans', serif;
+    font-size: 14px;
+    color: #fff !important;
+    text-decoration: none;
+    line-height: 50px;
+    filter: none !important;
+}
+#menu-center a {
+    filter: opacity(50%);
+}
+#menu-center a:hover {
+    filter: none !important;
+    color: #fff !important;
+}
+/*
+#menu-center a:first-child {
+    padding-top: 50px;
+}
+*/
+a {
+    /*! font-family:'Droid Sans', serif; */
+    /*! font-size: 14px; */
+    color: black;
+    text-decoration: none;
+    line-height: 50px;
+}
+#menu-entries {
+    width: 65%;
+    float: right;
+}
+/*
+#menu-entries div:first-child {
+    padding-top: 50px;
+}
+*/
+
+.album-title {
+    width: 100%;
+    background-color: #eee;
+    font-weight: bold;
+    position: sticky;
+    top: 50px;
+}
+.album-artist {
+    display: none;
+}
+
+.album {
+    width: 100%;
+    /* min-height: 300px; */
+    height: calc(window.width * 30%);
+    margin-top: 5px;
+}
+.listentries p, h1 {
+    margin-top: 0px;
+}
+.album-list > li:nth-child(even) {
+    background-color: #f7f7f7;
+}
+.album-list li {
+  margin-left: 20px;
+}
+.album:last-child {
+    height: 100%;
+}
+
+.listentries {
+    width: 100%;
+    /* min-height: 300px; */
+    height: calc(window.width * 30%);
+    margin-top: 5px;
+}
+.listentries p, h1 {
+    margin-top: 0px;
+}
+.listentries > ol > li:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.item-title {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    max-width: 375px;
+    display: inline-block;
+    max-width: 75%;
+}
+.item-length {
+    float: right;
+    margin: auto 2px;
+    /*! font-size: 14px; */
+}
