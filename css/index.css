@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 56px;
 }
 body {
   height: 100%;
@@ -9,10 +10,10 @@ body {
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
-  /* padding-top: 56px; */
   background-color: rgb(33, 33, 33);
   background-position: center;
   background-size: cover;
+  display: inline-flex;
 }
 
 #header {
@@ -23,7 +24,7 @@ body {
   background-color: #231f20;
   box-shadow: 0px 3px 5px 3px #030303;
   height: 56px;
-  width: 100%;
+  width: 100vw;
   z-index: 10;
 }
 #header > #logo {
@@ -102,8 +103,17 @@ body {
   margin-right: 4px;
   float: right;
 }
-.material-icons {
+.material-icons,
+.material-symbols-outlined {
   font-size: 56px !important;
+  cursor: pointer;
+}
+.material-icons:hover,
+.material-symbols-outlined:hover {
+  filter: invert(0.3);
+}
+.material-icons.md-dark {
+  color: rgba(0, 0, 0, 0.54);
 }
 i.headerButton {
   background-color: #231f20;
@@ -179,6 +189,11 @@ i.headerButton {
   transition-timing-function: cubic-bezier(0, 1, 0.5, 1);
 }
 
+main {
+  float: left;
+  margin: 0px auto;
+  width: 100%;
+}
 .container {
   border: 0;
   font: inherit;
@@ -192,9 +207,16 @@ i.headerButton {
 }
 main .container {
   backdrop-filter: blur(5px) contrast(0.8); /* https://css-tricks.com/the-backdrop-filter-css-property/ */
+  display: flex;
 }
 .container#recommended {
   font-size: 0;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(auto-fill, 200px);
+}
+.container#recommended.visible {
+  padding-bottom: 600px;
 }
 .container-title {
   width: 100%;
@@ -202,17 +224,32 @@ main .container {
   font-size: 48px;
   color: rgba(255, 255, 255, 1);
   text-shadow: 2px 2px 0px #030303;
+  display: flex;
 }
+.tile1x2 {
+  grid-row: span 2;
+  height: 100%;
+  width: 100%;
+}
+.tile2x1 {
+  grid-column: span 2;
+  height: 100%;
+  width: 100%;
+}
+
 @media (max-height: 450px) {
   #player > div > a > i.playerButton {
     /* i.playerButton { */
     margin: 0px !important;
   }
 }
-@media (min-width: 0px) {
+@media (max-width: 450px) {
   .container,
-  .contents {
-    max-width: 100%;
+  .contents.visible {
+    /* max-width: 100%; */
+    /* width: 100vw; */
+    width: 100vw !important;
+    right: 0px !important;
   }
   .tile {
     width: 100vw;
@@ -229,8 +266,9 @@ main .container {
   .tile3x2 {
     width: 100vw;
     height: 75vw;
+    grid-column: span 2;
   }
-  .contents > .contents-close {
+  .contents > a > .contents-close {
     margin-top: 395px;
   }
 }
@@ -258,7 +296,7 @@ main .container {
     height: 50vw;
   }
   .tile2x2 {
-    width: 100vw;
+    width: 100vw !important;
     height: 100vw;
   }
   .tile3x2 {
@@ -270,6 +308,11 @@ main .container {
   }
 }
 @media (min-width: 450px) {
+  .main {
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 64vw;
+  }
   .box {
     width: 400px;
   }
@@ -287,12 +330,13 @@ main .container {
     height: 200px;
   }
   .tile1x2 {
-    width: 200px;
+    grid-row: span 2;
     height: 400px;
+    width: 200px;
   }
   .tile2x1 {
-    width: 400px;
     height: 200px;
+    width: 400px;
   }
   .tile2x2 {
     width: 400px;
@@ -322,8 +366,12 @@ main .container {
     max-width: 600px;
   }
   .tile3x2 {
-    width: 600px;
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 2;
+    height: 100%;
+    width: 100%;
     height: 400px;
+    width: 600px;
   }
   .container#billboard {
     /* height: 400px; /* ~== 1 tiles tall */
@@ -335,13 +383,19 @@ main .container {
   /* .contents > .items {
         margin-left: 600px;
     } */
-  .contents > .contents-close {
+  .contents > a > .contents-close {
     margin-top: 595px;
   }
 }
 @media (max-width: 650px) {
+  .tile2x2 {
+    grid-row: 6 / span 2 !important;
+  }
   i.linkButton {
     margin: 0px !important;
+  }
+  .contents > ol.items > li.item {
+    width: 100% !important;
   }
 }
 @media (min-width: 850px) {
@@ -362,7 +416,7 @@ main .container {
   .contents > .items {
     margin-left: 400px;
   }
-  .contents > .contents-close {
+  .contents > a > .contents-close {
     margin-top: 0px;
   }
 }
@@ -388,12 +442,12 @@ main .container {
   }
   .container,
   .contents {
-    max-width: 1800px;
+    max-width: 1600px;
   }
   .contents > .items {
     display: grid;
-    grid-auto-flow: column;
-    grid-template-rows: repeat(15, auto);
+    /* grid-auto-flow: column; */
+    /* grid-template-rows: repeat(15, auto); */
   }
 }
 @media (min-width: 2450px) {
@@ -417,9 +471,7 @@ main .container {
   z-index: -1;
 }
 .tile {
-  /* display: block; */
-  display: inline-flex;
-  /* float: left; */
+  /* display: inline-block; */
   padding: 0px;
   margin: 0px;
   position: static;
@@ -430,6 +482,130 @@ main .container {
   background-size: cover;
   overflow: hidden;
 }
+.tile .albumart {
+  width: inherit;
+  height: inherit;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.contents:target,
+.contents.visible {
+  box-shadow: 0px 8px 8px 8px #030303;
+  line-height: normal;
+  z-index: 100;
+  /* width: 100%; */
+  min-height: 600px;
+  /* height: fit-content; */
+  right: 0;
+  /* position: relative; */
+  margin-bottom: 60px;
+  /* bottom: 0px; */
+  /* position: absolute; */
+  position: fixed;
+  top: 56px;
+  width: 69vw;
+  /* height: 100vh; */
+  height: calc(100vh - 56px);
+  backdrop-filter: blur(15px) contrast(0.25);
+}
+.contents {
+  /* background-color: white; */
+  transition: all ease 0.25s;
+  /* overflow: hidden; */
+  overflow: auto;
+  font-size: 22px;
+  /* height: 0px; */
+  grid-column: 1 / -1;
+  position: absolute;
+  width: 0px;
+  right: -10vw;
+}
+.contents .items {
+  padding-left: 0px;
+}
+#playlists .contents {
+  background-color: white;
+}
+
+li.item {
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  /* grid-template-rows: 50px; */
+  grid-template-areas:
+    "a b d"
+    "a c d"
+    "a e d";
+  cursor: pointer;
+}
+.item .num {
+  /* cursor: grab; */
+  text-align: center;
+  grid-area: a;
+  margin: auto 2px;
+}
+.contents > li {
+  /* from https://codepen.io/paulobrien/pen/YzZZgqB */
+  counter-increment: doc;
+  cursor: ns-resize;
+  text-align: center;
+  grid-area: a;
+  margin: auto 2px;
+}
+.contents > li:before {
+  content: counter(doc) ". ";
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto 2px;
+  /* font-weight: bold; */
+  grid-area: b;
+}
+.artists {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto 2px;
+  display: block; /* causes linebreak */
+  grid-area: c;
+}
+.duration {
+  margin: auto 8px auto 8px;
+  grid-area: d;
+  float: right;
+}
+.items.noartists > .item {
+  grid-template-areas:
+    "a b d"
+    "a e d" !important;
+}
+.items.noartists > .item > .title {
+  font-weight: normal;
+}
+.items.noartists > .item > .artists {
+  display: none;
+}
+
+.item.selected > .title {
+  white-space: break-spaces;
+}
+.item.selected > .options {
+  height: 60px;
+}
+.item .options {
+  /* display: inline; */
+  /* grid-area: inherit; */
+  /* display: none; */
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.5s ease;
+  font-size: 16px;
+}
+
 .tile.hidden {
   left: -200vw !important;
 }
@@ -449,22 +625,12 @@ a.tile {
   text-overflow: ellipsis;
 }
 .tile2x2 {
-  float: right;
-}
-.contents {
-  z-index: 9;
-  top: inherit;
-  position: absolute;
-  background-color: white;
-  width: 100vw;
-
-  /* needed for the transition to work properly */
-  height: 0px;
-  min-height: 0px;
-
-  transition: all ease 0.5s 0.1s;
-  overflow: hidden;
-  font-size: 16px;
+  /* grid-area: 2 / -3 / 4 / -1; */
+  width: 100%;
+  height: 100%;
+  height: 400px;
+  /* grid-row: 3 / span 2; */
+  grid-area: 3 / -3 / span 2 / -1;
 }
 .contents.playlist {
   position: inherit;
@@ -499,16 +665,14 @@ a.tile {
   padding-left: 10px;
 }
 .contents > ol.items > li.item {
-  width: 550px;
+  width: 600px;
+  /* width: 550px; */
 }
 .contents > ol.items > li.item:nth-child(even) {
   background-color: #dddddd;
 }
-.contents.playlist > ol.items > li.item {
+/* .contents.playlist > ol.items > li.item {
   width: 550px;
-}
-/* .contents.playlist > ol.items > li.item:nth-child(even) {
-  background-color: #dddddd;
 } */
 
 nav > ul {

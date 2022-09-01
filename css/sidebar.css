@@ -1,0 +1,188 @@
+#sidebar {
+  background-color: #3e3638;
+  box-shadow: 3px 5px 5px 3px #000;
+  color: #c8c7c8;
+  display: inline-block;
+  font-weight: 300;
+  font: 30px Helvetica, Arial, sans-serif;
+  /* height: 100vh; */
+  /* min-height: 100vh; */
+  margin: 0px;
+  margin-top: 60px;
+  /* position: absolute; */
+  /* position: fixed; */
+  /* left: 0.025vw; */
+  text-shadow: 2px 2px 0px rgb(0 0 0);
+  /* top: 56px; */
+  /* bottom: 0px; */
+  transition: 0.5s ease;
+  z-index: 9;
+}
+
+div#progress {
+  height: 10px;
+  width: 0px;
+  background-color: #c8c7c8;
+  transition: width 0.5s linear;
+}
+
+#sidebar#queue {
+  top: 56px;
+}
+#sidebar.closed {
+  width: 0px !important;
+  left: -10px;
+}
+#sidebar.closed * {
+  display: none;
+}
+
+#queue-controls > .material-icons {
+  font-size: 48px !important;
+}
+#queue-totaltime {
+  float: right;
+  padding: 10px 8px;
+  margin: 0px;
+}
+
+/* https://usefulangle.com/post/377/css-animation-on-dom-insert */
+@keyframes append-animate {
+  from {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+#queuelist {
+  list-style: none;
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 2px 2px 0px rgb(0 0 0);
+  margin: 0 auto;
+  padding-left: 0px;
+}
+#queuelist li {
+  background-color: #231f20;
+  cursor: pointer;
+  /* display: block; */
+  margin: 0;
+  animation: append-animate 0.25s ease;
+}
+#queuelist li:hover {
+  background-color: #262223;
+}
+.sort-placeholder {
+  width: 100%;
+  border: 1px dashed gray;
+  background-color: #fff;
+  margin: 8px 0;
+}
+
+#queuelist > li {
+  counter-increment: doc;
+}
+#queuelist > li:before {
+  content: counter(doc);
+  cursor: ns-resize;
+  text-align: center;
+  grid-area: a;
+  margin: auto 2px;
+}
+#playing .icon {
+  text-align: center;
+  grid-area: a;
+  margin: auto 2px;
+}
+
+#queuelist .item,
+#playing {
+  background-color: #231f20;
+  cursor: pointer;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-rows: 50px;
+  grid-template-areas:
+    "a b d"
+    "a c d"
+    "a e d";
+}
+#queuelist .item .title,
+#queuelist .item .artists,
+#playing .title,
+#playing .artists {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto 2px;
+}
+#queuelist .item .title,
+#playing .title {
+  /* font-weight: bold; */
+  grid-area: b;
+  color: #dddddd;
+  font-size: 36px;
+}
+#queuelist .item .artists,
+#playing .artists {
+  display: inline-block;
+  grid-area: c;
+}
+#queuelist .item .num {
+  /* cursor: ns-resize; */
+  cursor: move;
+  /* text-align: center;
+  grid-area: a;
+  margin: auto 2px; */
+}
+#queuelist .item .duration,
+#playing .duration {
+  margin: auto 8px auto 8px;
+  grid-area: d;
+  float: right;
+}
+
+.items.noartists .item .title {
+  font-weight: normal !important;
+}
+.items.noartists .item .artists {
+  display: none !important;
+}
+
+/* @media (min-width: 650px) { */
+@media (min-width: 1050px) {
+  body {
+    display: flex;
+  }
+
+  #sidebar {
+    height: unset;
+  }
+  #sidebar,
+  #poster {
+    width: min(60vh, 35vw);
+  }
+  #poster {
+    height: min(60vh, 35vw);
+  }
+}
+/* @media (max-width: 650px) { */
+@media (max-width: 1050px) {
+  body {
+    display: block !important;
+  }
+
+  #sidebar {
+    height: 100%;
+  }
+  #sidebar,
+  #poster {
+    width: 100vw;
+  }
+  #poster {
+    height: 100vw;
+  }
+}

@@ -1,0 +1,84 @@
+i.playerButton {
+  text-shadow: 2px 2px 0px rgb(0 0 0);
+  margin: 8px;
+  font-size: 64px !important;
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+}
+i#play.playerButton {
+  font-size: 96px !important;
+}
+.playerButton:first-child {
+  margin: 0px auto 0px 15px;
+}
+.playerButton:last-child {
+  margin: 0px 15px 0px auto;
+}
+
+#player {
+  /* https://stackoverflow.com/a/45275695 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 100%; */
+  /* height: 100%; */
+}
+#player.minimized {
+  height: 0px !important;
+  display: none;
+}
+#player > div {
+  text-align: center;
+}
+
+#linkbox {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  /* transition: position 0.25s ease 0.1s; */
+  transition: bottom 0.25s ease 0.25s;
+}
+#linkbox.minimized {
+  height: 0px !important;
+  bottom: -100vh;
+}
+#playerbox.minimized > #linkbox {
+  bottom: 100vh;
+  transition: bottom 0.25s ease;
+}
+i.linkButton {
+  margin: 8px 16px;
+  text-shadow: 2px 2px 0px rgb(0 0 0);
+  font-size: 64px !important;
+  cursor: pointer;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+}
+#playerbox {
+  transition: height ease 0.25s;
+  height: 100vh;
+  overflow: hidden;
+}
+#playerbox.minimized {
+  /* from https://stackoverflow.com/a/951888 */
+  height: 0px !important;
+  line-height: 0px;
+}
+#playerbox > * {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.5s linear, bottom 0.25s ease;
+}
+#playerbox.fadeout > * {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 0.5s, opacity 0.5s linear;
+}
+#billboard-spacer {
+  width: 100vw;
+  height: 60px;
+}
