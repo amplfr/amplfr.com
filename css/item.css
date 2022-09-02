@@ -1,0 +1,23 @@
+.item * {
+  text-overflow: clip;
+  white-space: nowrap;
+  display: block;
+}
+.item .artwork {
+  background-position: center;
+  background-size: cover;
+  float: left;
+  margin-right: 4px;
+  height: 2em;
+  width: 2em;
+}
+.item .title {
+  font-size: 1em;
+}
+.item .artists {
+  font-size: 0.688em;
+}
+.item .collection {
+  font-size: 0.563em;
+  font-style: italic;
+}
