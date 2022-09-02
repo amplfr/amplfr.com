@@ -124,12 +124,12 @@
     max-width: 1200px;
   }
 }
-@media (min-width: 2450px) {
+@media (min-width: 2250px) {
   .container {
     max-width: 1800px;
   }
 }
-@media (min-width: 2450px) {
+@media (min-width: 2850px) {
   .container {
     max-width: 2400px;
   }
