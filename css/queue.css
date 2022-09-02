@@ -4,7 +4,7 @@
   font-size: 2em;
   width: 400px;
   z-index: 4;
-  transition: 0.25s linear;
+  transition: width 0.25s linear, left 0.25s linear, margin-top 0.25s linear;
 }
 #sidebar:nth-child(2) {
   margin-top: 4em;
@@ -13,6 +13,10 @@
   display: flex;
   position: fixed;
   bottom: 0px;
+}
+#sidebar,
+#playing {
+  position: relative;
 }
 #player {
   display: flex;
@@ -43,6 +47,7 @@
   transition: 0.25s linear;
   width: 0px;
   margin: 0px;
+  fill: #232021;
 }
 #player #time {
   font-size: 1.25em !important;
@@ -124,6 +129,7 @@
   height: calc(100% - 256px);
   z-index: 8;
   overflow: clip overlay;
+  padding-bottom: calc(100vh - 100%);
 }
 #queue i {
   display: none;
@@ -152,7 +158,7 @@
   line-height: 2em;
 }
 #sidebar.closed #queue {
-  height: calc(100vh - 192px);
+  height: calc(100% - 192px);
 }
 #sidebar.closed #queue li:before,
 #sidebar.closed #queue li {
@@ -172,7 +178,7 @@
 
 /* anything above is the "normal" screen size */
 /* wide screen */
-@media (min-width: 1330px) {
+@media (min-width: 1350px) {
   #playing {
     color: #3e3638;
     background-color: unset;
@@ -198,11 +204,13 @@
 }
 
 /* narrow screen */
-@media (max-width: 1250px) {
+@media (max-width: 1750px) {
   #sidebar,
   #playing {
     position: fixed;
   }
+}
+@media (max-width: 1250px) {
   #sidebar.closed #playing {
     width: 0px;
   }
@@ -220,9 +228,10 @@
     margin: 0px auto;
   }
   main {
-    margin: 0px auto;
     flex: unset;
-    margin-left: 64px;
+    display: block;
+    margin: 0px 0px 0px 64px !important;
+    width: 100%;
   }
 }
 @media (max-width: 464px) {
