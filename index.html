@@ -1,597 +1,333 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Amplfr</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        <link href="/css/index.css" rel="stylesheet" />
-        <link href="/css/searchbar.css" rel="stylesheet" />
-        <link href="/css/sidebar.css" rel="stylesheet" />
-        <link href="/css/player.css" rel="stylesheet" />
-        <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
-        <link rel="manifest" href="manifest.json" />
-        <link rel="apple-touch-icon" href="img/apple-icon-180.png" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+<html>
+  <!-- prettier-ignore -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplfr.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet" />
+    <link href="/css/item.css" rel="stylesheet" />
+    <link href="/css/queue.css" rel="stylesheet" />
+    <link href="/css/tile.css" rel="stylesheet" />
+    <script src="/js/item.js"></script>
+  </head>
+  <body>
+    <!-- prettier-ignore -->
+    <div id="header">
+      <!-- prettier-ignore -->
+      <a href="/" id="logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1749 1869">
+        <path id="logoA" d="M717.7 1C717.7 1 984.3 1 984.3 1 984.3 1 1425 1076 1425 1076 1417.5 1075.4 1137.7 1004 1135.5 1002.2 1133.1 1000.1 845 200 845 200 845 200 627.1 871.4 624.6 872.3 622.2 873.3 404 817 404 817 404 817 717.7 1 717.7 1ZM1608 1207C1608 1207 681 1435.4 681 1435.4 681 1435.4 267 1537 267 1537 267 1537 267 866 267 866M1522 1312C1522 1312 1749 1869 1749 1869 1749 1869 1474 1869 1474 1869 1472 1869 1468.4 1869.3 1466.7 1868 1465 1866.7 1276.8 1379.8 1276 1372 1276 1372 1522 1312 1522 1312ZM186 1589C186.3 1611.6 205.5 1629.5 228 1629 228 1629 362 1597 362 1597 362 1597 264 1869 264 1869 264 1869 0 1869 0 1869 0 1869 185 1385 185 1385 186.7 1389.4 186 1589 186 1589Z"></path>
+      </svg><svg class="wide-only" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 567 243">
+        <path id="logomplfr" d="M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"></path>
+      </svg></a><a href="/upload" class="wide-only"><i class="material-symbols-outlined" title="Upload">cloud_upload</i></a><a href="#search" class="wide-only"><i id="searchIcon" class="material-symbols-outlined md-light" title="Search">search</i></a><i class="material-symbols-outlined md-light" title="Show the menu" id="menu">menu</i>
+    </div>
+    <div id="sidebar">
+      <i id="play" class="material-icons filled">play_arrow</i>
+      <div id="playing" class="item"></div>
+      <!-- prettier-ignore -->
+      <span id="player" class="">
+        <i id="previous" class="material-icons md-light" title="Previous">skip_previous</i>
+        <i id="repeat" class="material-icons md-light" title="Repeat">repeat</i>
+        <div id="time" class="" title="">12:12</div>
+        <i id="shuffle" class="material-icons md-light" title="Shuffle">shuffle</i>
+        <i id="next" class="material-icons md-light" title="Next">skip_next</i>
+      </span>
+      <ol id="history" class="hidden"></ol>
+      <!-- prettier-ignore -->
+      <ol id="queue"></ol>
+      <ul id="playlists" class="hidden"></ul>
+      <!-- prettier-ignore -->
+      <span id="sidebarIcons">
+        <i id="queueIcon" class="material-symbols-outlined md-light" title="Queue">playlist_play</i>
+        <i class="material-symbols-outlined">history</i>
+        <i class="material-symbols-outlined">format_list_numbered</i>
+      </span>
+    </div>
+    <script async src="/js/queue.js"></script>
+    <!-- prettier-ignore -->
+    <nav>
+      <!-- prettier-ignore -->
+      <div class="topIcons">
+        <a href="#recommended"><i class="material-symbols-outlined" title="Recommended">recommend</i></a>
+        <a href="#new"><i class="material-symbols-outlined" title="New">event</i></a>
+        <a href="#popular"><i class="material-symbols-outlined" title="Popular">trending_up</i></a>
+        <a href="#local"><i class="material-symbols-outlined" title="Local">near_me</i></a>
+        <a href="#playlists"><i class="material-symbols-outlined" title="Playlists">queue_music</i></a>
+      </div>
+      <!-- prettier-ignore -->
+      <div class="midIcons">
+        <a href="#favorites"><i class="material-symbols-outlined" title="Favorites">favorite</i></a>
+        <a href="#people"><i class="material-symbols-outlined" title="People">groups</i></a><a href="#history"><i class="material-symbols-outlined" title="History">history</i></a>
+      </div>
+      <!-- prettier-ignore -->
+      <div class="bottomIcons">
+        <a href="/account"><i class="material-symbols-outlined md-light" title="Account Settings">manage_accounts</i></a>
+        <a href="#legal" id="legalIcon"><i class="material-symbols-outlined md-light" title="copyright">copyright</i></a>
+      </div>
+    </nav>
+    <main>
+      <!-- prettier-ignore -->
+      <div class="container headerOffset">
+        <div class="tile" style="background-color: #ff0000"></div>
+        <div class="tile" style="background-color: #ff7f00"></div>
+        <div class="tile" style="background-color: #feb300"></div>
+        <div class="tile" style="background-color: #007900"></div>
+        <div class="tile" style="background-color: #00aeae"></div>
+        <div class="tile" style="background-color: #0000ff"></div>
+        <div class="tile" style="background-color: #ba00ff"></div>
+        <div class="tile" style="background-color: #cc00af"></div>
+        <div class="tile" style="background-color: #ffff00"></div>
+        <div class="tile" style="background-color: #feb300"></div>
+        <div class="tile" style="background-color: #ff4600"></div>
+        <div class="tile" style="background-color: #ba00ff"></div>
+      </div>
+      <!-- prettier-ignore -->
+      <div class="container" id="recommended">
+        <div class="title"><i class="material-symbols-outlined">recommend</i>Recommended</div>
+        <a class="tile tile3x2" data-tiles="6" href="/sponsored/S1W4uV8LoXCBueaizJZHiD/wmmr" style="background-image: url('/img/sponsors/WMMR-325.jpg')">
+            <span class="artists">WMMR</span>
+            <span class="title">1 hour commercial free</span>
+        </a>
+        <a class="tile tile1x2" data-tiles="2" href="/events/m7SjUCMDhLNYXSfJJ4dLdJ/Tool" style="background-image: url('/img/tiles/STANDIN-tiles-Tool_poster.jpg');">
+            <span class="artists">Tool</span>
+            <span class="title">Live</span>
+        </a>
+        <a class="tile" href="/local/philadelphia+pa" style="background-image: url('/img/tiles/Philadelphia.jpg')">
+            <span class="artists">Top Artists in Philly</span>
+        </a> 
+        <a class="tile tile-link" href="/album/wJn6t2tuMkKu82KcmmKMSp" style="background-image: url('/albumart/wJn6t2tuMkKu82KcmmKMSp.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/sYQfiEDpjPKeeeaZSGSVoF" style="background-image: url('/albumart/sYQfiEDpjPKeeeaZSGSVoF.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/uZAhEAdVY6xaDyJJuvsaDU" style="background-image: url('/albumart/uZAhEAdVY6xaDyJJuvsaDU.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/sBvReaJw3RTh4hqcAA4eXg" style="background-image: url('/albumart/sBvReaJw3RTh4hqcAA4eXg.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/haRRX7cK82P9UY2covJzDf" style="background-image: url('/albumart/haRRX7cK82P9UY2covJzDf.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/6DvKQBDKRnjQhkaXtqhCbY" style="background-image: url('/albumart/6DvKQBDKRnjQhkaXtqhCbY.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/ssJLoBpTnHbb4ojwjDLKYt" style="background-image: url('/albumart/ssJLoBpTnHbb4ojwjDLKYt.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/83JodxrcAtn8PEpoWX1can" style="background-image: url('/albumart/83JodxrcAtn8PEpoWX1can.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/rjp5mnKKoPZNoBwWbNfTrV" style="background-image: url('/albumart/rjp5mnKKoPZNoBwWbNfTrV.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/4d5KGaRxKPLbzMaQquZYh9" style="background-image: url('/albumart/4d5KGaRxKPLbzMaQquZYh9.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link tile2x2" href="/album/qd8ifrabnhcpR7BQzhnp2B" style="background-image: url('/albumart/qd8ifrabnhcpR7BQzhnp2B.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/sXPP2k7DpcpCvxQzj1ebDe" style="background-image: url('/albumart/sXPP2k7DpcpCvxQzj1ebDe.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/xaTTH8sVtuXBdhrqsW5LbL" style="background-image: url('/albumart/xaTTH8sVtuXBdhrqsW5LbL.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/7kqxiJoCHZpPpZ7xgf1H2M" style="background-image: url('/albumart/7kqxiJoCHZpPpZ7xgf1H2M.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/sKUNBBmj1Qbdpk1ncUMeqk" style="background-image: url('/albumart/sKUNBBmj1Qbdpk1ncUMeqk.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/x8SsPW3udad2TyL1RMvYUZ" style="background-image: url('/albumart/x8SsPW3udad2TyL1RMvYUZ.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/5hdPru2sTJ6Ndx1nvEuzXp" style="background-image: url('/albumart/5hdPru2sTJ6Ndx1nvEuzXp.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/7nCiC3bnf15RUmTkfGUJPh" style="background-image: url('/albumart/7nCiC3bnf15RUmTkfGUJPh.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/fFw9uZPXLd5E9coJizjcfV" style="background-image: url('/albumart/fFw9uZPXLd5E9coJizjcfV.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/jiPr9yUKibfyT5czi5uU3X" style="background-image: url('/albumart/jiPr9yUKibfyT5czi5uU3X.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/gikor5c6vJMx3UTVG7WDwL" style="background-image: url('/albumart/gikor5c6vJMx3UTVG7WDwL.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/45esWPA7isAwnWo5FK48LC" style="background-image: url('/albumart/45esWPA7isAwnWo5FK48LC.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/mXwt1YvctYcDNtgXUmB6HF" style="background-image: url('/albumart/mXwt1YvctYcDNtgXUmB6HF.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/kFb8CDvj9AEYB59pKVxURx" style="background-image: url('/albumart/kFb8CDvj9AEYB59pKVxURx.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/5XnyK1P9vcXJfnQ2ptVnyf" style="background-image: url('/albumart/5XnyK1P9vcXJfnQ2ptVnyf.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/9XadfFbRfF4TrAbF8cPGjt" style="background-image: url('/albumart/9XadfFbRfF4TrAbF8cPGjt.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/4iwBqSjbTb5GFXES5fBZXw" style="background-image: url('/albumart/4iwBqSjbTb5GFXES5fBZXw.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/nv9r3Sppn8WxMKVEUAjqua" style="background-image: url('/albumart/nv9r3Sppn8WxMKVEUAjqua.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/dmvZVME7sF3FrqgPdy56zb" style="background-image: url('/albumart/dmvZVME7sF3FrqgPdy56zb.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/7k7Ww57ZXTzZvCE3HUSu8F" style="background-image: url('/albumart/7k7Ww57ZXTzZvCE3HUSu8F.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/bHkibgUEnX1EXb26YpKfw3" style="background-image: url('/albumart/bHkibgUEnX1EXb26YpKfw3.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/dSDTk7xQvyP3hCYTRqwXMq" style="background-image: url('/albumart/dSDTk7xQvyP3hCYTRqwXMq.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/v62YuifgEzjp2NYfmaJrXB" style="background-image: url('/albumart/v62YuifgEzjp2NYfmaJrXB.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/3Fg5wFLxUktZuk5EJnVWsm" style="background-image: url('/albumart/3Fg5wFLxUktZuk5EJnVWsm.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/nwk7bbSttskoA5AnMyPkDD" style="background-image: url('/albumart/nwk7bbSttskoA5AnMyPkDD.jpg');"><span class="title"></span><span class="artists"></span></a>
+        <a class="tile tile-link" href="/album/x8Hfa8UGUAu3c4C39Q5bvw" style="background-image: url('/albumart/x8Hfa8UGUAu3c4C39Q5bvw.jpg');"><span class="title"></span><span class="artists"></span></a>
+      </div>
+      <!-- prettier-ignore -->
+      <div class="container" id="new">
+        <div class="title"><i class="material-symbols-outlined">trending_up</i>New</div>
+        <a href="/album/1111111111111111ffff00" style="background-color: #ffff00;"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a href="/album/111111111111111100ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a href="/album/111111111111111100aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a href="/album/11111111111111110000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a href="/album/11111111111111117308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111ba00ff" style="background-color: #ba00ff"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
+        <a href="/album/222222222222222200ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a href="/album/22222222222222227308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ba00ff" style="background-color: #ba00ff"><title></title><artists></artists></a>
+        <a href="/album/222222222222222200aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+        <a href="/album/22222222222222220000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ffff00" style="background-color: #ffff00"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ba00ff" style="background-color: #ba00ff"><title></title><artists></artists></a>
+        <a href="/album/33333333333333337308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a href="/album/33333333333333330000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ffff00" style="background-color: #ffff00"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a href="/album/333333333333333300ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a href="/album/333333333333333300aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+      </div>
+      <!-- prettier-ignore -->
+      <div class="container" id="popular">
+        <div class="title"><i class="material-symbols-outlined">trending_up</i>Popular</div>
+        <a href="/album/1111111111111111ffff00" style="background-color: #ffff00;"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a href="/album/111111111111111100ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a href="/album/111111111111111100aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a href="/album/11111111111111110000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a href="/album/11111111111111117308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111ba00ff" style="background-color: #ba00ff"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+        <a href="/album/1111111111111111ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
+        <a href="/album/222222222222222200ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a href="/album/22222222222222227308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ba00ff" style="background-color: #ba00ff"><title></title><artists></artists></a>
+        <a href="/album/222222222222222200aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+        <a href="/album/22222222222222220000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ffff00" style="background-color: #ffff00"><title></title><artists></artists></a>
+        <a href="/album/2222222222222222ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ba00ff" style="background-color: #ba00ff"><title></title><artists></artists></a>
+        <a href="/album/33333333333333337308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a href="/album/33333333333333330000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ffff00" style="background-color: #ffff00"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a href="/album/333333333333333300ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a href="/album/333333333333333300aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a href="/album/3333333333333333feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+      </div>
+      <!-- prettier-ignore -->
+      <div class="container" id="local">
+        <div class="title"><i class="material-symbols-outlined">near_me</i>Local</div>
+        <a class="tile1x2" data-tiles="2" href="/album/1111111111111111ffff00" style="background-color: #ffff00;"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/1111111111111111007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/111111111111111100ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/1111111111111111ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/111111111111111100aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/11111111111111110000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/1111111111111111cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/11111111111111117308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/1111111111111111ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/1111111111111111feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/1111111111111111ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/22222222222222227308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/222222222222222200ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/222222222222222200aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/22222222222222220000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <!--
+        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222ffff00" style="background-color: #ffff00"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ba00ff" style="background-color: #ba00ff"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/33333333333333337308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/33333333333333330000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333007900" style="background-color: #007900"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ffff00" style="background-color: #ffff00"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/333333333333333300ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/333333333333333300aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
+        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333feb300" style="background-color: #feb300"><title></title><artists></artists></a>
+        -->
+      </div>
+      <div class="container" id="legal">
         <!-- prettier-ignore -->
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/>
-        <link rel="apple-touch-startup-image" href="img/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    </head>
-    <body>
-        <style>
-            body {
-                background-image: url(/img/tiles/HERO-AskingAlexandria.jpg);
-            }
-        </style>
-        <div id="sidebar" class="">
-            <img id="poster">
-            <div id="playing"></div>
-            <div id="progress"></div>
-            <div id="player">
-                <i id="repeat" class="playerButton material-icons md-light" title="Repeat">repeat</i>
-                <i id="previous" class="playerButton material-icons md-light" title="Previous">skip_previous</i>
-                <i id="play" class="playerButton material-icons md-light" title="Play">play_circle</i>
-                <i id="next" class="playerButton material-icons md-light" title="Next">skip_next</i>
-                <i id="shuffle" class="playerButton material-icons md-light" title="Shuffle">shuffle</i>
-            </div>
-            <ol id="queuelist" class="items"></ol>
-        </div>
-        <!-- <div id="playerbox" class="minimized">
-            <div id="player">
-                <a href="#repeat" id="repeat"><i class="playerButton material-icons md-light" title="Repeat">repeat</i></a>
-                <a href="#previous" id="previous"><i class="playerButton material-icons md-light" title="Previous">skip_previous</i></a>
-                <!-- <a href="#repeat" id="repeat"><i class="playerButton material-icons md-light" title="Repeat one">repeat_one_on</i></a> -->
-                <!-- <a href="#repeat" id="repeat"><i class="playerButton material-icons md-light" title="Repeat on">repeat_on</i></a> - ->
-                <div>
-                    <a href="#rate" id="rate"><i class="playerButton material-icons md-light" title="Rate">star_half</i></a></br>
-                    <a href="#play" id="play"><i class="playerButton material-icons md-light" title="Play">play_circle</i></a>
-                    <!- - <a href="#play" id="play"><i class="playerButton material-icons md-light" title="Play">pause_circle</i></a> - ->
-                    </br><a href="#playlistadd" id="playlistAdd"><i class="playerButton material-icons md-light" title="Add to Playlist">playlist_add</i></a>
-                </div>
-                <a href="#next" id="next"><i class="playerButton material-icons md-light" title="Next">skip_next</i></a>
-                <a href="#shuffle" id="shuffle"><i class="playerButton material-icons md-light" title="Shuffle">shuffle</i></a>
-            </div>
-            <div id="linkbox">
-                <a href="#artist"><i class="linkButton material-icons md-light" title="Artist">switch_account</i></a>
-                <a href="#tracklist"><i class="linkButton material-icons md-light" title="Track list">format_list_numbered</i></a>
-                <a href="#info"><i class="linkButton material-icons md-light" title="Info">info_outline</i></a>
-                <a href="#related"><i class="linkButton material-icons md-light" title="Related">polyline</i></a>
-                <a href="#recommended"><i class="linkButton material-icons md-light" title="Recommended">recommend</i></a>
-            </div>
-        </div> -->
-        <script>
-            const headerPlay = document.querySelector('#headerPlay')
-
-            const headerFullscreen = document.querySelector('#headerFullscreen')
-            const playerbox = document.querySelector('#playerbox')
-            const linkbox = document.querySelector('#linkbox')
-            const togglePlayerbox = e => {
-                e.preventDefault()
-                headerFullscreen.classList.toggle('selected')
-                playerbox.classList.toggle('minimized')
-                if ( ! playerbox.classList.contains('minimized'))
-                    playerbox.scrollIntoView(true)
-            }
-            headerFullscreen.addEventListener('click', togglePlayerbox)
-
-            const header = document.querySelector('#header')
-            const player = document.querySelector('#player')
-            const toggleFadeAll = e => {
-                // only fadeout if a 'div' was the target (and not a button, etc.)
-                if (e.target.localName === 'div') {
-                    e.preventDefault()
-                    playerbox.classList.toggle('fadeout')
-                    header.classList.toggle('fadeout')
-                }
-            }
-            playerbox.addEventListener('click', toggleFadeAll)
-        </script>
+        <span>&copy; Amplfr.com</span>
+        <span><a href="//twitter.com/amplfr">@amplfr</a></span>
         <!-- prettier-ignore -->
-        <div class="main container">
-            <nav>
-                <ul>
-                    <li><a href="/account"><i class="material-icons" title="Account">manage_accounts</i>Account</a></li>
-                    <li><a href="/upload"><i class="material-icons" title="Upload">cloud_upload</i>Upload</a></li>
-                    <li><i class="material-icons"> </i></li>
-                    <!-- <li><a href="#audio"><i class="material-icons">audiotrack</i>Audio</a></li> -->
-                    <li><a href="#random"><i class="material-icons">casino</i>Random</a></li>
-                    <!-- <li><a href="#tags"><i class="material-icons">sell</i>Tags</a></li> -->
-                    <li><a href="#local"><i class="material-icons">near_me</i>Local</a></li>
-                    <li><a href="#localfiles"><i class="material-icons">folder_special</i>Local Files</a></li>
-                    <li><a href="#playlists"><i class="material-icons">queue_music</i>Playlists</a></li>
-                    <li><a href="#new"><i class="material-icons">event</i>Recent</a></li>
-                    <li><a href="#popular"><i class="material-icons">trending_up</i>Popular</a></li>
-                    <li><a href="#recommended"><i class="material-icons">recommend</i>Recommended</a></li>
-                </ul>
-            </nav>
-            <main>
-                <!-- prettier-ignore -->
-                <!-- <div class="container" id="tile-container"> -->
-                <div class="container container-title"><i class="material-icons">recommend</i>Recommended</div>
-                <div class="container" id="recommended" style="/* display:none */">
-                    <a class="tile tile3x2" data-tiles="6" href="/sponsored/S1W4uV8LoXCBueaizJZHiD/wmmr" style="background-image: url('/img/sponsors/WMMR-325.jpg')">
-                        <span class="artists">WMMR</span>
-                        <span class="title">1 hour commercial free</span>
-                    </a>
-                    <a class="tile tile1x2" data-tiles="2" href="/events/m7SjUCMDhLNYXSfJJ4dLdJ/Tool" style="background-image: url('/img/tiles/STANDIN-tiles-Tool_poster.jpg');">
-                        <span class="artists">Tool</span>
-                        <span class="title">Live</span>
-                    </a>
-                    <a class="tile" href="/local/philadelphia+pa" style="background-image: url('/img/tiles/Philadelphia.jpg')">
-                        <span class="artists">Top Artists in Philly</span>
-                    </a> 
-                   
-                    <a class="tile tile-link" href="/album/wJn6t2tuMkKu82KcmmKMSp" style="background-image: url('/albumart/wJn6t2tuMkKu82KcmmKMSp.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/sYQfiEDpjPKeeeaZSGSVoF" style="background-image: url('/albumart/sYQfiEDpjPKeeeaZSGSVoF.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/uZAhEAdVY6xaDyJJuvsaDU" style="background-image: url('/albumart/uZAhEAdVY6xaDyJJuvsaDU.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/sBvReaJw3RTh4hqcAA4eXg" style="background-image: url('/albumart/sBvReaJw3RTh4hqcAA4eXg.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/haRRX7cK82P9UY2covJzDf" style="background-image: url('/albumart/haRRX7cK82P9UY2covJzDf.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/6DvKQBDKRnjQhkaXtqhCbY" style="background-image: url('/albumart/6DvKQBDKRnjQhkaXtqhCbY.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/ssJLoBpTnHbb4ojwjDLKYt" style="background-image: url('/albumart/ssJLoBpTnHbb4ojwjDLKYt.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/83JodxrcAtn8PEpoWX1can" style="background-image: url('/albumart/83JodxrcAtn8PEpoWX1can.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/rjp5mnKKoPZNoBwWbNfTrV" style="background-image: url('/albumart/rjp5mnKKoPZNoBwWbNfTrV.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/4d5KGaRxKPLbzMaQquZYh9" style="background-image: url('/albumart/4d5KGaRxKPLbzMaQquZYh9.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link tile2x2" href="/album/qd8ifrabnhcpR7BQzhnp2B" style="background-image: url('/albumart/qd8ifrabnhcpR7BQzhnp2B.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/sXPP2k7DpcpCvxQzj1ebDe" style="background-image: url('/albumart/sXPP2k7DpcpCvxQzj1ebDe.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/xaTTH8sVtuXBdhrqsW5LbL" style="background-image: url('/albumart/xaTTH8sVtuXBdhrqsW5LbL.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/7kqxiJoCHZpPpZ7xgf1H2M" style="background-image: url('/albumart/7kqxiJoCHZpPpZ7xgf1H2M.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/sKUNBBmj1Qbdpk1ncUMeqk" style="background-image: url('/albumart/sKUNBBmj1Qbdpk1ncUMeqk.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/x8SsPW3udad2TyL1RMvYUZ" style="background-image: url('/albumart/x8SsPW3udad2TyL1RMvYUZ.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/5hdPru2sTJ6Ndx1nvEuzXp" style="background-image: url('/albumart/5hdPru2sTJ6Ndx1nvEuzXp.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/7nCiC3bnf15RUmTkfGUJPh" style="background-image: url('/albumart/7nCiC3bnf15RUmTkfGUJPh.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/fFw9uZPXLd5E9coJizjcfV" style="background-image: url('/albumart/fFw9uZPXLd5E9coJizjcfV.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/jiPr9yUKibfyT5czi5uU3X" style="background-image: url('/albumart/jiPr9yUKibfyT5czi5uU3X.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/gikor5c6vJMx3UTVG7WDwL" style="background-image: url('/albumart/gikor5c6vJMx3UTVG7WDwL.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/45esWPA7isAwnWo5FK48LC" style="background-image: url('/albumart/45esWPA7isAwnWo5FK48LC.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/mXwt1YvctYcDNtgXUmB6HF" style="background-image: url('/albumart/mXwt1YvctYcDNtgXUmB6HF.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/kFb8CDvj9AEYB59pKVxURx" style="background-image: url('/albumart/kFb8CDvj9AEYB59pKVxURx.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/5XnyK1P9vcXJfnQ2ptVnyf" style="background-image: url('/albumart/5XnyK1P9vcXJfnQ2ptVnyf.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/9XadfFbRfF4TrAbF8cPGjt" style="background-image: url('/albumart/9XadfFbRfF4TrAbF8cPGjt.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/4iwBqSjbTb5GFXES5fBZXw" style="background-image: url('/albumart/4iwBqSjbTb5GFXES5fBZXw.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/nv9r3Sppn8WxMKVEUAjqua" style="background-image: url('/albumart/nv9r3Sppn8WxMKVEUAjqua.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/dmvZVME7sF3FrqgPdy56zb" style="background-image: url('/albumart/dmvZVME7sF3FrqgPdy56zb.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/7k7Ww57ZXTzZvCE3HUSu8F" style="background-image: url('/albumart/7k7Ww57ZXTzZvCE3HUSu8F.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/bHkibgUEnX1EXb26YpKfw3" style="background-image: url('/albumart/bHkibgUEnX1EXb26YpKfw3.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/dSDTk7xQvyP3hCYTRqwXMq" style="background-image: url('/albumart/dSDTk7xQvyP3hCYTRqwXMq.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/v62YuifgEzjp2NYfmaJrXB" style="background-image: url('/albumart/v62YuifgEzjp2NYfmaJrXB.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/3Fg5wFLxUktZuk5EJnVWsm" style="background-image: url('/albumart/3Fg5wFLxUktZuk5EJnVWsm.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/nwk7bbSttskoA5AnMyPkDD" style="background-image: url('/albumart/nwk7bbSttskoA5AnMyPkDD.jpg');"><span class="title"></span><span class="artists"></span></a>
-                    <a class="tile tile-link" href="/album/x8Hfa8UGUAu3c4C39Q5bvw" style="background-image: url('/albumart/x8Hfa8UGUAu3c4C39Q5bvw.jpg');"><span class="title"></span><span class="artists"></span></a>
-                </div>
-                <!-- prettier-ignore -->
-                <div class="container container-title"><i class="material-icons">queue_music</i>Playlists</div>
-                <div id="playlists" class="container">
-                    <a class="tile tile-link" href="/playlist/UTKtg53PKSDe3h5XMrx64x/Matt+to+Kim"><span class="title">Matt to Kim</span></a>
-                    <a class="tile tile-link" href="/playlist/ne1axqWpyVPmxgkFGLpNzn/matt"><span class="title">matt</span></a>
-                </div>
-                <div id="localfiles" class="container">
-                    <div class="container-title"><i class="material-icons">folder_special</i>Local Files</div>
-                    <p>This is where the on-device files are listed</p>
-                    <p>This is where the User will need to select the directory(ies) to add to be parsed</p>
-                    </br>
-                </div>
-                <!-- prettier-ignore -->
-                <div>
-                    <div id="footer" class="container" style="background-color:lightgray; text-align: center;">
-                        </br>
-                        <footer>
-                        <a href="https://twitter.com/amplfr">@amplfr</a>.
-                        <a href="https://amplfr.github.io/">amplfr.github.io</a>.
-                        <a href="https://amplfr.github.io/api">API/developers</a>. 
-                            <a href="/terms">&copy; Amplfr.com. Terms</a>. <a href="/about">About</a>. <a href="/legal">Legal requests</a>.
-                        </footer>
-                        </br>
-                    </div>
-                </div>
-            </main>
-        </div>
-        <div id="info"></div>
-        <div id="header">
-            <div id="logo">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="43"
-                    viewBox="0 0 1749 1869"
-                >
-                    <path
-                        id="logoA"
-                        d="M717.7 1C717.7 1 984.3 1 984.3 1 984.3 1 1425 1076 1425 1076 1417.5 1075.4 1137.7 1004 1135.5 1002.2 1133.1 1000.1 845 200 845 200 845 200 627.1 871.4 624.6 872.3 622.2 873.3 404 817 404 817 404 817 717.7 1 717.7 1ZM1608 1207C1608 1207 681 1435.4 681 1435.4 681 1435.4 267 1537 267 1537 267 1537 267 866 267 866M1522 1312C1522 1312 1749 1869 1749 1869 1749 1869 1474 1869 1474 1869 1472 1869 1468.4 1869.3 1466.7 1868 1465 1866.7 1276.8 1379.8 1276 1372 1276 1372 1522 1312 1522 1312ZM186 1589C186.3 1611.6 205.5 1629.5 228 1629 228 1629 362 1597 362 1597 362 1597 264 1869 264 1869 264 1869 0 1869 0 1869 0 1869 185 1385 185 1385 186.7 1389.4 186 1589 186 1589Z"
-                        style="fill: #231f20"
-                    ></path>
-                </svg>
-                <svg
-                    class="wide-only"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 567 243"
-                    width="100"
-                >
-                    <path
-                        style="fill: #231f20"
-                        id="logomplfr"
-                        d="M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"
-                    ></path>
-                </svg>
-            </div>
-            <div id="nowplaying">
-                <div id="npTitle" class="nowplaying"></div>
-                <!-- <a href="#player" id="headerPlay"><i class="headerButton material-icons md-light" title="Play">play_circle_outline</i></a> -->
-                <div id="npArtist" class="nowplaying"></div>
-            </div>
-            <!-- prettier-ignore -->
-            <div id="headerIcons">
-                <a href="#player" id="headerPlay"><i class="headerButton material-icons md-light" title="Play">play_circle_outline</i></a>
-                <a href="#fullscreen" id="headerFullscreen"><i class="headerButton material-symbols-outlined" title="Fullscreen player">smart_display</i></a>
-                <a href="/search" id="headerSearch"><i class="headerButton material-icons md-light" title="Search">search</i></a>
-                <a href="/playlist/queue" id="headerPlayer"><i class="headerButton material-icons md-light" title="My Queue">playlist_play</i></a>
-            </div>
-        </div>
+        <span><a href="/terms">Terms of Use,</a> <a href="/privacy">Privacy Policy,</a> <a href="/legal">Legal Requests, and other legalese.</a> </span>
         <!-- prettier-ignore -->
-        <div id="searchbar" class="closed">
-            <form method="GET" class="search container" id="searchform">
-                <input id="searchinput"
-                    class="searchbox"
-                    name="title"
-                    placeholder="Search songs, movies, shows, artists, lyrics, actors, characters"
-                    type="search"
-                />
-                <input name="noitems" value="1" hidden />
-                <input name="noredirect" value="1" hidden />
-                <input
-                    id="searchArtist"
-                    type="submit"
-                    class="searchButton"
-                    value="Artist"
-                    formaction="//mt5577:3000/api/artist"
-                />
-                <input
-                    id="searchAlbum"
-                    type="submit"
-                    class="searchButton"
-                    value="Album"
-                    formaction="//mt5577:3000/api/album"
-                />
-                <input
-                    id="searchItem"
-                    type="submit"
-                    class="searchButton"
-                    value="Item"
-                    formaction="//mt5577:3000/api"
-                />
-                <ol id="list"></ol>
-            </form>
-        </div>
-        <script src="/js/searchbar.js"></script>
-        <script>
-            const localFilesLink = document.querySelector('.container nav ul li a[href*="localfiles"]')
-            // localFilesLink.addEventListener('click', e => {
-            //     e.preventDefault()
-            // })
-        </script>
-        <!-- jsDelivr :: Sortable :: Latest (https://www.jsdelivr.com/package/npm/sortablejs) -->
-        <!-- <script async src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script> -->
-        <script src="/js/sidebar.js"></script>
+        <span><a href="//amplfr.github.com/api">API,</a> <a href="//amplfr.github.com/">Repository, and other developer resources.</a> </span>
+      </div>
+    </main>
+    <div id="info"></div>
+    <!-- prettier-ignore -->
+    <template id="queue-item">
+      <li class="item" draggable="true">
+        <div class="artwork"></div>
+        <div class="title"></div>
+        <div class="artists"></div>
+        <div class="collection"></div>
+      </li>
+    </template>
+    <script async>
+      const menuIcon = document.querySelector("#header i#menu");
+      const navMenu = document.querySelector("nav");
 
-        <!-- prettier-ignore -->
-        <template id="list-artist">
-            <li><a class="link"><span class="name"></span><span class="country"></span></a></li>
-        </template>
-        <!-- prettier-ignore -->
-        <!-- <template id="list-album">
-            <li><a class="link"><span class="title"></span><span class="artists"></span></a></li>
-        </template> -->
-        <template id="list-album">
-            <div class="contents">
-                <div class="albumart"></div>
-                <div class="title"></div>
-                <div class="artists"></div>
-                <div class="released"></div>
-                <div class="countries"></div>
-                <ol class="items"></ol>
-            </div>
-        </template>
-        <template id="list-collection">
-            <div class="contents">
-                <div class="title"></div>
-                <div class="artists"></div>
-                <span class="options">
-                    <i class="contentsAppendQueue material-icons" title="Add this to your Queue">playlist_play</i>
-                    <i class="contentsAppendPlaylist material-icons" title="Add this to a Playlist">playlist_add</i>
-                    <i class="contentsShare material-icons" title="Share this">share</i>
-                    <i class="contentsRate material-icons" title="Rate this">thumbs_up_down</i>
-                </span>
-                <ol class="items"></ol>
-            </div>
-        </template>
-        <template id="queue-item-ORIG">
-            <li class="item" draggable="true">
-                <span class="title"></span>
-                <span class="artists"></span>
-                <span class="duration"></span>
-                <span class="options">
-                    <i class="itemPlay material-icons" title="Play this now (or double click)">playlist_play</i>
-                    <i class="itemAppendPlaylist material-icons" title="Add this to a Playlist">playlist_add</i>
-                    <i class="itemShare material-icons" title="Share this">share</i>
-                    <i class="itemRate material-icons" title="Rate this">thumbs_up_down</i>
-                    <i class="itemRemove material-icons" title="Remove this">playlist_remove</i>
-                </span>
-            </li>
-        </template>
-        <template id="queue-item">
-            <li class="item" draggable="true">
-                <span class="title"></span>
-                <span class="artists"></span>
-                <span class="duration"></span>
-            </li>
-        </template>
-        <template id="queue-item-options">
-            <span class="options">
-                <i class="itemPlay material-icons" title="Play this now (or double click)">playlist_play</i>
-                <i class="itemAppendPlaylist material-icons" title="Add this to a Playlist">playlist_add</i>
-                <i class="itemShare material-icons" title="Share this">share</i>
-                <i class="itemRate material-icons" title="Rate this">thumbs_up_down</i>
-                <i class="itemRemove material-icons" title="Remove this">playlist_remove</i>
-            </span>
-        </template>
-        <!-- prettier-ignore -->
-        <template id="list-item" class="list">
-            <li class="item"><span class="num"></span><span class="title"></span><span class="duration"></span><span class="artists"></span>
-            <span class="options">
-                <i class="itemAppendQueue material-icons" title="Add this to your Queue">playlist_play</i>
-                <i class="itemAppendPlaylist material-icons" title="Add this to a Playlist">playlist_add</i>
-                <i class="itemShare material-icons" title="Share">share</i>
-                <i class="itemRate material-icons" title="Rate">thumbs_up_down</i>
-            </span></li>
-        </template>
-        <!-- prettier-ignore -->
-        <template id="tile-album">
-            <div class="contents">
-                <i class="contents-close material-icons">close</i>
-                <div class="albumart"></div>
-                <div class="title"></div>
-                <div class="artists"></div>
-                <div class="released"></div>
-                <div class="countries"></div>
-                <span class="options">
-                    <i class="contentsAppendQueue material-icons" title="Add all of these to your Queue">playlist_play</i>
-                    <i class="contentsAppendPlaylist material-icons" title="Add all of these to a Playlist">playlist_add</i>
-                    <i class="contentsShare material-icons" title="Share">share</i>
-                    <i class="contentsRate material-icons" title="Rate">thumbs_up_down</i>
-                </span>
-                <ol class="items"></ol>
-            </div>
-        </template>
-        <style>
-            /* span.artists {
-                margin: auto 2px;
-                display: block; /* causes linebreak * /
-            } */
-            span.duration {
-                margin: auto 8px auto 8px;
-                grid-area: d;
-                float: right;
-            }
-            /* span.duration::before {
-                content: "(";
-            } */
-            /* span.duration::after {
-                content: ")";
-            } */
-            .contents > .albumart {
-                width: 400px;
-                height: 400px;
-                max-width: 100%;
-                max-height: 100%;
-                background-position: left;
-                background-repeat: no-repeat;
-                background-size: cover;
-                float: left;
-            }
-            .contents > .options > i.material-icons,
-            .contents > i.material-icons {
-                color: rgba(255, 255, 255, 0.5);
-                text-shadow: 2px 2px 0px rgb(0 0 0);
-                cursor: pointer;
-            }
-            .contents > .contents-close {
-                position: absolute;
-                float: right;
-                right: 5px;
-                top: 5px;
-            }
-        </style>
-        <script src="/js/tiles.js"></script>
-        <script>
-            // if ('serviceWorker' in navigator) {
-            //     navigator.serviceWorker.register('/js/sw.js')
-            // }
-            let initialTiles
-            window.onload = async () => {
-                // const albums = [
-                //     'wJn6t2tuMkKu82KcmmKMSp',
-                //     'sYQfiEDpjPKeeeaZSGSVoF',
-                //     'uZAhEAdVY6xaDyJJuvsaDU',
-                //     'sBvReaJw3RTh4hqcAA4eXg',
-                //     'haRRX7cK82P9UY2covJzDf',
-                //     '6DvKQBDKRnjQhkaXtqhCbY',
-                //     'ssJLoBpTnHbb4ojwjDLKYt',
-                //     '83JodxrcAtn8PEpoWX1can',
-                //     'rjp5mnKKoPZNoBwWbNfTrV',
-                //     '4d5KGaRxKPLbzMaQquZYh9',
-                //     'qd8ifrabnhcpR7BQzhnp2B',
-                //     'sXPP2k7DpcpCvxQzj1ebDe',
-                //     'xaTTH8sVtuXBdhrqsW5LbL',
-                //     '7kqxiJoCHZpPpZ7xgf1H2M',
-                //     'sKUNBBmj1Qbdpk1ncUMeqk',
-                //     'x8SsPW3udad2TyL1RMvYUZ',
-                //     '5hdPru2sTJ6Ndx1nvEuzXp',
-                //     '7nCiC3bnf15RUmTkfGUJPh',
-                //     'fFw9uZPXLd5E9coJizjcfV',
-                //     'jiPr9yUKibfyT5czi5uU3X',
-                //     'gikor5c6vJMx3UTVG7WDwL',
-                //     '45esWPA7isAwnWo5FK48LC',
-                //     'mXwt1YvctYcDNtgXUmB6HF',
-                //     'kFb8CDvj9AEYB59pKVxURx',
-                //     '5XnyK1P9vcXJfnQ2ptVnyf',
-                //     '9XadfFbRfF4TrAbF8cPGjt',
-                //     '4iwBqSjbTb5GFXES5fBZXw',
-                //     'nv9r3Sppn8WxMKVEUAjqua',
-                //     'dmvZVME7sF3FrqgPdy56zb',
-                //     '7k7Ww57ZXTzZvCE3HUSu8F',
-                //     'bHkibgUEnX1EXb26YpKfw3',
-                //     'dSDTk7xQvyP3hCYTRqwXMq',
-                //     'v62YuifgEzjp2NYfmaJrXB',
-                //     '3Fg5wFLxUktZuk5EJnVWsm',
-                //     'nwk7bbSttskoA5AnMyPkDD',
-                //     'x8Hfa8UGUAu3c4C39Q5bvw',
+      const navMenuToggle = (e) => {
+        e.preventDefault();
+        navMenu.classList.toggle("selected");
+        menuIcon.classList.toggle("selected");
+      };
 
-                //     // 'wJn6t2tuMkKu82KcmmKMSp',
-                //     // 'sYQfiEDpjPKeeeaZSGSVoF',
-                //     // 'uZAhEAdVY6xaDyJJuvsaDU',
-                //     // 'sBvReaJw3RTh4hqcAA4eXg',
-                //     // 'haRRX7cK82P9UY2covJzDf',
-                //     // '6DvKQBDKRnjQhkaXtqhCbY',
-                //     // 'ssJLoBpTnHbb4ojwjDLKYt',
-                //     // '83JodxrcAtn8PEpoWX1can',
-                //     // 'rjp5mnKKoPZNoBwWbNfTrV',
-                //     // '4d5KGaRxKPLbzMaQquZYh9',
-                //     // 'qd8ifrabnhcpR7BQzhnp2B',
-                //     // 'sXPP2k7DpcpCvxQzj1ebDe',
-                //     // 'xaTTH8sVtuXBdhrqsW5LbL',
-                //     // '7kqxiJoCHZpPpZ7xgf1H2M',
-                //     // 'sKUNBBmj1Qbdpk1ncUMeqk',
-                //     // 'x8SsPW3udad2TyL1RMvYUZ',
-                //     // '5hdPru2sTJ6Ndx1nvEuzXp',
-                //     // '7nCiC3bnf15RUmTkfGUJPh',
-                //     // 'fFw9uZPXLd5E9coJizjcfV',
-                //     // 'jiPr9yUKibfyT5czi5uU3X',
-                //     // 'gikor5c6vJMx3UTVG7WDwL',
-                //     // '45esWPA7isAwnWo5FK48LC',
-                //     // 'mXwt1YvctYcDNtgXUmB6HF',
-                //     // 'kFb8CDvj9AEYB59pKVxURx',
-                //     // '5XnyK1P9vcXJfnQ2ptVnyf',
-                //     // '9XadfFbRfF4TrAbF8cPGjt',
-                //     // '4iwBqSjbTb5GFXES5fBZXw',
-                //     // 'nv9r3Sppn8WxMKVEUAjqua',
-                //     // 'dmvZVME7sF3FrqgPdy56zb',
-                //     // '7k7Ww57ZXTzZvCE3HUSu8F',
-                //     // 'bHkibgUEnX1EXb26YpKfw3',
-                //     // 'dSDTk7xQvyP3hCYTRqwXMq',
-                //     // 'v62YuifgEzjp2NYfmaJrXB',
-                //     // '3Fg5wFLxUktZuk5EJnVWsm',
-                //     // 'nwk7bbSttskoA5AnMyPkDD',
-                //     // 'x8Hfa8UGUAu3c4C39Q5bvw',
+      menuIcon.addEventListener("click", navMenuToggle);
+      menuIcon.addEventListener("touchend", navMenuToggle);
+      //   setupInterfaces({
+      //     "#header i#menu": (e) => {
+      //       e.preventDefault();
+      //       navMenu.classList.toggle("selected");
+      //       menuIcon.classList.toggle("selected");
+      //     },
+      //   });
+    </script>
+    <!--
+    <script async>
+      const albumTitle = (collection) => {
+        let title = collection.title;
+        if (collection.released) {
+          let released = new Date(collection.released);
+          title += ` (${released.getUTCFullYear()})`;
+        }
+        if (collection.artists) {
+          title += " - ";
+          title +=
+            collection.artists.map((A) => A.name).join(", ") ||
+            collection.artists;
+        }
 
-                //     // 'wJn6t2tuMkKu82KcmmKMSp',
-                // ]
+        return title;
+      };
+      const decorateTileLink = (a, collection) => {
+        Object.entries(collection).forEach(([k, v]) => {
+          if (typeof v == "string") a.dataset[k] = v;
+        });
+        a.title = albumTitle(collection);
+      };
+      const recommendedContainer = document.querySelector(
+        "main #recommended.container"
+      );
+      recommendedContainer
+        .querySelectorAll("a.tile-link")
+        .forEach(async (a) => {
+          let href = a.getAttribute("href");
+          let response = await fetch(`${location.href}api${href}.json`);
+          let json = await response.json();
 
-                document.body.style.cursor = 'wait'
-
-                const albumTitle = (collection) => {
-                    let title
-                    title = `${collection.title}`
-                    if (collection.released) {
-                        let released = new Date(collection.released)
-                        title += ` (${released.getUTCFullYear()})`
-                    }
-                    if (collection.artists) {
-                        title += ' - '
-                        title += collection.artists.map(A => A.name).join(', ') || collection.artists
-                    }
-
-                    return title
-                }    
-                const decorateTileLink = (a, collection) => {
-                    Object.entries(collection).forEach(([k,v]) => {
-                        if (typeof v == 'string')
-                            a.dataset[k] = v
-                    })
-                    a.title = albumTitle(collection)
-                }
-                // const recommendedContainer = document.querySelector('main div#recommended.container')
-                const recommendedContainer = document.querySelector('main #recommended.container')
-                recommendedContainer.querySelectorAll('a.tile-link').forEach(async (a) => {
-                    let href = a.getAttribute("href")
-                    let response = await fetch(`${location.href}api${href}.json`)
-                    let json = await response.json()
-
-                    decorateTileLink(a, json)
-                    appendAlbumTile(
-                        infoContainer,
-                        json,
-                    )
-                })
-
-                const playlistsContainer = document.getElementById('playlists')
-                const playlists = playlistsContainer.querySelectorAll('a')
-                playlists.forEach(async p => {
-
-                    return
-
-                    let response = await fetch(`${p.origin}/api${p.pathname}.json`)
-                    let playlist = await response.json()
-
-                    // let obj = buildAlbum(playlist, albumTemplate)
-                    let obj = buildAlbum(playlist, collectionTemplate)
-
-                    // playlistsContainer.append(obj);
-                    // obj = playlistsContainer.lastElementChild; // need to reassign before setAttribute() since obj was a document-fragment
-                    infoContainer.append(obj);
-                    obj = infoContainer.lastElementChild; // need to reassign before setAttribute() since obj was a document-fragment
-
-                    obj.classList.add('playlist')
-                    // let siblings = obj.parentElement.children;
-                    // let d = siblings[siblings.length - 2]; // get the DIV
-                    // let uid = `album-${album.id}`;
-                    // // lastDiv.setAttribute('data-id', uid)
-                    // d.setAttribute("id", uid);
-                    // d.setAttribute("data-id", uid);
-
-                    // p.remove()
-                    p.classList.add('tile','tile2x1')
-                    let title = p.innerHTML
-                    p.innerHTML = `<span class="title">${title}</span>`
-
-                    // setup the buttons
-                    obj.querySelector(".contentsAppendQueue").addEventListener("click", (e) => {
-                        Q.push(
-                            e.currentTarget.parentElement.parentElement.querySelector(".items")
-                            .children
-                        );
-                    });
-
-                })
-
-                // load the Queue from URL
-                // Q.loadFromURL()
-                // Q.domBind(queuelist)
-
-                document.body.style.cursor = 'default'                
-            }
-        </script>
-    </body>
+          decorateTileLink(a, json);
+          appendAlbumTile(infoContainer, json);
+        });
+    </script> -->
+  </body>
 </html>
