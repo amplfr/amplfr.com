@@ -12,6 +12,7 @@
     <link href="/css/tile.css" rel="stylesheet" />
     <link href="/css/searchbar.css" rel="stylesheet" />
     <script src="/js/item.js"></script>
+    <script defer src="/js/tiles.js"></script>
   </head>
   <body>
     <!-- prettier-ignore -->
@@ -313,7 +314,6 @@
       //     },
       //   });
     </script>
-    <!--
     <script async>
       const albumTitle = (collection) => {
         let title = collection.title;
@@ -343,12 +343,12 @@
         .querySelectorAll("a.tile-link")
         .forEach(async (a) => {
           let href = a.getAttribute("href");
-          let response = await fetch(`${location.href}api${href}.json`);
+          let response = await fetch(`${location.origin}/api${href}.json`);
           let json = await response.json();
 
           decorateTileLink(a, json);
           appendAlbumTile(infoContainer, json);
         });
-    </script> -->
+    </script>
   </body>
 </html>
