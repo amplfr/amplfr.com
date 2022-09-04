@@ -178,6 +178,7 @@
   height: calc(100vh - 192px);
 }
 #sidebar.closed #queue li:before,
+
 #sidebar.closed #queue li {
   position: initial;
   width: 64px;
@@ -269,11 +270,8 @@
   #playing {
     /* width: 100%; */
     /* width: calc(100% - 1em); */
-    position: fixed;
-  }
-}
 @media (max-width: 800px) {
-  /* @media (max-width: 1250px) { */
+/* @media (max-width: 1250px) { */
   #sidebar,
   #playing {
     width: 100%;
