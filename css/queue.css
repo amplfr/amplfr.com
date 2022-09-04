@@ -134,7 +134,7 @@
   padding-left: 0px;
   background-color: #3e3638;
   /* background-color: #231f20; */
-  height: calc(100vh - 256px);
+  height: calc(100% - 160px);
   z-index: 8;
   overflow: clip overlay;
   /* padding-bottom: 110vh; */
@@ -171,13 +171,14 @@
   /* position: initial; */
 }
 #queue li > .item {
-/*   display: inline-block; */
+  /*   display: inline-block; */
   /* width: 100%; */
 }
 #sidebar.closed #queue {
-    height: calc(100vh - 192px);
+  height: calc(100vh - 192px);
 }
-#sidebar.closed #queue li:before, 
+#sidebar.closed #queue li:before,
+
 #sidebar.closed #queue li {
   position: initial;
   width: 64px;
@@ -199,9 +200,9 @@
 /* anything above is the "normal" screen size */
 /* wide screen */
 @media (min-width: 1330px) {
-/* narrow or wide (not normal) screen */
-/* @media (min-width: 1330px) or (max-width: 800px) { */
-/*   #sidebar, */
+  /* narrow or wide (not normal) screen */
+  /* @media (min-width: 1330px) or (max-width: 800px) { */
+  /*   #sidebar, */
   #playing {
     /* width: 16em; */
     /* height: 8em; */
@@ -212,44 +213,45 @@
   #sidebar.closed {
     margin-top: 4em;
   }
-  #sidebar.closed #playing, #sidebar.closed #playing > .item {
-      font-size: 2em;
-      width: 0px;
+  #sidebar.closed #playing,
+  #sidebar.closed #playing > .item {
+    font-size: 2em;
+    width: 0px;
   }
   #sidebar.closed #play {
-      font-size: 4em !important;
+    font-size: 4em !important;
   }
   #sidebar:not(.closed) #play {
-/*     font-size: 16em !important; */
-/*     font-size: 8em !important; */
+    /*     font-size: 16em !important; */
+    /*     font-size: 8em !important; */
   }
-/*   #sidebar:not(.closed) {
+  /*   #sidebar:not(.closed) {
     margin-top: 16em;
   } */
-/*   #playing {
+  /*   #playing {
     width: 8em;
   } */
   #playing:first-child {
     margin-top: auto;
   }
-/*   #playing > .item {
+  /*   #playing > .item {
     font-size: 2em !important;
   } */
-/*   #sidebar:not(.closed) #playing .item .artwork {
+  /*   #sidebar:not(.closed) #playing .item .artwork {
     position: fixed;
     z-index: -1;
     height: 4em;
     width: 4em;
   } */
-/*   #sidebar:not(.closed) #playing .item .artists {
+  /*   #sidebar:not(.closed) #playing .item .artists {
     position: relative;
     bottom: -3em;
   } */
-/*   #sidebar.closed #play {
+  /*   #sidebar.closed #play {
     font-size: 4em !important;
   } */
   #queue {
-    height: calc(100vh - 256px);
+    height: calc(100% - 256px);
     /* max-height: 100vh; */
     /* height: 71vh; */
   }
@@ -268,14 +270,16 @@
   #playing {
     /* width: 100%; */
     /* width: calc(100% - 1em); */
-    position: fixed;}
 @media (max-width: 800px) {
 /* @media (max-width: 1250px) { */
   #sidebar,
   #playing {
     width: 100%;
     /* width: calc(100% - 1em); */
-/*     position: fixed; */
+    /*     position: fixed; */
+  }
+  #sidebar.closed #queue {
+    height: calc(100vh - 144px);
   }
   main {
     margin: 0px auto;
