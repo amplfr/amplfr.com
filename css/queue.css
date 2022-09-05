@@ -239,3 +239,8 @@
     height: 100%;
   }
 }
+@media (max-width: 464px) {
+  #sidebar.closed #queue {
+    height: 100%;
+  }
+}
