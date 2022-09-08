@@ -134,33 +134,69 @@ main .container {
   text-shadow: 2px 2px 0px #030303;
   display: flex;
   width: 100%;
-  height: 64px;
+  /* height: 64px; */
   overflow: clip;
 }
 
 #info {
-  /* background: #3e3638; */
+  aspect-ratio: 1;
+  backdrop-filter: unset;
+  width: 0px;
+}
+#info .album {
+  right: 0px;
+  position: absolute;
   box-shadow: -3px 5px 5px 3px #000;
   color: #c8c7c8;
-  display: inline-block;
-  font-weight: 300;
-  font: 30px Helvetica, Arial, sans-serif;
-  /* height: 100vh; */
   margin: 0 auto;
-  min-height: 100vh;
-  position: absolute;
-  /* left: 0.025vw; */
+  font-weight: 300;
   text-shadow: 2px 2px 0px rgb(0 0 0);
-  top: 0px;
-  transition: 0.5s ease;
-  z-index: 11;
-  width: 60vw;
-  backdrop-filter: blur(5px) contrast(0.8);
-  display: none;
+  transition: left 0.25s ease, width 0.25s ease;
+  z-index: 3;
+  backdrop-filter: blur(64px) contrast(0.8);
+  font-size: 4em;
+  width: 0px;
+  overflow: hidden;
+  min-height: 12em;
+  margin-top: 192px;
+  /* transition: left 0.25s ease; */
+}
+
+#info div.visible {
+  width: 12em;
+  overflow: hidden overlay;
+  left: 50% !important;
+  translate: -50%;
+}
+
+#info .album .title,
+#info .album .artists,
+#info .album .items {
+  margin-left: calc(2em + 4px);
+  width: calc(100% - (2em + 4px));
+}
+#info .album .artwork {
+  /* white-space: nowrap; */
+  margin-left: 0px !important;
+  width: 2em !important;
+  /* margin-bottom: 100%; */
+}
+#info .album .items {
+  /* white-space: nowrap; */
+  margin-left: calc(4em + 4px);
+  width: calc(100% - (4em + 44px));
+}
+#info div .close {
+  position: fixed !important;
+  top: 4px;
+  right: 4px;
+  height: 1em;
+  margin: 0px;
+  width: 1em;
 }
 
 #legal {
-  margin: 24px auto;
+  margin: 24px 64px;
   display: inline-block;
 }
 #legal span {
@@ -179,12 +215,49 @@ main .container {
   }
 }
 
+@media (max-width: 928px) {
+  #info {
+    aspect-ratio: unset;
+  }
+  #info .album {
+    margin-top: 120px;
+  }
+
+  #info div.visible {
+    width: calc(100vw - 128px);
+    overflow: hidden overlay;
+  }
+
+  #info .album .title,
+  #info .album .artists,
+  #info .album .items {
+    margin-left: calc(2em + 4px);
+    width: calc(100% - (2em + 4px));
+  }
+  #info .album .items {
+    white-space: break-spaces;
+    margin-left: calc(4em + 4px);
+    width: calc(100% - (4em + 44px));
+    margin-left: 16px;
+  }
+}
+
+@media (max-width: 800px) {
+  #info div.visible {
+    width: calc(100vw - 64px);
+    margin-left: 32px;
+  }
+}
+
 @media (min-width: 1350px) {
   #header,
   .headerOffset {
     font-size: 4em !important;
     height: 2em !important;
     scroll-padding-top: 16em;
+  }
+  #info .album {
+    margin-top: 184px;
   }
   nav {
     margin-top: 8em;

@@ -7,11 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="/css/index.css" rel="stylesheet" />
+    <link href="/css/album.css" rel="stylesheet" />
     <link href="/css/item.css" rel="stylesheet" />
     <link href="/css/queue.css" rel="stylesheet" />
     <link href="/css/tile.css" rel="stylesheet" />
     <link href="/css/searchbar.css" rel="stylesheet" />
     <script src="/js/item.js"></script>
+    <script src="/js/album.js"></script>
     <script defer src="/js/tiles.js"></script>
   </head>
   <body>
@@ -34,7 +36,7 @@
       <span id="player" class="">
         <i id="previous" class="material-icons md-light" title="Previous">skip_previous</i>
         <i id="repeat" class="material-icons md-light" title="Repeat">repeat</i>
-        <div id="time" class="" title="">12:12</div>
+        <div id="time" class="" title="">00:00</div>
         <i id="shuffle" class="material-icons md-light" title="Shuffle">shuffle</i>
         <i id="next" class="material-icons md-light" title="Next">skip_next</i>
       </span>
@@ -118,42 +120,30 @@
         <a class="tile" href="/local/philadelphia+pa" style="background-image: url('/img/tiles/Philadelphia.jpg')">
             <span class="artists">Top Artists in Philly</span>
         </a> 
-        <a class="tile tile-link" href="/album/wJn6t2tuMkKu82KcmmKMSp" style="background-image: url('/albumart/wJn6t2tuMkKu82KcmmKMSp.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/sYQfiEDpjPKeeeaZSGSVoF" style="background-image: url('/albumart/sYQfiEDpjPKeeeaZSGSVoF.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/uZAhEAdVY6xaDyJJuvsaDU" style="background-image: url('/albumart/uZAhEAdVY6xaDyJJuvsaDU.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/sBvReaJw3RTh4hqcAA4eXg" style="background-image: url('/albumart/sBvReaJw3RTh4hqcAA4eXg.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/haRRX7cK82P9UY2covJzDf" style="background-image: url('/albumart/haRRX7cK82P9UY2covJzDf.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/6DvKQBDKRnjQhkaXtqhCbY" style="background-image: url('/albumart/6DvKQBDKRnjQhkaXtqhCbY.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/ssJLoBpTnHbb4ojwjDLKYt" style="background-image: url('/albumart/ssJLoBpTnHbb4ojwjDLKYt.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/83JodxrcAtn8PEpoWX1can" style="background-image: url('/albumart/83JodxrcAtn8PEpoWX1can.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/rjp5mnKKoPZNoBwWbNfTrV" style="background-image: url('/albumart/rjp5mnKKoPZNoBwWbNfTrV.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/4d5KGaRxKPLbzMaQquZYh9" style="background-image: url('/albumart/4d5KGaRxKPLbzMaQquZYh9.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/sXPP2k7DpcpCvxQzj1ebDe" style="background-image: url('/albumart/sXPP2k7DpcpCvxQzj1ebDe.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/xaTTH8sVtuXBdhrqsW5LbL" style="background-image: url('/albumart/xaTTH8sVtuXBdhrqsW5LbL.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/7kqxiJoCHZpPpZ7xgf1H2M" style="background-image: url('/albumart/7kqxiJoCHZpPpZ7xgf1H2M.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link tile2x2" href="/album/qd8ifrabnhcpR7BQzhnp2B" style="background-image: url('/albumart/qd8ifrabnhcpR7BQzhnp2B.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/sKUNBBmj1Qbdpk1ncUMeqk" style="background-image: url('/albumart/sKUNBBmj1Qbdpk1ncUMeqk.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/x8SsPW3udad2TyL1RMvYUZ" style="background-image: url('/albumart/x8SsPW3udad2TyL1RMvYUZ.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/5hdPru2sTJ6Ndx1nvEuzXp" style="background-image: url('/albumart/5hdPru2sTJ6Ndx1nvEuzXp.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/7nCiC3bnf15RUmTkfGUJPh" style="background-image: url('/albumart/7nCiC3bnf15RUmTkfGUJPh.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/fFw9uZPXLd5E9coJizjcfV" style="background-image: url('/albumart/fFw9uZPXLd5E9coJizjcfV.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/jiPr9yUKibfyT5czi5uU3X" style="background-image: url('/albumart/jiPr9yUKibfyT5czi5uU3X.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/gikor5c6vJMx3UTVG7WDwL" style="background-image: url('/albumart/gikor5c6vJMx3UTVG7WDwL.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/45esWPA7isAwnWo5FK48LC" style="background-image: url('/albumart/45esWPA7isAwnWo5FK48LC.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/mXwt1YvctYcDNtgXUmB6HF" style="background-image: url('/albumart/mXwt1YvctYcDNtgXUmB6HF.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/kFb8CDvj9AEYB59pKVxURx" style="background-image: url('/albumart/kFb8CDvj9AEYB59pKVxURx.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <!-- <a class="tile tile-link" href="/album/5XnyK1P9vcXJfnQ2ptVnyf" style="background-image: url('/albumart/5XnyK1P9vcXJfnQ2ptVnyf.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/9XadfFbRfF4TrAbF8cPGjt" style="background-image: url('/albumart/9XadfFbRfF4TrAbF8cPGjt.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/4iwBqSjbTb5GFXES5fBZXw" style="background-image: url('/albumart/4iwBqSjbTb5GFXES5fBZXw.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/nv9r3Sppn8WxMKVEUAjqua" style="background-image: url('/albumart/nv9r3Sppn8WxMKVEUAjqua.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/dmvZVME7sF3FrqgPdy56zb" style="background-image: url('/albumart/dmvZVME7sF3FrqgPdy56zb.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/7k7Ww57ZXTzZvCE3HUSu8F" style="background-image: url('/albumart/7k7Ww57ZXTzZvCE3HUSu8F.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/bHkibgUEnX1EXb26YpKfw3" style="background-image: url('/albumart/bHkibgUEnX1EXb26YpKfw3.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/dSDTk7xQvyP3hCYTRqwXMq" style="background-image: url('/albumart/dSDTk7xQvyP3hCYTRqwXMq.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/v62YuifgEzjp2NYfmaJrXB" style="background-image: url('/albumart/v62YuifgEzjp2NYfmaJrXB.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/3Fg5wFLxUktZuk5EJnVWsm" style="background-image: url('/albumart/3Fg5wFLxUktZuk5EJnVWsm.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/nwk7bbSttskoA5AnMyPkDD" style="background-image: url('/albumart/nwk7bbSttskoA5AnMyPkDD.jpg');"><span class="title"></span><span class="artists"></span></a>
-        <a class="tile tile-link" href="/album/x8Hfa8UGUAu3c4C39Q5bvw" style="background-image: url('/albumart/x8Hfa8UGUAu3c4C39Q5bvw.jpg');"><span class="title"></span><span class="artists"></span></a> -->
+        <a class="tile tile-link" href="/album/wJn6t2tuMkKu82KcmmKMSp/X%26Y" style="background-image: url('/albumart/wJn6t2tuMkKu82KcmmKMSp.jpg');">X&amp;Y</a>
+        <a class="tile tile-link" href="/album/sYQfiEDpjPKeeeaZSGSVoF/Spend%20the%20Night" style="background-image: url('/albumart/sYQfiEDpjPKeeeaZSGSVoF.jpg');">Spend the Night</a>
+        <a class="tile tile-link" href="/album/uZAhEAdVY6xaDyJJuvsaDU/The%20Decline" style="background-image: url('/albumart/uZAhEAdVY6xaDyJJuvsaDU.jpg');">The Decline</a>
+        <a class="tile tile-link" href="/album/sBvReaJw3RTh4hqcAA4eXg/Dookie" style="background-image: url('/albumart/sBvReaJw3RTh4hqcAA4eXg.jpg');">Dookie</a>
+        <a class="tile tile-link" href="/album/haRRX7cK82P9UY2covJzDf/Homecoming" style="background-image: url('/albumart/haRRX7cK82P9UY2covJzDf.jpg');">Homecoming</a>
+        <a class="tile tile-link" href="/album/6DvKQBDKRnjQhkaXtqhCbY/Silence" style="background-image: url('/albumart/6DvKQBDKRnjQhkaXtqhCbY.jpg');">Silence</a>
+        <a class="tile tile-link" href="/album/ssJLoBpTnHbb4ojwjDLKYt/%28What%27s%20the%20Story%29%20Morning%20Glory%3F" style="background-image: url('/albumart/ssJLoBpTnHbb4ojwjDLKYt.jpg');">(What's the Story) Morning Glory?</a>
+        <a class="tile tile-link" href="/album/83JodxrcAtn8PEpoWX1can/A%20New%20Kind%20of%20Army" style="background-image: url('/albumart/83JodxrcAtn8PEpoWX1can.jpg');">A New Kind of Army</a>
+        <a class="tile tile-link" href="/album/rjp5mnKKoPZNoBwWbNfTrV/In%20Rainbows" style="background-image: url('/albumart/rjp5mnKKoPZNoBwWbNfTrV.jpg');">In Rainbows</a>
+        <a class="tile tile-link" href="/album/4d5KGaRxKPLbzMaQquZYh9/The%20Joshua%20Tree" style="background-image: url('/albumart/4d5KGaRxKPLbzMaQquZYh9.jpg');">The Joshua Tree</a>
+        <a class="tile tile-link" href="/album/sXPP2k7DpcpCvxQzj1ebDe/From%20Under%20the%20Cork%20Tree" style="background-image: url('/albumart/sXPP2k7DpcpCvxQzj1ebDe.jpg');">From Under the Cork Tree</a>
+        <a class="tile tile-link" href="/album/xaTTH8sVtuXBdhrqsW5LbL/Adema" style="background-image: url('/albumart/xaTTH8sVtuXBdhrqsW5LbL.jpg');">Adema</a>
+        <a class="tile tile-link" href="/album/7kqxiJoCHZpPpZ7xgf1H2M/Blindside" style="background-image: url('/albumart/7kqxiJoCHZpPpZ7xgf1H2M.jpg');">Blindside</a>
+        <a class="tile tile-link tile2x2" href="/album/qd8ifrabnhcpR7BQzhnp2B/C%27mon%20C%27mon" style="background-image: url('/albumart/qd8ifrabnhcpR7BQzhnp2B.jpg');">C'mon C'mon</a>
+        <a class="tile tile-link" href="/album/sKUNBBmj1Qbdpk1ncUMeqk/Blaze" style="background-image: url('/albumart/sKUNBBmj1Qbdpk1ncUMeqk.jpg');">Blaze</a>
+        <a class="tile tile-link" href="/album/x8SsPW3udad2TyL1RMvYUZ/Supertones%20Strike%20Back" style="background-image: url('/albumart/x8SsPW3udad2TyL1RMvYUZ.jpg');">Supertones Strike Back</a>
+        <a class="tile tile-link" href="/album/5hdPru2sTJ6Ndx1nvEuzXp/Best%20Of" style="background-image: url('/albumart/5hdPru2sTJ6Ndx1nvEuzXp.jpg');">Best Of</a>
+        <a class="tile tile-link" href="/album/7nCiC3bnf15RUmTkfGUJPh/As%20the%20Eternal%20Cowboy" style="background-image: url('/albumart/7nCiC3bnf15RUmTkfGUJPh.jpg');">As the Eternal Cowboy</a>
+        <a class="tile tile-link" href="/album/fFw9uZPXLd5E9coJizjcfV/Ill%20Communication" style="background-image: url('/albumart/fFw9uZPXLd5E9coJizjcfV.jpg');">Ill Communication</a>
+        <a class="tile tile-link" href="/album/jiPr9yUKibfyT5czi5uU3X/311" style="background-image: url('/albumart/jiPr9yUKibfyT5czi5uU3X.jpg');">311</a>
+        <a class="tile tile-link" href="/album/gikor5c6vJMx3UTVG7WDwL/Seven%20Day%20Jesus" style="background-image: url('/albumart/gikor5c6vJMx3UTVG7WDwL.jpg');">Seven Day Jesus</a>
+        <a class="tile tile-link" href="/album/45esWPA7isAwnWo5FK48LC/Kid%20A" style="background-image: url('/albumart/45esWPA7isAwnWo5FK48LC.jpg');">Kid A</a>
+        <a class="tile tile-link" href="/album/mXwt1YvctYcDNtgXUmB6HF/Greatest%20Hits" style="background-image: url('/albumart/mXwt1YvctYcDNtgXUmB6HF.jpg');">Greatest Hits</a>
+        <a class="tile tile-link" href="/album/kFb8CDvj9AEYB59pKVxURx/The%20Colour%20and%20the%20Shape" style="background-image: url('/albumart/kFb8CDvj9AEYB59pKVxURx.jpg');">The Colour and the Shape</a>
       </div>
       <!-- prettier-ignore -->
       <div class="container" id="new">
@@ -256,44 +246,18 @@
         <a class="tile1x2" data-tiles="2" href="/album/2222222222222222007900" style="background-color: #007900"><title></title><artists></artists></a>
         <a class="tile1x2" data-tiles="2" href="/album/2222222222222222feb300" style="background-color: #feb300"><title></title><artists></artists></a>
         <a class="tile1x2" data-tiles="2" href="/album/22222222222222220000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
-        <!--
-        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222ffff00" style="background-color: #ffff00"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/2222222222222222ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ba00ff" style="background-color: #ba00ff"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/33333333333333337308a5" style="background-color: #7308a5"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ff0000" style="background-color: #ff0000"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/33333333333333330000ff" style="background-color: #0000ff"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333007900" style="background-color: #007900"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ff7f00" style="background-color: #ff7f00"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333cc00af" style="background-color: #cc00af"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ffff00" style="background-color: #ffff00"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333ff4600" style="background-color: #ff4600"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/333333333333333300ff00" style="background-color: #00ff00"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/333333333333333300aeae" style="background-color: #00aeae"><title></title><artists></artists></a>
-        <a class="tile1x2" data-tiles="2" href="/album/3333333333333333feb300" style="background-color: #feb300"><title></title><artists></artists></a>
-        -->
       </div>
-      <div class="container" id="legal">
+      <div id="legal">
         <!-- prettier-ignore -->
         <span>&copy; Amplfr.com</span>
-        <span><a href="//twitter.com/amplfr">@amplfr</a></span>
+        <span><a href="//twitter.com/amplfr">@Amplfr</a></span>
         <!-- prettier-ignore -->
         <span><a href="/terms">Terms of Use,</a> <a href="/privacy">Privacy Policy,</a> <a href="/legal">Legal Requests, and other legalese.</a> </span>
         <!-- prettier-ignore -->
         <span><a href="//amplfr.github.com/api">API,</a> <a href="//amplfr.github.com/">Repository, and other developer resources.</a> </span>
       </div>
+      <div class="container" id="info"></div>
     </main>
-    <div id="info"></div>
-    <!-- prettier-ignore -->
-    <template id="queue-item">
-      <li class="item" draggable="true">
-        <div class="artwork"></div>
-        <div class="title"></div>
-        <div class="artists"></div>
-        <div class="collection"></div>
-      </li>
-    </template>
     <script async>
       const menuIcon = document.querySelector("#header i#menu");
       const navMenu = document.querySelector("nav");
@@ -315,40 +279,69 @@
       //   });
     </script>
     <script async>
-      const albumTitle = (collection) => {
-        let title = collection.title;
-        if (collection.released) {
-          let released = new Date(collection.released);
-          title += ` (${released.getUTCFullYear()})`;
-        }
-        if (collection.artists) {
-          title += " - ";
-          title +=
-            collection.artists.map((A) => A.name).join(", ") ||
-            collection.artists;
-        }
+      const info = document.querySelector("#info");
 
-        return title;
+      const appendInfoTile = (a) => {
+        let infoTile;
+        let [proto, empty, host, type, id, etc] = a.href.split("/");
+        switch (type) {
+          case "album":
+            infoTile = new AlbumElement(id);
+            break;
+          default:
+            return;
+        }
+        let elementID = `${type}-${id}`;
+        a.dataset.tile = elementID;
+
+        infoTile.setAttribute("id", elementID);
+        infoTile = info.appendChild(infoTile);
+
+        return infoTile;
       };
-      const decorateTileLink = (a, collection) => {
-        Object.entries(collection).forEach(([k, v]) => {
-          if (typeof v == "string") a.dataset[k] = v;
-        });
-        a.title = albumTitle(collection);
-      };
+      // document.querySelector("main .container")
       const recommendedContainer = document.querySelector(
         "main #recommended.container"
       );
-      recommendedContainer
-        .querySelectorAll("a.tile-link")
-        .forEach(async (a) => {
-          let href = a.getAttribute("href");
-          let response = await fetch(`${location.origin}/api${href}.json`);
-          let json = await response.json();
+      recommendedContainer.querySelectorAll("a.tile-link").forEach((a) => {
+        let infoTile = appendInfoTile(a);
 
-          decorateTileLink(a, json);
-          appendAlbumTile(infoContainer, json);
-        });
+        const toggleInfoTile = (e) => {
+          e.preventDefault();
+          let currentTarget = e.currentTarget;
+
+          // TODO create target element here if it doesn't already exist
+          if (!infoTile) infoTile = appendInfoTile(currentTarget);
+          if (!infoTile) return;
+
+          // set the top of infoTile to the top of e
+          infoTile.style.top =
+            currentTarget.offsetTop -
+            currentTarget.parentElement.firstElementChild.clientHeight;
+
+          // add the X to close the infoTile if not already there
+          let close = infoTile.querySelector(".close");
+          if (!close) {
+            close = document.createElement("i");
+            close.classList.add("close", "material-icons");
+            close.innerText = "close";
+            close.title = "Close this panel";
+            close = infoTile.appendChild(close);
+            const closeAction = (e) => {
+              e.currentTarget.parentElement.classList.remove("visible");
+            };
+            close.addEventListener("click", closeAction);
+            close.addEventListener("touchend", closeAction);
+          }
+
+          infoTile.classList.toggle("visible"); // now make the infoTile visible
+        };
+
+        if (infoTile) {
+          a.addEventListener("click", toggleInfoTile);
+          a.addEventListener("touchend", toggleInfoTile);
+        }
+      });
     </script>
   </body>
 </html>

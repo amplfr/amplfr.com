@@ -1,0 +1,34 @@
+.album * {
+  display: block !important;
+}
+.album .artwork {
+  background-position: center;
+  background-size: cover;
+  float: left;
+  margin-right: 4px;
+  height: 2em;
+  width: 2em;
+  margin-left: 0px !important;
+}
+.album .title {
+  font-size: 1em;
+  width: calc(100% - 4.1em);
+}
+.album .artists {
+  font-size: 0.688em;
+}
+.album .released,
+.album .countries {
+  font-size: 0.563em;
+  font-style: italic;
+}
+
+.album ol.items {
+  font-size: 0.5em;
+}
+
+.album ol.items li {
+  counter-increment: doc;
+  white-space: break-spaces;
+  display: list-item !important;
+}

@@ -1,6 +1,7 @@
 class ItemElement extends HTMLDivElement {
   #type = "item";
   #isBuilt = false;
+  #attributes = ["name", "area", "started", "ended"];
 
   constructor(src) {
     super(); // Always call super first in constructor
@@ -31,6 +32,12 @@ class ItemElement extends HTMLDivElement {
 
     return e;
   }
+  buildArtistElement(artist, rootElement) {
+    // assign dataset from attributes
+    this.#assignDataset(rootElement.dataset, artist, this.#attributes);
+    rootElement.dataset.id = `artist-${artist.id}`;
+    rootElement.textContent = artist.name;
+  }
   #buildArtists() {
     const attributes = ["name", "area", "started", "ended"];
     const artists = this.#isBuilt["artists"];
@@ -39,13 +46,6 @@ class ItemElement extends HTMLDivElement {
     const e = document.createElement("div");
     e.setAttribute("class", "artists");
 
-    const buildArtistElement = (artist, rootElement) => {
-      // assign dataset from attributes
-      this.#assignDataset(rootElement.dataset, artist, attributes);
-      rootElement.dataset.id = `artist-${artist.id}`;
-      rootElement.textContent = artist.name;
-    };
-
     if (artists.length > 1)
       // create a child element for each Artist, populate it, and append it to e
       artists.forEach((artist) => {
@@ -53,7 +53,7 @@ class ItemElement extends HTMLDivElement {
         buildArtistElement(artist, child);
         e.appendChild(child);
       });
-    else buildArtistElement(artists[0], e); // populate E with the single artist
+    else this.buildArtistElement(artists[0], e); // populate E with the single artist
 
     return e;
   }
@@ -71,24 +71,30 @@ class ItemElement extends HTMLDivElement {
 
     container.dataset.id = src.id;
     container.appendChild(this.#buildArtwork(src)); // handle special case artwork
-    container.appendChild(this.#buildArtists(src)); // handle special case artists
+    // handle the other special cases after the childTags
 
     // list of additional child tags to populate
     const childTags = ["title", "collection"];
     childTags.forEach(function (tag, t, arr) {
       if (!!src[tag]) {
-        // Take attribute content and save it to container's dataset, and inside the childElement div
+        const e = document.createElement("div");
         const text = src[tag];
 
+        // Take attribute content and save it to container's dataset, and inside the childElement div
         container.dataset[tag] = text;
-
-        const e = document.createElement("div");
-        e.setAttribute("class", tag);
         e.textContent = text;
+        e.setAttribute("class", tag);
 
         container.appendChild(e);
       }
     }, this);
+
+    container.appendChild(this.#buildArtists(src)); // handle special case artists
+
+    // set the element title
+    let title = src.title;
+    title += ` - ${src.artists.map((a) => a.name).join(", ")}`;
+    container.setAttribute("title", title);
 
     this.#isBuilt = true; // get here, and there's no need to run it again
     if (!useShadow) return;
@@ -97,7 +103,7 @@ class ItemElement extends HTMLDivElement {
     // Apply external styles to the shadow dom
     const linkElem = document.createElement("link");
     linkElem.setAttribute("rel", "stylesheet");
-    linkElem.setAttribute("href", "/css/item.css");
+    linkElem.setAttribute("href", `/css/${this.#type}.css`);
 
     // Attach the created elements to the shadow dom
     shadow.appendChild(linkElem);
