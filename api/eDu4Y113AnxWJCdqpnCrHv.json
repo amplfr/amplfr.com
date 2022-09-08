@@ -1,0 +1,26 @@
+{
+  "id": "eDu4Y113AnxWJCdqpnCrHv",
+  "title": "Speed of Sound",
+  "artists": [
+    {
+      "id": "wSv42DNe1JPrei75iEqub7",
+      "name": "Coldplay",
+      "area": "London, GB",
+      "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+    }
+  ],
+  "albumid": "wJn6t2tuMkKu82KcmmKMSp",
+  "duration": 288,
+  "status": "pending",
+  "isrc": ["GBAYE0500602", "GBAYE1600182"],
+  "mbid": "8d305607-7665-4ba7-bb30-06bb35fad519",
+  "links": [
+    "https://musicbrainz.org/recording/8d305607-7665-4ba7-bb30-06bb35fad519",
+    "https://open.spotify.com/track/7clUVcSOtkNWa58Gw5RfD4",
+    "https://www.deezer.com/track/3106508",
+    "https://www.youtube.com/watch?v=04tC72kZM_o",
+    "https://www.youtube.com/watch?v=0k_1kvDh2UA"
+  ],
+  "url": "http://mt5577:3000/api/album/eDu4Y113AnxWJCdqpnCrHv/Speed+of+Sound",
+  "visibility": "public"
+}

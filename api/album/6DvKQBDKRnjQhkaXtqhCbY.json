@@ -1,0 +1,283 @@
+{
+  "id": "6DvKQBDKRnjQhkaXtqhCbY",
+  "title": "Silence",
+  "items": [
+    {
+      "id": "u2cYQKPpdJtNSLvcAkUQRw",
+      "title": "Caught a Glimpse",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 205,
+      "status": "pending",
+      "mbid": "ffc7459f-0883-4138-a849-2da7c4ff4800",
+      "links": [
+        "https://musicbrainz.org/recording/ffc7459f-0883-4138-a849-2da7c4ff4800"
+      ],
+      "url": "http://mt5577:3000/api/album/u2cYQKPpdJtNSLvcAkUQRw/Caught+a+Glimpse",
+      "visibility": "public"
+    },
+    {
+      "id": "fvUZP4L5cpZ9SLeeCh64Xg",
+      "title": "Pitiful",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 194,
+      "status": "pending",
+      "mbid": "f47f0463-1880-44d2-8f75-6b2381d3f0a9",
+      "links": [
+        "https://musicbrainz.org/recording/f47f0463-1880-44d2-8f75-6b2381d3f0a9"
+      ],
+      "url": "http://mt5577:3000/api/album/fvUZP4L5cpZ9SLeeCh64Xg/Pitiful",
+      "visibility": "public"
+    },
+    {
+      "id": "aCukxaqhZ8baSnZiryNdbH",
+      "title": "Sleepwalking",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 244,
+      "status": "pending",
+      "mbid": "408a50d8-88c4-4dc6-bc10-e4f0491c1385",
+      "links": [
+        "https://musicbrainz.org/recording/408a50d8-88c4-4dc6-bc10-e4f0491c1385"
+      ],
+      "url": "http://mt5577:3000/api/album/aCukxaqhZ8baSnZiryNdbH/Sleepwalking",
+      "visibility": "public"
+    },
+    {
+      "id": "vZYMZCMJ6HkTY1wVKoSA61",
+      "title": "Cute Boring Love",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 217,
+      "status": "pending",
+      "mbid": "38f5e27f-5417-4446-9445-4abb39c934f8",
+      "links": [
+        "https://musicbrainz.org/recording/38f5e27f-5417-4446-9445-4abb39c934f8"
+      ],
+      "url": "http://mt5577:3000/api/album/vZYMZCMJ6HkTY1wVKoSA61/Cute+Boring+Love",
+      "visibility": "public"
+    },
+    {
+      "id": "isnwHzDc76M1vz9dMqCbAa",
+      "title": "The Endings",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 225,
+      "status": "pending",
+      "mbid": "2af8da0b-aa2f-4fce-9103-9285cece6f68",
+      "links": [
+        "https://musicbrainz.org/recording/2af8da0b-aa2f-4fce-9103-9285cece6f68"
+      ],
+      "url": "http://mt5577:3000/api/album/isnwHzDc76M1vz9dMqCbAa/The+Endings",
+      "visibility": "public"
+    },
+    {
+      "id": "aLtBVL7vBw7MnoFnjnB6hX",
+      "title": "You Can Hide It",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 192,
+      "status": "pending",
+      "mbid": "4539bf8f-124d-4709-9141-db029c69f117",
+      "links": [
+        "https://musicbrainz.org/recording/4539bf8f-124d-4709-9141-db029c69f117"
+      ],
+      "url": "http://mt5577:3000/api/album/aLtBVL7vBw7MnoFnjnB6hX/You+Can+Hide+It",
+      "visibility": "public"
+    },
+    {
+      "id": "i9p531mEDMmh6gvZeacfM1",
+      "title": "Thought Like Flames",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 235,
+      "status": "pending",
+      "mbid": "c941d4a0-44c3-43ca-813b-4e30738167ca",
+      "links": [
+        "https://musicbrainz.org/recording/c941d4a0-44c3-43ca-813b-4e30738167ca"
+      ],
+      "url": "http://mt5577:3000/api/album/i9p531mEDMmh6gvZeacfM1/Thought+Like+Flames",
+      "visibility": "public"
+    },
+    {
+      "id": "sNyEoorcuCesD434aFPR3q",
+      "title": "Time Will Change Your Heart",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 179,
+      "status": "pending",
+      "mbid": "ffc08efe-ed51-4a99-9dc9-b76d2512f4f9",
+      "links": [
+        "https://musicbrainz.org/recording/ffc08efe-ed51-4a99-9dc9-b76d2512f4f9"
+      ],
+      "url": "http://mt5577:3000/api/album/sNyEoorcuCesD434aFPR3q/Time+Will+Change+Your+Heart",
+      "visibility": "public"
+    },
+    {
+      "id": "6RGZ4xmDu4VKNW8nZqsSfr",
+      "title": "Painting",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 216,
+      "status": "pending",
+      "mbid": "b4e183f3-e5e3-45e2-a018-ce65168424a4",
+      "links": [
+        "https://musicbrainz.org/recording/b4e183f3-e5e3-45e2-a018-ce65168424a4"
+      ],
+      "url": "http://mt5577:3000/api/album/6RGZ4xmDu4VKNW8nZqsSfr/Painting",
+      "visibility": "public"
+    },
+    {
+      "id": "rzaj3uiAaHkzCBDdbfBcPN",
+      "title": "Midnight",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 253,
+      "status": "pending",
+      "mbid": "adaf56bd-d04c-4b29-9953-287e8493e335",
+      "links": [
+        "https://musicbrainz.org/recording/adaf56bd-d04c-4b29-9953-287e8493e335"
+      ],
+      "url": "http://mt5577:3000/api/album/rzaj3uiAaHkzCBDdbfBcPN/Midnight",
+      "visibility": "public"
+    },
+    {
+      "id": "mEGRwej1wwbNgeW4hbBPA3",
+      "title": "Coming Back to Life",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 170,
+      "status": "pending",
+      "mbid": "d451d5eb-2bb5-41eb-943f-8a4ec6aa584a",
+      "links": [
+        "https://musicbrainz.org/recording/d451d5eb-2bb5-41eb-943f-8a4ec6aa584a"
+      ],
+      "url": "http://mt5577:3000/api/album/mEGRwej1wwbNgeW4hbBPA3/Coming+Back+to+Life",
+      "visibility": "public"
+    },
+    {
+      "id": "32beuJuDeUogoLw9cTgcKj",
+      "title": "She Shut Your Eyes",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 180,
+      "status": "pending",
+      "mbid": "1b3959de-738d-4da2-8525-69b4ffb202ba",
+      "links": [
+        "https://musicbrainz.org/recording/1b3959de-738d-4da2-8525-69b4ffb202ba"
+      ],
+      "url": "http://mt5577:3000/api/album/32beuJuDeUogoLw9cTgcKj/She+Shut+Your+Eyes",
+      "visibility": "public"
+    },
+    {
+      "id": "iEhNK3HBCSDCXtRPqE4vRi",
+      "title": "Silence",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 337,
+      "status": "pending",
+      "mbid": "2af87c2b-133f-45be-9079-f0cb24e03bc7",
+      "links": [
+        "https://musicbrainz.org/recording/2af87c2b-133f-45be-9079-f0cb24e03bc7"
+      ],
+      "url": "http://mt5577:3000/api/album/iEhNK3HBCSDCXtRPqE4vRi/Silence",
+      "visibility": "public"
+    }
+  ],
+  "released": "2002-08-19T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "2dba8ceb-bee7-4c96-9425-609e1fd5e8ac",
+  "links": [
+    "https://musicbrainz.org/album/2dba8ceb-bee7-4c96-9425-609e1fd5e8ac",
+    "https://www.amazon.com/gp/product/B00006AGCR"
+  ],
+  "url": "http://mt5577:3000/api/album/6DvKQBDKRnjQhkaXtqhCbY/Silence",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "wRuwwpNPYo6FFj8GP1GWmA",
+      "name": "Blindside",
+      "area": "Tumba, SE",
+      "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+    }
+  ]
+}

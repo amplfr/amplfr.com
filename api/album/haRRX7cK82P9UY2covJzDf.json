@@ -1,0 +1,264 @@
+{
+  "id": "haRRX7cK82P9UY2covJzDf",
+  "title": "Homecoming",
+  "items": [
+    {
+      "id": "qdRL6rYsNhBkXZs7yufgwM",
+      "title": "Insult To Injury",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 204,
+      "status": "pending",
+      "mbid": "42b401d0-c9ed-4d3e-b515-8834db0baa73",
+      "links": [
+        "https://musicbrainz.org/recording/42b401d0-c9ed-4d3e-b515-8834db0baa73"
+      ],
+      "url": "http://mt5577:3000/api/album/qdRL6rYsNhBkXZs7yufgwM/Insult+To+Injury",
+      "visibility": "public"
+    },
+    {
+      "id": "wNrZe9x1tb8nVGMwTyaVkR",
+      "title": "Going Blind",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 166,
+      "status": "pending",
+      "mbid": "04343ee2-892a-4b16-8943-cf4be3900610",
+      "links": [
+        "https://musicbrainz.org/recording/04343ee2-892a-4b16-8943-cf4be3900610"
+      ],
+      "url": "http://mt5577:3000/api/album/wNrZe9x1tb8nVGMwTyaVkR/Going+Blind",
+      "visibility": "public"
+    },
+    {
+      "id": "3kNDAtncZHgsNDYxVfbrcU",
+      "title": "In Memory",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 162,
+      "status": "pending",
+      "mbid": "7e3e5564-551f-49be-83e6-010fdf0d219a",
+      "links": [
+        "https://musicbrainz.org/recording/7e3e5564-551f-49be-83e6-010fdf0d219a"
+      ],
+      "url": "http://mt5577:3000/api/album/3kNDAtncZHgsNDYxVfbrcU/In+Memory",
+      "visibility": "public"
+    },
+    {
+      "id": "6HV3W9HCRhp5nZUaQG8CkP",
+      "title": "Homecoming",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 177,
+      "status": "pending",
+      "mbid": "56f8678a-328e-408b-9f8b-b28a5ac70cc2",
+      "links": [
+        "https://musicbrainz.org/recording/56f8678a-328e-408b-9f8b-b28a5ac70cc2"
+      ],
+      "url": "http://mt5577:3000/api/album/6HV3W9HCRhp5nZUaQG8CkP/Homecoming",
+      "visibility": "public"
+    },
+    {
+      "id": "khoBFBYzxo9GnNWouDL7tZ",
+      "title": "Nobody",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 208,
+      "status": "pending",
+      "mbid": "cbdf83b7-0af3-4860-8166-cad5c305cf02",
+      "links": [
+        "https://musicbrainz.org/recording/cbdf83b7-0af3-4860-8166-cad5c305cf02"
+      ],
+      "url": "http://mt5577:3000/api/album/khoBFBYzxo9GnNWouDL7tZ/Nobody",
+      "visibility": "public"
+    },
+    {
+      "id": "pZTzDH957CtcL2yGjvJ4YY",
+      "title": "Lonely Girl",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 188,
+      "status": "pending",
+      "mbid": "f6cb7d1f-24d3-47e1-ad72-f1f63f96048e",
+      "links": [
+        "https://musicbrainz.org/recording/f6cb7d1f-24d3-47e1-ad72-f1f63f96048e"
+      ],
+      "url": "http://mt5577:3000/api/album/pZTzDH957CtcL2yGjvJ4YY/Lonely+Girl",
+      "visibility": "public"
+    },
+    {
+      "id": "omB3uuVbSAgX3UVtZwMBZP",
+      "title": "Who Am I",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 190,
+      "status": "pending",
+      "mbid": "c80e9749-c11b-4b6f-8276-2da83aa48f35",
+      "links": [
+        "https://musicbrainz.org/recording/c80e9749-c11b-4b6f-8276-2da83aa48f35"
+      ],
+      "url": "http://mt5577:3000/api/album/omB3uuVbSAgX3UVtZwMBZP/Who+Am+I",
+      "visibility": "public"
+    },
+    {
+      "id": "pFK19CkGzfKyZTVGztD2YZ",
+      "title": "Sorry",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 202,
+      "status": "pending",
+      "mbid": "1fbef568-a689-47bf-a9ab-5f6df056da33",
+      "links": [
+        "https://musicbrainz.org/recording/1fbef568-a689-47bf-a9ab-5f6df056da33"
+      ],
+      "url": "http://mt5577:3000/api/album/pFK19CkGzfKyZTVGztD2YZ/Sorry",
+      "visibility": "public"
+    },
+    {
+      "id": "fgGc6oYgs25c3XtM43r32e",
+      "title": "Dear Charlotte",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 144,
+      "status": "pending",
+      "mbid": "ab917dd5-de46-46f9-884f-f2094938c52d",
+      "links": [
+        "https://musicbrainz.org/recording/ab917dd5-de46-46f9-884f-f2094938c52d"
+      ],
+      "url": "http://mt5577:3000/api/album/fgGc6oYgs25c3XtM43r32e/Dear+Charlotte",
+      "visibility": "public"
+    },
+    {
+      "id": "hdhjfv5sbnGhm6gvvBQmBD",
+      "title": "My Annie",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 184,
+      "status": "pending",
+      "mbid": "6ef1d268-ca3d-4e48-aafa-f5e733fb64e1",
+      "links": [
+        "https://musicbrainz.org/recording/6ef1d268-ca3d-4e48-aafa-f5e733fb64e1"
+      ],
+      "url": "http://mt5577:3000/api/album/hdhjfv5sbnGhm6gvvBQmBD/My+Annie",
+      "visibility": "public"
+    },
+    {
+      "id": "fasmmVncFx4smgZ1Zmpd1B",
+      "title": "One",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 239,
+      "status": "pending",
+      "mbid": "19a08db6-af27-4343-99bf-9848424a0a75",
+      "links": [
+        "https://musicbrainz.org/recording/19a08db6-af27-4343-99bf-9848424a0a75"
+      ],
+      "url": "http://mt5577:3000/api/album/fasmmVncFx4smgZ1Zmpd1B/One",
+      "visibility": "public"
+    },
+    {
+      "id": "mzZTE1DBLHwuQPDsKBUh57",
+      "title": "Potential",
+      "artists": [
+        {
+          "id": "oAf7C1VHUL8qy2UujSgnsw",
+          "name": "Craig's Brother",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        }
+      ],
+      "duration": 195,
+      "status": "pending",
+      "mbid": "5f0e428c-5315-473f-935f-6db26384e4cf",
+      "links": [
+        "https://musicbrainz.org/recording/5f0e428c-5315-473f-935f-6db26384e4cf"
+      ],
+      "url": "http://mt5577:3000/api/album/mzZTE1DBLHwuQPDsKBUh57/Potential",
+      "visibility": "public"
+    }
+  ],
+  "released": "1998-06-08T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "82f2a3fb-3125-48cb-a2e4-0914a3a97274",
+  "links": [
+    "https://musicbrainz.org/album/82f2a3fb-3125-48cb-a2e4-0914a3a97274",
+    "https://www.amazon.com/gp/product/B000008A56",
+    "https://www.discogs.com/release/961463"
+  ],
+  "url": "http://mt5577:3000/api/album/haRRX7cK82P9UY2covJzDf/Homecoming",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "oAf7C1VHUL8qy2UujSgnsw",
+      "name": "Craig's Brother",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+    }
+  ]
+}

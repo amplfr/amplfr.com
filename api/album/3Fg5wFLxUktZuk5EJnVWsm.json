@@ -1,0 +1,238 @@
+{
+  "id": "3Fg5wFLxUktZuk5EJnVWsm",
+  "title": "Led Zeppelin",
+  "items": [
+    {
+      "id": "kZiTETGfYfaKVif1QsWjxY",
+      "title": "Good Times Bad Times",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 166,
+      "status": "pending",
+      "isrc": [
+        "USAT20703863",
+        "USAT21207000",
+        "USAT21300916",
+        "USAT29900534",
+        "USRH11505132",
+        "USRH11505619"
+      ],
+      "mbid": "3f7e04ef-822a-412a-8fc7-669dcee6dbfa",
+      "links": [
+        "https://musicbrainz.org/recording/3f7e04ef-822a-412a-8fc7-669dcee6dbfa"
+      ],
+      "url": "http://mt5577:3000/api/album/kZiTETGfYfaKVif1QsWjxY/Good+Times+Bad+Times",
+      "visibility": "public"
+    },
+    {
+      "id": "nyKD5xdwHe7u42z5mnCeij",
+      "title": "Babe I’m Gonna Leave You",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 402,
+      "status": "pending",
+      "isrc": [
+        "USAT20703866",
+        "USAT21207001",
+        "USAT21300917",
+        "USAT29900535",
+        "USRH11505135",
+        "USRH11505622"
+      ],
+      "mbid": "7c5a7d3b-fcc0-4c88-8798-5f34fe2be0f3",
+      "links": [
+        "https://musicbrainz.org/recording/7c5a7d3b-fcc0-4c88-8798-5f34fe2be0f3"
+      ],
+      "url": "http://mt5577:3000/api/album/nyKD5xdwHe7u42z5mnCeij/Babe+I%E2%80%99m+Gonna+Leave+You",
+      "visibility": "public"
+    },
+    {
+      "id": "opZnopEShfBiagrKpFF9V2",
+      "title": "You Shook Me",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 388,
+      "status": "pending",
+      "isrc": ["USAT21207002", "USAT21300918", "USAT29900536"],
+      "mbid": "b75129df-a8bb-47e1-9bca-3d5c04eceb1a",
+      "links": [
+        "https://musicbrainz.org/recording/b75129df-a8bb-47e1-9bca-3d5c04eceb1a"
+      ],
+      "url": "http://mt5577:3000/api/album/opZnopEShfBiagrKpFF9V2/You+Shook+Me",
+      "visibility": "public"
+    },
+    {
+      "id": "nLR9C9Q4Aazh27B8CyJ8WE",
+      "title": "Dazed and Confused",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 387,
+      "status": "pending",
+      "isrc": [
+        "USAT20703865",
+        "USAT21207003",
+        "USAT21300919",
+        "USAT29900537",
+        "USRH11505134",
+        "USRH11505621"
+      ],
+      "mbid": "553510ce-68dd-4e85-9e8c-eafb23d43bab",
+      "links": [
+        "https://musicbrainz.org/recording/553510ce-68dd-4e85-9e8c-eafb23d43bab"
+      ],
+      "url": "http://mt5577:3000/api/album/nLR9C9Q4Aazh27B8CyJ8WE/Dazed+and+Confused",
+      "visibility": "public"
+    },
+    {
+      "id": "sagTnG4rewRW1UvgKsZHn5",
+      "title": "Your Time Is Gonna Come",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 275,
+      "status": "pending",
+      "isrc": ["USAT21207004", "USAT21300920", "USAT29900538"],
+      "mbid": "30dc9d1c-0738-40e8-ae05-62ffd3b764a8",
+      "links": [
+        "https://musicbrainz.org/recording/30dc9d1c-0738-40e8-ae05-62ffd3b764a8"
+      ],
+      "url": "http://mt5577:3000/api/album/sagTnG4rewRW1UvgKsZHn5/Your+Time+Is+Gonna+Come",
+      "visibility": "public"
+    },
+    {
+      "id": "5i5y99hfDTh6YLRJAEz1Wv",
+      "title": "Black Mountain Side",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 126,
+      "status": "pending",
+      "mbid": "e6c6fb66-a381-4caf-ad0d-b3d122a94011",
+      "links": [
+        "https://musicbrainz.org/recording/e6c6fb66-a381-4caf-ad0d-b3d122a94011"
+      ],
+      "url": "http://mt5577:3000/api/album/5i5y99hfDTh6YLRJAEz1Wv/Black+Mountain+Side",
+      "visibility": "public"
+    },
+    {
+      "id": "9Pz4yPoeM1hFGpxBsubj6o",
+      "title": "Communication Breakdown",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 149,
+      "status": "pending",
+      "isrc": [
+        "USAT20703864",
+        "USAT21207006",
+        "USAT21300922",
+        "USAT29900540",
+        "USRH11505133",
+        "USRH11505620"
+      ],
+      "mbid": "1a10c3d7-438e-4f6c-b10f-b02c4e9bad6e",
+      "links": [
+        "https://musicbrainz.org/recording/1a10c3d7-438e-4f6c-b10f-b02c4e9bad6e"
+      ],
+      "url": "http://mt5577:3000/api/album/9Pz4yPoeM1hFGpxBsubj6o/Communication+Breakdown",
+      "visibility": "public"
+    },
+    {
+      "id": "prfC9A7aVoFZjhghcVJUVL",
+      "title": "I Can’t Quit You Baby",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 282,
+      "status": "pending",
+      "isrc": ["USAT21207007", "USAT21300923", "USAT29900541"],
+      "mbid": "c7b621be-68bb-4061-9c35-30b177f0eb67",
+      "links": [
+        "https://musicbrainz.org/recording/c7b621be-68bb-4061-9c35-30b177f0eb67"
+      ],
+      "url": "http://mt5577:3000/api/album/prfC9A7aVoFZjhghcVJUVL/I+Can%E2%80%99t+Quit+You+Baby",
+      "visibility": "public"
+    },
+    {
+      "id": "oPQFLtstkz6yCwiB2At8fx",
+      "title": "How Many More Times",
+      "artists": [
+        {
+          "id": "jo2cW1t2VUpS5VEYLgLNuG",
+          "name": "Led Zeppelin",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+        }
+      ],
+      "duration": 210,
+      "status": "pending",
+      "mbid": "20b77626-160e-4b46-a000-828e44a6e394",
+      "links": [
+        "https://musicbrainz.org/recording/20b77626-160e-4b46-a000-828e44a6e394"
+      ],
+      "url": "http://mt5577:3000/api/album/oPQFLtstkz6yCwiB2At8fx/How+Many+More+Times",
+      "visibility": "public"
+    }
+  ],
+  "released": "1968-12-31T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "15ad9398-dfc7-46d6-aec2-618d4efb62e8",
+  "links": [
+    "https://musicbrainz.org/album/15ad9398-dfc7-46d6-aec2-618d4efb62e8",
+    "https://www.discogs.com/release/4174217"
+  ],
+  "url": "http://mt5577:3000/api/album/3Fg5wFLxUktZuk5EJnVWsm/Led+Zeppelin",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "jo2cW1t2VUpS5VEYLgLNuG",
+      "name": "Led Zeppelin",
+      "area": "London, GB",
+      "url": "http://mt5577:3000/api/artist/jo2cW1t2VUpS5VEYLgLNuG/Led+Zeppelin"
+    }
+  ]
+}

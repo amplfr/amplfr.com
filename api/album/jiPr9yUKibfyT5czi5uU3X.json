@@ -1,0 +1,318 @@
+{
+  "id": "jiPr9yUKibfyT5czi5uU3X",
+  "title": "311",
+  "items": [
+    {
+      "id": "3TejctwBW4mkkAPF3DYB4y",
+      "title": "Down",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 173,
+      "status": "pending",
+      "isrc": ["USCA79694301", "USVR10300115", "USVR10300141"],
+      "mbid": "00476c23-fd9e-464b-9b27-a62d69f3d4f4",
+      "links": [
+        "https://musicbrainz.org/recording/00476c23-fd9e-464b-9b27-a62d69f3d4f4"
+      ],
+      "url": "http://mt5577:3000/api/album/3TejctwBW4mkkAPF3DYB4y/Down",
+      "visibility": "public"
+    },
+    {
+      "id": "fCeWpXuu11L8vyvuXYtpkc",
+      "title": "Random",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 187,
+      "status": "pending",
+      "isrc": ["USCA79694302", "USVR10300142"],
+      "mbid": "530c09f3-46fe-4d90-b11f-7b63bcb4b373",
+      "links": [
+        "https://musicbrainz.org/recording/530c09f3-46fe-4d90-b11f-7b63bcb4b373"
+      ],
+      "url": "http://mt5577:3000/api/album/fCeWpXuu11L8vyvuXYtpkc/Random",
+      "visibility": "public"
+    },
+    {
+      "id": "hP7GLgfTEHPCSAPDDKuJqN",
+      "title": "Jackolantern’s Weather",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 204,
+      "status": "pending",
+      "isrc": ["USCA79694303", "USVR10300143"],
+      "mbid": "cc3b2dec-5d99-47ea-8930-20bf258be4ea",
+      "links": [
+        "https://musicbrainz.org/recording/cc3b2dec-5d99-47ea-8930-20bf258be4ea"
+      ],
+      "url": "http://mt5577:3000/api/album/hP7GLgfTEHPCSAPDDKuJqN/Jackolantern%E2%80%99s+Weather",
+      "visibility": "public"
+    },
+    {
+      "id": "nm7ragUHR3183ku3cNXpHf",
+      "title": "All Mixed Up",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 182,
+      "status": "pending",
+      "isrc": ["USCA79694304", "USVR10300144"],
+      "mbid": "980a78b5-5bdd-4f50-9e3a-e13261e2817b",
+      "links": [
+        "https://musicbrainz.org/recording/980a78b5-5bdd-4f50-9e3a-e13261e2817b"
+      ],
+      "url": "http://mt5577:3000/api/album/nm7ragUHR3183ku3cNXpHf/All+Mixed+Up",
+      "visibility": "public"
+    },
+    {
+      "id": "1Hqwahkk6verWNM2xAtwwD",
+      "title": "Hive",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 179,
+      "status": "pending",
+      "isrc": ["USCA79694305", "USVR10300145"],
+      "mbid": "18f6dc98-d3a2-4f81-b967-97359d14c68c",
+      "links": [
+        "https://musicbrainz.org/recording/18f6dc98-d3a2-4f81-b967-97359d14c68c"
+      ],
+      "url": "http://mt5577:3000/api/album/1Hqwahkk6verWNM2xAtwwD/Hive",
+      "visibility": "public"
+    },
+    {
+      "id": "gYj7gKhwNdDCToR7BXY8XX",
+      "title": "Guns (Are for Pussies)",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 137,
+      "status": "pending",
+      "isrc": ["USCA79694306", "USVR10300146"],
+      "mbid": "5e97ed9f-c8cc-4282-9cbe-f8e17aee5128",
+      "links": [
+        "https://musicbrainz.org/recording/5e97ed9f-c8cc-4282-9cbe-f8e17aee5128"
+      ],
+      "url": "http://mt5577:3000/api/album/gYj7gKhwNdDCToR7BXY8XX/Guns+(Are+for+Pussies)",
+      "visibility": "public"
+    },
+    {
+      "id": "bpfzb1LtuZ8YHi2u8gGbBN",
+      "title": "Misdirected Hostility",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 180,
+      "status": "pending",
+      "isrc": ["USCA79694307", "USVR10300147"],
+      "mbid": "61ff2c1a-fc9c-44c3-8da1-5e50a44245af",
+      "links": [
+        "https://musicbrainz.org/recording/61ff2c1a-fc9c-44c3-8da1-5e50a44245af"
+      ],
+      "url": "http://mt5577:3000/api/album/bpfzb1LtuZ8YHi2u8gGbBN/Misdirected+Hostility",
+      "visibility": "public"
+    },
+    {
+      "id": "udmf5qVBcqBs31h65C2NNa",
+      "title": "Purpose",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 165,
+      "status": "pending",
+      "isrc": ["USCA79694308", "USVR10300148"],
+      "mbid": "6e74487a-1657-4a85-ba8b-7ff1e000650b",
+      "links": [
+        "https://musicbrainz.org/recording/6e74487a-1657-4a85-ba8b-7ff1e000650b"
+      ],
+      "url": "http://mt5577:3000/api/album/udmf5qVBcqBs31h65C2NNa/Purpose",
+      "visibility": "public"
+    },
+    {
+      "id": "2NLmV924tF1gD9sgq2WsAW",
+      "title": "Loco",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 113,
+      "status": "pending",
+      "isrc": ["USCA79694309", "USVR10300149"],
+      "mbid": "383ec234-d5d6-4c8a-b862-f719b5224b48",
+      "links": [
+        "https://musicbrainz.org/recording/383ec234-d5d6-4c8a-b862-f719b5224b48"
+      ],
+      "url": "http://mt5577:3000/api/album/2NLmV924tF1gD9sgq2WsAW/Loco",
+      "visibility": "public"
+    },
+    {
+      "id": "tPZS6LzyMeRzxunG5zXyjk",
+      "title": "Brodels",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 212,
+      "status": "pending",
+      "isrc": ["USCA79694310", "USVR10300150"],
+      "mbid": "029b2fd6-fd8a-43f0-872f-50bcaba57c9b",
+      "links": [
+        "https://musicbrainz.org/recording/029b2fd6-fd8a-43f0-872f-50bcaba57c9b"
+      ],
+      "url": "http://mt5577:3000/api/album/tPZS6LzyMeRzxunG5zXyjk/Brodels",
+      "visibility": "public"
+    },
+    {
+      "id": "xxuyzxzbPj9yL71u7dCTGw",
+      "title": "Don’t Stay Home",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 164,
+      "status": "pending",
+      "isrc": ["USCA79694311", "USVR10300151"],
+      "mbid": "9af7ff5f-bd92-42ea-9a1c-42f59f4c0fe7",
+      "links": [
+        "https://musicbrainz.org/recording/9af7ff5f-bd92-42ea-9a1c-42f59f4c0fe7"
+      ],
+      "url": "http://mt5577:3000/api/album/xxuyzxzbPj9yL71u7dCTGw/Don%E2%80%99t+Stay+Home",
+      "visibility": "public"
+    },
+    {
+      "id": "4CvWBZt9e6iEDj7XJisMZH",
+      "title": "DLMD",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 133,
+      "status": "pending",
+      "isrc": ["USCA79694312", "USVR10300152"],
+      "mbid": "c830baa3-286d-4c73-a851-db1ecb33dbcd",
+      "links": [
+        "https://musicbrainz.org/recording/c830baa3-286d-4c73-a851-db1ecb33dbcd"
+      ],
+      "url": "http://mt5577:3000/api/album/4CvWBZt9e6iEDj7XJisMZH/DLMD",
+      "visibility": "public"
+    },
+    {
+      "id": "1LrYpxvm7p7uJbsiRRKQAt",
+      "title": "Sweet",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 195,
+      "status": "pending",
+      "isrc": ["USCA79694313", "USVR10300153"],
+      "mbid": "560ad0ae-2eb5-497a-a71e-0e1b8d7bbb25",
+      "links": [
+        "https://musicbrainz.org/recording/560ad0ae-2eb5-497a-a71e-0e1b8d7bbb25"
+      ],
+      "url": "http://mt5577:3000/api/album/1LrYpxvm7p7uJbsiRRKQAt/Sweet",
+      "visibility": "public"
+    },
+    {
+      "id": "e1dNMCEz3HFWPEn8ooJBAF",
+      "title": "T & P Combo",
+      "artists": [
+        {
+          "id": "mnWr65cn83bpS3ew9f3u5z",
+          "name": "311",
+          "area": "Omaha, US",
+          "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+        }
+      ],
+      "duration": 170,
+      "status": "pending",
+      "isrc": ["USCA79694314", "USVR10300154"],
+      "mbid": "98c7bbda-b04a-40f2-8ebe-2d09b520b536",
+      "links": [
+        "https://musicbrainz.org/recording/98c7bbda-b04a-40f2-8ebe-2d09b520b536"
+      ],
+      "url": "http://mt5577:3000/api/album/e1dNMCEz3HFWPEn8ooJBAF/T+%26+P+Combo",
+      "visibility": "public"
+    }
+  ],
+  "released": "1995-07-24T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "94415f38-4e0c-43bd-9e60-d570c68e0ffb",
+  "links": [
+    "https://musicbrainz.org/album/94415f38-4e0c-43bd-9e60-d570c68e0ffb",
+    "https://www.amazon.com/gp/product/B000003CLT",
+    "https://www.discogs.com/release/4159523"
+  ],
+  "url": "http://mt5577:3000/api/album/jiPr9yUKibfyT5czi5uU3X/311",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "mnWr65cn83bpS3ew9f3u5z",
+      "name": "311",
+      "area": "Omaha, US",
+      "url": "http://mt5577:3000/api/artist/mnWr65cn83bpS3ew9f3u5z/311"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "bandwidth": 1020,
+    "bytes": 26903588,
+    "etag": "eec2fe0ae1a5f448b54c19796e486bd152f04055f7b6b47e19ecb0bb8329f70b",
+    "filename": "hdhjfv5sbnGhm6gvvBQmBD.flac",
+    "mime": "audio/flac"
+  },
+  {
+    "bandwidth": 160,
+    "bytes": 5053536,
+    "etag": "b1bb4b6f19b36d1b997f3d1143848b945532059f7eb095b8379f8304165237a6",
+    "filename": "hdhjfv5sbnGhm6gvvBQmBD@160.mp3",
+    "mime": "audio/mp3"
+  },
+  {
+    "bandwidth": 128,
+    "bytes": 5053536,
+    "etag": "b1bb4b6f19b36d1b997f3d1143848b945532059f7eb095b8379f8304165237a6",
+    "filename": "hdhjfv5sbnGhm6gvvBQmBD@128.mp3",
+    "mime": "audio/mp3"
+  }
+]

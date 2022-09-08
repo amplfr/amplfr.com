@@ -1,0 +1,264 @@
+{
+  "id": "nwk7bbSttskoA5AnMyPkDD",
+  "title": "Rage Against the Machine",
+  "items": [
+    {
+      "id": "p1ki3tBA8bpGeDfSRH6xkW",
+      "title": "Bombtrack",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 254,
+      "status": "pending",
+      "mbid": "d853cba7-ad11-40d6-a72b-fa20ab1388bc",
+      "links": [
+        "https://musicbrainz.org/recording/d853cba7-ad11-40d6-a72b-fa20ab1388bc"
+      ],
+      "url": "http://mt5577:3000/api/album/p1ki3tBA8bpGeDfSRH6xkW/Bombtrack",
+      "visibility": "public"
+    },
+    {
+      "id": "g5Vqttvxz4byrsAbt9RVNC",
+      "title": "Take the Power Back",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 351,
+      "status": "pending",
+      "mbid": "940bceb3-97f4-4dc0-944d-a328b9f3ace1",
+      "links": [
+        "https://musicbrainz.org/recording/940bceb3-97f4-4dc0-944d-a328b9f3ace1"
+      ],
+      "url": "http://mt5577:3000/api/album/g5Vqttvxz4byrsAbt9RVNC/Take+the+Power+Back",
+      "visibility": "public"
+    },
+    {
+      "id": "4EBzEvZgRKokjHrVvnDCXa",
+      "title": "Bullet in the Head",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 317,
+      "status": "pending",
+      "mbid": "5c3a0d94-7f9a-4284-aad6-afc837f3fee9",
+      "links": [
+        "https://musicbrainz.org/recording/5c3a0d94-7f9a-4284-aad6-afc837f3fee9"
+      ],
+      "url": "http://mt5577:3000/api/album/4EBzEvZgRKokjHrVvnDCXa/Bullet+in+the+Head",
+      "visibility": "public"
+    },
+    {
+      "id": "jV5yxTJ8CvHYCjL3cVdDaJ",
+      "title": "Darkness of Greed",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 224,
+      "status": "pending",
+      "mbid": "6a080328-7f7c-46c8-99fc-098083433fa2",
+      "links": [
+        "https://musicbrainz.org/recording/6a080328-7f7c-46c8-99fc-098083433fa2"
+      ],
+      "url": "http://mt5577:3000/api/album/jV5yxTJ8CvHYCjL3cVdDaJ/Darkness+of+Greed",
+      "visibility": "public"
+    },
+    {
+      "id": "dd6qBZuKC4Fsk7qnoXvyjp",
+      "title": "Clear the Lane",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 233,
+      "status": "pending",
+      "mbid": "968c1b3f-859a-4d4d-a500-60ed50b8f7b7",
+      "links": [
+        "https://musicbrainz.org/recording/968c1b3f-859a-4d4d-a500-60ed50b8f7b7"
+      ],
+      "url": "http://mt5577:3000/api/album/dd6qBZuKC4Fsk7qnoXvyjp/Clear+the+Lane",
+      "visibility": "public"
+    },
+    {
+      "id": "4fZwNP2iz3ioGZSHuWtAB7",
+      "title": "Township Rebellion",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 268,
+      "status": "pending",
+      "mbid": "d3d865e0-1cb9-4789-8e8c-ee02274d1f5a",
+      "links": [
+        "https://musicbrainz.org/recording/d3d865e0-1cb9-4789-8e8c-ee02274d1f5a"
+      ],
+      "url": "http://mt5577:3000/api/album/4fZwNP2iz3ioGZSHuWtAB7/Township+Rebellion",
+      "visibility": "public"
+    },
+    {
+      "id": "oyf3zwjJVYa25hi1j2GfQf",
+      "title": "Know Your Enemy",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 262,
+      "status": "pending",
+      "mbid": "a28bf511-fe21-4541-bf3b-2009751ae9b0",
+      "links": [
+        "https://musicbrainz.org/recording/a28bf511-fe21-4541-bf3b-2009751ae9b0"
+      ],
+      "url": "http://mt5577:3000/api/album/oyf3zwjJVYa25hi1j2GfQf/Know+Your+Enemy",
+      "visibility": "public"
+    },
+    {
+      "id": "rnVjjRGYjHDovGoqzCXyxQ",
+      "title": "Mindset’s a Threat",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 242,
+      "status": "pending",
+      "mbid": "6440e25e-7b0c-4f44-b165-67d35f93a468",
+      "links": [
+        "https://musicbrainz.org/recording/6440e25e-7b0c-4f44-b165-67d35f93a468"
+      ],
+      "url": "http://mt5577:3000/api/album/rnVjjRGYjHDovGoqzCXyxQ/Mindset%E2%80%99s+a+Threat",
+      "visibility": "public"
+    },
+    {
+      "id": "6QAZTqA6wxaXUjy3CpZTJp",
+      "title": "Killing in the Name",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 397,
+      "status": "pending",
+      "mbid": "2107aac0-151f-4783-987f-acc8c8a32a94",
+      "links": [
+        "https://musicbrainz.org/recording/2107aac0-151f-4783-987f-acc8c8a32a94"
+      ],
+      "url": "http://mt5577:3000/api/album/6QAZTqA6wxaXUjy3CpZTJp/Killing+in+the+Name",
+      "visibility": "public"
+    },
+    {
+      "id": "f1wkREbV4g3xiNnEnSb9BL",
+      "title": "Auto Logic",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 279,
+      "status": "pending",
+      "mbid": "5ae02ee1-3161-4107-af58-cc3b840b9d35",
+      "links": [
+        "https://musicbrainz.org/recording/5ae02ee1-3161-4107-af58-cc3b840b9d35"
+      ],
+      "url": "http://mt5577:3000/api/album/f1wkREbV4g3xiNnEnSb9BL/Auto+Logic",
+      "visibility": "public"
+    },
+    {
+      "id": "4PTuVaFNesVNw7Si9wugkb",
+      "title": "The Narrows",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 247,
+      "status": "pending",
+      "mbid": "127e9a2d-08c6-41ad-843f-3790b608a7ef",
+      "links": [
+        "https://musicbrainz.org/recording/127e9a2d-08c6-41ad-843f-3790b608a7ef"
+      ],
+      "url": "http://mt5577:3000/api/album/4PTuVaFNesVNw7Si9wugkb/The+Narrows",
+      "visibility": "public"
+    },
+    {
+      "id": "orWT6rVYwG3ubSNNikFg93",
+      "title": "Freedom",
+      "artists": [
+        {
+          "id": "gtAoAntvnCG9qPsU9gcHv1",
+          "name": "Rage Against the Machine",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+        }
+      ],
+      "duration": 344,
+      "status": "pending",
+      "mbid": "e896eba7-520f-412b-9df1-30443223a63c",
+      "links": [
+        "https://musicbrainz.org/recording/e896eba7-520f-412b-9df1-30443223a63c",
+        "https://www.youtube.com/watch?v=H_vQt_v8Jmw"
+      ],
+      "url": "http://mt5577:3000/api/album/orWT6rVYwG3ubSNNikFg93/Freedom",
+      "visibility": "public"
+    }
+  ],
+  "released": "1991-11-30T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "ae4bffef-3f21-4930-8c10-9adf5ca8ceeb",
+  "links": [
+    "https://musicbrainz.org/album/ae4bffef-3f21-4930-8c10-9adf5ca8ceeb",
+    "https://www.discogs.com/release/2834199"
+  ],
+  "url": "http://mt5577:3000/api/album/nwk7bbSttskoA5AnMyPkDD/Rage+Against+the+Machine",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "gtAoAntvnCG9qPsU9gcHv1",
+      "name": "Rage Against the Machine",
+      "area": "Los Angeles, US",
+      "url": "http://mt5577:3000/api/artist/gtAoAntvnCG9qPsU9gcHv1/Rage+Against+the+Machine"
+    }
+  ]
+}

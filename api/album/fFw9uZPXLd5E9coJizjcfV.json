@@ -1,0 +1,443 @@
+{
+  "id": "fFw9uZPXLd5E9coJizjcfV",
+  "title": "Ill Communication",
+  "items": [
+    {
+      "id": "qyqFXMHopxCBAeeMp4PqFj",
+      "title": "Sure Shot",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 200,
+      "status": "pending",
+      "isrc": ["USCA20501214", "USCA20901506", "USCA29400046", "USCA29901031"],
+      "mbid": "42bf5daf-d234-4dcf-a77a-89d3604c6fb2",
+      "links": [
+        "https://musicbrainz.org/recording/42bf5daf-d234-4dcf-a77a-89d3604c6fb2"
+      ],
+      "url": "http://mt5577:3000/api/album/qyqFXMHopxCBAeeMp4PqFj/Sure+Shot",
+      "visibility": "public"
+    },
+    {
+      "id": "fWAx1Uj8pJXBx7U2rcq5Wu",
+      "title": "Tough Guy",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 58,
+      "status": "pending",
+      "isrc": ["USCA20901507", "USCA29400048"],
+      "mbid": "93cd7167-707c-440f-971a-69afabb2bcd2",
+      "links": [
+        "https://musicbrainz.org/recording/93cd7167-707c-440f-971a-69afabb2bcd2"
+      ],
+      "url": "http://mt5577:3000/api/album/fWAx1Uj8pJXBx7U2rcq5Wu/Tough+Guy",
+      "visibility": "public"
+    },
+    {
+      "id": "6BQXn7bwgvhxM9VVz5sTS4",
+      "title": "B‐Boys Makin’ With the Freak Freak",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 234,
+      "status": "pending",
+      "mbid": "22d92949-a5b6-495c-add2-d24db4a4d6cf",
+      "links": [
+        "https://musicbrainz.org/recording/22d92949-a5b6-495c-add2-d24db4a4d6cf"
+      ],
+      "url": "http://mt5577:3000/api/album/6BQXn7bwgvhxM9VVz5sTS4/B%E2%80%90Boys+Makin%E2%80%99+With+the+Freak+Freak",
+      "visibility": "public"
+    },
+    {
+      "id": "7qwDGGvWf33e8CvHxAxYQv",
+      "title": "Bobo on the Corner",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 73,
+      "status": "pending",
+      "isrc": ["USCA20901509", "USCA29400052"],
+      "mbid": "eb1e0d34-a38a-40b0-8583-3042ee8e1e3c",
+      "links": [
+        "https://musicbrainz.org/recording/eb1e0d34-a38a-40b0-8583-3042ee8e1e3c"
+      ],
+      "url": "http://mt5577:3000/api/album/7qwDGGvWf33e8CvHxAxYQv/Bobo+on+the+Corner",
+      "visibility": "public"
+    },
+    {
+      "id": "6oVqm78xER7p5dw9xQNywt",
+      "title": "Root Down",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 212,
+      "status": "pending",
+      "isrc": ["USCA20501211", "USCA20901510", "USCA29400022", "USCA29901030"],
+      "mbid": "135d6b3d-b238-445a-8000-e80c283aa0e7",
+      "links": [
+        "https://musicbrainz.org/recording/135d6b3d-b238-445a-8000-e80c283aa0e7"
+      ],
+      "url": "http://mt5577:3000/api/album/6oVqm78xER7p5dw9xQNywt/Root+Down",
+      "visibility": "public"
+    },
+    {
+      "id": "7mWVMK7iGDD8TJRTqTHxoG",
+      "title": "Sabotage",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 178,
+      "status": "pending",
+      "isrc": ["USCA20501217", "USCA20901511", "USCA29400020"],
+      "mbid": "edd8d59e-cd1e-4c1c-b78b-fedf2e7539f9",
+      "links": [
+        "https://musicbrainz.org/recording/edd8d59e-cd1e-4c1c-b78b-fedf2e7539f9"
+      ],
+      "url": "http://mt5577:3000/api/album/7mWVMK7iGDD8TJRTqTHxoG/Sabotage",
+      "visibility": "public"
+    },
+    {
+      "id": "en7FYybE56xebc6QotcTa5",
+      "title": "Get It Together",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 246,
+      "status": "pending",
+      "isrc": ["USCA20901512", "USCA29400054", "USCA29901048"],
+      "mbid": "0eb8e20a-019a-4ac9-8bb5-dd430afacd83",
+      "links": [
+        "https://musicbrainz.org/recording/0eb8e20a-019a-4ac9-8bb5-dd430afacd83"
+      ],
+      "url": "http://mt5577:3000/api/album/en7FYybE56xebc6QotcTa5/Get+It+Together",
+      "visibility": "public"
+    },
+    {
+      "id": "vDPJCQ6JLFX3RuV9vtpbVR",
+      "title": "Sabrosa",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 210,
+      "status": "pending",
+      "isrc": ["USCA20901513", "USCA29400056", "USCA29901037"],
+      "mbid": "11f14f34-999b-4562-a387-49c33408875e",
+      "links": [
+        "https://musicbrainz.org/recording/11f14f34-999b-4562-a387-49c33408875e"
+      ],
+      "url": "http://mt5577:3000/api/album/vDPJCQ6JLFX3RuV9vtpbVR/Sabrosa",
+      "visibility": "public"
+    },
+    {
+      "id": "9pYK2uYDwAvfJEyVYhFb4H",
+      "title": "The Update",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 196,
+      "status": "pending",
+      "isrc": ["USCA20901524", "USCA29400058"],
+      "mbid": "968750cd-ad66-48a6-a751-c019f8a064d8",
+      "links": [
+        "https://musicbrainz.org/recording/968750cd-ad66-48a6-a751-c019f8a064d8"
+      ],
+      "url": "http://mt5577:3000/api/album/9pYK2uYDwAvfJEyVYhFb4H/The+Update",
+      "visibility": "public"
+    },
+    {
+      "id": "47gLBxYPn7qBDa5fwUqnFm",
+      "title": "Futterman’s Rule",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 222,
+      "status": "pending",
+      "isrc": ["USCA20901525", "USCA29400060"],
+      "mbid": "a2ee6031-c474-46ac-bc06-2dac74153bef",
+      "links": [
+        "https://musicbrainz.org/recording/a2ee6031-c474-46ac-bc06-2dac74153bef"
+      ],
+      "url": "http://mt5577:3000/api/album/47gLBxYPn7qBDa5fwUqnFm/Futterman%E2%80%99s+Rule",
+      "visibility": "public"
+    },
+    {
+      "id": "5wQiZDBoLCKW6GmhGYaJzc",
+      "title": "Alright Hear This",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 187,
+      "status": "pending",
+      "isrc": ["USCA20901527", "USCA29400061"],
+      "mbid": "0396ca06-cfc2-43f5-b78b-b8fd803093be",
+      "links": [
+        "https://musicbrainz.org/recording/0396ca06-cfc2-43f5-b78b-b8fd803093be"
+      ],
+      "url": "http://mt5577:3000/api/album/5wQiZDBoLCKW6GmhGYaJzc/Alright+Hear+This",
+      "visibility": "public"
+    },
+    {
+      "id": "r5PQDJ2XrCfge5Wiv5PtBz",
+      "title": "Eugene’s Lament",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 132,
+      "status": "pending",
+      "isrc": ["USCA20901528", "USCA29400082"],
+      "mbid": "d0dab694-9261-45ef-ba3d-eb7965d72546",
+      "links": [
+        "https://musicbrainz.org/recording/d0dab694-9261-45ef-ba3d-eb7965d72546"
+      ],
+      "url": "http://mt5577:3000/api/album/r5PQDJ2XrCfge5Wiv5PtBz/Eugene%E2%80%99s+Lament",
+      "visibility": "public"
+    },
+    {
+      "id": "6ZBjSaxkPicapB8hpFsbpb",
+      "title": "Flute Loop",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 115,
+      "status": "pending",
+      "isrc": ["USCA20901529", "USCA29400085"],
+      "mbid": "d73dc8b0-d7dd-486b-9fec-a709373ff081",
+      "links": [
+        "https://musicbrainz.org/recording/d73dc8b0-d7dd-486b-9fec-a709373ff081"
+      ],
+      "url": "http://mt5577:3000/api/album/6ZBjSaxkPicapB8hpFsbpb/Flute+Loop",
+      "visibility": "public"
+    },
+    {
+      "id": "ePogLE3ZmY2KcFscwqY47N",
+      "title": "Do It",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 196,
+      "status": "pending",
+      "isrc": ["USCA20901530", "USCA29400080"],
+      "mbid": "9d2a7680-e82c-45dd-aee9-192ce0994129",
+      "links": [
+        "https://musicbrainz.org/recording/9d2a7680-e82c-45dd-aee9-192ce0994129"
+      ],
+      "url": "http://mt5577:3000/api/album/ePogLE3ZmY2KcFscwqY47N/Do+It",
+      "visibility": "public"
+    },
+    {
+      "id": "ojw2Vmq6N5f6Yj8fz8SUDz",
+      "title": "Ricky’s Theme",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 224,
+      "status": "pending",
+      "isrc": ["USCA20901541", "USCA29400024"],
+      "mbid": "cfb7170a-444c-4012-8e5f-f3fa61d50c4a",
+      "links": [
+        "https://musicbrainz.org/recording/cfb7170a-444c-4012-8e5f-f3fa61d50c4a"
+      ],
+      "url": "http://mt5577:3000/api/album/ojw2Vmq6N5f6Yj8fz8SUDz/Ricky%E2%80%99s+Theme",
+      "visibility": "public"
+    },
+    {
+      "id": "aVGeoGfuUvnh3CmY1Gvj7k",
+      "title": "Heart Attack Man",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 135,
+      "status": "pending",
+      "isrc": ["USCA20901542", "USCA29400090"],
+      "mbid": "6f8c1ff8-092a-48df-9040-0622d2b860a6",
+      "links": [
+        "https://musicbrainz.org/recording/6f8c1ff8-092a-48df-9040-0622d2b860a6"
+      ],
+      "url": "http://mt5577:3000/api/album/aVGeoGfuUvnh3CmY1Gvj7k/Heart+Attack+Man",
+      "visibility": "public"
+    },
+    {
+      "id": "bWT82ksRgTJwFQCHssUx3t",
+      "title": "The Scoop",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 216,
+      "status": "pending",
+      "isrc": ["USCA20901543", "USCA29400113"],
+      "mbid": "c74c872a-b64b-412b-8f02-1024ccc9fb88",
+      "links": [
+        "https://musicbrainz.org/recording/c74c872a-b64b-412b-8f02-1024ccc9fb88"
+      ],
+      "url": "http://mt5577:3000/api/album/bWT82ksRgTJwFQCHssUx3t/The+Scoop",
+      "visibility": "public"
+    },
+    {
+      "id": "nBPPCFPQMvNTeRPuTsntMs",
+      "title": "Shambala",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 221,
+      "status": "pending",
+      "isrc": ["USCA20901544", "USCA29400106"],
+      "mbid": "d01df1eb-d6d4-46b6-a358-442a4267b1c3",
+      "links": [
+        "https://musicbrainz.org/recording/d01df1eb-d6d4-46b6-a358-442a4267b1c3"
+      ],
+      "url": "http://mt5577:3000/api/album/nBPPCFPQMvNTeRPuTsntMs/Shambala",
+      "visibility": "public"
+    },
+    {
+      "id": "pQomefR9owwbhFvwNhPx8m",
+      "title": "Bodhisattva Vow",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 188,
+      "status": "pending",
+      "isrc": ["USCA20901545", "USCA29400083"],
+      "mbid": "b2dea445-e295-40e3-ab1e-b48c17b9e57c",
+      "links": [
+        "https://musicbrainz.org/recording/b2dea445-e295-40e3-ab1e-b48c17b9e57c"
+      ],
+      "url": "http://mt5577:3000/api/album/pQomefR9owwbhFvwNhPx8m/Bodhisattva+Vow",
+      "visibility": "public"
+    },
+    {
+      "id": "4Tq8Jvh5LSG7USFtbjnCMS",
+      "title": "Transitions",
+      "artists": [
+        {
+          "id": "mEpWFduyKkim8MTzmNDmJT",
+          "name": "Beastie Boys",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+        }
+      ],
+      "duration": 152,
+      "status": "pending",
+      "isrc": ["USCA20901546", "USCA29400107"],
+      "mbid": "db6062d6-580b-483f-b94b-7f49f357bc5a",
+      "links": [
+        "https://musicbrainz.org/recording/db6062d6-580b-483f-b94b-7f49f357bc5a"
+      ],
+      "url": "http://mt5577:3000/api/album/4Tq8Jvh5LSG7USFtbjnCMS/Transitions",
+      "visibility": "public"
+    }
+  ],
+  "released": "1994-05-22T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "76e486d8-8ea4-3a8c-b0a1-989dfcf229ed",
+  "links": [
+    "https://musicbrainz.org/album/76e486d8-8ea4-3a8c-b0a1-989dfcf229ed",
+    "https://www.amazon.com/gp/product/B000002TP7",
+    "https://www.discogs.com/release/10666"
+  ],
+  "url": "http://mt5577:3000/api/album/fFw9uZPXLd5E9coJizjcfV/Ill+Communication",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "mEpWFduyKkim8MTzmNDmJT",
+      "name": "Beastie Boys",
+      "area": "New York, US",
+      "url": "http://mt5577:3000/api/artist/mEpWFduyKkim8MTzmNDmJT/Beastie+Boys"
+    }
+  ]
+}

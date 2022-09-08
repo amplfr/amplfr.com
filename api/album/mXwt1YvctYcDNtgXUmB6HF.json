@@ -1,0 +1,961 @@
+{
+  "id": "mXwt1YvctYcDNtgXUmB6HF",
+  "title": "Greatest Hits",
+  "items": [
+    {
+      "id": "siwSwj9DSFv3CKdGxYMHB8",
+      "title": "You Know You’re Right",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 218,
+      "status": "pending",
+      "mbid": "364a7031-0aeb-4f9b-ae25-93d269ff6dc3",
+      "links": [
+        "https://musicbrainz.org/recording/364a7031-0aeb-4f9b-ae25-93d269ff6dc3",
+        "https://www.youtube.com/watch?v=qv96yJYhk3M"
+      ],
+      "url": "http://mt5577:3000/api/album/siwSwj9DSFv3CKdGxYMHB8/You+Know+You%E2%80%99re+Right",
+      "visibility": "public"
+    },
+    {
+      "id": "6HrUVPVYS3PNDJJ4zmQrJw",
+      "title": "Smells Like Teen Spirit",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 301,
+      "status": "pending",
+      "mbid": "5fb524f1-8cc8-4c04-a921-e34c0a911ea7",
+      "links": [
+        "https://musicbrainz.org/recording/5fb524f1-8cc8-4c04-a921-e34c0a911ea7",
+        "https://open.spotify.com/track/1f3yAtsJtY87CTmM8RLnxf",
+        "https://www.youtube.com/watch?v=hTWKbfoikeg"
+      ],
+      "url": "http://mt5577:3000/api/album/6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like+Teen+Spirit",
+      "visibility": "public"
+    },
+    {
+      "id": "3Xe3EnBrsdZYfL6P6aWjy1",
+      "title": "Sliver",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 134,
+      "status": "pending",
+      "isrc": ["USGF19950402", "USUG10200086"],
+      "mbid": "81e2ed45-6a3f-481c-bf36-261e65426a4f",
+      "links": [
+        "https://musicbrainz.org/recording/81e2ed45-6a3f-481c-bf36-261e65426a4f",
+        "https://www.youtube.com/watch?v=QECJ9pCyhns"
+      ],
+      "url": "http://mt5577:3000/api/album/3Xe3EnBrsdZYfL6P6aWjy1/Sliver",
+      "visibility": "public"
+    },
+    {
+      "id": "eEyy2KW3nR14cPMh8LyQf3",
+      "title": "Lithium",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 257,
+      "status": "pending",
+      "mbid": "3fac712c-4196-4865-8c1a-94231a7da309",
+      "links": [
+        "https://musicbrainz.org/recording/3fac712c-4196-4865-8c1a-94231a7da309",
+        "https://open.spotify.com/track/26D1PRJjD9Jj1JGRk88KVc",
+        "https://www.youtube.com/watch?v=pkcJEvMcnEg"
+      ],
+      "url": "http://mt5577:3000/api/album/eEyy2KW3nR14cPMh8LyQf3/Lithium",
+      "visibility": "public"
+    },
+    {
+      "id": "nfMNpgSX7JERLQuwXrHp69",
+      "title": "Heart‐Shaped Box",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 281,
+      "status": "pending",
+      "mbid": "f16627cc-e681-45e7-b82a-b64a60f48f99",
+      "links": [
+        "https://musicbrainz.org/recording/f16627cc-e681-45e7-b82a-b64a60f48f99",
+        "https://open.spotify.com/track/144IMbY4x1EeUnjYr2uDcB",
+        "https://www.youtube.com/watch?v=n6P0SitRwy8"
+      ],
+      "url": "http://mt5577:3000/api/album/nfMNpgSX7JERLQuwXrHp69/Heart%E2%80%90Shaped+Box",
+      "visibility": "public"
+    },
+    {
+      "id": "eUQN2CT3RY3KVf8PoRcZRt",
+      "title": "About a Girl",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 198,
+      "status": "pending",
+      "mbid": "1908723a-75e2-42c5-a88b-7088e4f01b90",
+      "links": [
+        "https://musicbrainz.org/recording/1908723a-75e2-42c5-a88b-7088e4f01b90"
+      ],
+      "url": "http://mt5577:3000/api/album/eUQN2CT3RY3KVf8PoRcZRt/About+a+Girl",
+      "visibility": "public"
+    },
+    {
+      "id": "sYSHqoGdhjgS55ap3kEK2x",
+      "title": "Come as You Are",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 219,
+      "status": "pending",
+      "mbid": "70ac6733-068f-4613-b06b-bea17cfbcc30",
+      "links": [
+        "https://musicbrainz.org/recording/70ac6733-068f-4613-b06b-bea17cfbcc30",
+        "https://open.spotify.com/track/0MKGH8UMfCnq5w7nG06oM5",
+        "https://www.youtube.com/watch?v=vabnZ9-ex7o"
+      ],
+      "url": "http://mt5577:3000/api/album/sYSHqoGdhjgS55ap3kEK2x/Come+as+You+Are",
+      "visibility": "public"
+    },
+    {
+      "id": "9JV91Bo7Tdy7hgkrMDgEUG",
+      "title": "Been a Son",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 142,
+      "status": "pending",
+      "mbid": "6e1374f4-c738-4546-a4ee-5ba5d65cbdae",
+      "links": [
+        "https://musicbrainz.org/recording/6e1374f4-c738-4546-a4ee-5ba5d65cbdae"
+      ],
+      "url": "http://mt5577:3000/api/album/9JV91Bo7Tdy7hgkrMDgEUG/Been+a+Son",
+      "visibility": "public"
+    },
+    {
+      "id": "9bdb3Fgw5U49DuH9Eh9m9w",
+      "title": "In Bloom",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 255,
+      "status": "pending",
+      "mbid": "593e9317-a327-4a31-b796-416c62dcf49d",
+      "links": [
+        "https://musicbrainz.org/recording/593e9317-a327-4a31-b796-416c62dcf49d",
+        "https://open.spotify.com/track/0eeEzvw5Etwv6tyz2PyE6L",
+        "https://www.youtube.com/watch?v=PbgKEjNBHqM"
+      ],
+      "url": "http://mt5577:3000/api/album/9bdb3Fgw5U49DuH9Eh9m9w/In+Bloom",
+      "visibility": "public"
+    },
+    {
+      "id": "xitc1NagB9gHQidAUfaaV2",
+      "title": "Rape Me",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 170,
+      "status": "pending",
+      "mbid": "3aab03c5-beef-49a3-a410-29a009760256",
+      "links": [
+        "https://musicbrainz.org/recording/3aab03c5-beef-49a3-a410-29a009760256",
+        "https://open.spotify.com/track/7qIW8MsqBUsSP2KlZhWP06"
+      ],
+      "url": "http://mt5577:3000/api/album/xitc1NagB9gHQidAUfaaV2/Rape+Me",
+      "visibility": "public"
+    },
+    {
+      "id": "kcMP5esUyn8q77yHb5rZ5X",
+      "title": "School",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 162,
+      "status": "pending",
+      "mbid": "8b9107f0-6e31-4793-8ef8-953409f9973e",
+      "links": [
+        "https://musicbrainz.org/recording/8b9107f0-6e31-4793-8ef8-953409f9973e"
+      ],
+      "url": "http://mt5577:3000/api/album/kcMP5esUyn8q77yHb5rZ5X/School",
+      "visibility": "public"
+    },
+    {
+      "id": "r16oANxDYqa2dLcwJL9BwW",
+      "title": "All Apologies",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 232,
+      "status": "pending",
+      "mbid": "8c6b2b46-6529-4318-b8d1-faad0e814c37",
+      "links": [
+        "https://musicbrainz.org/recording/8c6b2b46-6529-4318-b8d1-faad0e814c37"
+      ],
+      "url": "http://mt5577:3000/api/album/r16oANxDYqa2dLcwJL9BwW/All+Apologies",
+      "visibility": "public"
+    },
+    {
+      "id": "bHdckvuf5g8WpSsHTugsgj",
+      "title": "On a Plain",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 196,
+      "status": "pending",
+      "mbid": "c2201441-c10d-42e0-9661-24254a56426c",
+      "links": [
+        "https://musicbrainz.org/recording/c2201441-c10d-42e0-9661-24254a56426c"
+      ],
+      "url": "http://mt5577:3000/api/album/bHdckvuf5g8WpSsHTugsgj/On+a+Plain",
+      "visibility": "public"
+    },
+    {
+      "id": "orBAe56jx9igCikhfxiZXH",
+      "title": "Pennyroyal Tea",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 217,
+      "status": "pending",
+      "mbid": "ebe1d651-bce3-4c38-aa5e-e403d0dc99c2",
+      "links": [
+        "https://musicbrainz.org/recording/ebe1d651-bce3-4c38-aa5e-e403d0dc99c2"
+      ],
+      "url": "http://mt5577:3000/api/album/orBAe56jx9igCikhfxiZXH/Pennyroyal+Tea",
+      "visibility": "public"
+    },
+    {
+      "id": "2XhmMjEQ2aQRgC3Uvi6b2k",
+      "title": "Polly",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 176,
+      "status": "pending",
+      "mbid": "936a8a56-6679-4c5e-adf1-315ab949fdab",
+      "links": [
+        "https://musicbrainz.org/recording/936a8a56-6679-4c5e-adf1-315ab949fdab"
+      ],
+      "url": "http://mt5577:3000/api/album/2XhmMjEQ2aQRgC3Uvi6b2k/Polly",
+      "visibility": "public"
+    },
+    {
+      "id": "hBj342bPnBUM9nUBvhgjLN",
+      "title": "Dumb",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 152,
+      "status": "pending",
+      "mbid": "b6097e16-f138-4413-82a5-56aabaa0aab2",
+      "links": [
+        "https://musicbrainz.org/recording/b6097e16-f138-4413-82a5-56aabaa0aab2",
+        "https://open.spotify.com/track/4Zawb6nn8bBG7PhR7JrUen"
+      ],
+      "url": "http://mt5577:3000/api/album/hBj342bPnBUM9nUBvhgjLN/Dumb",
+      "visibility": "public"
+    },
+    {
+      "id": "8XMBqgrT3V75SAJLVdGcPW",
+      "title": "Sappy",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 206,
+      "status": "pending",
+      "mbid": "35c04487-e1c7-40ab-8f26-5f9d13d454c7",
+      "links": [
+        "https://musicbrainz.org/recording/35c04487-e1c7-40ab-8f26-5f9d13d454c7"
+      ],
+      "url": "http://mt5577:3000/api/album/8XMBqgrT3V75SAJLVdGcPW/Sappy",
+      "visibility": "public"
+    },
+    {
+      "id": "wdiorD41qQBnE3LvqwFHyK",
+      "title": "Aneurysm",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 276,
+      "status": "pending",
+      "mbid": "6935f70b-1d3d-4897-b502-53955715cf86",
+      "links": [
+        "https://musicbrainz.org/recording/6935f70b-1d3d-4897-b502-53955715cf86"
+      ],
+      "url": "http://mt5577:3000/api/album/wdiorD41qQBnE3LvqwFHyK/Aneurysm",
+      "visibility": "public"
+    },
+    {
+      "id": "rzZF21sjzQch6dJJBZEurR",
+      "title": "Molly’s Lips",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 111,
+      "status": "pending",
+      "mbid": "2894c598-0636-4449-a1e8-cabd5b824dcb",
+      "links": [
+        "https://musicbrainz.org/recording/2894c598-0636-4449-a1e8-cabd5b824dcb"
+      ],
+      "url": "http://mt5577:3000/api/album/rzZF21sjzQch6dJJBZEurR/Molly%E2%80%99s+Lips",
+      "visibility": "public"
+    },
+    {
+      "id": "rwbLCDKqBwb6RBwgwTjWt1",
+      "title": "Pay to Play",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 209,
+      "status": "pending",
+      "mbid": "64a79444-17d2-4a4f-b8c6-76d0613a9513",
+      "links": [
+        "https://musicbrainz.org/recording/64a79444-17d2-4a4f-b8c6-76d0613a9513"
+      ],
+      "url": "http://mt5577:3000/api/album/rwbLCDKqBwb6RBwgwTjWt1/Pay+to+Play",
+      "visibility": "public"
+    },
+    {
+      "id": "7Ey3QghckZ3kjniS9ayqQK",
+      "title": "Even in His Youth",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 186,
+      "status": "pending",
+      "mbid": "6d4dd79e-94c3-4bf1-ad38-de71c63129a2",
+      "links": [
+        "https://musicbrainz.org/recording/6d4dd79e-94c3-4bf1-ad38-de71c63129a2"
+      ],
+      "url": "http://mt5577:3000/api/album/7Ey3QghckZ3kjniS9ayqQK/Even+in+His+Youth",
+      "visibility": "public"
+    },
+    {
+      "id": "siNAMAbNPvnZYYHSBBNdpx",
+      "title": "Marigold",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 154,
+      "status": "pending",
+      "mbid": "59d164bc-86de-42f7-ba17-e11621ad1f8a",
+      "links": [
+        "https://musicbrainz.org/recording/59d164bc-86de-42f7-ba17-e11621ad1f8a"
+      ],
+      "url": "http://mt5577:3000/api/album/siNAMAbNPvnZYYHSBBNdpx/Marigold",
+      "visibility": "public"
+    },
+    {
+      "id": "6aunG5xRXFcUjcoM4oLJVR",
+      "title": "Where Did You Sleep Last Night",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 306,
+      "status": "pending",
+      "mbid": "49d5edae-4f85-4b40-bb30-30b4f71dbbae",
+      "links": [
+        "https://musicbrainz.org/recording/49d5edae-4f85-4b40-bb30-30b4f71dbbae",
+        "https://open.spotify.com/track/551qy5vUgrUfEUc4dCNfht",
+        "https://www.youtube.com/watch?v=hEMm7gxBYSc"
+      ],
+      "url": "http://mt5577:3000/api/album/6aunG5xRXFcUjcoM4oLJVR/Where+Did+You+Sleep+Last+Night",
+      "visibility": "public"
+    },
+    {
+      "id": "6ps3R548gyM7BpjJicK3K5",
+      "title": "Breed",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 185,
+      "status": "pending",
+      "mbid": "e05acaf8-4c7e-4b16-a4dd-019b3510a0e8",
+      "links": [
+        "https://musicbrainz.org/recording/e05acaf8-4c7e-4b16-a4dd-019b3510a0e8"
+      ],
+      "url": "http://mt5577:3000/api/album/6ps3R548gyM7BpjJicK3K5/Breed",
+      "visibility": "public"
+    },
+    {
+      "id": "1GCg3Sv4hwRLbZfraqYJUs",
+      "title": "Serve the Servants",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 218,
+      "status": "pending",
+      "mbid": "ac2e5236-4d0a-4f9e-8de3-322563c1b1de",
+      "links": [
+        "https://musicbrainz.org/recording/ac2e5236-4d0a-4f9e-8de3-322563c1b1de"
+      ],
+      "url": "http://mt5577:3000/api/album/1GCg3Sv4hwRLbZfraqYJUs/Serve+the+Servants",
+      "visibility": "public"
+    },
+    {
+      "id": "hafGj6EFDTrwuto4a5KH4b",
+      "title": "Drain You",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 226,
+      "status": "pending",
+      "mbid": "678db4a0-74ff-4c4e-b4e6-6b3d4e74636d",
+      "links": [
+        "https://musicbrainz.org/recording/678db4a0-74ff-4c4e-b4e6-6b3d4e74636d"
+      ],
+      "url": "http://mt5577:3000/api/album/hafGj6EFDTrwuto4a5KH4b/Drain+You",
+      "visibility": "public"
+    },
+    {
+      "id": "6AeK5hTCR1XSnLF2XtVNDq",
+      "title": "Frances Farmer Will Have Her Revenge On Seattle",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 251,
+      "status": "pending",
+      "mbid": "5fa8124f-5811-45e9-8d27-c79f1d2dc6c8",
+      "links": [
+        "https://musicbrainz.org/recording/5fa8124f-5811-45e9-8d27-c79f1d2dc6c8"
+      ],
+      "url": "http://mt5577:3000/api/album/6AeK5hTCR1XSnLF2XtVNDq/Frances+Farmer+Will+Have+Her+Revenge+On+Seattle",
+      "visibility": "public"
+    },
+    {
+      "id": "hbb9SyrzfPu9UhB9LhL1bG",
+      "title": "The Man Who Sold the World",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 230,
+      "status": "pending",
+      "mbid": "ea72cbff-c51e-4564-b802-3572bf0e4101",
+      "links": [
+        "https://musicbrainz.org/recording/ea72cbff-c51e-4564-b802-3572bf0e4101"
+      ],
+      "url": "http://mt5577:3000/api/album/hbb9SyrzfPu9UhB9LhL1bG/The+Man+Who+Sold+the+World",
+      "visibility": "public"
+    },
+    {
+      "id": "7VjJssya2ME1BF4Me1HMHg",
+      "title": "Stay Away",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 214,
+      "status": "pending",
+      "mbid": "3a87a0f7-3bb0-4e4d-94cd-cfab09f559d2",
+      "links": [
+        "https://musicbrainz.org/recording/3a87a0f7-3bb0-4e4d-94cd-cfab09f559d2"
+      ],
+      "url": "http://mt5577:3000/api/album/7VjJssya2ME1BF4Me1HMHg/Stay+Away",
+      "visibility": "public"
+    },
+    {
+      "id": "73DYKuadJye3bw46Qh4paH",
+      "title": "Stain",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 162,
+      "status": "pending",
+      "mbid": "bd09d2df-1f95-4901-bd0d-ea301fb912f6",
+      "links": [
+        "https://musicbrainz.org/recording/bd09d2df-1f95-4901-bd0d-ea301fb912f6"
+      ],
+      "url": "http://mt5577:3000/api/album/73DYKuadJye3bw46Qh4paH/Stain",
+      "visibility": "public"
+    },
+    {
+      "id": "nBcHP5odLvWsEvxe51vVWo",
+      "title": "Radio Friendly Unit Shifter",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 293,
+      "status": "pending",
+      "mbid": "7f6db983-c2a9-4106-8dc6-169883581889",
+      "links": [
+        "https://musicbrainz.org/recording/7f6db983-c2a9-4106-8dc6-169883581889"
+      ],
+      "url": "http://mt5577:3000/api/album/nBcHP5odLvWsEvxe51vVWo/Radio+Friendly+Unit+Shifter",
+      "visibility": "public"
+    },
+    {
+      "id": "rkqjXuR6eGctXRRRwNojzo",
+      "title": "Lounge Act",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 158,
+      "status": "pending",
+      "mbid": "40dc2d0a-d634-4db9-8105-ff30f7a4c68d",
+      "links": [
+        "https://musicbrainz.org/recording/40dc2d0a-d634-4db9-8105-ff30f7a4c68d"
+      ],
+      "url": "http://mt5577:3000/api/album/rkqjXuR6eGctXRRRwNojzo/Lounge+Act",
+      "visibility": "public"
+    },
+    {
+      "id": "2mqP6WEnos2EJt4LM7iALC",
+      "title": "Lake of Fire",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 176,
+      "status": "pending",
+      "mbid": "6d054703-b851-4671-a4fa-6fa75222b45f",
+      "links": [
+        "https://musicbrainz.org/recording/6d054703-b851-4671-a4fa-6fa75222b45f",
+        "https://open.spotify.com/track/4UJmPSJsBsIR1U0N79BU1g",
+        "https://www.youtube.com/watch?v=d4LdUQzCPPM"
+      ],
+      "url": "http://mt5577:3000/api/album/2mqP6WEnos2EJt4LM7iALC/Lake+of+Fire",
+      "visibility": "public"
+    },
+    {
+      "id": "dEtR4xAbw82pX2pBX1nTeb",
+      "title": "I Hate Myself and I Want to Die",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 166,
+      "status": "pending",
+      "mbid": "f9694783-fd7a-432c-b11e-2839f5303271",
+      "links": [
+        "https://musicbrainz.org/recording/f9694783-fd7a-432c-b11e-2839f5303271"
+      ],
+      "url": "http://mt5577:3000/api/album/dEtR4xAbw82pX2pBX1nTeb/I+Hate+Myself+and+I+Want+to+Die",
+      "visibility": "public"
+    },
+    {
+      "id": "pLuZPrNgv7yvBJihLpU15A",
+      "title": "Something in the Way",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 233,
+      "status": "pending",
+      "mbid": "985183da-2308-4ad5-8a83-7703ab1f6173",
+      "links": [
+        "https://musicbrainz.org/recording/985183da-2308-4ad5-8a83-7703ab1f6173"
+      ],
+      "url": "http://mt5577:3000/api/album/pLuZPrNgv7yvBJihLpU15A/Something+in+the+Way",
+      "visibility": "public"
+    },
+    {
+      "id": "mLvfqFTgDkhiudXHEXasdK",
+      "title": "Dive",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 237,
+      "status": "pending",
+      "mbid": "905e0151-e6c1-4fc1-918c-352949bfbdff",
+      "links": [
+        "https://musicbrainz.org/recording/905e0151-e6c1-4fc1-918c-352949bfbdff"
+      ],
+      "url": "http://mt5577:3000/api/album/mLvfqFTgDkhiudXHEXasdK/Dive",
+      "visibility": "public"
+    },
+    {
+      "id": "ksZ3m9GCAHyRKQsBsAQA5H",
+      "title": "Oh, the Guilt",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 203,
+      "status": "pending",
+      "mbid": "15d0863a-d9b3-4136-aeb3-4fdc894105cb",
+      "links": [
+        "https://musicbrainz.org/recording/15d0863a-d9b3-4136-aeb3-4fdc894105cb"
+      ],
+      "url": "http://mt5577:3000/api/album/ksZ3m9GCAHyRKQsBsAQA5H/Oh%2C+the+Guilt",
+      "visibility": "public"
+    },
+    {
+      "id": "kqmfwXK45wVENkFe8ckBPA",
+      "title": "Blew",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 176,
+      "status": "pending",
+      "mbid": "368bb205-d6ea-4721-b11a-e6b76b08ce49",
+      "links": [
+        "https://musicbrainz.org/recording/368bb205-d6ea-4721-b11a-e6b76b08ce49"
+      ],
+      "url": "http://mt5577:3000/api/album/kqmfwXK45wVENkFe8ckBPA/Blew",
+      "visibility": "public"
+    },
+    {
+      "id": "iFPmoQ5kNYGkxjbKCysHDt",
+      "title": "Scentless Apprentice",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 229,
+      "status": "pending",
+      "mbid": "c5623d60-9f6c-4ffc-aa82-04efd1dc3f05",
+      "links": [
+        "https://musicbrainz.org/recording/c5623d60-9f6c-4ffc-aa82-04efd1dc3f05"
+      ],
+      "url": "http://mt5577:3000/api/album/iFPmoQ5kNYGkxjbKCysHDt/Scentless+Apprentice",
+      "visibility": "public"
+    },
+    {
+      "id": "a4R5kvwn94XVNkqQVYoF49",
+      "title": "Son of a Gun",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 170,
+      "status": "pending",
+      "mbid": "1e8116ea-127a-4e02-acff-3633af88e591",
+      "links": [
+        "https://musicbrainz.org/recording/1e8116ea-127a-4e02-acff-3633af88e591"
+      ],
+      "url": "http://mt5577:3000/api/album/a4R5kvwn94XVNkqQVYoF49/Son+of+a+Gun",
+      "visibility": "public"
+    },
+    {
+      "id": "7tz1dsZmX6AfhNDsjPZjWD",
+      "title": "Spank Thru",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 202,
+      "status": "pending",
+      "mbid": "db92afd2-4f28-471b-9c42-690856324f79",
+      "links": [
+        "https://musicbrainz.org/recording/db92afd2-4f28-471b-9c42-690856324f79"
+      ],
+      "url": "http://mt5577:3000/api/album/7tz1dsZmX6AfhNDsjPZjWD/Spank+Thru",
+      "visibility": "public"
+    },
+    {
+      "id": "m3KN9xdLbMU2iEuAsXbzHe",
+      "title": "Love Buzz",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 215,
+      "status": "pending",
+      "isrc": ["USSUB0200006", "USSUB0983405"],
+      "mbid": "1adfecb7-875f-4203-b3b1-8e2e643f94a2",
+      "links": [
+        "https://musicbrainz.org/recording/1adfecb7-875f-4203-b3b1-8e2e643f94a2"
+      ],
+      "url": "http://mt5577:3000/api/album/m3KN9xdLbMU2iEuAsXbzHe/Love+Buzz",
+      "visibility": "public"
+    },
+    {
+      "id": "dV45GTpm1pw3ruxHQWrbK2",
+      "title": "Very Ape",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 117,
+      "status": "pending",
+      "mbid": "df9db2e3-a161-4bae-a0b9-d832aa3e77f7",
+      "links": [
+        "https://musicbrainz.org/recording/df9db2e3-a161-4bae-a0b9-d832aa3e77f7"
+      ],
+      "url": "http://mt5577:3000/api/album/dV45GTpm1pw3ruxHQWrbK2/Very+Ape",
+      "visibility": "public"
+    },
+    {
+      "id": "b7RWs7tr27zrRAGGSFBDXW",
+      "title": "Downer",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 105,
+      "status": "pending",
+      "mbid": "a51c0eb6-2d55-4c54-8d44-54191d9a2778",
+      "links": [
+        "https://musicbrainz.org/recording/a51c0eb6-2d55-4c54-8d44-54191d9a2778"
+      ],
+      "url": "http://mt5577:3000/api/album/b7RWs7tr27zrRAGGSFBDXW/Downer",
+      "visibility": "public"
+    },
+    {
+      "id": "9eoDDfD4tV9g3oBiWyKAhR",
+      "title": "Milk It",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 236,
+      "status": "pending",
+      "mbid": "0852fb0c-456d-4117-8c36-f066bdddb6f6",
+      "links": [
+        "https://musicbrainz.org/recording/0852fb0c-456d-4117-8c36-f066bdddb6f6"
+      ],
+      "url": "http://mt5577:3000/api/album/9eoDDfD4tV9g3oBiWyKAhR/Milk+It",
+      "visibility": "public"
+    },
+    {
+      "id": "jpAd5cseEfzdWf775vSVb1",
+      "title": "Old Age",
+      "artists": [
+        {
+          "id": "mEa7ryXmexWF4qGBrUDf7g",
+          "name": "Nirvana",
+          "area": "Aberdeen, US",
+          "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        }
+      ],
+      "duration": 260,
+      "status": "pending",
+      "mbid": "ef64aa3e-028a-40e3-97aa-432262b0f558",
+      "links": [
+        "https://musicbrainz.org/recording/ef64aa3e-028a-40e3-97aa-432262b0f558"
+      ],
+      "url": "http://mt5577:3000/api/album/jpAd5cseEfzdWf775vSVb1/Old+Age",
+      "visibility": "public"
+    }
+  ],
+  "mbid": "a9b774ad-5d52-46c1-8340-a96a9ba4109d",
+  "links": [
+    "https://musicbrainz.org/album/a9b774ad-5d52-46c1-8340-a96a9ba4109d",
+    "https://www.amazon.com/gp/product/B01KBB01R4"
+  ],
+  "url": "http://mt5577:3000/api/album/mXwt1YvctYcDNtgXUmB6HF/Greatest+Hits",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "mEa7ryXmexWF4qGBrUDf7g",
+      "name": "Nirvana",
+      "area": "Aberdeen, US",
+      "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+    }
+  ]
+}

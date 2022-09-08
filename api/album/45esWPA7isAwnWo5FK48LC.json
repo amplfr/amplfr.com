@@ -1,0 +1,237 @@
+{
+  "id": "45esWPA7isAwnWo5FK48LC",
+  "title": "Kid A",
+  "items": [
+    {
+      "id": "ngj1XiRtS14gbUMbp922Kh",
+      "title": "Everything in Its Right Place",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 251,
+      "status": "pending",
+      "isrc": ["GBAYE0000180", "GBAYE0000810"],
+      "mbid": "60bd9d53-01ff-4562-8058-eb44b3940317",
+      "links": [
+        "https://musicbrainz.org/recording/60bd9d53-01ff-4562-8058-eb44b3940317",
+        "https://open.spotify.com/track/2kRFrWaLWiKq48YYVdGcm8"
+      ],
+      "url": "http://mt5577:3000/api/album/ngj1XiRtS14gbUMbp922Kh/Everything+in+Its+Right+Place",
+      "visibility": "public"
+    },
+    {
+      "id": "xjNbVRFPhKyZd16LzqNnbz",
+      "title": "Kid A",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 285,
+      "status": "pending",
+      "mbid": "0852f01a-1832-453d-ae8e-345499ecc027",
+      "links": [
+        "https://musicbrainz.org/recording/0852f01a-1832-453d-ae8e-345499ecc027",
+        "https://open.spotify.com/track/3QDahKSqLwYJYQRbILdzS6"
+      ],
+      "url": "http://mt5577:3000/api/album/xjNbVRFPhKyZd16LzqNnbz/Kid+A",
+      "visibility": "public"
+    },
+    {
+      "id": "4gUHEdchw4uXThhn8Sfies",
+      "title": "The National Anthem",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 352,
+      "status": "pending",
+      "mbid": "c7492f6e-adf3-4ff5-85dc-33d527dc81d8",
+      "links": [
+        "https://musicbrainz.org/recording/c7492f6e-adf3-4ff5-85dc-33d527dc81d8",
+        "https://open.spotify.com/track/4Wgj6jzoI2gYlumXdYAB8U"
+      ],
+      "url": "http://mt5577:3000/api/album/4gUHEdchw4uXThhn8Sfies/The+National+Anthem",
+      "visibility": "public"
+    },
+    {
+      "id": "9o9rpWynAPfru5LGLGep6D",
+      "title": "How to Disappear Completely",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 356,
+      "status": "pending",
+      "mbid": "740d324e-4356-4116-812d-17ea76a190ce",
+      "links": [
+        "https://musicbrainz.org/recording/740d324e-4356-4116-812d-17ea76a190ce",
+        "https://open.spotify.com/track/2rtGaCAeYtmcIvuZsvgTf6"
+      ],
+      "url": "http://mt5577:3000/api/album/9o9rpWynAPfru5LGLGep6D/How+to+Disappear+Completely",
+      "visibility": "public"
+    },
+    {
+      "id": "45hsXTEq7YCwGxXd8Qe3rk",
+      "title": "Treefingers",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 223,
+      "status": "pending",
+      "mbid": "31c89fdc-afdb-4d84-bc61-2dbabf0b4f23",
+      "links": [
+        "https://musicbrainz.org/recording/31c89fdc-afdb-4d84-bc61-2dbabf0b4f23",
+        "https://open.spotify.com/track/4LrfsgQ5AGouvH3PlxW2PC"
+      ],
+      "url": "http://mt5577:3000/api/album/45hsXTEq7YCwGxXd8Qe3rk/Treefingers",
+      "visibility": "public"
+    },
+    {
+      "id": "f3ARbkuNoLTWL6GirAGg3q",
+      "title": "Optimistic",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 316,
+      "status": "pending",
+      "isrc": ["GBAYE0000815", "GBAYE0001033"],
+      "mbid": "4d7b8fcb-fafc-4416-9170-752f12e10a2e",
+      "links": [
+        "https://musicbrainz.org/recording/4d7b8fcb-fafc-4416-9170-752f12e10a2e",
+        "https://open.spotify.com/track/1FoUsSi9BCTlNt2Vd7V8XA"
+      ],
+      "url": "http://mt5577:3000/api/album/f3ARbkuNoLTWL6GirAGg3q/Optimistic",
+      "visibility": "public"
+    },
+    {
+      "id": "cHVW6xbyaYzwU2UXVHrSXs",
+      "title": "In Limbo",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 211,
+      "status": "pending",
+      "mbid": "27f5b46c-f749-40e7-bc10-1524393168f0",
+      "links": [
+        "https://musicbrainz.org/recording/27f5b46c-f749-40e7-bc10-1524393168f0",
+        "https://open.spotify.com/track/0xivCtzVVrdeq32s8EnOO6"
+      ],
+      "url": "http://mt5577:3000/api/album/cHVW6xbyaYzwU2UXVHrSXs/In+Limbo",
+      "visibility": "public"
+    },
+    {
+      "id": "8ESCa2v9nd1RmwHxGiG8pP",
+      "title": "Idioteque",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 309,
+      "status": "pending",
+      "mbid": "1c0377bb-c00b-4bbe-b4b2-615f13324adc",
+      "links": [
+        "https://musicbrainz.org/recording/1c0377bb-c00b-4bbe-b4b2-615f13324adc",
+        "https://open.spotify.com/track/1W5XugQJGhnSATMI5n002M"
+      ],
+      "url": "http://mt5577:3000/api/album/8ESCa2v9nd1RmwHxGiG8pP/Idioteque",
+      "visibility": "public"
+    },
+    {
+      "id": "qibGNe18YAYKkVxfW9Yfay",
+      "title": "Morning Bell",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 276,
+      "status": "pending",
+      "mbid": "5616efb3-4c50-40ab-a792-e2e34faae75f",
+      "links": [
+        "https://musicbrainz.org/recording/5616efb3-4c50-40ab-a792-e2e34faae75f",
+        "https://open.spotify.com/track/4h37RgtBg9iynN3BIL5lFU"
+      ],
+      "url": "http://mt5577:3000/api/album/qibGNe18YAYKkVxfW9Yfay/Morning+Bell",
+      "visibility": "public"
+    },
+    {
+      "id": "vumJmcai1gJFSrPQnz3e4m",
+      "title": "Motion Picture Soundtrack",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 419,
+      "status": "pending",
+      "isrc": ["GBAYE0000819", "GBAYE0800814"],
+      "mbid": "f8764ab0-996b-40c8-9645-10f47e8c43d0",
+      "links": [
+        "https://musicbrainz.org/recording/f8764ab0-996b-40c8-9645-10f47e8c43d0",
+        "https://open.spotify.com/track/4SrRrB27n7fiRkQcPoKfpk"
+      ],
+      "url": "http://mt5577:3000/api/album/vumJmcai1gJFSrPQnz3e4m/Motion+Picture+Soundtrack",
+      "visibility": "public"
+    }
+  ],
+  "released": "2000-10-02T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "18e2b05b-937a-3c25-ac78-07267e6411a0",
+  "links": [
+    "https://musicbrainz.org/album/18e2b05b-937a-3c25-ac78-07267e6411a0",
+    "https://www.amazon.com/gp/product/B00004XONN",
+    "https://www.discogs.com/release/3165"
+  ],
+  "url": "http://mt5577:3000/api/album/45esWPA7isAwnWo5FK48LC/Kid+A",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "dKsQCazuEHnvVqJUuiVBPV",
+      "name": "Radiohead",
+      "area": "Abingdon-on-Thames, GB",
+      "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+    }
+  ]
+}

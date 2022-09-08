@@ -1,0 +1,264 @@
+{
+  "id": "x8SsPW3udad2TyL1RMvYUZ",
+  "title": "Supertones Strike Back",
+  "items": [
+    {
+      "id": "7NpyP19njcSdjYy9TDMQqP",
+      "title": "Supertones Strike Back",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 161,
+      "status": "pending",
+      "mbid": "d29c623a-8512-4fa2-a95c-f47826d4748b",
+      "links": [
+        "https://musicbrainz.org/recording/d29c623a-8512-4fa2-a95c-f47826d4748b"
+      ],
+      "url": "http://mt5577:3000/api/album/7NpyP19njcSdjYy9TDMQqP/Supertones+Strike+Back",
+      "visibility": "public"
+    },
+    {
+      "id": "q8rTsP2Mm9R7AW7rFX7h1U",
+      "title": "Grace Flood",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 195,
+      "status": "pending",
+      "mbid": "0784571c-4897-4fcf-9b55-9bb615de3c09",
+      "links": [
+        "https://musicbrainz.org/recording/0784571c-4897-4fcf-9b55-9bb615de3c09"
+      ],
+      "url": "http://mt5577:3000/api/album/q8rTsP2Mm9R7AW7rFX7h1U/Grace+Flood",
+      "visibility": "public"
+    },
+    {
+      "id": "kpSzntfnM2jKkFaouS4yWj",
+      "title": "Resolution",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 281,
+      "status": "pending",
+      "mbid": "36f2f2e8-1fa1-419d-98d9-68c0e08d7ff2",
+      "links": [
+        "https://musicbrainz.org/recording/36f2f2e8-1fa1-419d-98d9-68c0e08d7ff2"
+      ],
+      "url": "http://mt5577:3000/api/album/kpSzntfnM2jKkFaouS4yWj/Resolution",
+      "visibility": "public"
+    },
+    {
+      "id": "1QShMGpiBsaqQ3NEQjfgB1",
+      "title": "Perseverence of the Saints",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 193,
+      "status": "pending",
+      "mbid": "5a357f40-45e2-45e1-9fdb-d8e1370d4eff",
+      "links": [
+        "https://musicbrainz.org/recording/5a357f40-45e2-45e1-9fdb-d8e1370d4eff"
+      ],
+      "url": "http://mt5577:3000/api/album/1QShMGpiBsaqQ3NEQjfgB1/Perseverence+of+the+Saints",
+      "visibility": "public"
+    },
+    {
+      "id": "qmeQDxmqma91d9CHJPKbXR",
+      "title": "Like No One Else",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 174,
+      "status": "pending",
+      "mbid": "b9b1d1bb-0f4f-4d1d-87cc-7bf2ce08c297",
+      "links": [
+        "https://musicbrainz.org/recording/b9b1d1bb-0f4f-4d1d-87cc-7bf2ce08c297"
+      ],
+      "url": "http://mt5577:3000/api/album/qmeQDxmqma91d9CHJPKbXR/Like+No+One+Else",
+      "visibility": "public"
+    },
+    {
+      "id": "4R2pw48sqTpmYniEFqSc2N",
+      "title": "Louder Than the Mob",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 233,
+      "status": "pending",
+      "mbid": "6f0a8c7f-3cd4-4fcf-9931-00ecea99595f",
+      "links": [
+        "https://musicbrainz.org/recording/6f0a8c7f-3cd4-4fcf-9931-00ecea99595f"
+      ],
+      "url": "http://mt5577:3000/api/album/4R2pw48sqTpmYniEFqSc2N/Louder+Than+the+Mob",
+      "visibility": "public"
+    },
+    {
+      "id": "aQMESy18sj4uBVeaCQspNm",
+      "title": "Unite",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 188,
+      "status": "pending",
+      "mbid": "f3367cd8-2869-4920-82c2-1a2762dfdeae",
+      "links": [
+        "https://musicbrainz.org/recording/f3367cd8-2869-4920-82c2-1a2762dfdeae"
+      ],
+      "url": "http://mt5577:3000/api/album/aQMESy18sj4uBVeaCQspNm/Unite",
+      "visibility": "public"
+    },
+    {
+      "id": "pyDQ8EDvVrEnXvpkgVbkXk",
+      "title": "Shut Up and Play",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 232,
+      "status": "pending",
+      "mbid": "55f54d41-53e7-4f72-86a3-3c1c5472c391",
+      "links": [
+        "https://musicbrainz.org/recording/55f54d41-53e7-4f72-86a3-3c1c5472c391"
+      ],
+      "url": "http://mt5577:3000/api/album/pyDQ8EDvVrEnXvpkgVbkXk/Shut+Up+and+Play",
+      "visibility": "public"
+    },
+    {
+      "id": "pGqyU5gJ7sJE7PiAUCR2oi",
+      "title": "Tonight",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 244,
+      "status": "pending",
+      "mbid": "d8162e3a-c794-4944-baa5-35d0a7a030a5",
+      "links": [
+        "https://musicbrainz.org/recording/d8162e3a-c794-4944-baa5-35d0a7a030a5"
+      ],
+      "url": "http://mt5577:3000/api/album/pGqyU5gJ7sJE7PiAUCR2oi/Tonight",
+      "visibility": "public"
+    },
+    {
+      "id": "9mqVbes51FKQ1HA1Abdrud",
+      "title": "Little Man",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 241,
+      "status": "pending",
+      "mbid": "027f745e-b815-45d2-a439-7c1ad504d05b",
+      "links": [
+        "https://musicbrainz.org/recording/027f745e-b815-45d2-a439-7c1ad504d05b"
+      ],
+      "url": "http://mt5577:3000/api/album/9mqVbes51FKQ1HA1Abdrud/Little+Man",
+      "visibility": "public"
+    },
+    {
+      "id": "7fSS3wCHtz2mBWXNxFgjQx",
+      "title": "Caught Inside",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 145,
+      "status": "pending",
+      "mbid": "5d150159-2cb4-41a8-9952-a8fd9118b23a",
+      "links": [
+        "https://musicbrainz.org/recording/5d150159-2cb4-41a8-9952-a8fd9118b23a"
+      ],
+      "url": "http://mt5577:3000/api/album/7fSS3wCHtz2mBWXNxFgjQx/Caught+Inside",
+      "visibility": "public"
+    },
+    {
+      "id": "jnudz93kNq6FdhokPzYLGy",
+      "title": "So Great a Salvation",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 206,
+      "status": "pending",
+      "mbid": "9bf8d652-d89f-4bef-8eed-523de78151c4",
+      "links": [
+        "https://musicbrainz.org/recording/9bf8d652-d89f-4bef-8eed-523de78151c4"
+      ],
+      "url": "http://mt5577:3000/api/album/jnudz93kNq6FdhokPzYLGy/So+Great+a+Salvation",
+      "visibility": "public"
+    }
+  ],
+  "released": "1997-06-02T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "fc249a7e-01f7-48a7-8666-56eda90341d9",
+  "links": [
+    "https://musicbrainz.org/album/fc249a7e-01f7-48a7-8666-56eda90341d9",
+    "https://www.amazon.com/gp/product/B000001AU2",
+    "https://www.discogs.com/release/466430"
+  ],
+  "url": "http://mt5577:3000/api/album/x8SsPW3udad2TyL1RMvYUZ/Supertones+Strike+Back",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "un8nkrdRDNMxKZyV8aQG6E",
+      "name": "The O.C. Supertones",
+      "area": "Orange County, US",
+      "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+    }
+  ]
+}

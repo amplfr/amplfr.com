@@ -1,0 +1,284 @@
+{
+  "id": "kFb8CDvj9AEYB59pKVxURx",
+  "title": "The Colour and the Shape",
+  "items": [
+    {
+      "id": "1w2vhGnTwiJZcbsYuHpoAb",
+      "title": "Doll",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 83,
+      "status": "pending",
+      "mbid": "348a67a4-f364-439c-bb8d-94eb13dba508",
+      "links": [
+        "https://musicbrainz.org/recording/348a67a4-f364-439c-bb8d-94eb13dba508"
+      ],
+      "url": "http://mt5577:3000/api/album/1w2vhGnTwiJZcbsYuHpoAb/Doll",
+      "visibility": "public"
+    },
+    {
+      "id": "wWXnqZ4ieknmWq2wUWb8oP",
+      "title": "Monkey Wrench",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 231,
+      "status": "pending",
+      "mbid": "26502c24-e08c-45a0-a7b6-44f7471d7054",
+      "links": [
+        "https://musicbrainz.org/recording/26502c24-e08c-45a0-a7b6-44f7471d7054"
+      ],
+      "url": "http://mt5577:3000/api/album/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench",
+      "visibility": "public"
+    },
+    {
+      "id": "b3XhEcAgyHTSzP6rNX4LKF",
+      "title": "Hey, Johnny Park!",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 248,
+      "status": "pending",
+      "mbid": "816f734c-b603-4255-ad29-6fb14c9a4689",
+      "links": [
+        "https://musicbrainz.org/recording/816f734c-b603-4255-ad29-6fb14c9a4689"
+      ],
+      "url": "http://mt5577:3000/api/album/b3XhEcAgyHTSzP6rNX4LKF/Hey%2C+Johnny+Park!",
+      "visibility": "public"
+    },
+    {
+      "id": "tiyTP8iqvqBwGWuorPjaUi",
+      "title": "My Poor Brain",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 213,
+      "status": "pending",
+      "mbid": "b0d8037c-d86a-4622-9e47-695b7a12f95b",
+      "links": [
+        "https://musicbrainz.org/recording/b0d8037c-d86a-4622-9e47-695b7a12f95b"
+      ],
+      "url": "http://mt5577:3000/api/album/tiyTP8iqvqBwGWuorPjaUi/My+Poor+Brain",
+      "visibility": "public"
+    },
+    {
+      "id": "vY3MDGcdkGcov6jAnQjQfZ",
+      "title": "Wind Up",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 152,
+      "status": "pending",
+      "mbid": "bb444828-22c4-46f1-9c18-435f1b3e8831",
+      "links": [
+        "https://musicbrainz.org/recording/bb444828-22c4-46f1-9c18-435f1b3e8831"
+      ],
+      "url": "http://mt5577:3000/api/album/vY3MDGcdkGcov6jAnQjQfZ/Wind+Up",
+      "visibility": "public"
+    },
+    {
+      "id": "aG4neKZYveat81miAZtTyZ",
+      "title": "Up in Arms",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 136,
+      "status": "pending",
+      "mbid": "e8e9f718-616e-4737-bd40-1ffcd9066683",
+      "links": [
+        "https://musicbrainz.org/recording/e8e9f718-616e-4737-bd40-1ffcd9066683"
+      ],
+      "url": "http://mt5577:3000/api/album/aG4neKZYveat81miAZtTyZ/Up+in+Arms",
+      "visibility": "public"
+    },
+    {
+      "id": "odAT2Zxwiz1aFubxQFRHq2",
+      "title": "My Hero",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 260,
+      "status": "pending",
+      "mbid": "fbb2d6eb-0a8b-4822-8e86-c5ed40a03fc7",
+      "links": [
+        "https://musicbrainz.org/recording/fbb2d6eb-0a8b-4822-8e86-c5ed40a03fc7"
+      ],
+      "url": "http://mt5577:3000/api/album/odAT2Zxwiz1aFubxQFRHq2/My+Hero",
+      "visibility": "public"
+    },
+    {
+      "id": "jnjwJ42TAE3qcJo3fkdAzK",
+      "title": "See You",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 147,
+      "status": "pending",
+      "mbid": "28724978-a011-4202-9d3f-474b99938a11",
+      "links": [
+        "https://musicbrainz.org/recording/28724978-a011-4202-9d3f-474b99938a11"
+      ],
+      "url": "http://mt5577:3000/api/album/jnjwJ42TAE3qcJo3fkdAzK/See+You",
+      "visibility": "public"
+    },
+    {
+      "id": "tBHiv8MUBCm2PiJm93KrrC",
+      "title": "Enough Space",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 157,
+      "status": "pending",
+      "mbid": "b57bf6c2-66b8-4c1a-bb0e-cf3f91850dcf",
+      "links": [
+        "https://musicbrainz.org/recording/b57bf6c2-66b8-4c1a-bb0e-cf3f91850dcf"
+      ],
+      "url": "http://mt5577:3000/api/album/tBHiv8MUBCm2PiJm93KrrC/Enough+Space",
+      "visibility": "public"
+    },
+    {
+      "id": "uRqvZVQLXogn7FAiMmzC3K",
+      "title": "February Stars",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 289,
+      "status": "pending",
+      "mbid": "d413e767-4457-4279-9b14-b91cc9b99d0b",
+      "links": [
+        "https://musicbrainz.org/recording/d413e767-4457-4279-9b14-b91cc9b99d0b"
+      ],
+      "url": "http://mt5577:3000/api/album/uRqvZVQLXogn7FAiMmzC3K/February+Stars",
+      "visibility": "public"
+    },
+    {
+      "id": "7DqGgoWAbJhUGNqTs7w9Ku",
+      "title": "Everlong",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 250,
+      "status": "pending",
+      "mbid": "9160e42b-8fae-402d-9cee-d6826c5cce33",
+      "links": [
+        "https://musicbrainz.org/recording/9160e42b-8fae-402d-9cee-d6826c5cce33"
+      ],
+      "url": "http://mt5577:3000/api/album/7DqGgoWAbJhUGNqTs7w9Ku/Everlong",
+      "visibility": "public"
+    },
+    {
+      "id": "uBXTs4Vm8e4weRdmPdqiVR",
+      "title": "Walking After You",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 304,
+      "status": "pending",
+      "mbid": "89ae6913-da5e-489f-b5c4-230e95002254",
+      "links": [
+        "https://musicbrainz.org/recording/89ae6913-da5e-489f-b5c4-230e95002254"
+      ],
+      "url": "http://mt5577:3000/api/album/uBXTs4Vm8e4weRdmPdqiVR/Walking+After+You",
+      "visibility": "public"
+    },
+    {
+      "id": "iV9RVE1U4rabxWr5NswCYc",
+      "title": "New Way Home",
+      "artists": [
+        {
+          "id": "mTKCx7T69sv7EkfSHaDtPb",
+          "name": "Foo Fighters",
+          "area": "Seattle, US",
+          "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        }
+      ],
+      "duration": 340,
+      "status": "pending",
+      "mbid": "94be4218-63d7-4eed-856b-d996477fade5",
+      "links": [
+        "https://musicbrainz.org/recording/94be4218-63d7-4eed-856b-d996477fade5"
+      ],
+      "url": "http://mt5577:3000/api/album/iV9RVE1U4rabxWr5NswCYc/New+Way+Home",
+      "visibility": "public"
+    }
+  ],
+  "released": "1996-12-31T00:00:00.000Z",
+  "countries": ["GB"],
+  "mbid": "9f55e2a8-422c-4f0a-9921-a8b639a9bd51",
+  "links": [
+    "https://musicbrainz.org/album/9f55e2a8-422c-4f0a-9921-a8b639a9bd51",
+    "https://www.discogs.com/release/1813175",
+    "https://www.discogs.com/release/2070202"
+  ],
+  "url": "http://mt5577:3000/api/album/kFb8CDvj9AEYB59pKVxURx/The+Colour+and+the+Shape",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "mTKCx7T69sv7EkfSHaDtPb",
+      "name": "Foo Fighters",
+      "area": "Seattle, US",
+      "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+    }
+  ]
+}

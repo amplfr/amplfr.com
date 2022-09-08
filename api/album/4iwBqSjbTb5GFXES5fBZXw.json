@@ -1,0 +1,872 @@
+{
+  "id": "4iwBqSjbTb5GFXES5fBZXw",
+  "title": "WOW 1999",
+  "items": [
+    {
+      "id": "gSwEGUBCEHc67ByToo5wNJ",
+      "title": "Into Jesus",
+      "artists": [
+        {
+          "id": "8KuTb71TsUGdtjpLuvrBR9",
+          "name": "dc Talk",
+          "area": "Lynchburg, US",
+          "url": "http://mt5577:3000/api/artist/8KuTb71TsUGdtjpLuvrBR9/dc+Talk"
+        }
+      ],
+      "duration": 259,
+      "status": "pending",
+      "mbid": "64f33f74-772a-42db-8ef1-f6e391338f6c",
+      "links": [
+        "https://musicbrainz.org/recording/64f33f74-772a-42db-8ef1-f6e391338f6c"
+      ],
+      "url": "http://mt5577:3000/api/album/gSwEGUBCEHc67ByToo5wNJ/Into+Jesus",
+      "visibility": "public"
+    },
+    {
+      "id": "vhp4AEE8uERqdAwq8wM7o4",
+      "title": "Entertaining Angels",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 259,
+      "status": "pending",
+      "mbid": "ba0ab173-3de8-4840-ae6c-232a9223e84c",
+      "links": [
+        "https://musicbrainz.org/recording/ba0ab173-3de8-4840-ae6c-232a9223e84c"
+      ],
+      "url": "http://mt5577:3000/api/album/vhp4AEE8uERqdAwq8wM7o4/Entertaining+Angels",
+      "visibility": "public"
+    },
+    {
+      "id": "5D6Bafxp83f6zVAXqVsQzS",
+      "title": "Crazy Times",
+      "artists": [
+        {
+          "id": "xgvLJbGZin4migADppFFzm",
+          "name": "Jars of Clay",
+          "area": "Greenville, US",
+          "url": "http://mt5577:3000/api/artist/xgvLJbGZin4migADppFFzm/Jars+of+Clay"
+        }
+      ],
+      "duration": 210,
+      "status": "pending",
+      "mbid": "ab20fae1-5555-4e54-bae6-59d54518a756",
+      "links": [
+        "https://musicbrainz.org/recording/ab20fae1-5555-4e54-bae6-59d54518a756"
+      ],
+      "url": "http://mt5577:3000/api/album/5D6Bafxp83f6zVAXqVsQzS/Crazy+Times",
+      "visibility": "public"
+    },
+    {
+      "id": "qoJHSYYHqk73jaHerBKB2b",
+      "title": "Love Me Good",
+      "artists": [
+        {
+          "id": "go9aPr332DcY4fXpAZapFG",
+          "name": "Michael W. Smith",
+          "area": "Kenova, US",
+          "url": "http://mt5577:3000/api/artist/go9aPr332DcY4fXpAZapFG/Michael+W.+Smith"
+        }
+      ],
+      "duration": 281,
+      "status": "pending",
+      "mbid": "1c96baec-539e-4a39-872f-1aa97594504a",
+      "links": [
+        "https://musicbrainz.org/recording/1c96baec-539e-4a39-872f-1aa97594504a"
+      ],
+      "url": "http://mt5577:3000/api/album/qoJHSYYHqk73jaHerBKB2b/Love+Me+Good",
+      "visibility": "public"
+    },
+    {
+      "id": "dANyRsrdLDGezoegz7u8zv",
+      "title": "Undo Me",
+      "artists": [
+        {
+          "id": "6VFgCMBMNyXEs4SXhb61eM",
+          "name": "Jennifer Knapp",
+          "area": "Chanute, US",
+          "url": "http://mt5577:3000/api/artist/6VFgCMBMNyXEs4SXhb61eM/Jennifer+Knapp"
+        }
+      ],
+      "duration": 204,
+      "status": "pending",
+      "mbid": "d1187ebb-49fa-44c1-8b84-ab70a6562c09",
+      "links": [
+        "https://musicbrainz.org/recording/d1187ebb-49fa-44c1-8b84-ab70a6562c09"
+      ],
+      "url": "http://mt5577:3000/api/album/dANyRsrdLDGezoegz7u8zv/Undo+Me",
+      "visibility": "public"
+    },
+    {
+      "id": "2XNeedG7nL8sfsdwGvQn7J",
+      "title": "Deeper",
+      "artists": [
+        {
+          "id": "hRA9V7xdCL5RNLZJt4yGCc",
+          "name": "Delirious?",
+          "area": "GB",
+          "url": "http://mt5577:3000/api/artist/hRA9V7xdCL5RNLZJt4yGCc/Delirious%3F"
+        }
+      ],
+      "duration": 259,
+      "status": "pending",
+      "mbid": "533b9929-361f-46d9-b312-2c83db412f94",
+      "links": [
+        "https://musicbrainz.org/recording/533b9929-361f-46d9-b312-2c83db412f94"
+      ],
+      "url": "http://mt5577:3000/api/album/2XNeedG7nL8sfsdwGvQn7J/Deeper",
+      "visibility": "public"
+    },
+    {
+      "id": "gg4n1GroHTWRGCwnGBkqmE",
+      "title": "Pray",
+      "artists": [
+        {
+          "id": "2NmyBnFAtvkbnczZJY6urG",
+          "name": "Rebecca St. James",
+          "area": "Sydney, US",
+          "url": "http://mt5577:3000/api/artist/2NmyBnFAtvkbnczZJY6urG/Rebecca+St.+James"
+        }
+      ],
+      "duration": 250,
+      "status": "pending",
+      "mbid": "4c09cb84-beda-4018-bf5a-0655b60a8d13",
+      "links": [
+        "https://musicbrainz.org/recording/4c09cb84-beda-4018-bf5a-0655b60a8d13"
+      ],
+      "url": "http://mt5577:3000/api/album/gg4n1GroHTWRGCwnGBkqmE/Pray",
+      "visibility": "public"
+    },
+    {
+      "id": "szefAoTs1utsRV3VH94yb3",
+      "title": "The Devil Is Bad",
+      "artists": [
+        {
+          "id": "w5dgcyRotMyc8MsavQTTXh",
+          "name": "The W's",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/w5dgcyRotMyc8MsavQTTXh/The+W's"
+        }
+      ],
+      "duration": 214,
+      "status": "pending",
+      "mbid": "18920ba5-2df4-4dd9-a782-61f43555af92",
+      "links": [
+        "https://musicbrainz.org/recording/18920ba5-2df4-4dd9-a782-61f43555af92"
+      ],
+      "url": "http://mt5577:3000/api/album/szefAoTs1utsRV3VH94yb3/The+Devil+Is+Bad",
+      "visibility": "public"
+    },
+    {
+      "id": "6Uc7YfiujUxvSNEfYzJoep",
+      "title": "If You Really Knew",
+      "artists": [
+        {
+          "id": "13pobp9HdNghehFZXLzBBV",
+          "name": "Out of Eden",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/13pobp9HdNghehFZXLzBBV/Out+of+Eden"
+        }
+      ],
+      "duration": 273,
+      "status": "pending",
+      "mbid": "328ea2b8-ea03-456e-8a8b-91b44ed368ba",
+      "links": [
+        "https://musicbrainz.org/recording/328ea2b8-ea03-456e-8a8b-91b44ed368ba"
+      ],
+      "url": "http://mt5577:3000/api/album/6Uc7YfiujUxvSNEfYzJoep/If+You+Really+Knew",
+      "visibility": "public"
+    },
+    {
+      "id": "1NoK6o8CMc1nALKLEFPVeR",
+      "title": "Agnus Dei",
+      "artists": [
+        {
+          "id": "e6P323AjSy1mY17uKm6dch",
+          "name": "Third Day",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/e6P323AjSy1mY17uKm6dch/Third+Day"
+        }
+      ],
+      "duration": 301,
+      "status": "pending",
+      "mbid": "09c0e8b6-33a6-4649-9ff8-3f0b6fef3654",
+      "links": [
+        "https://musicbrainz.org/recording/09c0e8b6-33a6-4649-9ff8-3f0b6fef3654"
+      ],
+      "url": "http://mt5577:3000/api/album/1NoK6o8CMc1nALKLEFPVeR/Agnus+Dei",
+      "visibility": "public"
+    },
+    {
+      "id": "sK18yCG2dQiv54bTyG648Y",
+      "title": "Anything Genuine",
+      "artists": [
+        {
+          "id": "w7RbmLWATJDQ25BR9Kfj6Y",
+          "name": "Smalltown Poets",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/w7RbmLWATJDQ25BR9Kfj6Y/Smalltown+Poets"
+        }
+      ],
+      "duration": 186,
+      "status": "pending",
+      "mbid": "70d07c3b-c5d4-4235-b02a-bd117c6cda44",
+      "links": [
+        "https://musicbrainz.org/recording/70d07c3b-c5d4-4235-b02a-bd117c6cda44"
+      ],
+      "url": "http://mt5577:3000/api/album/sK18yCG2dQiv54bTyG648Y/Anything+Genuine",
+      "visibility": "public"
+    },
+    {
+      "id": "9mqVbes51FKQ1HA1Abdrud",
+      "title": "Little Man",
+      "artists": [
+        {
+          "id": "un8nkrdRDNMxKZyV8aQG6E",
+          "name": "The O.C. Supertones",
+          "area": "Orange County, US",
+          "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+        }
+      ],
+      "duration": 241,
+      "status": "pending",
+      "mbid": "027f745e-b815-45d2-a439-7c1ad504d05b",
+      "links": [
+        "https://musicbrainz.org/recording/027f745e-b815-45d2-a439-7c1ad504d05b"
+      ],
+      "url": "http://mt5577:3000/api/album/9mqVbes51FKQ1HA1Abdrud/Little+Man",
+      "visibility": "public"
+    },
+    {
+      "id": "4yPH2rLPKmi5ZJNvAEEfh1",
+      "title": "Chevette (remix)",
+      "artists": [
+        {
+          "id": "nVZy6gxS687XVajShJuvkU",
+          "name": "Audio Adrenaline",
+          "area": "Grayson, US",
+          "url": "http://mt5577:3000/api/artist/nVZy6gxS687XVajShJuvkU/Audio+Adrenaline"
+        }
+      ],
+      "duration": 227,
+      "status": "pending",
+      "mbid": "15f37bf4-b4c0-460b-9607-362d4a864d7b",
+      "links": [
+        "https://musicbrainz.org/recording/15f37bf4-b4c0-460b-9607-362d4a864d7b"
+      ],
+      "url": "http://mt5577:3000/api/album/4yPH2rLPKmi5ZJNvAEEfh1/Chevette+(remix)",
+      "visibility": "public"
+    },
+    {
+      "id": "ngY49PRstE7kdKYXFtvecb",
+      "title": "What Would Jesus Do?",
+      "artists": [
+        {
+          "id": "irHYbpBekChGX87y42w25X",
+          "name": "Big Tent Revival",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/irHYbpBekChGX87y42w25X/Big+Tent+Revival"
+        }
+      ],
+      "duration": 310,
+      "status": "pending",
+      "mbid": "428a2403-3916-4549-807f-37c007095d28",
+      "links": [
+        "https://musicbrainz.org/recording/428a2403-3916-4549-807f-37c007095d28"
+      ],
+      "url": "http://mt5577:3000/api/album/ngY49PRstE7kdKYXFtvecb/What+Would+Jesus+Do%3F",
+      "visibility": "public"
+    },
+    {
+      "id": "9UnXeJ49fTg1bY8u1pvpFy",
+      "title": "His Cheeseburger",
+      "artists": [
+        {
+          "id": "bwGLWd4euL9EJ37XqN7JXk",
+          "name": "VeggieTales",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/bwGLWd4euL9EJ37XqN7JXk/VeggieTales"
+        }
+      ],
+      "duration": 189,
+      "status": "pending",
+      "mbid": "ddda6426-d71c-4762-b090-0f1c476e15b9",
+      "links": [
+        "https://musicbrainz.org/recording/ddda6426-d71c-4762-b090-0f1c476e15b9"
+      ],
+      "url": "http://mt5577:3000/api/album/9UnXeJ49fTg1bY8u1pvpFy/His+Cheeseburger",
+      "visibility": "public"
+    },
+    {
+      "id": "r8As5dDpzjBapUJhmuxKVm",
+      "title": "Can You Hear the Echos",
+      "artists": [
+        {
+          "id": "sgCnkZUhBNcspsWefaN7vh",
+          "name": "Scott Wesley Brown",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/sgCnkZUhBNcspsWefaN7vh/Scott+Wesley+Brown"
+        }
+      ],
+      "duration": 347,
+      "status": "pending",
+      "mbid": "c6de29c2-b6bd-4765-80aa-297239c84844",
+      "links": [
+        "https://musicbrainz.org/recording/c6de29c2-b6bd-4765-80aa-297239c84844"
+      ],
+      "url": "http://mt5577:3000/api/album/r8As5dDpzjBapUJhmuxKVm/Can+You+Hear+the+Echos",
+      "visibility": "public"
+    },
+    {
+      "id": "kC9dMD3vjjxmGGrVeTZSJ8",
+      "title": "Steady On",
+      "artists": [
+        {
+          "id": "sYXGUa41aTA3TKQNipTF9T",
+          "name": "Point of Grace",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/sYXGUa41aTA3TKQNipTF9T/Point+of+Grace"
+        }
+      ],
+      "duration": 288,
+      "status": "pending",
+      "mbid": "d074fa96-6ca7-4e15-bf45-68930ff010dc",
+      "links": [
+        "https://musicbrainz.org/recording/d074fa96-6ca7-4e15-bf45-68930ff010dc"
+      ],
+      "url": "http://mt5577:3000/api/album/kC9dMD3vjjxmGGrVeTZSJ8/Steady+On",
+      "visibility": "public"
+    },
+    {
+      "id": "tnNxqdnXqQ4ARXycBwHiTR",
+      "title": "God So Loved",
+      "artists": [
+        {
+          "id": "6CoGueNZLxSBv9uzVCp1Ch",
+          "name": "Jaci Velásquez",
+          "area": "Houston, US",
+          "url": "http://mt5577:3000/api/artist/6CoGueNZLxSBv9uzVCp1Ch/Jaci+Vel%C3%A1squez"
+        }
+      ],
+      "duration": 254,
+      "status": "pending",
+      "mbid": "bb2e399e-d192-467d-b195-e96050f8ec7f",
+      "links": [
+        "https://musicbrainz.org/recording/bb2e399e-d192-467d-b195-e96050f8ec7f"
+      ],
+      "url": "http://mt5577:3000/api/album/tnNxqdnXqQ4ARXycBwHiTR/God+So+Loved",
+      "visibility": "public"
+    },
+    {
+      "id": "5G7Ao6PFoMyWihjwWurYuR",
+      "title": "Testify to Love",
+      "artists": [
+        {
+          "id": "bYbGCdUzBu2THZAw9TcyVZ",
+          "name": "Avalon",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/bYbGCdUzBu2THZAw9TcyVZ/Avalon"
+        }
+      ],
+      "duration": 236,
+      "status": "pending",
+      "mbid": "ba341da0-c3d7-42f8-bbd9-84f7f0376059",
+      "links": [
+        "https://musicbrainz.org/recording/ba341da0-c3d7-42f8-bbd9-84f7f0376059"
+      ],
+      "url": "http://mt5577:3000/api/album/5G7Ao6PFoMyWihjwWurYuR/Testify+to+Love",
+      "visibility": "public"
+    },
+    {
+      "id": "1WrqtdfrgsbsvL1d4tgCvD",
+      "title": "I Will Not Go Quietly",
+      "artists": [
+        {
+          "id": "eV2pghfLNQVWyj2nq6pvVk",
+          "name": "Steven Curtis Chapman",
+          "area": "Paducah, US",
+          "url": "http://mt5577:3000/api/artist/eV2pghfLNQVWyj2nq6pvVk/Steven+Curtis+Chapman"
+        }
+      ],
+      "duration": 221,
+      "status": "pending",
+      "mbid": "e16bb639-ee62-4ffc-91a0-7f03a96b4c40",
+      "links": [
+        "https://musicbrainz.org/recording/e16bb639-ee62-4ffc-91a0-7f03a96b4c40"
+      ],
+      "url": "http://mt5577:3000/api/album/1WrqtdfrgsbsvL1d4tgCvD/I+Will+Not+Go+Quietly",
+      "visibility": "public"
+    },
+    {
+      "id": "2oCY3X4v9yg6ZF2ZqRTmYf",
+      "title": "Can’t Get Past the Evidence",
+      "artists": [
+        {
+          "id": "gipBJGDzyqX9QiKge6oUMd",
+          "name": "4Him",
+          "area": "Mobile, US",
+          "url": "http://mt5577:3000/api/artist/gipBJGDzyqX9QiKge6oUMd/4Him"
+        }
+      ],
+      "duration": 233,
+      "status": "pending",
+      "mbid": "cf069199-c8bb-459f-b17f-1ef5877a79c4",
+      "links": [
+        "https://musicbrainz.org/recording/cf069199-c8bb-459f-b17f-1ef5877a79c4"
+      ],
+      "url": "http://mt5577:3000/api/album/2oCY3X4v9yg6ZF2ZqRTmYf/Can%E2%80%99t+Get+Past+the+Evidence",
+      "visibility": "public"
+    },
+    {
+      "id": "rdbjhz8HHtBQRHkckxZjb3",
+      "title": "Somewhere Down the Road",
+      "artists": [
+        {
+          "id": "5gC3zRiq2yxbmJaPzzq85Q",
+          "name": "Amy Grant",
+          "area": "Augusta, US",
+          "url": "http://mt5577:3000/api/artist/5gC3zRiq2yxbmJaPzzq85Q/Amy+Grant"
+        }
+      ],
+      "duration": 309,
+      "status": "pending",
+      "mbid": "7b6a2b79-19a9-46d3-ab88-fe187edba90c",
+      "links": [
+        "https://musicbrainz.org/recording/7b6a2b79-19a9-46d3-ab88-fe187edba90c"
+      ],
+      "url": "http://mt5577:3000/api/album/rdbjhz8HHtBQRHkckxZjb3/Somewhere+Down+the+Road",
+      "visibility": "public"
+    },
+    {
+      "id": "buQtPTUyn5NzSqUSNumWMx",
+      "title": "Lord I Believe in You",
+      "artists": [
+        {
+          "id": "iHa3iipwFQshZdqX1gfED7",
+          "name": "Crystal Lewis",
+          "area": "Corona, US",
+          "url": "http://mt5577:3000/api/artist/iHa3iipwFQshZdqX1gfED7/Crystal+Lewis"
+        }
+      ],
+      "duration": 248,
+      "status": "pending",
+      "mbid": "8850b3cc-2a16-4774-b103-6a047f79b9f5",
+      "links": [
+        "https://musicbrainz.org/recording/8850b3cc-2a16-4774-b103-6a047f79b9f5"
+      ],
+      "url": "http://mt5577:3000/api/album/buQtPTUyn5NzSqUSNumWMx/Lord+I+Believe+in+You",
+      "visibility": "public"
+    },
+    {
+      "id": "iCELk2pKnWrnyC2ptUNQfu",
+      "title": "That Where I Am, There You…",
+      "artists": [
+        {
+          "id": "5FgX6A13xqHeCzhpkw3wpU",
+          "name": "Rich Mullins",
+          "area": "Richmond, US",
+          "url": "http://mt5577:3000/api/artist/5FgX6A13xqHeCzhpkw3wpU/Rich+Mullins"
+        }
+      ],
+      "duration": 166,
+      "status": "pending",
+      "mbid": "6ef7b6ad-819e-42e9-bee9-436fca129ba2",
+      "links": [
+        "https://musicbrainz.org/recording/6ef7b6ad-819e-42e9-bee9-436fca129ba2"
+      ],
+      "url": "http://mt5577:3000/api/album/iCELk2pKnWrnyC2ptUNQfu/That+Where+I+Am%2C+There+You%E2%80%A6",
+      "visibility": "public"
+    },
+    {
+      "id": "o4pXYmbF9R8BKVknv3NTdG",
+      "title": "In the Hands of Jesus",
+      "artists": [
+        {
+          "id": "8wTWanMb5GiufoWY4zCK3J",
+          "name": "Bob Carlisle",
+          "area": "Santa Ana, US",
+          "url": "http://mt5577:3000/api/artist/8wTWanMb5GiufoWY4zCK3J/Bob+Carlisle"
+        }
+      ],
+      "duration": 336,
+      "status": "pending",
+      "mbid": "785a844d-b552-4986-b301-065d1ad4fe92",
+      "links": [
+        "https://musicbrainz.org/recording/785a844d-b552-4986-b301-065d1ad4fe92"
+      ],
+      "url": "http://mt5577:3000/api/album/o4pXYmbF9R8BKVknv3NTdG/In+the+Hands+of+Jesus",
+      "visibility": "public"
+    },
+    {
+      "id": "fBYcYwcZCMSgV4gkWK6faS",
+      "title": "Healing Waters",
+      "artists": [
+        {
+          "id": "8zHRxL6fKEZadZDiijNZ1i",
+          "name": "Michelle Tumes",
+          "area": "AU",
+          "url": "http://mt5577:3000/api/artist/8zHRxL6fKEZadZDiijNZ1i/Michelle+Tumes"
+        }
+      ],
+      "duration": 284,
+      "status": "pending",
+      "mbid": "6f632364-397f-4f48-bd2c-a8359ee59a4b",
+      "links": [
+        "https://musicbrainz.org/recording/6f632364-397f-4f48-bd2c-a8359ee59a4b"
+      ],
+      "url": "http://mt5577:3000/api/album/fBYcYwcZCMSgV4gkWK6faS/Healing+Waters",
+      "visibility": "public"
+    },
+    {
+      "id": "3pVZ4cbkqGGaASmb1Ab3n6",
+      "title": "The Power of a Moment",
+      "artists": [
+        {
+          "id": "5zLEuoCe2peGG5HZ3QM7xT",
+          "name": "Chris Rice",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/5zLEuoCe2peGG5HZ3QM7xT/Chris+Rice"
+        }
+      ],
+      "duration": 265,
+      "status": "pending",
+      "mbid": "4ea02c48-752a-4647-b4a8-ea8526c4c720",
+      "links": [
+        "https://musicbrainz.org/recording/4ea02c48-752a-4647-b4a8-ea8526c4c720"
+      ],
+      "url": "http://mt5577:3000/api/album/3pVZ4cbkqGGaASmb1Ab3n6/The+Power+of+a+Moment",
+      "visibility": "public"
+    },
+    {
+      "id": "hwxbiriMTyL4hb6a1Yq3H6",
+      "title": "He Will Make a Way",
+      "artists": [
+        {
+          "id": "wyFNEkykFSLivAYehupBgw",
+          "name": "Kathy Troccoli",
+          "area": "New York, US",
+          "url": "http://mt5577:3000/api/artist/wyFNEkykFSLivAYehupBgw/Kathy+Troccoli"
+        }
+      ],
+      "duration": 368,
+      "status": "pending",
+      "mbid": "58e12db4-905e-480b-a9d6-8119282b7574",
+      "links": [
+        "https://musicbrainz.org/recording/58e12db4-905e-480b-a9d6-8119282b7574"
+      ],
+      "url": "http://mt5577:3000/api/album/hwxbiriMTyL4hb6a1Yq3H6/He+Will+Make+a+Way",
+      "visibility": "public"
+    },
+    {
+      "id": "vRJ3uabKCdWD2TkWvo4Tw9",
+      "title": "Strollin’ on the Water",
+      "artists": [
+        {
+          "id": "rRzXFyM7cW1gDu4tQQYzGw",
+          "name": "Bryan Duncan",
+          "area": "Riverside, US",
+          "url": "http://mt5577:3000/api/artist/rRzXFyM7cW1gDu4tQQYzGw/Bryan+Duncan"
+        }
+      ],
+      "duration": 235,
+      "status": "pending",
+      "mbid": "2a1c4253-e6df-4391-b3ad-0d85c713a7e4",
+      "links": [
+        "https://musicbrainz.org/recording/2a1c4253-e6df-4391-b3ad-0d85c713a7e4"
+      ],
+      "url": "http://mt5577:3000/api/album/vRJ3uabKCdWD2TkWvo4Tw9/Strollin%E2%80%99+on+the+Water",
+      "visibility": "public"
+    },
+    {
+      "id": "53TRRiq9XNxruhTwjwserR",
+      "title": "Never Be",
+      "artists": [
+        {
+          "id": "epfkk7puiYKb5pmm91RkH9",
+          "name": "Carman",
+          "area": "Trenton, US",
+          "url": "http://mt5577:3000/api/artist/epfkk7puiYKb5pmm91RkH9/Carman"
+        }
+      ],
+      "duration": 216,
+      "status": "pending",
+      "mbid": "5780b64a-dc81-4f3a-949c-1712e505a62e",
+      "links": [
+        "https://musicbrainz.org/recording/5780b64a-dc81-4f3a-949c-1712e505a62e"
+      ],
+      "url": "http://mt5577:3000/api/album/53TRRiq9XNxruhTwjwserR/Never+Be",
+      "visibility": "public"
+    },
+    {
+      "id": "t4SmF7gPmUjt1iTchAMT69",
+      "title": "The Light on the Hill",
+      "artists": [
+        {
+          "id": "iHeavFd4RZLT3sKPLPVE9g",
+          "name": "Moya Brennan",
+          "area": "Dublin, IE",
+          "url": "http://mt5577:3000/api/artist/iHeavFd4RZLT3sKPLPVE9g/Moya+Brennan"
+        }
+      ],
+      "duration": 246,
+      "status": "pending",
+      "mbid": "af693a69-da35-42e4-bb4f-430f909833e6",
+      "links": [
+        "https://musicbrainz.org/recording/af693a69-da35-42e4-bb4f-430f909833e6"
+      ],
+      "url": "http://mt5577:3000/api/album/t4SmF7gPmUjt1iTchAMT69/The+Light+on+the+Hill",
+      "visibility": "public"
+    },
+    {
+      "id": "kGLZyHQd6rdiXypjoUrPXC",
+      "title": "To Know You",
+      "artists": [
+        {
+          "id": "cF6bFkrkUXi2JXB1bVpmN1",
+          "name": "Nichole Nordeman",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/cF6bFkrkUXi2JXB1bVpmN1/Nichole+Nordeman"
+        }
+      ],
+      "duration": 230,
+      "status": "pending",
+      "mbid": "62da17bf-836e-4d9a-ada3-edcd245a9b88",
+      "links": [
+        "https://musicbrainz.org/recording/62da17bf-836e-4d9a-ada3-edcd245a9b88"
+      ],
+      "url": "http://mt5577:3000/api/album/kGLZyHQd6rdiXypjoUrPXC/To+Know+You",
+      "visibility": "public"
+    },
+    {
+      "id": "rH6xVsXqo3YtnYP12AriQS",
+      "title": "I Declare",
+      "artists": [
+        {
+          "id": "cLht2F8McfYTCa84fdPz5G",
+          "name": "Julius Magan",
+          "area": null,
+          "url": "http://mt5577:3000/api/artist/cLht2F8McfYTCa84fdPz5G/Julius+Magan"
+        }
+      ],
+      "duration": 272,
+      "status": "pending",
+      "mbid": "66b26e79-f143-4779-acd9-743fd2af1305",
+      "links": [
+        "https://musicbrainz.org/recording/66b26e79-f143-4779-acd9-743fd2af1305"
+      ],
+      "url": "http://mt5577:3000/api/album/rH6xVsXqo3YtnYP12AriQS/I+Declare",
+      "visibility": "public"
+    }
+  ],
+  "mbid": "1abdecb7-3812-4022-b6fb-1cda7056aef0",
+  "links": [
+    "https://musicbrainz.org/album/1abdecb7-3812-4022-b6fb-1cda7056aef0"
+  ],
+  "url": "http://mt5577:3000/api/album/4iwBqSjbTb5GFXES5fBZXw/WOW+1999",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "8KuTb71TsUGdtjpLuvrBR9",
+      "name": "dc Talk",
+      "area": "Lynchburg, US",
+      "url": "http://mt5577:3000/api/artist/8KuTb71TsUGdtjpLuvrBR9/dc+Talk"
+    },
+    {
+      "id": "gXvuVgatKgHWFsEAf9o1pG",
+      "name": "Newsboys",
+      "area": "Mooloolaba, AU",
+      "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+    },
+    {
+      "id": "xgvLJbGZin4migADppFFzm",
+      "name": "Jars of Clay",
+      "area": "Greenville, US",
+      "url": "http://mt5577:3000/api/artist/xgvLJbGZin4migADppFFzm/Jars+of+Clay"
+    },
+    {
+      "id": "go9aPr332DcY4fXpAZapFG",
+      "name": "Michael W. Smith",
+      "area": "Kenova, US",
+      "url": "http://mt5577:3000/api/artist/go9aPr332DcY4fXpAZapFG/Michael+W.+Smith"
+    },
+    {
+      "id": "6VFgCMBMNyXEs4SXhb61eM",
+      "name": "Jennifer Knapp",
+      "area": "Chanute, US",
+      "url": "http://mt5577:3000/api/artist/6VFgCMBMNyXEs4SXhb61eM/Jennifer+Knapp"
+    },
+    {
+      "id": "hRA9V7xdCL5RNLZJt4yGCc",
+      "name": "Delirious?",
+      "area": "GB",
+      "url": "http://mt5577:3000/api/artist/hRA9V7xdCL5RNLZJt4yGCc/Delirious%3F"
+    },
+    {
+      "id": "2NmyBnFAtvkbnczZJY6urG",
+      "name": "Rebecca St. James",
+      "area": "Sydney, US",
+      "url": "http://mt5577:3000/api/artist/2NmyBnFAtvkbnczZJY6urG/Rebecca+St.+James"
+    },
+    {
+      "id": "w5dgcyRotMyc8MsavQTTXh",
+      "name": "The W's",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/w5dgcyRotMyc8MsavQTTXh/The+W's"
+    },
+    {
+      "id": "13pobp9HdNghehFZXLzBBV",
+      "name": "Out of Eden",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/13pobp9HdNghehFZXLzBBV/Out+of+Eden"
+    },
+    {
+      "id": "e6P323AjSy1mY17uKm6dch",
+      "name": "Third Day",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/e6P323AjSy1mY17uKm6dch/Third+Day"
+    },
+    {
+      "id": "w7RbmLWATJDQ25BR9Kfj6Y",
+      "name": "Smalltown Poets",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/w7RbmLWATJDQ25BR9Kfj6Y/Smalltown+Poets"
+    },
+    {
+      "id": "un8nkrdRDNMxKZyV8aQG6E",
+      "name": "The O.C. Supertones",
+      "area": "Orange County, US",
+      "url": "http://mt5577:3000/api/artist/un8nkrdRDNMxKZyV8aQG6E/The+O.C.+Supertones"
+    },
+    {
+      "id": "nVZy6gxS687XVajShJuvkU",
+      "name": "Audio Adrenaline",
+      "area": "Grayson, US",
+      "url": "http://mt5577:3000/api/artist/nVZy6gxS687XVajShJuvkU/Audio+Adrenaline"
+    },
+    {
+      "id": "irHYbpBekChGX87y42w25X",
+      "name": "Big Tent Revival",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/irHYbpBekChGX87y42w25X/Big+Tent+Revival"
+    },
+    {
+      "id": "bwGLWd4euL9EJ37XqN7JXk",
+      "name": "VeggieTales",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/bwGLWd4euL9EJ37XqN7JXk/VeggieTales"
+    },
+    {
+      "id": "sgCnkZUhBNcspsWefaN7vh",
+      "name": "Scott Wesley Brown",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/sgCnkZUhBNcspsWefaN7vh/Scott+Wesley+Brown"
+    },
+    {
+      "id": "sYXGUa41aTA3TKQNipTF9T",
+      "name": "Point of Grace",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/sYXGUa41aTA3TKQNipTF9T/Point+of+Grace"
+    },
+    {
+      "id": "6CoGueNZLxSBv9uzVCp1Ch",
+      "name": "Jaci Velásquez",
+      "area": "Houston, US",
+      "url": "http://mt5577:3000/api/artist/6CoGueNZLxSBv9uzVCp1Ch/Jaci+Vel%C3%A1squez"
+    },
+    {
+      "id": "bYbGCdUzBu2THZAw9TcyVZ",
+      "name": "Avalon",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/bYbGCdUzBu2THZAw9TcyVZ/Avalon"
+    },
+    {
+      "id": "eV2pghfLNQVWyj2nq6pvVk",
+      "name": "Steven Curtis Chapman",
+      "area": "Paducah, US",
+      "url": "http://mt5577:3000/api/artist/eV2pghfLNQVWyj2nq6pvVk/Steven+Curtis+Chapman"
+    },
+    {
+      "id": "gipBJGDzyqX9QiKge6oUMd",
+      "name": "4Him",
+      "area": "Mobile, US",
+      "url": "http://mt5577:3000/api/artist/gipBJGDzyqX9QiKge6oUMd/4Him"
+    },
+    {
+      "id": "5gC3zRiq2yxbmJaPzzq85Q",
+      "name": "Amy Grant",
+      "area": "Augusta, US",
+      "url": "http://mt5577:3000/api/artist/5gC3zRiq2yxbmJaPzzq85Q/Amy+Grant"
+    },
+    {
+      "id": "iHa3iipwFQshZdqX1gfED7",
+      "name": "Crystal Lewis",
+      "area": "Corona, US",
+      "url": "http://mt5577:3000/api/artist/iHa3iipwFQshZdqX1gfED7/Crystal+Lewis"
+    },
+    {
+      "id": "5FgX6A13xqHeCzhpkw3wpU",
+      "name": "Rich Mullins",
+      "area": "Richmond, US",
+      "url": "http://mt5577:3000/api/artist/5FgX6A13xqHeCzhpkw3wpU/Rich+Mullins"
+    },
+    {
+      "id": "8wTWanMb5GiufoWY4zCK3J",
+      "name": "Bob Carlisle",
+      "area": "Santa Ana, US",
+      "url": "http://mt5577:3000/api/artist/8wTWanMb5GiufoWY4zCK3J/Bob+Carlisle"
+    },
+    {
+      "id": "8zHRxL6fKEZadZDiijNZ1i",
+      "name": "Michelle Tumes",
+      "area": "AU",
+      "url": "http://mt5577:3000/api/artist/8zHRxL6fKEZadZDiijNZ1i/Michelle+Tumes"
+    },
+    {
+      "id": "5zLEuoCe2peGG5HZ3QM7xT",
+      "name": "Chris Rice",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/5zLEuoCe2peGG5HZ3QM7xT/Chris+Rice"
+    },
+    {
+      "id": "wyFNEkykFSLivAYehupBgw",
+      "name": "Kathy Troccoli",
+      "area": "New York, US",
+      "url": "http://mt5577:3000/api/artist/wyFNEkykFSLivAYehupBgw/Kathy+Troccoli"
+    },
+    {
+      "id": "rRzXFyM7cW1gDu4tQQYzGw",
+      "name": "Bryan Duncan",
+      "area": "Riverside, US",
+      "url": "http://mt5577:3000/api/artist/rRzXFyM7cW1gDu4tQQYzGw/Bryan+Duncan"
+    },
+    {
+      "id": "epfkk7puiYKb5pmm91RkH9",
+      "name": "Carman",
+      "area": "Trenton, US",
+      "url": "http://mt5577:3000/api/artist/epfkk7puiYKb5pmm91RkH9/Carman"
+    },
+    {
+      "id": "iHeavFd4RZLT3sKPLPVE9g",
+      "name": "Moya Brennan",
+      "area": "Dublin, IE",
+      "url": "http://mt5577:3000/api/artist/iHeavFd4RZLT3sKPLPVE9g/Moya+Brennan"
+    },
+    {
+      "id": "cF6bFkrkUXi2JXB1bVpmN1",
+      "name": "Nichole Nordeman",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/cF6bFkrkUXi2JXB1bVpmN1/Nichole+Nordeman"
+    },
+    {
+      "id": "cLht2F8McfYTCa84fdPz5G",
+      "name": "Julius Magan",
+      "area": null,
+      "url": "http://mt5577:3000/api/artist/cLht2F8McfYTCa84fdPz5G/Julius+Magan"
+    }
+  ]
+}

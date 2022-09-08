@@ -1,0 +1,64 @@
+{
+  "id": "uZAhEAdVY6xaDyJJuvsaDU",
+  "title": "The Decline",
+  "items": [
+    {
+      "id": "9PJfJjUmBEevBeLLTUUu2a",
+      "title": "The Decline",
+      "artists": [
+        {
+          "id": "nfmBwqB8WffybEbWjUZ7y5",
+          "name": "NOFX",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/nfmBwqB8WffybEbWjUZ7y5/NOFX"
+        }
+      ],
+      "duration": 1100,
+      "status": "pending",
+      "mbid": "389b780e-8e57-4952-83ec-e9d55d533389",
+      "links": [
+        "https://musicbrainz.org/recording/389b780e-8e57-4952-83ec-e9d55d533389"
+      ],
+      "url": "http://mt5577:3000/api/album/9PJfJjUmBEevBeLLTUUu2a/The+Decline",
+      "visibility": "public"
+    },
+    {
+      "id": "htrJiWdj8ARw8ibGTAgTW3",
+      "title": "Clams Have Feelings Too",
+      "artists": [
+        {
+          "id": "nfmBwqB8WffybEbWjUZ7y5",
+          "name": "NOFX",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/nfmBwqB8WffybEbWjUZ7y5/NOFX"
+        }
+      ],
+      "duration": 143,
+      "status": "pending",
+      "mbid": "3897a163-5795-47ba-af56-473c6674be41",
+      "links": [
+        "https://musicbrainz.org/recording/3897a163-5795-47ba-af56-473c6674be41"
+      ],
+      "url": "http://mt5577:3000/api/album/htrJiWdj8ARw8ibGTAgTW3/Clams+Have+Feelings+Too",
+      "visibility": "public"
+    }
+  ],
+  "released": "1999-11-22T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "eaca685e-5b29-47fe-8b83-75ed10c38cba",
+  "links": [
+    "https://musicbrainz.org/album/eaca685e-5b29-47fe-8b83-75ed10c38cba",
+    "https://www.amazon.com/gp/product/B00003G1OG",
+    "https://www.discogs.com/release/757795"
+  ],
+  "url": "http://mt5577:3000/api/album/uZAhEAdVY6xaDyJJuvsaDU/The+Decline",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "nfmBwqB8WffybEbWjUZ7y5",
+      "name": "NOFX",
+      "area": "Los Angeles, US",
+      "url": "http://mt5577:3000/api/artist/nfmBwqB8WffybEbWjUZ7y5/NOFX"
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "7nCiC3bnf15RUmTkfGUJPh",
+  "title": "As the Eternal Cowboy",
+  "items": [
+    {
+      "id": "1uLPCUxK5Zg73FUuu4EuNj",
+      "title": "T.S.R. (This Shit Rules)",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 96,
+      "status": "pending",
+      "mbid": "cb2938aa-6b58-48f3-b86f-9bf82c416045",
+      "links": [
+        "https://musicbrainz.org/recording/cb2938aa-6b58-48f3-b86f-9bf82c416045"
+      ],
+      "url": "http://mt5577:3000/api/album/1uLPCUxK5Zg73FUuu4EuNj/T.S.R.+(This+Shit+Rules)",
+      "visibility": "public"
+    },
+    {
+      "id": "42RCt32u5xFAi8ujEKJpFH",
+      "title": "Cliché Guevara",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 129,
+      "status": "pending",
+      "mbid": "8bf3cfb6-4e41-40ac-96ad-ca3f3d9b8929",
+      "links": [
+        "https://musicbrainz.org/recording/8bf3cfb6-4e41-40ac-96ad-ca3f3d9b8929"
+      ],
+      "url": "http://mt5577:3000/api/album/42RCt32u5xFAi8ujEKJpFH/Clich%C3%A9+Guevara",
+      "visibility": "public"
+    },
+    {
+      "id": "c4AauSbwHMAg6YxdgMDupd",
+      "title": "Mutiny on the Electronic Bay",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 73,
+      "status": "pending",
+      "mbid": "2b817370-ef19-4e1b-bca8-cc048f216b3d",
+      "links": [
+        "https://musicbrainz.org/recording/2b817370-ef19-4e1b-bca8-cc048f216b3d"
+      ],
+      "url": "http://mt5577:3000/api/album/c4AauSbwHMAg6YxdgMDupd/Mutiny+on+the+Electronic+Bay",
+      "visibility": "public"
+    },
+    {
+      "id": "4qNX4BuPbHRPT74Rnycw8C",
+      "title": "Sink, Florida, Sink",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 161,
+      "status": "pending",
+      "mbid": "98a2805c-55d7-4cef-94b2-992b97d66c07",
+      "links": [
+        "https://musicbrainz.org/recording/98a2805c-55d7-4cef-94b2-992b97d66c07"
+      ],
+      "url": "http://mt5577:3000/api/album/4qNX4BuPbHRPT74Rnycw8C/Sink%2C+Florida%2C+Sink",
+      "visibility": "public"
+    },
+    {
+      "id": "5whJX9ReLmkdQWb7cyYJLC",
+      "title": "Slurring the Rhythms",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 163,
+      "status": "pending",
+      "mbid": "ced2f88e-39bc-414b-bef1-ea25ca9b3ba9",
+      "links": [
+        "https://musicbrainz.org/recording/ced2f88e-39bc-414b-bef1-ea25ca9b3ba9"
+      ],
+      "url": "http://mt5577:3000/api/album/5whJX9ReLmkdQWb7cyYJLC/Slurring+the+Rhythms",
+      "visibility": "public"
+    },
+    {
+      "id": "ioLsrYWDpcN4NVmhFY3yvP",
+      "title": "Rice and Bread",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 102,
+      "status": "pending",
+      "mbid": "4dc1bf51-3b18-4802-bf68-20f8952f53e1",
+      "links": [
+        "https://musicbrainz.org/recording/4dc1bf51-3b18-4802-bf68-20f8952f53e1"
+      ],
+      "url": "http://mt5577:3000/api/album/ioLsrYWDpcN4NVmhFY3yvP/Rice+and+Bread",
+      "visibility": "public"
+    },
+    {
+      "id": "cc4vHZyF9zTTxWQPFk8J2d",
+      "title": "A Brief Yet Triumphant Intermission",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 90,
+      "status": "pending",
+      "mbid": "2e0772e4-4138-43fe-ad0b-b1dc1263f0dc",
+      "links": [
+        "https://musicbrainz.org/recording/2e0772e4-4138-43fe-ad0b-b1dc1263f0dc"
+      ],
+      "url": "http://mt5577:3000/api/album/cc4vHZyF9zTTxWQPFk8J2d/A+Brief+Yet+Triumphant+Intermission",
+      "visibility": "public"
+    },
+    {
+      "id": "sVX9Rred8WFdN1cC8dM7km",
+      "title": "Unsubstantiated Rumors Are Good Enough for Me to Base My Life Upon",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 101,
+      "status": "pending",
+      "mbid": "cdb13b21-f4b0-4fc5-86e5-d0ca7c184819",
+      "links": [
+        "https://musicbrainz.org/recording/cdb13b21-f4b0-4fc5-86e5-d0ca7c184819"
+      ],
+      "url": "http://mt5577:3000/api/album/sVX9Rred8WFdN1cC8dM7km/Unsubstantiated+Rumors+Are+Good+Enough+for+Me+to+Base+My+Life+Upon",
+      "visibility": "public"
+    },
+    {
+      "id": "6Xo6uiXv5sdY4jaoN3C3Bg",
+      "title": "You Look Like I Need a Drink",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 134,
+      "status": "pending",
+      "mbid": "4ad2ca2d-5a12-4142-8371-e402b3401be8",
+      "links": [
+        "https://musicbrainz.org/recording/4ad2ca2d-5a12-4142-8371-e402b3401be8"
+      ],
+      "url": "http://mt5577:3000/api/album/6Xo6uiXv5sdY4jaoN3C3Bg/You+Look+Like+I+Need+a+Drink",
+      "visibility": "public"
+    },
+    {
+      "id": "8Hz97rrF1cjEpfFxuDoRWo",
+      "title": "Turn Those Clapping Hands Into Angry Balled Fists",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 286,
+      "status": "pending",
+      "mbid": "3251cdc2-25dd-4d6f-9ebd-8c241557b40e",
+      "links": [
+        "https://musicbrainz.org/recording/3251cdc2-25dd-4d6f-9ebd-8c241557b40e"
+      ],
+      "url": "http://mt5577:3000/api/album/8Hz97rrF1cjEpfFxuDoRWo/Turn+Those+Clapping+Hands+Into+Angry+Balled+Fists",
+      "visibility": "public"
+    },
+    {
+      "id": "rffbowebWCAMokbaXohcWT",
+      "title": "Cavalier Eternal",
+      "artists": [
+        {
+          "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+          "name": "Against Me!",
+          "area": "Gainesville, US",
+          "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+        }
+      ],
+      "duration": 172,
+      "status": "pending",
+      "mbid": "2064f0a4-1e33-42d4-badf-1342e55cc51f",
+      "links": [
+        "https://musicbrainz.org/recording/2064f0a4-1e33-42d4-badf-1342e55cc51f"
+      ],
+      "url": "http://mt5577:3000/api/album/rffbowebWCAMokbaXohcWT/Cavalier+Eternal",
+      "visibility": "public"
+    }
+  ],
+  "countries": ["XW"],
+  "mbid": "339bd2fb-98e2-4228-9aa8-1e7d4ea92a3e",
+  "links": [
+    "https://musicbrainz.org/album/339bd2fb-98e2-4228-9aa8-1e7d4ea92a3e",
+    "http://www.fatwreck.com/record/detail/667",
+    "https://againstme.bandcamp.com/album/as-the-eternal-cowboy-2"
+  ],
+  "url": "http://mt5577:3000/api/album/7nCiC3bnf15RUmTkfGUJPh/As+the+Eternal+Cowboy",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "f5ZsRn3BBaYMWDTXC5wf6h",
+      "name": "Against Me!",
+      "area": "Gainesville, US",
+      "url": "http://mt5577:3000/api/artist/f5ZsRn3BBaYMWDTXC5wf6h/Against+Me!"
+    }
+  ]
+}

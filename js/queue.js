@@ -1,7 +1,6 @@
 const sidebar = document.querySelector("#sidebar");
 const queuecontrols = sidebar.querySelector("#queue-controls");
 const queuelist = sidebar.querySelector("#queue");
-const itemQueueTemplate = document.querySelector("template#queue-item");
 
 const playing = document.querySelector("#playing");
 const play = document.querySelector("#play");
@@ -111,29 +110,11 @@ class Player {
 
     return obj;
   }
-  #buildItem(item) {
-    const keys = ["id", "title", "album", "duration"];
-    let obj = document.createElement("div", { is: "amplfr-item" });
-    keys.forEach((k) => {
-      if (!!item[k]) obj.dataset[k] = item[k];
-    });
-    const artists = Array.isArray(item.artists)
-      ? item.artists.map((a) => a.name || a)
-      : item.artists;
-    obj.dataset.artists = Array.isArray(artists) ? artists.join(", ") : artists;
-    obj.dataset.artistids = Array.isArray(item.artists)
-      ? item.artists.map((a) => a.id).join(" ")
-      : item.artistids;
-
-    // obj.id = `item-${item.id}`;
-    obj.title = `${item.title} - ${obj.dataset.artists}`;
-
-    return obj;
-  }
   #setupItem(item, insertAt = -1, alreadyBuilt = false) {
     let obj;
     if (alreadyBuilt) obj = item;
-    else obj = this.#buildItem(item);
+    // else obj = this.#buildItem(item);
+    else obj = new ItemElement(item);
 
     // if nothing is playing, promote() the first item in the Queue
     if (this.#playing.childElementCount === 0) {
@@ -165,16 +146,17 @@ class Player {
    * @returns
    */
   async #preload(e) {
-    let media = e.querySelector(`#play-${e.dataset.id}`);
+    const id = e.amplfrid;
+    let media = e.querySelector(`#play-${id}`);
     if (media) return;
 
     try {
       const media = document.createElement("audio");
       media.controls = false; // no native controls
       media.preload = "metadata";
-      media.id = `play-${e.dataset.id}`;
+      media.id = `play-${id}`;
 
-      const files = await this.#getJSON(`/api/${e.dataset.id}.files`);
+      const files = await this.#getJSON(`/api/${id}.files`);
       if (files && files.length)
         files.forEach((f) => {
           if (f.mime) {
@@ -322,26 +304,28 @@ class Player {
    */
   async add(position = -1, ...items) {
     if (items.length === 0 && position != null) {
-      items = position;
+      items = [position];
       position = -1;
     }
-    if (typeof items == "string") {
-      return this.add(await this.#getJSON(items));
+
+    // check if items need to be fluffed before continuing
+    if (items.length == 1) {
+      // maybe its an ID
+      if (typeof items[0] == "string")
+        return this.add(position, await this.#getJSON(`/api/${items[0]}.json`));
+      // if items is a nested array, flatten() it
+      if (Array.isArray(items[0])) items = flatten(items); // if its a nested array
     }
-    // if (!items.length) items = [items]; // just treat items as an array
-    if (items.length == 1) items = items[0]; // just treat items as an array
-    else items = flatten(items); // if its a nested array
 
     // if position is an existing (valid integer) number
-    if (position >= 0 && position < this.length) {
+    if (position >= 0 && position < this.length)
       // run through the items[] in reverse order
       items.reverse();
-    }
 
     await items.forEach(async (item, offset) => {
       // if item is just a URL
       if (typeof item == "string")
-        return await this.add(position + offset, item); // add all of the item.items
+        return await this.add(position + offset, item); // re-run add() to get the JSON
 
       //   if item is an already built ItemElement
       if (item instanceof ItemElement)

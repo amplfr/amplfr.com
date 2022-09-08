@@ -1,0 +1,164 @@
+{
+  "id": "7k7Ww57ZXTzZvCE3HUSu8F",
+  "title": "Train of Thought",
+  "items": [
+    {
+      "id": "rT7MNVySYqaMqgnvGEH58r",
+      "title": "As I Am",
+      "artists": [
+        {
+          "id": "giLcoJztrA8ojG8CcCVJ7m",
+          "name": "Dream Theater",
+          "area": null,
+          "url": "http://mt5577:3000/api/artist/giLcoJztrA8ojG8CcCVJ7m/Dream+Theater"
+        }
+      ],
+      "duration": 468,
+      "status": "pending",
+      "mbid": "b2c4b505-e4e2-4152-a712-e171316b9c83",
+      "links": [
+        "https://musicbrainz.org/recording/b2c4b505-e4e2-4152-a712-e171316b9c83"
+      ],
+      "url": "http://mt5577:3000/api/album/rT7MNVySYqaMqgnvGEH58r/As+I+Am",
+      "visibility": "public"
+    },
+    {
+      "id": "9NEmbkCtF47BjMThtk3ZSM",
+      "title": "This Dying Soul",
+      "artists": [
+        {
+          "id": "giLcoJztrA8ojG8CcCVJ7m",
+          "name": "Dream Theater",
+          "area": null,
+          "url": "http://mt5577:3000/api/artist/giLcoJztrA8ojG8CcCVJ7m/Dream+Theater"
+        }
+      ],
+      "duration": 687,
+      "status": "pending",
+      "mbid": "c5a51228-1f47-499b-930c-d4edfaef1d03",
+      "links": [
+        "https://musicbrainz.org/recording/c5a51228-1f47-499b-930c-d4edfaef1d03"
+      ],
+      "url": "http://mt5577:3000/api/album/9NEmbkCtF47BjMThtk3ZSM/This+Dying+Soul",
+      "visibility": "public"
+    },
+    {
+      "id": "4tEjEFCYk7tEWMUQWBdyxT",
+      "title": "Endless Sacrifice",
+      "artists": [
+        {
+          "id": "giLcoJztrA8ojG8CcCVJ7m",
+          "name": "Dream Theater",
+          "area": null,
+          "url": "http://mt5577:3000/api/artist/giLcoJztrA8ojG8CcCVJ7m/Dream+Theater"
+        }
+      ],
+      "duration": 684,
+      "status": "pending",
+      "isrc": ["USEE10340687", "USEE10701885"],
+      "mbid": "eeaf0ac2-683d-4f7a-bb13-36d720ed8a09",
+      "links": [
+        "https://musicbrainz.org/recording/eeaf0ac2-683d-4f7a-bb13-36d720ed8a09"
+      ],
+      "url": "http://mt5577:3000/api/album/4tEjEFCYk7tEWMUQWBdyxT/Endless+Sacrifice",
+      "visibility": "public"
+    },
+    {
+      "id": "aWnRpzFBj7MPg3nrYuhBxi",
+      "title": "Honor Thy Father",
+      "artists": [
+        {
+          "id": "giLcoJztrA8ojG8CcCVJ7m",
+          "name": "Dream Theater",
+          "area": null,
+          "url": "http://mt5577:3000/api/artist/giLcoJztrA8ojG8CcCVJ7m/Dream+Theater"
+        }
+      ],
+      "duration": 614,
+      "status": "pending",
+      "mbid": "e17b0bd3-bea0-4428-8171-8b3b79e6e086",
+      "links": [
+        "https://musicbrainz.org/recording/e17b0bd3-bea0-4428-8171-8b3b79e6e086"
+      ],
+      "url": "http://mt5577:3000/api/album/aWnRpzFBj7MPg3nrYuhBxi/Honor+Thy+Father",
+      "visibility": "public"
+    },
+    {
+      "id": "h67QzHc7pdDLkC2eJ5yysE",
+      "title": "Vacant",
+      "artists": [
+        {
+          "id": "giLcoJztrA8ojG8CcCVJ7m",
+          "name": "Dream Theater",
+          "area": null,
+          "url": "http://mt5577:3000/api/artist/giLcoJztrA8ojG8CcCVJ7m/Dream+Theater"
+        }
+      ],
+      "duration": 177,
+      "status": "pending",
+      "mbid": "2c3d8cae-3b40-4882-8b55-30a27c3b16c8",
+      "links": [
+        "https://musicbrainz.org/recording/2c3d8cae-3b40-4882-8b55-30a27c3b16c8"
+      ],
+      "url": "http://mt5577:3000/api/album/h67QzHc7pdDLkC2eJ5yysE/Vacant",
+      "visibility": "public"
+    },
+    {
+      "id": "pDSYo8fs6uC78VQDkZ4RxK",
+      "title": "Stream of Consciousness",
+      "artists": [
+        {
+          "id": "giLcoJztrA8ojG8CcCVJ7m",
+          "name": "Dream Theater",
+          "area": null,
+          "url": "http://mt5577:3000/api/artist/giLcoJztrA8ojG8CcCVJ7m/Dream+Theater"
+        }
+      ],
+      "duration": 676,
+      "status": "pending",
+      "mbid": "838b5a20-e73d-4fe0-9795-e3c2f23e8c57",
+      "links": [
+        "https://musicbrainz.org/recording/838b5a20-e73d-4fe0-9795-e3c2f23e8c57"
+      ],
+      "url": "http://mt5577:3000/api/album/pDSYo8fs6uC78VQDkZ4RxK/Stream+of+Consciousness",
+      "visibility": "public"
+    },
+    {
+      "id": "eE2ry2LnaFZNsVUpKjCVmx",
+      "title": "In the Name of God",
+      "artists": [
+        {
+          "id": "giLcoJztrA8ojG8CcCVJ7m",
+          "name": "Dream Theater",
+          "area": null,
+          "url": "http://mt5577:3000/api/artist/giLcoJztrA8ojG8CcCVJ7m/Dream+Theater"
+        }
+      ],
+      "duration": 854,
+      "status": "pending",
+      "mbid": "48eef5d6-9c8a-4e94-b9ff-8e2378d37944",
+      "links": [
+        "https://musicbrainz.org/recording/48eef5d6-9c8a-4e94-b9ff-8e2378d37944"
+      ],
+      "url": "http://mt5577:3000/api/album/eE2ry2LnaFZNsVUpKjCVmx/In+the+Name+of+God",
+      "visibility": "public"
+    }
+  ],
+  "released": "2002-12-31T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "33423d91-727a-4a4c-858f-0970813798dd",
+  "links": [
+    "https://musicbrainz.org/album/33423d91-727a-4a4c-858f-0970813798dd",
+    "https://www.discogs.com/release/2863452"
+  ],
+  "url": "http://mt5577:3000/api/album/7k7Ww57ZXTzZvCE3HUSu8F/Train+of+Thought",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "giLcoJztrA8ojG8CcCVJ7m",
+      "name": "Dream Theater",
+      "area": null,
+      "url": "http://mt5577:3000/api/artist/giLcoJztrA8ojG8CcCVJ7m/Dream+Theater"
+    }
+  ]
+}

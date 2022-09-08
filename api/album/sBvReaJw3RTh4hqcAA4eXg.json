@@ -1,0 +1,303 @@
+{
+  "id": "sBvReaJw3RTh4hqcAA4eXg",
+  "title": "Dookie",
+  "items": [
+    {
+      "id": "mWSzrnHUbm4DDmCizS67F2",
+      "title": "Burnout",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 127,
+      "status": "pending",
+      "mbid": "d6adad85-e169-4984-b61d-aa6188652e61",
+      "links": [
+        "https://musicbrainz.org/recording/d6adad85-e169-4984-b61d-aa6188652e61"
+      ],
+      "url": "http://mt5577:3000/api/album/mWSzrnHUbm4DDmCizS67F2/Burnout",
+      "visibility": "public"
+    },
+    {
+      "id": "cRzUt7dWNJ2VfvRZ9cvyYE",
+      "title": "Having a Blast",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 164,
+      "status": "pending",
+      "mbid": "9ff23ede-150c-4e7d-b134-589aec8d2cd0",
+      "links": [
+        "https://musicbrainz.org/recording/9ff23ede-150c-4e7d-b134-589aec8d2cd0"
+      ],
+      "url": "http://mt5577:3000/api/album/cRzUt7dWNJ2VfvRZ9cvyYE/Having+a+Blast",
+      "visibility": "public"
+    },
+    {
+      "id": "qYfVhWURpNTHH8xXgFBV5o",
+      "title": "Chump",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 174,
+      "status": "pending",
+      "mbid": "21009808-c6b2-4148-b74e-2560cbd2cc7b",
+      "links": [
+        "https://musicbrainz.org/recording/21009808-c6b2-4148-b74e-2560cbd2cc7b"
+      ],
+      "url": "http://mt5577:3000/api/album/qYfVhWURpNTHH8xXgFBV5o/Chump",
+      "visibility": "public"
+    },
+    {
+      "id": "8rgp4CTim6ArxrNKeUABMN",
+      "title": "Longview",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 239,
+      "status": "pending",
+      "mbid": "3d81eebf-b775-4f02-948e-1d7aaf1348fe",
+      "links": [
+        "https://musicbrainz.org/recording/3d81eebf-b775-4f02-948e-1d7aaf1348fe"
+      ],
+      "url": "http://mt5577:3000/api/album/8rgp4CTim6ArxrNKeUABMN/Longview",
+      "visibility": "public"
+    },
+    {
+      "id": "cdcZr86PwwBuBnxRLBYtv4",
+      "title": "Welcome to Paradise",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 224,
+      "status": "pending",
+      "mbid": "9b02e608-3783-4f20-b74d-5b65c05bec75",
+      "links": [
+        "https://musicbrainz.org/recording/9b02e608-3783-4f20-b74d-5b65c05bec75"
+      ],
+      "url": "http://mt5577:3000/api/album/cdcZr86PwwBuBnxRLBYtv4/Welcome+to+Paradise",
+      "visibility": "public"
+    },
+    {
+      "id": "6nkS9UM2ecCNdwk9LRZPLt",
+      "title": "Pulling Teeth",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 150,
+      "status": "pending",
+      "mbid": "2ff716a8-13c2-4c73-84d6-40864fbc6187",
+      "links": [
+        "https://musicbrainz.org/recording/2ff716a8-13c2-4c73-84d6-40864fbc6187"
+      ],
+      "url": "http://mt5577:3000/api/album/6nkS9UM2ecCNdwk9LRZPLt/Pulling+Teeth",
+      "visibility": "public"
+    },
+    {
+      "id": "5D2PsfBsTikxaXDNLyWQAp",
+      "title": "Basket Case",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 183,
+      "status": "pending",
+      "mbid": "8fa8cca0-302c-456b-9f97-a1f5039bc585",
+      "links": [
+        "https://musicbrainz.org/recording/8fa8cca0-302c-456b-9f97-a1f5039bc585"
+      ],
+      "url": "http://mt5577:3000/api/album/5D2PsfBsTikxaXDNLyWQAp/Basket+Case",
+      "visibility": "public"
+    },
+    {
+      "id": "emNYZvY9iL2nVGYjx3rmgN",
+      "title": "She",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 134,
+      "status": "pending",
+      "mbid": "df5e3ff8-2810-4c67-86c0-1d336d11b0fb",
+      "links": [
+        "https://musicbrainz.org/recording/df5e3ff8-2810-4c67-86c0-1d336d11b0fb"
+      ],
+      "url": "http://mt5577:3000/api/album/emNYZvY9iL2nVGYjx3rmgN/She",
+      "visibility": "public"
+    },
+    {
+      "id": "sqAyKjkbwEecSptnDBUkwG",
+      "title": "Sassafras Roots",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 157,
+      "status": "pending",
+      "mbid": "0f7b8db1-7e4f-4aa4-9b45-d338aa8af3b1",
+      "links": [
+        "https://musicbrainz.org/recording/0f7b8db1-7e4f-4aa4-9b45-d338aa8af3b1"
+      ],
+      "url": "http://mt5577:3000/api/album/sqAyKjkbwEecSptnDBUkwG/Sassafras+Roots",
+      "visibility": "public"
+    },
+    {
+      "id": "dB2kiT16kYKL6zLPMSALhj",
+      "title": "When I Come Around",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 178,
+      "status": "pending",
+      "mbid": "dea4e3f5-352b-43fc-9949-c6abdd49b8d3",
+      "links": [
+        "https://musicbrainz.org/recording/dea4e3f5-352b-43fc-9949-c6abdd49b8d3"
+      ],
+      "url": "http://mt5577:3000/api/album/dB2kiT16kYKL6zLPMSALhj/When+I+Come+Around",
+      "visibility": "public"
+    },
+    {
+      "id": "xtcnzJxWi9PawuLCcRXnA3",
+      "title": "Coming Clean",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 94,
+      "status": "pending",
+      "mbid": "0b36f114-1ba5-4165-a0fa-550c0e2ec81d",
+      "links": [
+        "https://musicbrainz.org/recording/0b36f114-1ba5-4165-a0fa-550c0e2ec81d"
+      ],
+      "url": "http://mt5577:3000/api/album/xtcnzJxWi9PawuLCcRXnA3/Coming+Clean",
+      "visibility": "public"
+    },
+    {
+      "id": "nM5eEycTfsZjYRfTPzMUjJ",
+      "title": "Emenius Sleepus",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 103,
+      "status": "pending",
+      "mbid": "840e188c-5794-4278-8559-0c02c8045329",
+      "links": [
+        "https://musicbrainz.org/recording/840e188c-5794-4278-8559-0c02c8045329"
+      ],
+      "url": "http://mt5577:3000/api/album/nM5eEycTfsZjYRfTPzMUjJ/Emenius+Sleepus",
+      "visibility": "public"
+    },
+    {
+      "id": "sbZ7ebXbaSQDT43BtQHMtg",
+      "title": "In the End",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 106,
+      "status": "pending",
+      "mbid": "3cf0c1cc-7f8a-482a-ad42-ef51ae98c337",
+      "links": [
+        "https://musicbrainz.org/recording/3cf0c1cc-7f8a-482a-ad42-ef51ae98c337"
+      ],
+      "url": "http://mt5577:3000/api/album/sbZ7ebXbaSQDT43BtQHMtg/In+the+End",
+      "visibility": "public"
+    },
+    {
+      "id": "iW8kMX66PujmHhxtMJ8riD",
+      "title": "F.O.D.",
+      "artists": [
+        {
+          "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+          "name": "Green Day",
+          "area": "Berkeley, US",
+          "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+        }
+      ],
+      "duration": 248,
+      "status": "pending",
+      "mbid": "2ee03fed-a751-4939-a58e-ee8a78c221ab",
+      "links": [
+        "https://musicbrainz.org/recording/2ee03fed-a751-4939-a58e-ee8a78c221ab"
+      ],
+      "url": "http://mt5577:3000/api/album/iW8kMX66PujmHhxtMJ8riD/F.O.D.",
+      "visibility": "public"
+    }
+  ],
+  "released": "1993-12-31T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "d7830834-763c-4223-8a82-678cc0c4e7f1",
+  "links": [
+    "https://musicbrainz.org/album/d7830834-763c-4223-8a82-678cc0c4e7f1",
+    "https://www.discogs.com/release/3185549"
+  ],
+  "url": "http://mt5577:3000/api/album/sBvReaJw3RTh4hqcAA4eXg/Dookie",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "pdL6xJTDZoZLbEt7iY8Ur3",
+      "name": "Green Day",
+      "area": "Berkeley, US",
+      "url": "http://mt5577:3000/api/artist/pdL6xJTDZoZLbEt7iY8Ur3/Green+Day"
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "qd8ifrabnhcpR7BQzhnp2B",
+  "title": "C'mon C'mon",
+  "items": [
+    {
+      "id": "te7MpTTyD33R48aQcaEM5L",
+      "title": "C’mon C’mon",
+      "artists": [
+        {
+          "id": "9LMMcSxSY7UGdKaJfLT3em",
+          "name": "The Von Bondies",
+          "area": "Detroit, US",
+          "url": "http://mt5577:3000/api/artist/9LMMcSxSY7UGdKaJfLT3em/The+Von+Bondies"
+        }
+      ],
+      "duration": 135,
+      "status": "pending",
+      "mbid": "6e5f1729-79cd-4ad9-a778-9f021e3f095c",
+      "links": [
+        "https://musicbrainz.org/recording/6e5f1729-79cd-4ad9-a778-9f021e3f095c"
+      ],
+      "url": "http://mt5577:3000/api/album/te7MpTTyD33R48aQcaEM5L/C%E2%80%99mon+C%E2%80%99mon",
+      "visibility": "public"
+    },
+    {
+      "id": "e6JYtF1wuMmopzmnzXK6km",
+      "title": "Love Is Like a Drug",
+      "artists": [
+        {
+          "id": "9LMMcSxSY7UGdKaJfLT3em",
+          "name": "The Von Bondies",
+          "area": "Detroit, US",
+          "url": "http://mt5577:3000/api/artist/9LMMcSxSY7UGdKaJfLT3em/The+Von+Bondies"
+        }
+      ],
+      "duration": 172,
+      "status": "pending",
+      "mbid": "930fba74-476e-4f5b-8129-86c25e9baab0",
+      "links": [
+        "https://musicbrainz.org/recording/930fba74-476e-4f5b-8129-86c25e9baab0"
+      ],
+      "url": "http://mt5577:3000/api/album/e6JYtF1wuMmopzmnzXK6km/Love+Is+Like+a+Drug",
+      "visibility": "public"
+    },
+    {
+      "id": "8uSRpGfG8WPiBYn8SZznxP",
+      "title": "Heartlessly Hopeless",
+      "artists": [
+        {
+          "id": "9LMMcSxSY7UGdKaJfLT3em",
+          "name": "The Von Bondies",
+          "area": "Detroit, US",
+          "url": "http://mt5577:3000/api/artist/9LMMcSxSY7UGdKaJfLT3em/The+Von+Bondies"
+        }
+      ],
+      "duration": 179,
+      "status": "pending",
+      "mbid": "240b1de4-ad88-422d-a5fd-ba19c9ff2009",
+      "links": [
+        "https://musicbrainz.org/recording/240b1de4-ad88-422d-a5fd-ba19c9ff2009"
+      ],
+      "url": "http://mt5577:3000/api/album/8uSRpGfG8WPiBYn8SZznxP/Heartlessly+Hopeless",
+      "visibility": "public"
+    }
+  ],
+  "released": "2004-03-08T00:00:00.000Z",
+  "countries": ["XE"],
+  "mbid": "c40cc010-f34e-4695-b2db-5e0655a99e01",
+  "links": [
+    "https://musicbrainz.org/album/c40cc010-f34e-4695-b2db-5e0655a99e01",
+    "https://www.amazon.co.uk/gp/product/B0001BS2T4",
+    "https://www.discogs.com/release/8871712"
+  ],
+  "url": "http://mt5577:3000/api/album/qd8ifrabnhcpR7BQzhnp2B/C'mon+C'mon",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "9LMMcSxSY7UGdKaJfLT3em",
+      "name": "The Von Bondies",
+      "area": "Detroit, US",
+      "url": "http://mt5577:3000/api/artist/9LMMcSxSY7UGdKaJfLT3em/The+Von+Bondies"
+    }
+  ]
+}

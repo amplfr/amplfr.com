@@ -1,7 +1,6 @@
-.container {
-}
-.tile {
-  /* display: inline-block; */
+.container a,
+.tile,
+.tile div {
   padding: 0px;
   margin: 0px;
   position: static;
@@ -11,124 +10,163 @@
   background-position: center;
   background-size: cover;
   overflow: hidden;
-}
-.tile {
-  width: 200px;
-  height: 200px;
-}
-.tile1x2 {
-  grid-row: span 2;
-  height: 400px;
-  width: 200px;
-}
-.tile2x1 {
-  height: 200px;
-  width: 400px;
-}
-.tile2x2 {
-  width: 400px;
-  height: 400px;
-}
-.tile3x2 {
-  width: 400px;
-  height: 266px;
+  font-size: 2em;
+  transition: 0.25s ease;
 }
 
-@media (min-width: 0px) {
-  .container {
-    max-width: 100%;
-  }
-  .tile {
-    width: 100vw;
-    height: 100vw;
-  }
-  .tile1x2 {
-    width: 100vw;
-    height: 200vw;
-  }
-  .tile2x1 {
-    width: 100vw;
-    height: 50vw;
-  }
-  .tile3x2 {
-    width: 100vw;
-    height: 75vw;
-  }
+.container {
+  grid-template-columns: repeat(auto-fill, calc(50vw - 32px));
+  width: calc(100vw - 32px);
+  max-width: calc(100vw - 64px);
+  margin: 0px auto;
+  display: grid;
+  grid-auto-flow: row dense;
+  overflow: hidden;
 }
-@media (max-width: 450px) {
-  .container {
-    max-width: 100%;
-  }
-  .tile {
-    width: 50vw;
-    height: 50vw;
-  }
-  .tile1x2 {
-    width: 50vw;
-    height: 100vw;
-  }
-  .tile2x1 {
-    width: 100vw;
-    height: 50vw;
-  }
-  .tile2x2 {
-    width: 100vw;
-    height: 100vw;
-  }
-  .tile3x2 {
-    width: 100vw;
-    height: 75vw;
-  }
+.container .title {
+  overflow: hidden;
 }
-@media (min-width: 450px) {
+.container a,
+.tile,
+.tile div {
+  width: 50vw;
+  height: 50vw;
+  width: calc(50vw - 32px);
+  height: calc(50vw - 32px);
+}
+.tile.tile1x2,
+.tile.tile1x2 div,
+.tile1x2 {
+  grid-row: span 2;
+  width: calc(50vw - 32px);
+  height: calc(100vw - 64px);
+}
+.tile.tile2x1,
+.tile.tile2x1 div,
+.tile2x1 {
+  width: calc(100vw - 128px);
+  height: calc(50vw - 128px);
+}
+.tile.tile2x2,
+.tile.tile2x2 div,
+.tile2x2 {
+  width: calc(100vw - 64px);
+  height: calc(100vw - 64px);
+  grid-column: span 2;
+}
+.tile.tile3x2,
+.tile.tile3x2 div,
+.tile3x2 {
+  width: calc(100vw - 64px);
+  height: calc(75vw - 64px);
+  grid-row-end: span 1;
+  grid-column-end: span 2;
+}
+
+.tile *[is="amplfr-album"] .artwork {
+  width: 100%;
+  height: 100%;
+}
+.tile .large {
+  width: 100%;
+  /* height: fit-content; */
+  min-height: 400px;
+  aspect-ratio: 1;
+  position: absolute;
+  top: auto;
+  left: 0px;
+  display: block;
+}
+.tile .large * {
+  width: min-content;
+  height: min-content;
+  filter: unset;
+  z-index: 2;
+  backdrop-filter: blur(5px) contrast(0.8);
+}
+.tile .large .artwork {
+  height: 400px;
+  width: 400px;
+  /* float: left; */
+  filter: blur(4px);
+  /* display: none; */
+  position: fixed;
+  top: 0px;
+  z-index: 1;
+  backdrop-filter: unset;
+}
+
+@media (min-width: 464px) {
   .container {
+    grid-template-columns: repeat(auto-fill, 200px);
     max-width: 400px;
   }
+  .container a,
   .tile {
     width: 200px;
     height: 200px;
   }
+  .tile.tile1x2,
+  .tile.tile1x2 div,
   .tile1x2 {
     width: 200px;
     height: 400px;
   }
+  .tile.tile2x1,
+  .tile.tile2x1 div,
   .tile2x1 {
     width: 400px;
     height: 200px;
   }
+  .tile.tile2x2,
+  .tile.tile2x2 div,
   .tile2x2 {
     width: 400px;
     height: 400px;
+    grid-area: span 2 / -3 / span 2 / -1;
   }
+  .tile.tile3x2,
+  .tile.tile3x2 div,
   .tile3x2 {
+    grid-row-end: span 1;
+    grid-column-end: span 2;
     width: 400px;
     height: 266px;
   }
 }
-@media (min-width: 650px) {
+
+@media (min-width: 664px) {
   .container {
     max-width: 600px;
   }
+  .tile.tile3x2,
+  .tile.tile3x2 div,
   .tile3x2 {
     width: 600px;
     height: 400px;
+    grid-row-end: span 2;
+    grid-column-end: span 3;
   }
 }
-@media (min-width: 850px) {
+
+@media (min-width: 928px) {
   .container {
     max-width: 800px;
   }
 }
-@media (min-width: 1250px) {
+
+@media (min-width: 1340px) {
   .container {
     max-width: 1200px;
   }
 }
+
 @media (min-width: 2250px) {
   .container {
     max-width: 1800px;
   }
 }
+
 @media (min-width: 2850px) {
   .container {
     max-width: 2400px;

@@ -1,0 +1,220 @@
+{
+  "id": "v62YuifgEzjp2NYfmaJrXB",
+  "title": "Dark Side of the Moon",
+  "items": [
+    {
+      "id": "9YtTm4DegJjXRrbx8ZnNwR",
+      "title": "Speak to Me",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 72,
+      "status": "pending",
+      "mbid": "b36c35e4-8e44-44ad-b006-6a3a2e3409ab",
+      "links": [
+        "https://musicbrainz.org/recording/b36c35e4-8e44-44ad-b006-6a3a2e3409ab"
+      ],
+      "url": "http://mt5577:3000/api/album/9YtTm4DegJjXRrbx8ZnNwR/Speak+to+Me",
+      "visibility": "public"
+    },
+    {
+      "id": "cbAm7KjBYCafLtudvogSkZ",
+      "title": "Breathe",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 165,
+      "status": "pending",
+      "mbid": "deeb5508-e86c-4a6b-956c-acf61fefed03",
+      "links": [
+        "https://musicbrainz.org/recording/deeb5508-e86c-4a6b-956c-acf61fefed03"
+      ],
+      "url": "http://mt5577:3000/api/album/cbAm7KjBYCafLtudvogSkZ/Breathe",
+      "visibility": "public"
+    },
+    {
+      "id": "qGU7dNXpnzQmtvYC6eWWZA",
+      "title": "On the Run",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 223,
+      "status": "pending",
+      "mbid": "c8e568a2-1e2f-4172-aa5f-4b2403e6bdee",
+      "links": [
+        "https://musicbrainz.org/recording/c8e568a2-1e2f-4172-aa5f-4b2403e6bdee"
+      ],
+      "url": "http://mt5577:3000/api/album/qGU7dNXpnzQmtvYC6eWWZA/On+the+Run",
+      "visibility": "public"
+    },
+    {
+      "id": "4DNU6EHDb5urkvcGBu3RdC",
+      "title": "Time",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 416,
+      "status": "pending",
+      "mbid": "903c42b2-465a-4be0-9793-9f813b43daa0",
+      "links": [
+        "https://musicbrainz.org/recording/903c42b2-465a-4be0-9793-9f813b43daa0"
+      ],
+      "url": "http://mt5577:3000/api/album/4DNU6EHDb5urkvcGBu3RdC/Time",
+      "visibility": "public"
+    },
+    {
+      "id": "1g9ZFfPcAx8BQ8GrWLT74m",
+      "title": "The Great Gig in the Sky",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 291,
+      "status": "pending",
+      "mbid": "2c2b3907-91be-4bc5-acf1-9a1b6f2047e6",
+      "links": [
+        "https://musicbrainz.org/recording/2c2b3907-91be-4bc5-acf1-9a1b6f2047e6"
+      ],
+      "url": "http://mt5577:3000/api/album/1g9ZFfPcAx8BQ8GrWLT74m/The+Great+Gig+in+the+Sky",
+      "visibility": "public"
+    },
+    {
+      "id": "hcD8uAh3v4XBSucqbh5Nhq",
+      "title": "Money",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 403,
+      "status": "pending",
+      "mbid": "269f63b1-f4e1-46c7-aee2-d39b5782403c",
+      "links": [
+        "https://musicbrainz.org/recording/269f63b1-f4e1-46c7-aee2-d39b5782403c"
+      ],
+      "url": "http://mt5577:3000/api/album/hcD8uAh3v4XBSucqbh5Nhq/Money",
+      "visibility": "public"
+    },
+    {
+      "id": "28g2y6sqUMmmezueoNuitP",
+      "title": "Us and Them",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 455,
+      "status": "pending",
+      "mbid": "4e49b272-afa7-4911-af0b-bd3cc7ec6d47",
+      "links": [
+        "https://musicbrainz.org/recording/4e49b272-afa7-4911-af0b-bd3cc7ec6d47"
+      ],
+      "url": "http://mt5577:3000/api/album/28g2y6sqUMmmezueoNuitP/Us+and+Them",
+      "visibility": "public"
+    },
+    {
+      "id": "vcKm2GMiB3pR48RRzCEJMQ",
+      "title": "Any Colour You Like",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 206,
+      "status": "pending",
+      "mbid": "2a4e6739-e6b1-40b4-8434-011e194a2f7b",
+      "links": [
+        "https://musicbrainz.org/recording/2a4e6739-e6b1-40b4-8434-011e194a2f7b"
+      ],
+      "url": "http://mt5577:3000/api/album/vcKm2GMiB3pR48RRzCEJMQ/Any+Colour+You+Like",
+      "visibility": "public"
+    },
+    {
+      "id": "4yeNMsBp1nVB1gMGY6onm8",
+      "title": "Brain Damage",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 232,
+      "status": "pending",
+      "mbid": "2c890827-b176-4096-bc4b-c3c71a6675f4",
+      "links": [
+        "https://musicbrainz.org/recording/2c890827-b176-4096-bc4b-c3c71a6675f4"
+      ],
+      "url": "http://mt5577:3000/api/album/4yeNMsBp1nVB1gMGY6onm8/Brain+Damage",
+      "visibility": "public"
+    },
+    {
+      "id": "irC6CKMq6kTBSTfKNqYrgP",
+      "title": "Eclipse",
+      "artists": [
+        {
+          "id": "7icbxe6WoN5e4iyNUU77qE",
+          "name": "Pink Floyd",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+        }
+      ],
+      "duration": 127,
+      "status": "pending",
+      "mbid": "f30c91e4-1e50-48aa-a588-ae5cafaf1259",
+      "links": [
+        "https://musicbrainz.org/recording/f30c91e4-1e50-48aa-a588-ae5cafaf1259"
+      ],
+      "url": "http://mt5577:3000/api/album/irC6CKMq6kTBSTfKNqYrgP/Eclipse",
+      "visibility": "public"
+    }
+  ],
+  "mbid": "eb8cf4db-003f-49d4-8dbd-fbaa41da8d3d",
+  "links": [
+    "https://musicbrainz.org/album/eb8cf4db-003f-49d4-8dbd-fbaa41da8d3d"
+  ],
+  "url": "http://mt5577:3000/api/album/v62YuifgEzjp2NYfmaJrXB/Dark+Side+of+the+Moon",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "7icbxe6WoN5e4iyNUU77qE",
+      "name": "Pink Floyd",
+      "area": "London, GB",
+      "url": "http://mt5577:3000/api/artist/7icbxe6WoN5e4iyNUU77qE/Pink+Floyd"
+    }
+  ]
+}
