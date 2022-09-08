@@ -1,0 +1,385 @@
+{
+  "id": "sXPP2k7DpcpCvxQzj1ebDe",
+  "title": "From Under the Cork Tree",
+  "items": [
+    {
+      "id": "9EEjPFU2Ru6riYXRY5Nick",
+      "title": "Our Lawyer Made Us Change the Name of This Song So We Wouldn’t Get Sued",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 189,
+      "status": "pending",
+      "mbid": "bc33ca0d-8a71-4bbc-82e5-37ae7ae93188",
+      "links": [
+        "https://musicbrainz.org/recording/bc33ca0d-8a71-4bbc-82e5-37ae7ae93188"
+      ],
+      "url": "http://mt5577:3000/api/album/9EEjPFU2Ru6riYXRY5Nick/Our+Lawyer+Made+Us+Change+the+Name+of+This+Song+So+We+Wouldn%E2%80%99t+Get+Sued",
+      "visibility": "public"
+    },
+    {
+      "id": "wQugiQw9FscJUEAxSz4tJR",
+      "title": "Of All the Gin Joints in All the World",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 191,
+      "status": "pending",
+      "mbid": "7e89d271-5e3e-49be-ac86-1714be06fed4",
+      "links": [
+        "https://musicbrainz.org/recording/7e89d271-5e3e-49be-ac86-1714be06fed4"
+      ],
+      "url": "http://mt5577:3000/api/album/wQugiQw9FscJUEAxSz4tJR/Of+All+the+Gin+Joints+in+All+the+World",
+      "visibility": "public"
+    },
+    {
+      "id": "byaExrSbJttioxv17aNHbn",
+      "title": "Dance, Dance",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 180,
+      "status": "pending",
+      "isrc": ["USDJ20500174", "USUM70504012"],
+      "mbid": "786e1009-2663-49e0-873d-f0cf06f51a25",
+      "links": [
+        "https://musicbrainz.org/recording/786e1009-2663-49e0-873d-f0cf06f51a25"
+      ],
+      "url": "http://mt5577:3000/api/album/byaExrSbJttioxv17aNHbn/Dance%2C+Dance",
+      "visibility": "public"
+    },
+    {
+      "id": "7sCT2Xe9f61nTPZPQa6FMw",
+      "title": "Sugar, We’re Goin Down",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 229,
+      "status": "pending",
+      "mbid": "51e56798-1613-48ed-a156-0a4f38bfae8c",
+      "links": [
+        "https://musicbrainz.org/recording/51e56798-1613-48ed-a156-0a4f38bfae8c"
+      ],
+      "url": "http://mt5577:3000/api/album/7sCT2Xe9f61nTPZPQa6FMw/Sugar%2C+We%E2%80%99re+Goin+Down",
+      "visibility": "public"
+    },
+    {
+      "id": "jwv4ceP2dUWLH8Lh7UUDkS",
+      "title": "Nobody Puts Baby in the Corner",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 201,
+      "status": "pending",
+      "mbid": "ec9192fa-3b45-4b50-b610-3a7f22b6bb1b",
+      "links": [
+        "https://musicbrainz.org/recording/ec9192fa-3b45-4b50-b610-3a7f22b6bb1b"
+      ],
+      "url": "http://mt5577:3000/api/album/jwv4ceP2dUWLH8Lh7UUDkS/Nobody+Puts+Baby+in+the+Corner",
+      "visibility": "public"
+    },
+    {
+      "id": "i43bRQAMdcDf46SoLvuqxP",
+      "title": "I’ve Got a Dark Alley and a Bad Idea That Says You Should Shut Your Mouth (Summer Song)",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 191,
+      "status": "pending",
+      "mbid": "9b66012f-efa7-470a-a08f-22e24c537164",
+      "links": [
+        "https://musicbrainz.org/recording/9b66012f-efa7-470a-a08f-22e24c537164"
+      ],
+      "url": "http://mt5577:3000/api/album/i43bRQAMdcDf46SoLvuqxP/I%E2%80%99ve+Got+a+Dark+Alley+and+a+Bad+Idea+That+Says+You+Should+Shut+Your+Mouth+(Summer+Song)",
+      "visibility": "public"
+    },
+    {
+      "id": "u4xs1dFkm5yz6YJZo5yHbL",
+      "title": "7 Minutes in Heaven (Atavan Halen)",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 183,
+      "status": "pending",
+      "mbid": "9d0b1979-14a0-4cd0-b63f-004821217f06",
+      "links": [
+        "https://musicbrainz.org/recording/9d0b1979-14a0-4cd0-b63f-004821217f06"
+      ],
+      "url": "http://mt5577:3000/api/album/u4xs1dFkm5yz6YJZo5yHbL/7+Minutes+in+Heaven+(Atavan+Halen)",
+      "visibility": "public"
+    },
+    {
+      "id": "5XDeFytLmKB67eAKoUvXoQ",
+      "title": "Sophomore Slump or Comeback of the Year",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 204,
+      "status": "pending",
+      "mbid": "d09f2c66-ab21-4a02-be66-6b2350d60cb8",
+      "links": [
+        "https://musicbrainz.org/recording/d09f2c66-ab21-4a02-be66-6b2350d60cb8"
+      ],
+      "url": "http://mt5577:3000/api/album/5XDeFytLmKB67eAKoUvXoQ/Sophomore+Slump+or+Comeback+of+the+Year",
+      "visibility": "public"
+    },
+    {
+      "id": "r8rRjEy3SRY9zVXKwfQ6x3",
+      "title": "Champagne for My Real Friends, Real Pain for My Sham Friends",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 204,
+      "status": "pending",
+      "mbid": "f2fcc5f2-6740-495b-82bd-5c2e7392788d",
+      "links": [
+        "https://musicbrainz.org/recording/f2fcc5f2-6740-495b-82bd-5c2e7392788d"
+      ],
+      "url": "http://mt5577:3000/api/album/r8rRjEy3SRY9zVXKwfQ6x3/Champagne+for+My+Real+Friends%2C+Real+Pain+for+My+Sham+Friends",
+      "visibility": "public"
+    },
+    {
+      "id": "6mbFsbmHm9Lhop4y8h1CuU",
+      "title": "I Slept With Someone in Fall Out Boy and All I Got Was This Stupid Song Written About Me",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 211,
+      "status": "pending",
+      "mbid": "e2631e49-7fd8-4531-8bdd-e3787148443c",
+      "links": [
+        "https://musicbrainz.org/recording/e2631e49-7fd8-4531-8bdd-e3787148443c"
+      ],
+      "url": "http://mt5577:3000/api/album/6mbFsbmHm9Lhop4y8h1CuU/I+Slept+With+Someone+in+Fall+Out+Boy+and+All+I+Got+Was+This+Stupid+Song+Written+About+Me",
+      "visibility": "public"
+    },
+    {
+      "id": "cRhEhVr7xFV99in8geYYj4",
+      "title": "A Little Less Sixteen Candles, a Little More “Touch Me”",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 169,
+      "status": "pending",
+      "mbid": "cb1bc23b-2904-42dd-aee6-6d12417e3cdc",
+      "links": [
+        "https://musicbrainz.org/recording/cb1bc23b-2904-42dd-aee6-6d12417e3cdc"
+      ],
+      "url": "http://mt5577:3000/api/album/cRhEhVr7xFV99in8geYYj4/A+Little+Less+Sixteen+Candles%2C+a+Little+More+%E2%80%9CTouch+Me%E2%80%9D",
+      "visibility": "public"
+    },
+    {
+      "id": "pSzJFJJuGzzYKDVVu8FBcU",
+      "title": "Get Busy Living or Get Busy Dying (Do Your Part to Save the Scene and Stop Going to Shows)",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 208,
+      "status": "pending",
+      "mbid": "e1dbec75-cbc6-4f0b-b735-7e1ca31b2866",
+      "links": [
+        "https://musicbrainz.org/recording/e1dbec75-cbc6-4f0b-b735-7e1ca31b2866"
+      ],
+      "url": "http://mt5577:3000/api/album/pSzJFJJuGzzYKDVVu8FBcU/Get+Busy+Living+or+Get+Busy+Dying+(Do+Your+Part+to+Save+the+Scene+and+Stop+Going+to+Shows)",
+      "visibility": "public"
+    },
+    {
+      "id": "t1zXAEJxMyEKDMzHMFZzbn",
+      "title": "XO",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 221,
+      "status": "pending",
+      "mbid": "9f78db11-6c80-4311-ba95-c278625e836e",
+      "links": [
+        "https://musicbrainz.org/recording/9f78db11-6c80-4311-ba95-c278625e836e"
+      ],
+      "url": "http://mt5577:3000/api/album/t1zXAEJxMyEKDMzHMFZzbn/XO",
+      "visibility": "public"
+    },
+    {
+      "id": "hrsR2AvjaS2srYs8nzzvMN",
+      "title": "Snitches and Talkers Get Stitches and Walkers",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 170,
+      "status": "pending",
+      "mbid": "0d039062-b109-4499-be68-545c0e234d10",
+      "links": [
+        "https://musicbrainz.org/recording/0d039062-b109-4499-be68-545c0e234d10"
+      ],
+      "url": "http://mt5577:3000/api/album/hrsR2AvjaS2srYs8nzzvMN/Snitches+and+Talkers+Get+Stitches+and+Walkers",
+      "visibility": "public"
+    },
+    {
+      "id": "qrCzdo2KMtQ6rBti4Ejj4W",
+      "title": "The Music or the Misery",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 209,
+      "status": "pending",
+      "mbid": "6602ec8c-f0cc-43b9-a5ad-514fe841e7dd",
+      "links": [
+        "https://musicbrainz.org/recording/6602ec8c-f0cc-43b9-a5ad-514fe841e7dd"
+      ],
+      "url": "http://mt5577:3000/api/album/qrCzdo2KMtQ6rBti4Ejj4W/The+Music+or+the+Misery",
+      "visibility": "public"
+    },
+    {
+      "id": "8hNF5jNra3kzX9AgWdG5Vx",
+      "title": "My Heart Is the Worst Kind of Weapon (demo)",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 203,
+      "status": "pending",
+      "mbid": "235c36e8-c8f9-4a7b-bd5a-4fc4b22173db",
+      "links": [
+        "https://musicbrainz.org/recording/235c36e8-c8f9-4a7b-bd5a-4fc4b22173db"
+      ],
+      "url": "http://mt5577:3000/api/album/8hNF5jNra3kzX9AgWdG5Vx/My+Heart+Is+the+Worst+Kind+of+Weapon+(demo)",
+      "visibility": "public"
+    },
+    {
+      "id": "7TkwDLVA8kEo2F6t99UTim",
+      "title": "Sugar, We're Goin' Down (Patrick Stump remix)",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 240,
+      "status": "pending",
+      "mbid": "37a713ad-6eb3-44ea-a873-c2dbb929c93a",
+      "links": [
+        "https://musicbrainz.org/recording/37a713ad-6eb3-44ea-a873-c2dbb929c93a"
+      ],
+      "url": "http://mt5577:3000/api/album/7TkwDLVA8kEo2F6t99UTim/Sugar%2C+We're+Goin'+Down+(Patrick+Stump+remix)",
+      "visibility": "public"
+    },
+    {
+      "id": "s9o1TqZBK6tyVuNLaL4tYz",
+      "title": "Dance, Dance (Lindbergh Palace remix)",
+      "artists": [
+        {
+          "id": "hqiXpebZuJjWFbcXMF7E29",
+          "name": "Fall Out Boy",
+          "area": "Wilmette, US",
+          "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+        }
+      ],
+      "duration": 209,
+      "status": "pending",
+      "mbid": "308ee6fa-2f65-40d4-b733-c199cc769fb4",
+      "links": [
+        "https://musicbrainz.org/recording/308ee6fa-2f65-40d4-b733-c199cc769fb4"
+      ],
+      "url": "http://mt5577:3000/api/album/s9o1TqZBK6tyVuNLaL4tYz/Dance%2C+Dance+(Lindbergh+Palace+remix)",
+      "visibility": "public"
+    }
+  ],
+  "released": "2006-03-13T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "da58fa17-c473-4da2-b424-fc4c4ef9345f",
+  "links": [
+    "https://musicbrainz.org/album/da58fa17-c473-4da2-b424-fc4c4ef9345f",
+    "https://www.amazon.com/gp/product/B000EJ9VA2",
+    "https://www.discogs.com/release/672246"
+  ],
+  "url": "http://mt5577:3000/api/album/sXPP2k7DpcpCvxQzj1ebDe/From+Under+the+Cork+Tree",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "hqiXpebZuJjWFbcXMF7E29",
+      "name": "Fall Out Boy",
+      "area": "Wilmette, US",
+      "url": "http://mt5577:3000/api/artist/hqiXpebZuJjWFbcXMF7E29/Fall+Out+Boy"
+    }
+  ]
+}

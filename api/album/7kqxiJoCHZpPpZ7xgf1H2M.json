@@ -1,0 +1,263 @@
+{
+  "id": "7kqxiJoCHZpPpZ7xgf1H2M",
+  "title": "Blindside",
+  "items": [
+    {
+      "id": "pkEKC58u5WARYj9o3kENSW",
+      "title": "Invert",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 188,
+      "status": "pending",
+      "mbid": "ca581438-047f-4537-b07e-5296ea94f418",
+      "links": [
+        "https://musicbrainz.org/recording/ca581438-047f-4537-b07e-5296ea94f418"
+      ],
+      "url": "http://mt5577:3000/api/album/pkEKC58u5WARYj9o3kENSW/Invert",
+      "visibility": "public"
+    },
+    {
+      "id": "3L8z5F6NXeAC78yMaPEFFS",
+      "title": "Born",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 207,
+      "status": "pending",
+      "mbid": "293d4183-6d01-4273-aba7-2a030eff0987",
+      "links": [
+        "https://musicbrainz.org/recording/293d4183-6d01-4273-aba7-2a030eff0987"
+      ],
+      "url": "http://mt5577:3000/api/album/3L8z5F6NXeAC78yMaPEFFS/Born",
+      "visibility": "public"
+    },
+    {
+      "id": "mRB7N5ssH2qTYKVemka1q8",
+      "title": "Empty Box",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 245,
+      "status": "pending",
+      "mbid": "6d6a1c02-89be-48d0-a8b7-eb22c1cf04ed",
+      "links": [
+        "https://musicbrainz.org/recording/6d6a1c02-89be-48d0-a8b7-eb22c1cf04ed"
+      ],
+      "url": "http://mt5577:3000/api/album/mRB7N5ssH2qTYKVemka1q8/Empty+Box",
+      "visibility": "public"
+    },
+    {
+      "id": "o3BRspAUxfP3toq8xdfefm",
+      "title": "Superman",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 163,
+      "status": "pending",
+      "mbid": "60049306-0897-4314-af51-2107c8b20136",
+      "links": [
+        "https://musicbrainz.org/recording/60049306-0897-4314-af51-2107c8b20136"
+      ],
+      "url": "http://mt5577:3000/api/album/o3BRspAUxfP3toq8xdfefm/Superman",
+      "visibility": "public"
+    },
+    {
+      "id": "cNsSNSJSboMtP39qrWnikj",
+      "title": "Nerve",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 167,
+      "status": "pending",
+      "mbid": "8ac4c03d-1893-48a9-9461-179e3dfbbb44",
+      "links": [
+        "https://musicbrainz.org/recording/8ac4c03d-1893-48a9-9461-179e3dfbbb44"
+      ],
+      "url": "http://mt5577:3000/api/album/cNsSNSJSboMtP39qrWnikj/Nerve",
+      "visibility": "public"
+    },
+    {
+      "id": "3ecY6XzbR9GeNPHZsXZv9B",
+      "title": "This Shoulder",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 196,
+      "status": "pending",
+      "mbid": "67fc62dd-275f-4be4-b7cd-927f0fbb99e9",
+      "links": [
+        "https://musicbrainz.org/recording/67fc62dd-275f-4be4-b7cd-927f0fbb99e9"
+      ],
+      "url": "http://mt5577:3000/api/album/3ecY6XzbR9GeNPHZsXZv9B/This+Shoulder",
+      "visibility": "public"
+    },
+    {
+      "id": "3XehfNDDp86hPi7ikxZJ58",
+      "title": "Replay",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 166,
+      "status": "pending",
+      "mbid": "b313733b-8894-41b8-b91a-74d58c9b1f8e",
+      "links": [
+        "https://musicbrainz.org/recording/b313733b-8894-41b8-b91a-74d58c9b1f8e"
+      ],
+      "url": "http://mt5577:3000/api/album/3XehfNDDp86hPi7ikxZJ58/Replay",
+      "visibility": "public"
+    },
+    {
+      "id": "i4aNHXfJTg5M5jhMYeP1di",
+      "title": "One Mind",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 253,
+      "status": "pending",
+      "mbid": "488558b8-5439-487e-a70f-67093f3f3760",
+      "links": [
+        "https://musicbrainz.org/recording/488558b8-5439-487e-a70f-67093f3f3760"
+      ],
+      "url": "http://mt5577:3000/api/album/i4aNHXfJTg5M5jhMYeP1di/One+Mind",
+      "visibility": "public"
+    },
+    {
+      "id": "92jfk1zUa7xGc8fAEvgKuC",
+      "title": "Liberty",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 194,
+      "status": "pending",
+      "mbid": "af1dd501-74b3-4775-b7f2-6bc40045e91c",
+      "links": [
+        "https://musicbrainz.org/recording/af1dd501-74b3-4775-b7f2-6bc40045e91c"
+      ],
+      "url": "http://mt5577:3000/api/album/92jfk1zUa7xGc8fAEvgKuC/Liberty",
+      "visibility": "public"
+    },
+    {
+      "id": "3DZKT1csRjrxrj97k4uXpC",
+      "title": "Daughter",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 145,
+      "status": "pending",
+      "mbid": "97d7ca46-4332-4977-90ad-ba520e6d2fb7",
+      "links": [
+        "https://musicbrainz.org/recording/97d7ca46-4332-4977-90ad-ba520e6d2fb7"
+      ],
+      "url": "http://mt5577:3000/api/album/3DZKT1csRjrxrj97k4uXpC/Daughter",
+      "visibility": "public"
+    },
+    {
+      "id": "9CxrKibuBMpx5m8TppgQS3",
+      "title": "Teddybear",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 268,
+      "status": "pending",
+      "mbid": "5309ca8d-2ed3-4ec1-b2eb-902fa1d57a07",
+      "links": [
+        "https://musicbrainz.org/recording/5309ca8d-2ed3-4ec1-b2eb-902fa1d57a07"
+      ],
+      "url": "http://mt5577:3000/api/album/9CxrKibuBMpx5m8TppgQS3/Teddybear",
+      "visibility": "public"
+    },
+    {
+      "id": "u1pWtrSaQKNegoSkpat9KN",
+      "title": "Never",
+      "artists": [
+        {
+          "id": "wRuwwpNPYo6FFj8GP1GWmA",
+          "name": "Blindside",
+          "area": "Tumba, SE",
+          "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+        }
+      ],
+      "duration": 267,
+      "status": "pending",
+      "mbid": "a5ec97dc-3a9a-484b-88ca-4bfda76a71a5",
+      "links": [
+        "https://musicbrainz.org/recording/a5ec97dc-3a9a-484b-88ca-4bfda76a71a5"
+      ],
+      "url": "http://mt5577:3000/api/album/u1pWtrSaQKNegoSkpat9KN/Never",
+      "visibility": "public"
+    }
+  ],
+  "released": "1997-12-22T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "334d1635-45d8-46a5-9db9-4fde72040a2b",
+  "links": [
+    "https://musicbrainz.org/album/334d1635-45d8-46a5-9db9-4fde72040a2b",
+    "https://www.amazon.com/gp/product/B000001Z2Q"
+  ],
+  "url": "http://mt5577:3000/api/album/7kqxiJoCHZpPpZ7xgf1H2M/Blindside",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "wRuwwpNPYo6FFj8GP1GWmA",
+      "name": "Blindside",
+      "area": "Tumba, SE",
+      "url": "http://mt5577:3000/api/artist/wRuwwpNPYo6FFj8GP1GWmA/Blindside"
+    }
+  ]
+}

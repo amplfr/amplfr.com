@@ -1,0 +1,223 @@
+{
+  "id": "dmvZVME7sF3FrqgPdy56zb",
+  "title": "Going Public",
+  "items": [
+    {
+      "id": "nEFs9rx61d2L5xiQJ8gxV9",
+      "title": "Real Good Thing",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 173,
+      "status": "pending",
+      "mbid": "a3932cd6-517d-48f0-8df0-5aed73079434",
+      "links": [
+        "https://musicbrainz.org/recording/a3932cd6-517d-48f0-8df0-5aed73079434"
+      ],
+      "url": "http://mt5577:3000/api/album/nEFs9rx61d2L5xiQJ8gxV9/Real+Good+Thing",
+      "visibility": "public"
+    },
+    {
+      "id": "e7STuhCUU4hqeyqfH8GgmL",
+      "title": "Shine",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 222,
+      "status": "pending",
+      "mbid": "6fdd6a17-cd4a-49b5-834d-b0d801646ba6",
+      "links": [
+        "https://musicbrainz.org/recording/6fdd6a17-cd4a-49b5-834d-b0d801646ba6"
+      ],
+      "url": "http://mt5577:3000/api/album/e7STuhCUU4hqeyqfH8GgmL/Shine",
+      "visibility": "public"
+    },
+    {
+      "id": "9ey9Efy43mhP4Y7GNTudD6",
+      "title": "Spirit Thing",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 207,
+      "status": "pending",
+      "mbid": "41b1620f-5df1-47a6-a129-a72f0729d1ec",
+      "links": [
+        "https://musicbrainz.org/recording/41b1620f-5df1-47a6-a129-a72f0729d1ec"
+      ],
+      "url": "http://mt5577:3000/api/album/9ey9Efy43mhP4Y7GNTudD6/Spirit+Thing",
+      "visibility": "public"
+    },
+    {
+      "id": "bAqTrovzbvNFzwYUPmVrB9",
+      "title": "Let It Rain",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 258,
+      "status": "pending",
+      "mbid": "f17cc768-8eb6-4ee0-8fd4-c8115b5990eb",
+      "links": [
+        "https://musicbrainz.org/recording/f17cc768-8eb6-4ee0-8fd4-c8115b5990eb"
+      ],
+      "url": "http://mt5577:3000/api/album/bAqTrovzbvNFzwYUPmVrB9/Let+It+Rain",
+      "visibility": "public"
+    },
+    {
+      "id": "ptyMkukRfhSqUCFLMgAhYD",
+      "title": "Going Public",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 211,
+      "status": "pending",
+      "mbid": "4689c828-52d0-444c-b0e7-42acceeeda9f",
+      "links": [
+        "https://musicbrainz.org/recording/4689c828-52d0-444c-b0e7-42acceeeda9f"
+      ],
+      "url": "http://mt5577:3000/api/album/ptyMkukRfhSqUCFLMgAhYD/Going+Public",
+      "visibility": "public"
+    },
+    {
+      "id": "wKrf2qodkNA8zBHCcrFJjB",
+      "title": "Truth and Consequences",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 179,
+      "status": "pending",
+      "mbid": "d16f3c81-bbed-475c-a938-4ab0689317cb",
+      "links": [
+        "https://musicbrainz.org/recording/d16f3c81-bbed-475c-a938-4ab0689317cb"
+      ],
+      "url": "http://mt5577:3000/api/album/wKrf2qodkNA8zBHCcrFJjB/Truth+and+Consequences",
+      "visibility": "public"
+    },
+    {
+      "id": "oghUWVL6VfV5rmyk8YKcVZ",
+      "title": "Lights Out",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 189,
+      "status": "pending",
+      "mbid": "ad8fecf1-8d7f-4fc6-a661-221dbd526e67",
+      "links": [
+        "https://musicbrainz.org/recording/ad8fecf1-8d7f-4fc6-a661-221dbd526e67"
+      ],
+      "url": "http://mt5577:3000/api/album/oghUWVL6VfV5rmyk8YKcVZ/Lights+Out",
+      "visibility": "public"
+    },
+    {
+      "id": "diqY2YDmPo8Yzqk9umaTXw",
+      "title": "Be Still",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 199,
+      "status": "pending",
+      "mbid": "8cdafaf1-2d72-4b2e-b7c6-219d7cce55bc",
+      "links": [
+        "https://musicbrainz.org/recording/8cdafaf1-2d72-4b2e-b7c6-219d7cce55bc"
+      ],
+      "url": "http://mt5577:3000/api/album/diqY2YDmPo8Yzqk9umaTXw/Be+Still",
+      "visibility": "public"
+    },
+    {
+      "id": "t6g3soGwZhSeXzrA3D2mh2",
+      "title": "When You Called My Name",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 243,
+      "status": "pending",
+      "mbid": "2f9b12c6-b9db-469c-9646-78ba3febf6a8",
+      "links": [
+        "https://musicbrainz.org/recording/2f9b12c6-b9db-469c-9646-78ba3febf6a8"
+      ],
+      "url": "http://mt5577:3000/api/album/t6g3soGwZhSeXzrA3D2mh2/When+You+Called+My+Name",
+      "visibility": "public"
+    },
+    {
+      "id": "v4WwbYMycs3SCK58NY4hcw",
+      "title": "Elle G.",
+      "artists": [
+        {
+          "id": "gXvuVgatKgHWFsEAf9o1pG",
+          "name": "Newsboys",
+          "area": "Mooloolaba, AU",
+          "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+        }
+      ],
+      "duration": 313,
+      "status": "pending",
+      "mbid": "1674bb30-2fc4-4112-b27a-1748f8476c0a",
+      "links": [
+        "https://musicbrainz.org/recording/1674bb30-2fc4-4112-b27a-1748f8476c0a"
+      ],
+      "url": "http://mt5577:3000/api/album/v4WwbYMycs3SCK58NY4hcw/Elle+G.",
+      "visibility": "public"
+    }
+  ],
+  "released": "1993-12-31T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "640b06d6-236f-49da-a416-1ebe6c0fd898",
+  "links": [
+    "https://musicbrainz.org/album/640b06d6-236f-49da-a416-1ebe6c0fd898",
+    "https://www.amazon.com/gp/product/B000005KU6"
+  ],
+  "url": "http://mt5577:3000/api/album/dmvZVME7sF3FrqgPdy56zb/Going+Public",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "gXvuVgatKgHWFsEAf9o1pG",
+      "name": "Newsboys",
+      "area": "Mooloolaba, AU",
+      "url": "http://mt5577:3000/api/artist/gXvuVgatKgHWFsEAf9o1pG/Newsboys"
+    }
+  ]
+}

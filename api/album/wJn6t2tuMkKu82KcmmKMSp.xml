@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<album>
+	<id>wJn6t2tuMkKu82KcmmKMSp</id>
+	<title>X&Y</title>
+    <items>
+        <item>
+            <id>qURJwwmLP71XFBowJkXGRm</id>
+            <title>Square One</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>287</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500601</isrc>
+            <isrc>GBAYE1600176</isrc>
+            <mbid>9a8ea67d-ee7a-442e-a455-24ea2a9de743</mbid>
+            <url>http://localhost:3000/api/album/qURJwwmLP71XFBowJkXGRm/Square+One</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>vFtPHhe7JQVeQuXmuPsxzH</id>
+            <title>What If</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>297</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500603</isrc>
+            <isrc>GBAYE1600177</isrc>
+            <mbid>26d84798-8b3a-4041-9742-e13df2e9e975</mbid>
+            <url>http://localhost:3000/api/album/vFtPHhe7JQVeQuXmuPsxzH/What+If</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>ihet98FfCJUeYNkAo29nvg</id>
+            <title>White Shadows</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>328</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500609</isrc>
+            <isrc>GBAYE1600178</isrc>
+            <mbid>7a139373-9d60-48a8-a4a5-8ab5f7ac3689</mbid>
+            <url>http://localhost:3000/api/album/ihet98FfCJUeYNkAo29nvg/White+Shadows</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>aUrL68afopDCZH7m32qnrE</id>
+            <title>Fix You</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>295</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500605</isrc>
+            <isrc>GBAYE1600179</isrc>
+            <mbid>20919a48-4ad5-409c-b639-8db7ca9f9e7a</mbid>
+            <url>http://localhost:3000/api/album/aUrL68afopDCZH7m32qnrE/Fix+You</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>uw7kPBFGqVSu3PYsMJqNKS</id>
+            <title>Fix You</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>295</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500605</isrc>
+            <isrc>GBAYE1600179</isrc>
+            <mbid>20919a48-4ad5-409c-b639-8db7ca9f9e7a</mbid>
+            <url>http://localhost:3000/api/album/uw7kPBFGqVSu3PYsMJqNKS/Fix+You</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>fRoXZ2KrCzcHUA1Lw7j3MB</id>
+            <title>Talk</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>311</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500614</isrc>
+            <isrc>GBAYE1600180</isrc>
+            <mbid>9cd3daca-eab7-4db8-8af8-21b3da550c28</mbid>
+            <url>http://localhost:3000/api/album/fRoXZ2KrCzcHUA1Lw7j3MB/Talk</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>vTnAw7KgqVNy6Groccpjcv</id>
+            <title>X&Y</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>274</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500607</isrc>
+            <isrc>GBAYE1600181</isrc>
+            <mbid>18144bde-ae38-4b5a-a1f3-c14b9fdf3bad</mbid>
+            <url>http://localhost:3000/api/album/vTnAw7KgqVNy6Groccpjcv/X%26Y</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>eDu4Y113AnxWJCdqpnCrHv</id>
+            <title>Speed of Sound</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>288</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500602</isrc>
+            <isrc>GBAYE1600182</isrc>
+            <mbid>8d305607-7665-4ba7-bb30-06bb35fad519</mbid>
+            <url>http://localhost:3000/api/album/eDu4Y113AnxWJCdqpnCrHv/Speed+of+Sound</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>tzBeqhmwDnmEtTRa294ugz</id>
+            <title>A Message</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>285</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500608</isrc>
+            <isrc>GBAYE1600183</isrc>
+            <mbid>e5a0989f-2d10-41d9-a508-974a20fdad43</mbid>
+            <url>http://localhost:3000/api/album/tzBeqhmwDnmEtTRa294ugz/A+Message</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>bLjJyR8ubWfPE77Zmjar62</id>
+            <title>Low</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>332</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500604</isrc>
+            <isrc>GBAYE1600184</isrc>
+            <mbid>186229ca-7bb2-4c98-9418-7df600aa31f6</mbid>
+            <url>http://localhost:3000/api/album/bLjJyR8ubWfPE77Zmjar62/Low</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>bNNyaXmmmnw8m5wEr8vs2H</id>
+            <title>The Hardest Part</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>265</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500613</isrc>
+            <isrc>GBAYE1600185</isrc>
+            <mbid>551c01b6-8295-4549-9bdf-b65ba32ce4a9</mbid>
+            <url>http://localhost:3000/api/album/bNNyaXmmmnw8m5wEr8vs2H/The+Hardest+Part</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>1meowTZdJo8mPGU34rU2jj</id>
+            <title>Swallowed in the Sea</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>239</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500610</isrc>
+            <isrc>GBAYE1600186</isrc>
+            <mbid>32dc9a9c-c936-4ec5-afe3-8320f5f096f3</mbid>
+            <url>http://localhost:3000/api/album/1meowTZdJo8mPGU34rU2jj/Swallowed+in+the+Sea</url>
+            <visibility>public</visibility>
+        </item>
+        <item>
+            <id>72dmgSWRPgK1u7aa2s62FH</id>
+            <title>Til Kingdom Come</title>
+            <artists>
+                <id>wSv42DNe1JPrei75iEqub7</id>
+                <name>Coldplay</name>
+                <area>London, GB</area>
+                <url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+            </artists>
+            <duration>252</duration>
+            <status>pending</status>
+            <isrc>GBAYE0500606</isrc>
+            <isrc>GBAYE1600188</isrc>
+            <mbid>b2e7d0c9-f13e-4ffd-8aa9-2ab7edf0d020</mbid>
+            <url>http://localhost:3000/api/album/72dmgSWRPgK1u7aa2s62FH/Til+Kingdom+Come</url>
+            <visibility>public</visibility>
+        </item>
+    </items>
+	<released>2005-06-06T00:00:00.000Z</released>
+	<countries>US</countries>
+	<mbid>f8dc65de-90df-3c47-9d94-05684154cc77</mbid>
+	<url>http://localhost:3000/api/album/wJn6t2tuMkKu82KcmmKMSp/X%26Y</url>
+	<visibility>public</visibility>
+	<artists>
+		<id>wSv42DNe1JPrei75iEqub7</id>
+		<name>Coldplay</name>
+		<area>London, GB</area>
+		<url>http://localhost:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay</url>
+	</artists>
+</album>

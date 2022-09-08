@@ -1,0 +1,324 @@
+{
+  "id": "83JodxrcAtn8PEpoWX1can",
+  "title": "A New Kind of Army",
+  "items": [
+    {
+      "id": "1ppLS28sgyo4kwwcxF45sK",
+      "title": "Tearing Everyone Down",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 176,
+      "status": "pending",
+      "mbid": "5d51b59d-c2dd-49dc-9258-25d22aa00153",
+      "links": [
+        "https://musicbrainz.org/recording/5d51b59d-c2dd-49dc-9258-25d22aa00153"
+      ],
+      "url": "http://mt5577:3000/api/album/1ppLS28sgyo4kwwcxF45sK/Tearing+Everyone+Down",
+      "visibility": "public"
+    },
+    {
+      "id": "7tqmRCqEvHwmH1G5nmzDbK",
+      "title": "Captain Anarchy",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 154,
+      "status": "pending",
+      "mbid": "307f7dd7-cfe1-4683-8cd2-78e962f4ce9b",
+      "links": [
+        "https://musicbrainz.org/recording/307f7dd7-cfe1-4683-8cd2-78e962f4ce9b"
+      ],
+      "url": "http://mt5577:3000/api/album/7tqmRCqEvHwmH1G5nmzDbK/Captain+Anarchy",
+      "visibility": "public"
+    },
+    {
+      "id": "dM4y7PWCmbNbYisarwBuUk",
+      "title": "A New Kind of Army",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 222,
+      "status": "pending",
+      "mbid": "d177cedb-c9b3-46cf-8122-39873c999153",
+      "links": [
+        "https://musicbrainz.org/recording/d177cedb-c9b3-46cf-8122-39873c999153"
+      ],
+      "url": "http://mt5577:3000/api/album/dM4y7PWCmbNbYisarwBuUk/A+New+Kind+of+Army",
+      "visibility": "public"
+    },
+    {
+      "id": "p9uQCcC1zsZfETRSmDSiYZ",
+      "title": "That’s Youth",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 194,
+      "status": "pending",
+      "mbid": "39a1baa6-fe1e-4583-8f59-ed5ef5099ced",
+      "links": [
+        "https://musicbrainz.org/recording/39a1baa6-fe1e-4583-8f59-ed5ef5099ced"
+      ],
+      "url": "http://mt5577:3000/api/album/p9uQCcC1zsZfETRSmDSiYZ/That%E2%80%99s+Youth",
+      "visibility": "public"
+    },
+    {
+      "id": "wGaXEHgYt4tnyUjNGi89CW",
+      "title": "No Apology",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 137,
+      "status": "pending",
+      "mbid": "043b90e0-8b40-4e71-81db-d2b597ca9f3b",
+      "links": [
+        "https://musicbrainz.org/recording/043b90e0-8b40-4e71-81db-d2b597ca9f3b"
+      ],
+      "url": "http://mt5577:3000/api/album/wGaXEHgYt4tnyUjNGi89CW/No+Apology",
+      "visibility": "public"
+    },
+    {
+      "id": "gAS9XUR774m4bSdy6w6p8k",
+      "title": "Got the Numbers",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 194,
+      "status": "pending",
+      "mbid": "40b55333-503e-445d-af4b-974db75b993f",
+      "links": [
+        "https://musicbrainz.org/recording/40b55333-503e-445d-af4b-974db75b993f"
+      ],
+      "url": "http://mt5577:3000/api/album/gAS9XUR774m4bSdy6w6p8k/Got+the+Numbers",
+      "visibility": "public"
+    },
+    {
+      "id": "okEf35xNUJsMQKHSDNKPsm",
+      "title": "No Difference",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 243,
+      "status": "pending",
+      "mbid": "ab3ceef3-13cd-4923-8040-50771a52b524",
+      "links": [
+        "https://musicbrainz.org/recording/ab3ceef3-13cd-4923-8040-50771a52b524"
+      ],
+      "url": "http://mt5577:3000/api/album/okEf35xNUJsMQKHSDNKPsm/No+Difference",
+      "visibility": "public"
+    },
+    {
+      "id": "thHKxF9L6AXQYc7vnpGDE7",
+      "title": "I Don’t Believe",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 149,
+      "status": "pending",
+      "mbid": "595281a2-405e-4d66-b826-93e44a00fdda",
+      "links": [
+        "https://musicbrainz.org/recording/595281a2-405e-4d66-b826-93e44a00fdda"
+      ],
+      "url": "http://mt5577:3000/api/album/thHKxF9L6AXQYc7vnpGDE7/I+Don%E2%80%99t+Believe",
+      "visibility": "public"
+    },
+    {
+      "id": "5oXK2gSSDm8RiKuLgEAF2j",
+      "title": "Right On",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 83,
+      "status": "pending",
+      "mbid": "eb50e65e-d219-4414-826a-884d707ac691",
+      "links": [
+        "https://musicbrainz.org/recording/eb50e65e-d219-4414-826a-884d707ac691"
+      ],
+      "url": "http://mt5577:3000/api/album/5oXK2gSSDm8RiKuLgEAF2j/Right+On",
+      "visibility": "public"
+    },
+    {
+      "id": "853DzSPz5M8BwRWtzki8aS",
+      "title": "What You Don’t Know",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 163,
+      "status": "pending",
+      "mbid": "51c401ea-0f85-4139-a333-a97626b116fe",
+      "links": [
+        "https://musicbrainz.org/recording/51c401ea-0f85-4139-a333-a97626b116fe"
+      ],
+      "url": "http://mt5577:3000/api/album/853DzSPz5M8BwRWtzki8aS/What+You+Don%E2%80%99t+Know",
+      "visibility": "public"
+    },
+    {
+      "id": "kbPBCrPoRQ122dum7j9NV2",
+      "title": "Free Nation?",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 164,
+      "status": "pending",
+      "mbid": "7e327ba2-6e4c-463d-a500-54e31b267da0",
+      "links": [
+        "https://musicbrainz.org/recording/7e327ba2-6e4c-463d-a500-54e31b267da0"
+      ],
+      "url": "http://mt5577:3000/api/album/kbPBCrPoRQ122dum7j9NV2/Free+Nation%3F",
+      "visibility": "public"
+    },
+    {
+      "id": "7CsR8vDuoYvCJvjaFmUn7Q",
+      "title": "Outbreak",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 53,
+      "status": "pending",
+      "mbid": "014c49fe-1bed-448f-ae59-82e62af634d6",
+      "links": [
+        "https://musicbrainz.org/recording/014c49fe-1bed-448f-ae59-82e62af634d6"
+      ],
+      "url": "http://mt5577:3000/api/album/7CsR8vDuoYvCJvjaFmUn7Q/Outbreak",
+      "visibility": "public"
+    },
+    {
+      "id": "irCEvf1u3JduBYqSt6GU3W",
+      "title": "Police Story",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 217,
+      "status": "pending",
+      "mbid": "d4acaf50-795f-424d-af11-5a9b24696ec7",
+      "links": [
+        "https://musicbrainz.org/recording/d4acaf50-795f-424d-af11-5a9b24696ec7"
+      ],
+      "url": "http://mt5577:3000/api/album/irCEvf1u3JduBYqSt6GU3W/Police+Story",
+      "visibility": "public"
+    },
+    {
+      "id": "q83Av16cYLwAvRinNejyX4",
+      "title": "The Consumer’s Song",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 131,
+      "status": "pending",
+      "mbid": "bdf91e75-efa4-471e-b243-8f076c455d85",
+      "links": [
+        "https://musicbrainz.org/recording/bdf91e75-efa4-471e-b243-8f076c455d85"
+      ],
+      "url": "http://mt5577:3000/api/album/q83Av16cYLwAvRinNejyX4/The+Consumer%E2%80%99s+Song",
+      "visibility": "public"
+    },
+    {
+      "id": "1Wda31Vb5TkjUUGcVEqZak",
+      "title": "This Is NOT a Crass Song",
+      "artists": [
+        {
+          "id": "d7HbQhybnNWHPd2d2hmSTX",
+          "name": "Anti‐Flag",
+          "area": "Pittsburgh, US",
+          "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+        }
+      ],
+      "duration": 360,
+      "status": "pending",
+      "mbid": "136af069-c2fe-4147-b3af-936706575460",
+      "links": [
+        "https://musicbrainz.org/recording/136af069-c2fe-4147-b3af-936706575460"
+      ],
+      "url": "http://mt5577:3000/api/album/1Wda31Vb5TkjUUGcVEqZak/This+Is+NOT+a+Crass+Song",
+      "visibility": "public"
+    }
+  ],
+  "released": "1999-03-22T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "391193df-ebfe-4fc4-9cdc-3c8dbf2febdb",
+  "links": [
+    "https://musicbrainz.org/album/391193df-ebfe-4fc4-9cdc-3c8dbf2febdb",
+    "https://www.amazon.com/gp/product/B00000IFUO",
+    "https://www.discogs.com/release/421139"
+  ],
+  "url": "http://mt5577:3000/api/album/83JodxrcAtn8PEpoWX1can/A+New+Kind+of+Army",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "d7HbQhybnNWHPd2d2hmSTX",
+      "name": "Anti‐Flag",
+      "area": "Pittsburgh, US",
+      "url": "http://mt5577:3000/api/artist/d7HbQhybnNWHPd2d2hmSTX/Anti%E2%80%90Flag"
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "id": "dSDTk7xQvyP3hCYTRqwXMq",
+  "title": "Hitler Bad, Vandals Good.",
+  "items": [
+    {
+      "id": "3LsRzbwJY4Wv2Ri5JPZiVj",
+      "title": "People That Are Going to Hell",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 136,
+      "status": "pending",
+      "mbid": "cc3272bf-f6c8-41e4-9775-e808abcbc845",
+      "links": [
+        "https://musicbrainz.org/recording/cc3272bf-f6c8-41e4-9775-e808abcbc845"
+      ],
+      "url": "http://mt5577:3000/api/album/3LsRzbwJY4Wv2Ri5JPZiVj/People+That+Are+Going+to+Hell",
+      "visibility": "public"
+    },
+    {
+      "id": "pFrw1GPdqMF8feF7Je3eBB",
+      "title": "Cafe 405",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 132,
+      "status": "pending",
+      "mbid": "87fc7f49-73b2-4fe1-b0a0-f0387f095b91",
+      "links": [
+        "https://musicbrainz.org/recording/87fc7f49-73b2-4fe1-b0a0-f0387f095b91"
+      ],
+      "url": "http://mt5577:3000/api/album/pFrw1GPdqMF8feF7Je3eBB/Cafe+405",
+      "visibility": "public"
+    },
+    {
+      "id": "rLdTyhSbtikaaAY4dtx5uo",
+      "title": "My Girlfriend’s Dead",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 161,
+      "status": "pending",
+      "mbid": "8af9f30c-9836-436e-a124-08ec25d74fbb",
+      "links": [
+        "https://musicbrainz.org/recording/8af9f30c-9836-436e-a124-08ec25d74fbb"
+      ],
+      "url": "http://mt5577:3000/api/album/rLdTyhSbtikaaAY4dtx5uo/My+Girlfriend%E2%80%99s+Dead",
+      "visibility": "public"
+    },
+    {
+      "id": "6Sk3ubc4zWdRjmRbVL6CB6",
+      "title": "I Know, Huh?",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 177,
+      "status": "pending",
+      "mbid": "394d01a2-639c-4cdf-82fd-938bf9ae57b3",
+      "links": [
+        "https://musicbrainz.org/recording/394d01a2-639c-4cdf-82fd-938bf9ae57b3"
+      ],
+      "url": "http://mt5577:3000/api/album/6Sk3ubc4zWdRjmRbVL6CB6/I+Know%2C+Huh%3F",
+      "visibility": "public"
+    },
+    {
+      "id": "heyL9GPvYGUbH5toYytSaC",
+      "title": "Money’s Not an Issue",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 182,
+      "status": "pending",
+      "mbid": "24292279-02ec-4a21-9ee2-bddff66753cf",
+      "links": [
+        "https://musicbrainz.org/recording/24292279-02ec-4a21-9ee2-bddff66753cf"
+      ],
+      "url": "http://mt5577:3000/api/album/heyL9GPvYGUbH5toYytSaC/Money%E2%80%99s+Not+an+Issue",
+      "visibility": "public"
+    },
+    {
+      "id": "o4QtSdE8eD214Rb8vwte4q",
+      "title": "I’ve Got an Ape Drape",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 212,
+      "status": "pending",
+      "mbid": "ca5fd1d7-d736-4ba1-ba74-5713f4a4076b",
+      "links": [
+        "https://musicbrainz.org/recording/ca5fd1d7-d736-4ba1-ba74-5713f4a4076b"
+      ],
+      "url": "http://mt5577:3000/api/album/o4QtSdE8eD214Rb8vwte4q/I%E2%80%99ve+Got+an+Ape+Drape",
+      "visibility": "public"
+    },
+    {
+      "id": "ohM4sdXkff2r2LjjGs3uCh",
+      "title": "If the Gov’t Could Read My Mind",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 142,
+      "status": "pending",
+      "mbid": "fc6c3939-8e13-493c-9ab9-cbea98423d86",
+      "links": [
+        "https://musicbrainz.org/recording/fc6c3939-8e13-493c-9ab9-cbea98423d86"
+      ],
+      "url": "http://mt5577:3000/api/album/ohM4sdXkff2r2LjjGs3uCh/If+the+Gov%E2%80%99t+Could+Read+My+Mind",
+      "visibility": "public"
+    },
+    {
+      "id": "cz55x9Xr6uLozfgkctkyg9",
+      "title": "Too Much Drama",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 166,
+      "status": "pending",
+      "mbid": "882a6d22-6ba9-4f78-b687-ad69b94c0419",
+      "links": [
+        "https://musicbrainz.org/recording/882a6d22-6ba9-4f78-b687-ad69b94c0419"
+      ],
+      "url": "http://mt5577:3000/api/album/cz55x9Xr6uLozfgkctkyg9/Too+Much+Drama",
+      "visibility": "public"
+    },
+    {
+      "id": "pXwWxm5w4agx8tb9kdQDCk",
+      "title": "Come Out Fighting",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 174,
+      "status": "pending",
+      "mbid": "7875e840-6aeb-473d-a9c0-34c4b8d759c6",
+      "links": [
+        "https://musicbrainz.org/recording/7875e840-6aeb-473d-a9c0-34c4b8d759c6"
+      ],
+      "url": "http://mt5577:3000/api/album/pXwWxm5w4agx8tb9kdQDCk/Come+Out+Fighting",
+      "visibility": "public"
+    },
+    {
+      "id": "9F4aV2vnaZxFosgPV7iKLn",
+      "title": "Euro‐Barge",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 116,
+      "status": "pending",
+      "mbid": "844994b7-0cf0-4a1c-8361-ab28b2754426",
+      "links": [
+        "https://musicbrainz.org/recording/844994b7-0cf0-4a1c-8361-ab28b2754426"
+      ],
+      "url": "http://mt5577:3000/api/album/9F4aV2vnaZxFosgPV7iKLn/Euro%E2%80%90Barge",
+      "visibility": "public"
+    },
+    {
+      "id": "wWs8CHxm2GmxqYZokHx339",
+      "title": "F’d Up Girl",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 159,
+      "status": "pending",
+      "mbid": "df510bf8-39e6-4360-9362-e804c34030a0",
+      "links": [
+        "https://musicbrainz.org/recording/df510bf8-39e6-4360-9362-e804c34030a0"
+      ],
+      "url": "http://mt5577:3000/api/album/wWs8CHxm2GmxqYZokHx339/F%E2%80%99d+Up+Girl",
+      "visibility": "public"
+    },
+    {
+      "id": "uSaRveTGjaLL8xsVZ65iR5",
+      "title": "An Idea for a Movie",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 161,
+      "status": "pending",
+      "mbid": "86a48de8-9a5d-4083-9dbc-f954d0d398b9",
+      "links": [
+        "https://musicbrainz.org/recording/86a48de8-9a5d-4083-9dbc-f954d0d398b9"
+      ],
+      "url": "http://mt5577:3000/api/album/uSaRveTGjaLL8xsVZ65iR5/An+Idea+for+a+Movie",
+      "visibility": "public"
+    },
+    {
+      "id": "8FemXBvW5pFqihuuDJiqSf",
+      "title": "OK",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 127,
+      "status": "pending",
+      "mbid": "0147641f-6907-41b8-90da-4bc36c456be6",
+      "links": [
+        "https://musicbrainz.org/recording/0147641f-6907-41b8-90da-4bc36c456be6"
+      ],
+      "url": "http://mt5577:3000/api/album/8FemXBvW5pFqihuuDJiqSf/OK",
+      "visibility": "public"
+    },
+    {
+      "id": "rXXDdKuQDWk8KQ9HetZ8gH",
+      "title": "So Long, Farewell",
+      "artists": [
+        {
+          "id": "avEcvDVahfWz6P2Uqed22o",
+          "name": "The Vandals",
+          "area": "Huntington Beach, US",
+          "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+        }
+      ],
+      "duration": 171,
+      "status": "pending",
+      "mbid": "756a5f1b-c798-40e8-b1bd-304c2cfb26cf",
+      "links": [
+        "https://musicbrainz.org/recording/756a5f1b-c798-40e8-b1bd-304c2cfb26cf"
+      ],
+      "url": "http://mt5577:3000/api/album/rXXDdKuQDWk8KQ9HetZ8gH/So+Long%2C+Farewell",
+      "visibility": "public"
+    }
+  ],
+  "released": "1998-06-22T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "6840332b-0dc9-412a-a7bc-5a96371d1996",
+  "links": [
+    "https://musicbrainz.org/album/6840332b-0dc9-412a-a7bc-5a96371d1996",
+    "https://www.amazon.com/gp/product/B000007SZ3",
+    "https://www.discogs.com/release/1065044"
+  ],
+  "url": "http://mt5577:3000/api/album/dSDTk7xQvyP3hCYTRqwXMq/Hitler+Bad%2C+Vandals+Good.",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "avEcvDVahfWz6P2Uqed22o",
+      "name": "The Vandals",
+      "area": "Huntington Beach, US",
+      "url": "http://mt5577:3000/api/artist/avEcvDVahfWz6P2Uqed22o/The+Vandals"
+    }
+  ]
+}

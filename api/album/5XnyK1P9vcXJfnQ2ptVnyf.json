@@ -1,0 +1,386 @@
+{
+  "id": "5XnyK1P9vcXJfnQ2ptVnyf",
+  "title": "Queen of the Damned",
+  "items": [
+    {
+      "id": "fv29ef8b3b93TdoQCiMEYu",
+      "title": "Not Meant for Me",
+      "artists": [
+        {
+          "id": "de3vycdjanPpWBWqwjrCJF",
+          "name": "Wayne Static",
+          "area": "Muskegon, US",
+          "url": "http://mt5577:3000/api/artist/de3vycdjanPpWBWqwjrCJF/Wayne+Static"
+        }
+      ],
+      "duration": 250,
+      "status": "pending",
+      "mbid": "2ea594b8-7bbe-4e3a-ba7e-b1f1f1c7225f",
+      "links": [
+        "https://musicbrainz.org/recording/2ea594b8-7bbe-4e3a-ba7e-b1f1f1c7225f"
+      ],
+      "url": "http://mt5577:3000/api/album/fv29ef8b3b93TdoQCiMEYu/Not+Meant+for+Me",
+      "visibility": "public"
+    },
+    {
+      "id": "44CrjvhmPdTZyPaUcxQwbb",
+      "title": "Forsaken",
+      "artists": [
+        {
+          "id": "x3LNidVBWZTDJ9BjRA1tRZ",
+          "name": "David Draiman",
+          "area": "Brooklyn, US",
+          "url": "http://mt5577:3000/api/artist/x3LNidVBWZTDJ9BjRA1tRZ/David+Draiman"
+        }
+      ],
+      "duration": 219,
+      "status": "pending",
+      "mbid": "f12206b2-5835-4ce8-a585-7d4fac0ef95e",
+      "links": [
+        "https://musicbrainz.org/recording/f12206b2-5835-4ce8-a585-7d4fac0ef95e"
+      ],
+      "url": "http://mt5577:3000/api/album/44CrjvhmPdTZyPaUcxQwbb/Forsaken",
+      "visibility": "public"
+    },
+    {
+      "id": "aGy8v5G83Hvxanvi7B8wrT",
+      "title": "System",
+      "artists": [
+        {
+          "id": "mHGBuBDPfEhTnh6bz6VrE3",
+          "name": "Chester Bennington",
+          "area": "Phoenix, US",
+          "url": "http://mt5577:3000/api/artist/mHGBuBDPfEhTnh6bz6VrE3/Chester+Bennington"
+        }
+      ],
+      "duration": 304,
+      "status": "pending",
+      "isrc": ["USWB10200220", "USWB10200227"],
+      "mbid": "30c5bdf2-265a-47bd-808a-651dfb46afdd",
+      "links": [
+        "https://musicbrainz.org/recording/30c5bdf2-265a-47bd-808a-651dfb46afdd"
+      ],
+      "url": "http://mt5577:3000/api/album/aGy8v5G83Hvxanvi7B8wrT/System",
+      "visibility": "public"
+    },
+    {
+      "id": "gpAptEuH8nYcev53KkGHfX",
+      "title": "Change (In the House of Flies)",
+      "artists": [
+        {
+          "id": "3scNhuRA8LBvpeENYynvp3",
+          "name": "Deftones",
+          "area": "Sacramento, US",
+          "url": "http://mt5577:3000/api/artist/3scNhuRA8LBvpeENYynvp3/Deftones"
+        }
+      ],
+      "duration": 300,
+      "status": "pending",
+      "isrc": ["USMV20000039", "USRE11600104"],
+      "mbid": "af7f2f8b-68ce-47fd-a088-ed3a29edd96f",
+      "links": [
+        "https://musicbrainz.org/recording/af7f2f8b-68ce-47fd-a088-ed3a29edd96f",
+        "https://www.youtube.com/watch?v=WPpDyIJdasg"
+      ],
+      "url": "http://mt5577:3000/api/album/gpAptEuH8nYcev53KkGHfX/Change+(In+the+House+of+Flies)",
+      "visibility": "public"
+    },
+    {
+      "id": "rEVhTTcsrZwgsjW5n2dhds",
+      "title": "Redeemer",
+      "artists": [
+        {
+          "id": "9D3uuGZqi1MP4E3UBcAQDf",
+          "name": "Marilyn Manson",
+          "area": "Canton, US",
+          "url": "http://mt5577:3000/api/artist/9D3uuGZqi1MP4E3UBcAQDf/Marilyn+Manson"
+        }
+      ],
+      "duration": 260,
+      "status": "pending",
+      "isrc": ["USWB10200221", "USWB10200228"],
+      "mbid": "0b3f7c48-35b4-4992-9256-5b971838ea28",
+      "links": [
+        "https://musicbrainz.org/recording/0b3f7c48-35b4-4992-9256-5b971838ea28"
+      ],
+      "url": "http://mt5577:3000/api/album/rEVhTTcsrZwgsjW5n2dhds/Redeemer",
+      "visibility": "public"
+    },
+    {
+      "id": "hiwzzj5BBURhnBsk4zGBnJ",
+      "title": "Dead Cell",
+      "artists": [
+        {
+          "id": "bH5PerEczoj9pa4gaJAumL",
+          "name": "Papa Roach",
+          "area": "Vacaville, US",
+          "url": "http://mt5577:3000/api/artist/bH5PerEczoj9pa4gaJAumL/Papa+Roach"
+        }
+      ],
+      "duration": 186,
+      "status": "pending",
+      "mbid": "2f8cc967-b965-47db-a44e-0670170ec7ff",
+      "links": [
+        "https://musicbrainz.org/recording/2f8cc967-b965-47db-a44e-0670170ec7ff"
+      ],
+      "url": "http://mt5577:3000/api/album/hiwzzj5BBURhnBsk4zGBnJ/Dead+Cell",
+      "visibility": "public"
+    },
+    {
+      "id": "dBUgNDpif3W4nrCoBhU4iF",
+      "title": "Penetrate",
+      "artists": [
+        {
+          "id": "kdqMwYiU9DshZCHcYrYNA5",
+          "name": "Godhead",
+          "area": "Washington, D.C., US",
+          "url": "http://mt5577:3000/api/artist/kdqMwYiU9DshZCHcYrYNA5/Godhead"
+        }
+      ],
+      "duration": 258,
+      "status": "pending",
+      "mbid": "cb5d8470-ee4c-4438-987a-3a0fc9dece20",
+      "links": [
+        "https://musicbrainz.org/recording/cb5d8470-ee4c-4438-987a-3a0fc9dece20"
+      ],
+      "url": "http://mt5577:3000/api/album/dBUgNDpif3W4nrCoBhU4iF/Penetrate",
+      "visibility": "public"
+    },
+    {
+      "id": "wdUSzc2USgdqFZeabgfBCN",
+      "title": "Slept So Long",
+      "artists": [
+        {
+          "id": "dwXUgGbx9KTPnot6yHQfxg",
+          "name": "Jay Gordon",
+          "area": "San Francisco, US",
+          "url": "http://mt5577:3000/api/artist/dwXUgGbx9KTPnot6yHQfxg/Jay+Gordon"
+        }
+      ],
+      "duration": 330,
+      "status": "pending",
+      "isrc": ["USWB10200224", "USWB10200230"],
+      "mbid": "1622bb09-f887-4cfc-a85d-766f5d80e077",
+      "links": [
+        "https://musicbrainz.org/recording/1622bb09-f887-4cfc-a85d-766f5d80e077"
+      ],
+      "url": "http://mt5577:3000/api/album/wdUSzc2USgdqFZeabgfBCN/Slept+So+Long",
+      "visibility": "public"
+    },
+    {
+      "id": "bRcKqaaMu2dYpTq1owo3uc",
+      "title": "Down With the Sickness",
+      "artists": [
+        {
+          "id": "pAk5yxuv9biPFTRsLXN9GM",
+          "name": "Disturbed",
+          "area": "Chicago, US",
+          "url": "http://mt5577:3000/api/artist/pAk5yxuv9biPFTRsLXN9GM/Disturbed"
+        }
+      ],
+      "duration": 279,
+      "status": "pending",
+      "isrc": ["USGI19900180", "USRE10902084"],
+      "mbid": "a8009036-b13e-4cb8-b2c7-2c3f9735b735",
+      "links": [
+        "https://musicbrainz.org/recording/a8009036-b13e-4cb8-b2c7-2c3f9735b735"
+      ],
+      "url": "http://mt5577:3000/api/album/bRcKqaaMu2dYpTq1owo3uc/Down+With+the+Sickness",
+      "visibility": "public"
+    },
+    {
+      "id": "5mkTAHAGmvcSJE8WyavBog",
+      "title": "Cold",
+      "artists": [
+        {
+          "id": "uPUicyhwVtab8v3B16kcDx",
+          "name": "Static-X",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/uPUicyhwVtab8v3B16kcDx/Static-X"
+        }
+      ],
+      "duration": 179,
+      "status": "pending",
+      "mbid": "30e8140e-1312-4328-919e-3f1bf2227ae8",
+      "links": [
+        "https://musicbrainz.org/recording/30e8140e-1312-4328-919e-3f1bf2227ae8"
+      ],
+      "url": "http://mt5577:3000/api/album/5mkTAHAGmvcSJE8WyavBog/Cold",
+      "visibility": "public"
+    },
+    {
+      "id": "66vxGyxhnMiNFg6nbMqtMQ",
+      "title": "Headstrong",
+      "artists": [
+        {
+          "id": "nuzLyoCp3C7pFMNLmbfcfV",
+          "name": "Earshot",
+          "area": "Los Angeles, US",
+          "url": "http://mt5577:3000/api/artist/nuzLyoCp3C7pFMNLmbfcfV/Earshot"
+        }
+      ],
+      "duration": 295,
+      "status": "pending",
+      "mbid": "28a40d0d-b85d-4db6-a23d-b3baae743519",
+      "links": [
+        "https://musicbrainz.org/recording/28a40d0d-b85d-4db6-a23d-b3baae743519"
+      ],
+      "url": "http://mt5577:3000/api/album/66vxGyxhnMiNFg6nbMqtMQ/Headstrong",
+      "visibility": "public"
+    },
+    {
+      "id": "4PYFRuRrsX8Xid42nVBzwS",
+      "title": "Body Crumbles",
+      "artists": [
+        {
+          "id": "9Dv2rY8DhsgaGzS31LH5ka",
+          "name": "Dry Cell",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/9Dv2rY8DhsgaGzS31LH5ka/Dry+Cell"
+        }
+      ],
+      "duration": 187,
+      "status": "pending",
+      "mbid": "ee4f1dac-5413-4845-a197-d43c78c72862",
+      "links": [
+        "https://musicbrainz.org/recording/ee4f1dac-5413-4845-a197-d43c78c72862"
+      ],
+      "url": "http://mt5577:3000/api/album/4PYFRuRrsX8Xid42nVBzwS/Body+Crumbles",
+      "visibility": "public"
+    },
+    {
+      "id": "jc9n7axmBdpgDAZ9cPSvUt",
+      "title": "Excess",
+      "artists": [
+        {
+          "id": "abQ3dtBwFEbG4frLoSGuHq",
+          "name": "Tricky",
+          "area": "Bristol, GB",
+          "url": "http://mt5577:3000/api/artist/abQ3dtBwFEbG4frLoSGuHq/Tricky"
+        }
+      ],
+      "duration": 283,
+      "status": "pending",
+      "mbid": "e9ddeab8-5b37-4114-8202-0cf572d0f0dc",
+      "links": [
+        "https://musicbrainz.org/recording/e9ddeab8-5b37-4114-8202-0cf572d0f0dc"
+      ],
+      "url": "http://mt5577:3000/api/album/jc9n7axmBdpgDAZ9cPSvUt/Excess",
+      "visibility": "public"
+    },
+    {
+      "id": "cDv1rT6b4EgszUPBDCcPkq",
+      "title": "Before I’m Dead",
+      "artists": [
+        {
+          "id": "oTzWQovHHTrLYqrgYsgCyS",
+          "name": "Kidneythieves",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/oTzWQovHHTrLYqrgYsgCyS/Kidneythieves"
+        }
+      ],
+      "duration": 276,
+      "status": "pending",
+      "mbid": "44c6a035-1ce3-4393-bd65-85b3e4dafdc6",
+      "links": [
+        "https://musicbrainz.org/recording/44c6a035-1ce3-4393-bd65-85b3e4dafdc6"
+      ],
+      "url": "http://mt5577:3000/api/album/cDv1rT6b4EgszUPBDCcPkq/Before+I%E2%80%99m+Dead",
+      "visibility": "public"
+    }
+  ],
+  "released": "2002-04-07T00:00:00.000Z",
+  "countries": ["DE"],
+  "mbid": "281fc068-52f0-3e6a-b7ca-25e5b9dfc6da",
+  "links": [
+    "https://musicbrainz.org/album/281fc068-52f0-3e6a-b7ca-25e5b9dfc6da"
+  ],
+  "url": "http://mt5577:3000/api/album/5XnyK1P9vcXJfnQ2ptVnyf/Queen+of+the+Damned",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "de3vycdjanPpWBWqwjrCJF",
+      "name": "Wayne Static",
+      "area": "Muskegon, US",
+      "url": "http://mt5577:3000/api/artist/de3vycdjanPpWBWqwjrCJF/Wayne+Static"
+    },
+    {
+      "id": "x3LNidVBWZTDJ9BjRA1tRZ",
+      "name": "David Draiman",
+      "area": "Brooklyn, US",
+      "url": "http://mt5577:3000/api/artist/x3LNidVBWZTDJ9BjRA1tRZ/David+Draiman"
+    },
+    {
+      "id": "mHGBuBDPfEhTnh6bz6VrE3",
+      "name": "Chester Bennington",
+      "area": "Phoenix, US",
+      "url": "http://mt5577:3000/api/artist/mHGBuBDPfEhTnh6bz6VrE3/Chester+Bennington"
+    },
+    {
+      "id": "3scNhuRA8LBvpeENYynvp3",
+      "name": "Deftones",
+      "area": "Sacramento, US",
+      "url": "http://mt5577:3000/api/artist/3scNhuRA8LBvpeENYynvp3/Deftones"
+    },
+    {
+      "id": "9D3uuGZqi1MP4E3UBcAQDf",
+      "name": "Marilyn Manson",
+      "area": "Canton, US",
+      "url": "http://mt5577:3000/api/artist/9D3uuGZqi1MP4E3UBcAQDf/Marilyn+Manson"
+    },
+    {
+      "id": "bH5PerEczoj9pa4gaJAumL",
+      "name": "Papa Roach",
+      "area": "Vacaville, US",
+      "url": "http://mt5577:3000/api/artist/bH5PerEczoj9pa4gaJAumL/Papa+Roach"
+    },
+    {
+      "id": "kdqMwYiU9DshZCHcYrYNA5",
+      "name": "Godhead",
+      "area": "Washington, D.C., US",
+      "url": "http://mt5577:3000/api/artist/kdqMwYiU9DshZCHcYrYNA5/Godhead"
+    },
+    {
+      "id": "dwXUgGbx9KTPnot6yHQfxg",
+      "name": "Jay Gordon",
+      "area": "San Francisco, US",
+      "url": "http://mt5577:3000/api/artist/dwXUgGbx9KTPnot6yHQfxg/Jay+Gordon"
+    },
+    {
+      "id": "pAk5yxuv9biPFTRsLXN9GM",
+      "name": "Disturbed",
+      "area": "Chicago, US",
+      "url": "http://mt5577:3000/api/artist/pAk5yxuv9biPFTRsLXN9GM/Disturbed"
+    },
+    {
+      "id": "uPUicyhwVtab8v3B16kcDx",
+      "name": "Static-X",
+      "area": "Los Angeles, US",
+      "url": "http://mt5577:3000/api/artist/uPUicyhwVtab8v3B16kcDx/Static-X"
+    },
+    {
+      "id": "nuzLyoCp3C7pFMNLmbfcfV",
+      "name": "Earshot",
+      "area": "Los Angeles, US",
+      "url": "http://mt5577:3000/api/artist/nuzLyoCp3C7pFMNLmbfcfV/Earshot"
+    },
+    {
+      "id": "9Dv2rY8DhsgaGzS31LH5ka",
+      "name": "Dry Cell",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/9Dv2rY8DhsgaGzS31LH5ka/Dry+Cell"
+    },
+    {
+      "id": "abQ3dtBwFEbG4frLoSGuHq",
+      "name": "Tricky",
+      "area": "Bristol, GB",
+      "url": "http://mt5577:3000/api/artist/abQ3dtBwFEbG4frLoSGuHq/Tricky"
+    },
+    {
+      "id": "oTzWQovHHTrLYqrgYsgCyS",
+      "name": "Kidneythieves",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/oTzWQovHHTrLYqrgYsgCyS/Kidneythieves"
+    }
+  ]
+}

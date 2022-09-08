@@ -1,0 +1,263 @@
+{
+  "id": "xaTTH8sVtuXBdhrqsW5LbL",
+  "title": "Adema",
+  "items": [
+    {
+      "id": "hBGNP1aao9EdtorPS5wVu4",
+      "title": "Everyone",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 209,
+      "status": "pending",
+      "mbid": "04722b55-7820-4ef4-b311-ae7a933ad7b9",
+      "links": [
+        "https://musicbrainz.org/recording/04722b55-7820-4ef4-b311-ae7a933ad7b9"
+      ],
+      "url": "http://mt5577:3000/api/album/hBGNP1aao9EdtorPS5wVu4/Everyone",
+      "visibility": "public"
+    },
+    {
+      "id": "hmYW74A5Wp9Cm53svoVhWb",
+      "title": "Blow It Away",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 183,
+      "status": "pending",
+      "mbid": "bbb018af-a135-4917-be0e-2e49b8eaf577",
+      "links": [
+        "https://musicbrainz.org/recording/bbb018af-a135-4917-be0e-2e49b8eaf577"
+      ],
+      "url": "http://mt5577:3000/api/album/hmYW74A5Wp9Cm53svoVhWb/Blow+It+Away",
+      "visibility": "public"
+    },
+    {
+      "id": "5wR3TRQzuKYoWC8wBzs8u4",
+      "title": "Giving In",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 275,
+      "status": "pending",
+      "mbid": "87a6bca6-3b09-4986-a221-cac3e6687991",
+      "links": [
+        "https://musicbrainz.org/recording/87a6bca6-3b09-4986-a221-cac3e6687991"
+      ],
+      "url": "http://mt5577:3000/api/album/5wR3TRQzuKYoWC8wBzs8u4/Giving+In",
+      "visibility": "public"
+    },
+    {
+      "id": "tyw6h2nRhSMZKZeFTmn4UX",
+      "title": "Freaking Out",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 216,
+      "status": "pending",
+      "mbid": "8b8dd655-d9a1-47cc-a7aa-cc0d8a1d207f",
+      "links": [
+        "https://musicbrainz.org/recording/8b8dd655-d9a1-47cc-a7aa-cc0d8a1d207f"
+      ],
+      "url": "http://mt5577:3000/api/album/tyw6h2nRhSMZKZeFTmn4UX/Freaking+Out",
+      "visibility": "public"
+    },
+    {
+      "id": "1Rrir8YWfrWUCC6uro6Zv9",
+      "title": "The Way You Like It",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 220,
+      "status": "pending",
+      "mbid": "161194f7-2700-4fb3-96e7-3469cbbdb927",
+      "links": [
+        "https://musicbrainz.org/recording/161194f7-2700-4fb3-96e7-3469cbbdb927"
+      ],
+      "url": "http://mt5577:3000/api/album/1Rrir8YWfrWUCC6uro6Zv9/The+Way+You+Like+It",
+      "visibility": "public"
+    },
+    {
+      "id": "pZBKtHdnjdA44G1g98GpQQ",
+      "title": "Close Friends",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 204,
+      "status": "pending",
+      "mbid": "959de447-8689-4d66-bae1-ed9b611e0911",
+      "links": [
+        "https://musicbrainz.org/recording/959de447-8689-4d66-bae1-ed9b611e0911"
+      ],
+      "url": "http://mt5577:3000/api/album/pZBKtHdnjdA44G1g98GpQQ/Close+Friends",
+      "visibility": "public"
+    },
+    {
+      "id": "1ychaGMaZHC1ZoxLg37hA6",
+      "title": "Do What You Want to Do",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 181,
+      "status": "pending",
+      "mbid": "48771e0f-1499-4844-bc64-fdf5ccf5ed7e",
+      "links": [
+        "https://musicbrainz.org/recording/48771e0f-1499-4844-bc64-fdf5ccf5ed7e"
+      ],
+      "url": "http://mt5577:3000/api/album/1ychaGMaZHC1ZoxLg37hA6/Do+What+You+Want+to+Do",
+      "visibility": "public"
+    },
+    {
+      "id": "bLQFXM7kmXwZNNc2aAfvQ7",
+      "title": "Skin",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 204,
+      "status": "pending",
+      "mbid": "a79951b0-43ed-4ae3-a7d3-af21df03ad18",
+      "links": [
+        "https://musicbrainz.org/recording/a79951b0-43ed-4ae3-a7d3-af21df03ad18"
+      ],
+      "url": "http://mt5577:3000/api/album/bLQFXM7kmXwZNNc2aAfvQ7/Skin",
+      "visibility": "public"
+    },
+    {
+      "id": "bwKxienQ6DVWLUGdVC82UW",
+      "title": "Pain Inside",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 209,
+      "status": "pending",
+      "mbid": "efa2dcb3-7bc4-490a-9203-b72f22fee6e7",
+      "links": [
+        "https://musicbrainz.org/recording/efa2dcb3-7bc4-490a-9203-b72f22fee6e7"
+      ],
+      "url": "http://mt5577:3000/api/album/bwKxienQ6DVWLUGdVC82UW/Pain+Inside",
+      "visibility": "public"
+    },
+    {
+      "id": "wKVZS5ET6Hx1rNnmN6PFLZ",
+      "title": "Speculum",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 212,
+      "status": "pending",
+      "mbid": "7e6f69f4-db36-4245-ba77-f9127c0f7a87",
+      "links": [
+        "https://musicbrainz.org/recording/7e6f69f4-db36-4245-ba77-f9127c0f7a87"
+      ],
+      "url": "http://mt5577:3000/api/album/wKVZS5ET6Hx1rNnmN6PFLZ/Speculum",
+      "visibility": "public"
+    },
+    {
+      "id": "fguMYDC7UAzYFsYyPzMvsX",
+      "title": "Drowning",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 206,
+      "status": "pending",
+      "mbid": "a49ab7dc-890c-4e6e-b03f-925f6c0c5abc",
+      "links": [
+        "https://musicbrainz.org/recording/a49ab7dc-890c-4e6e-b03f-925f6c0c5abc"
+      ],
+      "url": "http://mt5577:3000/api/album/fguMYDC7UAzYFsYyPzMvsX/Drowning",
+      "visibility": "public"
+    },
+    {
+      "id": "ePiNFPca6LoPDLZJZYZT3S",
+      "title": "Trust",
+      "artists": [
+        {
+          "id": "wrEQ9sr2SLusGUpTWxtd6y",
+          "name": "Adema",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+        }
+      ],
+      "duration": 261,
+      "status": "pending",
+      "mbid": "89b3f98e-6f41-4505-9a98-394c6675bb9b",
+      "links": [
+        "https://musicbrainz.org/recording/89b3f98e-6f41-4505-9a98-394c6675bb9b"
+      ],
+      "url": "http://mt5577:3000/api/album/ePiNFPca6LoPDLZJZYZT3S/Trust",
+      "visibility": "public"
+    }
+  ],
+  "released": "2000-12-31T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "fc6cf8c0-5d80-4eba-86ae-0e70d94e0960",
+  "links": [
+    "https://musicbrainz.org/album/fc6cf8c0-5d80-4eba-86ae-0e70d94e0960",
+    "https://itunes.apple.com/us/album/id298427037"
+  ],
+  "url": "http://mt5577:3000/api/album/xaTTH8sVtuXBdhrqsW5LbL/Adema",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "wrEQ9sr2SLusGUpTWxtd6y",
+      "name": "Adema",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/wrEQ9sr2SLusGUpTWxtd6y/Adema"
+    }
+  ]
+}

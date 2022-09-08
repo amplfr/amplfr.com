@@ -1,0 +1,341 @@
+{
+  "id": "wJn6t2tuMkKu82KcmmKMSp",
+  "title": "X&Y",
+  "items": [
+    {
+      "id": "qURJwwmLP71XFBowJkXGRm",
+      "title": "Square One",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 287,
+      "status": "pending",
+      "isrc": ["GBAYE0500601", "GBAYE1600176"],
+      "mbid": "9a8ea67d-ee7a-442e-a455-24ea2a9de743",
+      "links": [
+        "https://musicbrainz.org/recording/9a8ea67d-ee7a-442e-a455-24ea2a9de743",
+        "https://open.spotify.com/track/2zQIITgo6sc5ppOfPcH205",
+        "https://www.deezer.com/track/3106502",
+        "https://www.youtube.com/watch?v=j37GED-AR3M"
+      ],
+      "url": "http://mt5577:3000/api/album/qURJwwmLP71XFBowJkXGRm/Square+One",
+      "visibility": "public"
+    },
+    {
+      "id": "vFtPHhe7JQVeQuXmuPsxzH",
+      "title": "What If",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 297,
+      "status": "pending",
+      "isrc": ["GBAYE0500603", "GBAYE1600177"],
+      "mbid": "26d84798-8b3a-4041-9742-e13df2e9e975",
+      "links": [
+        "https://musicbrainz.org/recording/26d84798-8b3a-4041-9742-e13df2e9e975",
+        "https://open.spotify.com/track/39qRdHcl2tizWbzlM9kUlN",
+        "https://www.deezer.com/track/3106503",
+        "https://www.youtube.com/watch?v=tH-GPdkkNik"
+      ],
+      "url": "http://mt5577:3000/api/album/vFtPHhe7JQVeQuXmuPsxzH/What+If",
+      "visibility": "public"
+    },
+    {
+      "id": "ihet98FfCJUeYNkAo29nvg",
+      "title": "White Shadows",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 328,
+      "status": "pending",
+      "isrc": ["GBAYE0500609", "GBAYE1600178"],
+      "mbid": "7a139373-9d60-48a8-a4a5-8ab5f7ac3689",
+      "links": [
+        "https://musicbrainz.org/recording/7a139373-9d60-48a8-a4a5-8ab5f7ac3689",
+        "https://open.spotify.com/track/0WWz2AaqxLoO0fa9ou6Fqc",
+        "https://www.deezer.com/track/3106504",
+        "https://www.youtube.com/watch?v=EhC_c7p50so"
+      ],
+      "url": "http://mt5577:3000/api/album/ihet98FfCJUeYNkAo29nvg/White+Shadows",
+      "visibility": "public"
+    },
+    {
+      "id": "aUrL68afopDCZH7m32qnrE",
+      "title": "Fix You",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 295,
+      "status": "pending",
+      "isrc": ["GBAYE0500605", "GBAYE1600179"],
+      "mbid": "20919a48-4ad5-409c-b639-8db7ca9f9e7a",
+      "links": [
+        "https://musicbrainz.org/recording/20919a48-4ad5-409c-b639-8db7ca9f9e7a",
+        "https://open.spotify.com/track/7LVHVU3tWfcxj5aiPFEW4Q",
+        "https://www.deezer.com/track/3106505",
+        "https://www.youtube.com/watch?v=k4V3Mo61fJM",
+        "https://www.youtube.com/watch?v=Oncu0bgdcXU"
+      ],
+      "url": "http://mt5577:3000/api/album/aUrL68afopDCZH7m32qnrE/Fix+You",
+      "visibility": "public"
+    },
+    {
+      "id": "uw7kPBFGqVSu3PYsMJqNKS",
+      "title": "Fix You",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 295,
+      "status": "pending",
+      "isrc": ["GBAYE0500605", "GBAYE1600179"],
+      "mbid": "20919a48-4ad5-409c-b639-8db7ca9f9e7a",
+      "links": [
+        "https://musicbrainz.org/recording/20919a48-4ad5-409c-b639-8db7ca9f9e7a",
+        "https://open.spotify.com/track/7LVHVU3tWfcxj5aiPFEW4Q",
+        "https://www.deezer.com/track/3106505",
+        "https://www.youtube.com/watch?v=Oncu0bgdcXU",
+        "https://www.youtube.com/watch?v=k4V3Mo61fJM"
+      ],
+      "url": "http://mt5577:3000/api/album/uw7kPBFGqVSu3PYsMJqNKS/Fix+You",
+      "visibility": "public"
+    },
+    {
+      "id": "fRoXZ2KrCzcHUA1Lw7j3MB",
+      "title": "Talk",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 311,
+      "status": "pending",
+      "isrc": ["GBAYE0500614", "GBAYE1600180"],
+      "mbid": "9cd3daca-eab7-4db8-8af8-21b3da550c28",
+      "links": [
+        "https://musicbrainz.org/recording/9cd3daca-eab7-4db8-8af8-21b3da550c28",
+        "https://open.spotify.com/track/4wzt5Rrk3W98pHXAqutuJw",
+        "https://www.deezer.com/track/3106506",
+        "https://www.youtube.com/watch?v=EH9meoWmAOM",
+        "https://www.youtube.com/watch?v=FC_WRm3qA0Q"
+      ],
+      "url": "http://mt5577:3000/api/album/fRoXZ2KrCzcHUA1Lw7j3MB/Talk",
+      "visibility": "public"
+    },
+    {
+      "id": "vTnAw7KgqVNy6Groccpjcv",
+      "title": "X&Y",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 274,
+      "status": "pending",
+      "isrc": ["GBAYE0500607", "GBAYE1600181"],
+      "mbid": "18144bde-ae38-4b5a-a1f3-c14b9fdf3bad",
+      "links": [
+        "https://musicbrainz.org/recording/18144bde-ae38-4b5a-a1f3-c14b9fdf3bad",
+        "https://open.spotify.com/track/2rxp56vVQp1zzumJ0eHLmw",
+        "https://www.deezer.com/track/3106507",
+        "https://www.youtube.com/watch?v=uIgxY0yWLNY"
+      ],
+      "url": "http://mt5577:3000/api/album/vTnAw7KgqVNy6Groccpjcv/X%26Y",
+      "visibility": "public"
+    },
+    {
+      "id": "eDu4Y113AnxWJCdqpnCrHv",
+      "title": "Speed of Sound",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 288,
+      "status": "pending",
+      "isrc": ["GBAYE0500602", "GBAYE1600182"],
+      "mbid": "8d305607-7665-4ba7-bb30-06bb35fad519",
+      "links": [
+        "https://musicbrainz.org/recording/8d305607-7665-4ba7-bb30-06bb35fad519",
+        "https://open.spotify.com/track/7clUVcSOtkNWa58Gw5RfD4",
+        "https://www.deezer.com/track/3106508",
+        "https://www.youtube.com/watch?v=04tC72kZM_o",
+        "https://www.youtube.com/watch?v=0k_1kvDh2UA"
+      ],
+      "url": "http://mt5577:3000/api/album/eDu4Y113AnxWJCdqpnCrHv/Speed+of+Sound",
+      "visibility": "public"
+    },
+    {
+      "id": "tzBeqhmwDnmEtTRa294ugz",
+      "title": "A Message",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 285,
+      "status": "pending",
+      "isrc": ["GBAYE0500608", "GBAYE1600183"],
+      "mbid": "e5a0989f-2d10-41d9-a508-974a20fdad43",
+      "links": [
+        "https://musicbrainz.org/recording/e5a0989f-2d10-41d9-a508-974a20fdad43",
+        "https://open.spotify.com/track/2w3eXFL86RgxGtDr8bzwgK",
+        "https://www.deezer.com/track/3106509",
+        "https://www.youtube.com/watch?v=1bDz2MZWKlM"
+      ],
+      "url": "http://mt5577:3000/api/album/tzBeqhmwDnmEtTRa294ugz/A+Message",
+      "visibility": "public"
+    },
+    {
+      "id": "bLjJyR8ubWfPE77Zmjar62",
+      "title": "Low",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 332,
+      "status": "pending",
+      "isrc": ["GBAYE0500604", "GBAYE1600184"],
+      "mbid": "186229ca-7bb2-4c98-9418-7df600aa31f6",
+      "links": [
+        "https://musicbrainz.org/recording/186229ca-7bb2-4c98-9418-7df600aa31f6",
+        "https://open.spotify.com/track/1BBtng1KOF0JuC6bSNgGmp",
+        "https://www.deezer.com/track/3106510",
+        "https://www.youtube.com/watch?v=Tyjxnb8hVp4"
+      ],
+      "url": "http://mt5577:3000/api/album/bLjJyR8ubWfPE77Zmjar62/Low",
+      "visibility": "public"
+    },
+    {
+      "id": "bNNyaXmmmnw8m5wEr8vs2H",
+      "title": "The Hardest Part",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 265,
+      "status": "pending",
+      "isrc": ["GBAYE0500613", "GBAYE1600185"],
+      "mbid": "551c01b6-8295-4549-9bdf-b65ba32ce4a9",
+      "links": [
+        "https://musicbrainz.org/recording/551c01b6-8295-4549-9bdf-b65ba32ce4a9",
+        "https://open.spotify.com/track/4Tw9JYF9HOuPRyccNWMgwf",
+        "https://www.deezer.com/track/3106511",
+        "https://www.youtube.com/watch?v=WAGbq3A9HfA",
+        "https://www.youtube.com/watch?v=yeGtvyHl9oY"
+      ],
+      "url": "http://mt5577:3000/api/album/bNNyaXmmmnw8m5wEr8vs2H/The+Hardest+Part",
+      "visibility": "public"
+    },
+    {
+      "id": "1meowTZdJo8mPGU34rU2jj",
+      "title": "Swallowed in the Sea",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 239,
+      "status": "pending",
+      "isrc": ["GBAYE0500610", "GBAYE1600186"],
+      "mbid": "32dc9a9c-c936-4ec5-afe3-8320f5f096f3",
+      "links": [
+        "https://musicbrainz.org/recording/32dc9a9c-c936-4ec5-afe3-8320f5f096f3",
+        "https://open.spotify.com/track/2u2WL5N3KnQnykOZi3fxL6",
+        "https://www.deezer.com/track/3106512",
+        "https://www.youtube.com/watch?v=f-cyxWKzxVQ"
+      ],
+      "url": "http://mt5577:3000/api/album/1meowTZdJo8mPGU34rU2jj/Swallowed+in+the+Sea",
+      "visibility": "public"
+    },
+    {
+      "id": "72dmgSWRPgK1u7aa2s62FH",
+      "title": "Til Kingdom Come",
+      "artists": [
+        {
+          "id": "wSv42DNe1JPrei75iEqub7",
+          "name": "Coldplay",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        }
+      ],
+      "duration": 252,
+      "status": "pending",
+      "isrc": ["GBAYE0500606", "GBAYE1600188"],
+      "mbid": "b2e7d0c9-f13e-4ffd-8aa9-2ab7edf0d020",
+      "links": [
+        "https://musicbrainz.org/recording/b2e7d0c9-f13e-4ffd-8aa9-2ab7edf0d020",
+        "https://open.spotify.com/track/1wQXj5bgxyZQ2XmE2X9s6n",
+        "https://www.deezer.com/track/3106514",
+        "https://www.youtube.com/watch?v=E0UN-pVTLf4"
+      ],
+      "url": "http://mt5577:3000/api/album/72dmgSWRPgK1u7aa2s62FH/Til+Kingdom+Come",
+      "visibility": "public"
+    }
+  ],
+  "released": "2005-06-06T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "f8dc65de-90df-3c47-9d94-05684154cc77",
+  "links": [
+    "https://musicbrainz.org/album/f8dc65de-90df-3c47-9d94-05684154cc77",
+    "https://www.amazon.com/gp/product/B0006L16N8",
+    "https://www.discogs.com/release/479908"
+  ],
+  "url": "http://mt5577:3000/api/album/wJn6t2tuMkKu82KcmmKMSp/X%26Y",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "wSv42DNe1JPrei75iEqub7",
+      "name": "Coldplay",
+      "area": "London, GB",
+      "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+    }
+  ]
+}

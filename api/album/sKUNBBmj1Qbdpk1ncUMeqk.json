@@ -1,0 +1,304 @@
+{
+  "id": "sKUNBBmj1Qbdpk1ncUMeqk",
+  "title": "Blaze",
+  "items": [
+    {
+      "id": "3AixYjEjZ4UBHwFTfN2fxP",
+      "title": "Burn",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 195,
+      "status": "pending",
+      "mbid": "3ff394c7-9e65-4a75-a1fb-25b71f3811b0",
+      "links": [
+        "https://musicbrainz.org/recording/3ff394c7-9e65-4a75-a1fb-25b71f3811b0"
+      ],
+      "url": "http://mt5577:3000/api/album/3AixYjEjZ4UBHwFTfN2fxP/Burn",
+      "visibility": "public"
+    },
+    {
+      "id": "3zFCpZ5vBukgrP6PJqYDia",
+      "title": "E Dagger",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 129,
+      "status": "pending",
+      "mbid": "90e0452d-b8c4-4c9f-bd17-cffc7601513b",
+      "links": [
+        "https://musicbrainz.org/recording/90e0452d-b8c4-4c9f-bd17-cffc7601513b"
+      ],
+      "url": "http://mt5577:3000/api/album/3zFCpZ5vBukgrP6PJqYDia/E+Dagger",
+      "visibility": "public"
+    },
+    {
+      "id": "jUjMv9knbsWoEunHPAmZJh",
+      "title": "Dancing the Collapse",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 136,
+      "status": "pending",
+      "mbid": "f0d06b18-457e-46b2-92e7-4e6a6bb326e0",
+      "links": [
+        "https://musicbrainz.org/recording/f0d06b18-457e-46b2-92e7-4e6a6bb326e0"
+      ],
+      "url": "http://mt5577:3000/api/album/jUjMv9knbsWoEunHPAmZJh/Dancing+the+Collapse",
+      "visibility": "public"
+    },
+    {
+      "id": "sEh6xjHQM7qLP45TpkvJzh",
+      "title": "I Must Be Hateful",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 210,
+      "status": "pending",
+      "mbid": "5c5e85db-ded9-42a0-bf10-0eaad2898f62",
+      "links": [
+        "https://musicbrainz.org/recording/5c5e85db-ded9-42a0-bf10-0eaad2898f62"
+      ],
+      "url": "http://mt5577:3000/api/album/sEh6xjHQM7qLP45TpkvJzh/I+Must+Be+Hateful",
+      "visibility": "public"
+    },
+    {
+      "id": "cjj9Rv7qyszAHCRZeuF92Z",
+      "title": "Falling Apart",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 159,
+      "status": "pending",
+      "mbid": "f03c9931-dc2f-4f42-8178-ebaf1539130d",
+      "links": [
+        "https://musicbrainz.org/recording/f03c9931-dc2f-4f42-8178-ebaf1539130d"
+      ],
+      "url": "http://mt5577:3000/api/album/cjj9Rv7qyszAHCRZeuF92Z/Falling+Apart",
+      "visibility": "public"
+    },
+    {
+      "id": "sUxeeqaYnpxysipwsMi9rk",
+      "title": "Max Says",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 202,
+      "status": "pending",
+      "mbid": "d185d46f-6d7f-426a-8742-bbe33badc719",
+      "links": [
+        "https://musicbrainz.org/recording/d185d46f-6d7f-426a-8742-bbe33badc719"
+      ],
+      "url": "http://mt5577:3000/api/album/sUxeeqaYnpxysipwsMi9rk/Max+Says",
+      "visibility": "public"
+    },
+    {
+      "id": "6vuoT1J1bHx5CioRZGMErz",
+      "title": "Billy Club",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 168,
+      "status": "pending",
+      "mbid": "78f49380-8a81-472d-bc91-8ca7b4eae89c",
+      "links": [
+        "https://musicbrainz.org/recording/78f49380-8a81-472d-bc91-8ca7b4eae89c"
+      ],
+      "url": "http://mt5577:3000/api/album/6vuoT1J1bHx5CioRZGMErz/Billy+Club",
+      "visibility": "public"
+    },
+    {
+      "id": "pTDmthtfcaXdvTBPRscTix",
+      "title": "Dividers",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 163,
+      "status": "pending",
+      "mbid": "ea76f361-75c9-4e8a-bb80-c7e6e44965f3",
+      "links": [
+        "https://musicbrainz.org/recording/ea76f361-75c9-4e8a-bb80-c7e6e44965f3"
+      ],
+      "url": "http://mt5577:3000/api/album/pTDmthtfcaXdvTBPRscTix/Dividers",
+      "visibility": "public"
+    },
+    {
+      "id": "nnYPkBKqacXX2BAMjMEKb2",
+      "title": "Never Stops",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 215,
+      "status": "pending",
+      "mbid": "d1bab42f-1f0b-4f56-bc2a-755873af1c08",
+      "links": [
+        "https://musicbrainz.org/recording/d1bab42f-1f0b-4f56-bc2a-755873af1c08"
+      ],
+      "url": "http://mt5577:3000/api/album/nnYPkBKqacXX2BAMjMEKb2/Never+Stops",
+      "visibility": "public"
+    },
+    {
+      "id": "7WWzMNpFjyt5vbCcthCs3m",
+      "title": "Dinner and a Movie",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 124,
+      "status": "pending",
+      "mbid": "8b53c54f-3947-4c3f-aa02-fc8183792ed4",
+      "links": [
+        "https://musicbrainz.org/recording/8b53c54f-3947-4c3f-aa02-fc8183792ed4"
+      ],
+      "url": "http://mt5577:3000/api/album/7WWzMNpFjyt5vbCcthCs3m/Dinner+and+a+Movie",
+      "visibility": "public"
+    },
+    {
+      "id": "aXeQ8MuFEv98YQqDuN5ZqT",
+      "title": "Lullaby",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 229,
+      "status": "pending",
+      "mbid": "b9a267f9-be28-4a61-8184-e442222aca48",
+      "links": [
+        "https://musicbrainz.org/recording/b9a267f9-be28-4a61-8184-e442222aca48"
+      ],
+      "url": "http://mt5577:3000/api/album/aXeQ8MuFEv98YQqDuN5ZqT/Lullaby",
+      "visibility": "public"
+    },
+    {
+      "id": "547xzAn8hbkXYMPxpNi5jL",
+      "title": "Billionaire",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 150,
+      "status": "pending",
+      "mbid": "1c3e2305-b990-4e36-8681-dc4113cba36a",
+      "links": [
+        "https://musicbrainz.org/recording/1c3e2305-b990-4e36-8681-dc4113cba36a"
+      ],
+      "url": "http://mt5577:3000/api/album/547xzAn8hbkXYMPxpNi5jL/Billionaire",
+      "visibility": "public"
+    },
+    {
+      "id": "bW8VnhK3qjVue1GG7JWoUd",
+      "title": "Tomorrow Is Heartbreak",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 180,
+      "status": "pending",
+      "mbid": "0faa4e46-cd57-42bb-9e0b-23c7179ba398",
+      "links": [
+        "https://musicbrainz.org/recording/0faa4e46-cd57-42bb-9e0b-23c7179ba398"
+      ],
+      "url": "http://mt5577:3000/api/album/bW8VnhK3qjVue1GG7JWoUd/Tomorrow+Is+Heartbreak",
+      "visibility": "public"
+    },
+    {
+      "id": "6dYg4CS5yEjrjJturQZDV3",
+      "title": "Baggage",
+      "artists": [
+        {
+          "id": "16dsV6h4E8c5UHy3otZdYt",
+          "name": "Lagwagon",
+          "area": "Goleta, US",
+          "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+        }
+      ],
+      "duration": 248,
+      "status": "pending",
+      "mbid": "e3d43b01-ae73-413d-bb4e-b1f74ac189e3",
+      "links": [
+        "https://musicbrainz.org/recording/e3d43b01-ae73-413d-bb4e-b1f74ac189e3"
+      ],
+      "url": "http://mt5577:3000/api/album/6dYg4CS5yEjrjJturQZDV3/Baggage",
+      "visibility": "public"
+    }
+  ],
+  "released": "2003-04-07T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "d8af20f2-6e9b-470b-b486-59767458eabf",
+  "links": [
+    "https://musicbrainz.org/album/d8af20f2-6e9b-470b-b486-59767458eabf",
+    "https://www.amazon.com/gp/product/B00008O83R",
+    "https://www.discogs.com/release/876530"
+  ],
+  "url": "http://mt5577:3000/api/album/sKUNBBmj1Qbdpk1ncUMeqk/Blaze",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "16dsV6h4E8c5UHy3otZdYt",
+      "name": "Lagwagon",
+      "area": "Goleta, US",
+      "url": "http://mt5577:3000/api/artist/16dsV6h4E8c5UHy3otZdYt/Lagwagon"
+    }
+  ]
+}

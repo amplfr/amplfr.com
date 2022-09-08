@@ -1,0 +1,275 @@
+{
+  "id": "9XadfFbRfF4TrAbF8cPGjt",
+  "title": "News of the World",
+  "items": [
+    {
+      "id": "r36j71CtjpLCeK2QgaqivH",
+      "title": "We Will Rock You",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 122,
+      "status": "pending",
+      "isrc": [
+        "GBCEE0100127",
+        "GBCEE7700017",
+        "GBCEE7700030",
+        "GBCEE9300001",
+        "GBCEE9300019",
+        "GBCEE9800057",
+        "GBUM71029618",
+        "USHR10320405"
+      ],
+      "mbid": "f8581c2b-61ac-465d-82ae-0fa2916a4799",
+      "links": [
+        "https://musicbrainz.org/recording/f8581c2b-61ac-465d-82ae-0fa2916a4799",
+        "https://www.youtube.com/watch?v=-tJYN-eG1zk"
+      ],
+      "url": "http://mt5577:3000/api/album/r36j71CtjpLCeK2QgaqivH/We+Will+Rock+You",
+      "visibility": "public"
+    },
+    {
+      "id": "1bikX7rH2QZPTBVkyRgFxJ",
+      "title": "We Are the Champions",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 181,
+      "status": "pending",
+      "isrc": [
+        "GBCEE0100128",
+        "GBCEE7700016",
+        "GBCEE9300020",
+        "GBCEE9800058",
+        "GBUM71029619",
+        "USRH10652606"
+      ],
+      "mbid": "3604eb06-4bc2-4416-9b31-ceadae51bc70",
+      "links": [
+        "https://musicbrainz.org/recording/3604eb06-4bc2-4416-9b31-ceadae51bc70",
+        "https://www.youtube.com/watch?v=04854XqcfCY"
+      ],
+      "url": "http://mt5577:3000/api/album/1bikX7rH2QZPTBVkyRgFxJ/We+Are+the+Champions",
+      "visibility": "public"
+    },
+    {
+      "id": "v1XRbz1Xt4DPTtLeV3NSTx",
+      "title": "Sheer Heart Attack",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 208,
+      "status": "pending",
+      "isrc": ["GBCEE7700018", "GBCEE9800059", "GBUM71103458"],
+      "mbid": "dc7176c8-a050-4185-8e12-e22d6f97a952",
+      "links": [
+        "https://musicbrainz.org/recording/dc7176c8-a050-4185-8e12-e22d6f97a952"
+      ],
+      "url": "http://mt5577:3000/api/album/v1XRbz1Xt4DPTtLeV3NSTx/Sheer+Heart+Attack",
+      "visibility": "public"
+    },
+    {
+      "id": "bBtLHEDyuBwim7koB5WzZi",
+      "title": "All Dead, All Dead",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 190,
+      "status": "pending",
+      "isrc": ["GBCEE7700005", "GBCEE9800060", "GBUM71103453"],
+      "mbid": "c5985008-096e-44d6-b1f7-9c9aea78f046",
+      "links": [
+        "https://musicbrainz.org/recording/c5985008-096e-44d6-b1f7-9c9aea78f046"
+      ],
+      "url": "http://mt5577:3000/api/album/bBtLHEDyuBwim7koB5WzZi/All+Dead%2C+All+Dead",
+      "visibility": "public"
+    },
+    {
+      "id": "iAd6GF9HjWaq2ZxSJpsCx7",
+      "title": "Spread Your Wings",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 275,
+      "status": "pending",
+      "isrc": ["GBCEE7700006", "GBCEE9800061", "GBUM71103460"],
+      "mbid": "940ca3f2-bf8d-4320-81ce-77dc74651d6e",
+      "links": [
+        "https://musicbrainz.org/recording/940ca3f2-bf8d-4320-81ce-77dc74651d6e",
+        "https://www.youtube.com/watch?v=uyd6OLyhPJo"
+      ],
+      "url": "http://mt5577:3000/api/album/iAd6GF9HjWaq2ZxSJpsCx7/Spread+Your+Wings",
+      "visibility": "public"
+    },
+    {
+      "id": "ouvbn9XRvmUUnYoniE27kA",
+      "title": "Fight From the Inside",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 184,
+      "status": "pending",
+      "isrc": ["GBCEE7700007", "GBCEE9800062", "GBUM71103454"],
+      "mbid": "2e697661-f7de-44f9-a408-9c84b1d300c8",
+      "links": [
+        "https://musicbrainz.org/recording/2e697661-f7de-44f9-a408-9c84b1d300c8"
+      ],
+      "url": "http://mt5577:3000/api/album/ouvbn9XRvmUUnYoniE27kA/Fight+From+the+Inside",
+      "visibility": "public"
+    },
+    {
+      "id": "m5r2F4g92eVfHikjgCaRp2",
+      "title": "Get Down, Make Love",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 231,
+      "status": "pending",
+      "isrc": ["GBCEE7700008", "GBCEE9800063", "GBUM71103455"],
+      "mbid": "6d908173-3107-4bfc-9b45-c9effeb140a7",
+      "links": [
+        "https://musicbrainz.org/recording/6d908173-3107-4bfc-9b45-c9effeb140a7"
+      ],
+      "url": "http://mt5577:3000/api/album/m5r2F4g92eVfHikjgCaRp2/Get+Down%2C+Make+Love",
+      "visibility": "public"
+    },
+    {
+      "id": "3eQeFyqFmNzJ3XqmRssPHT",
+      "title": "Sleeping on the Sidewalk",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 188,
+      "status": "pending",
+      "isrc": ["GBCEE7700009", "GBCEE9800064", "GBUM71103459"],
+      "mbid": "87f3b43f-0e3b-4251-ad09-ed6c600a83c8",
+      "links": [
+        "https://musicbrainz.org/recording/87f3b43f-0e3b-4251-ad09-ed6c600a83c8"
+      ],
+      "url": "http://mt5577:3000/api/album/3eQeFyqFmNzJ3XqmRssPHT/Sleeping+on+the+Sidewalk",
+      "visibility": "public"
+    },
+    {
+      "id": "sdGs1XEkbqtEzsr5xMDQdM",
+      "title": "Who Needs You",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 187,
+      "status": "pending",
+      "isrc": ["GBCEE7700010", "GBCEE9800065", "GBUM71103461"],
+      "mbid": "02dec6e1-fa49-4812-bf24-906fc68eee47",
+      "links": [
+        "https://musicbrainz.org/recording/02dec6e1-fa49-4812-bf24-906fc68eee47"
+      ],
+      "url": "http://mt5577:3000/api/album/sdGs1XEkbqtEzsr5xMDQdM/Who+Needs+You",
+      "visibility": "public"
+    },
+    {
+      "id": "rzeeYw9UmF8ckNP9Vmyjb3",
+      "title": "It’s Late",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 387,
+      "status": "pending",
+      "isrc": ["GBAYE7700003", "GBCEE9800066", "GBUM71103456"],
+      "mbid": "6f893408-be1f-4f95-9fdc-7ad6519bed11",
+      "links": [
+        "https://musicbrainz.org/recording/6f893408-be1f-4f95-9fdc-7ad6519bed11"
+      ],
+      "url": "http://mt5577:3000/api/album/rzeeYw9UmF8ckNP9Vmyjb3/It%E2%80%99s+Late",
+      "visibility": "public"
+    },
+    {
+      "id": "hXGMmTerJnoVRrRDMcwyKd",
+      "title": "My Melancholy Blues",
+      "artists": [
+        {
+          "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+          "name": "Queen",
+          "area": "London, GB",
+          "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+        }
+      ],
+      "duration": 211,
+      "status": "pending",
+      "isrc": ["GBCEE9800067", "GBUM71103457"],
+      "mbid": "a6d2dd8c-b40e-49d0-befc-e3568a0fd695",
+      "links": [
+        "https://musicbrainz.org/recording/a6d2dd8c-b40e-49d0-befc-e3568a0fd695"
+      ],
+      "url": "http://mt5577:3000/api/album/hXGMmTerJnoVRrRDMcwyKd/My+Melancholy+Blues",
+      "visibility": "public"
+    }
+  ],
+  "released": "2018-12-11T00:00:00.000Z",
+  "countries": ["JP"],
+  "mbid": "487cb17a-24ee-4b23-a4e1-5140499742f7",
+  "links": [
+    "https://musicbrainz.org/album/487cb17a-24ee-4b23-a4e1-5140499742f7",
+    "https://www.amazon.co.jp/gp/product/B07J3GXNHY",
+    "https://www.discogs.com/release/12950088",
+    "https://www.musik-sammler.de/release/1429686/"
+  ],
+  "url": "http://mt5577:3000/api/album/9XadfFbRfF4TrAbF8cPGjt/News+of+the+World",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "aMaXoUBQ4SBCHpNmyB2Vbu",
+      "name": "Queen",
+      "area": "London, GB",
+      "url": "http://mt5577:3000/api/artist/aMaXoUBQ4SBCHpNmyB2Vbu/Queen"
+    }
+  ]
+}

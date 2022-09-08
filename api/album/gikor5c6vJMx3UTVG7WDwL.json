@@ -1,0 +1,224 @@
+{
+  "id": "gikor5c6vJMx3UTVG7WDwL",
+  "title": "Seven Day Jesus",
+  "items": [
+    {
+      "id": "huLHRodnBJCDGQSTLnRFbj",
+      "title": "Down With the Ship",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 181,
+      "status": "pending",
+      "mbid": "e9f4b0b8-d267-49dd-a47f-743d97a3b215",
+      "links": [
+        "https://musicbrainz.org/recording/e9f4b0b8-d267-49dd-a47f-743d97a3b215"
+      ],
+      "url": "http://mt5577:3000/api/album/huLHRodnBJCDGQSTLnRFbj/Down+With+the+Ship",
+      "visibility": "public"
+    },
+    {
+      "id": "4VukqVwuLbYSpUAYNPHGt9",
+      "title": "Always Comes Around",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 239,
+      "status": "pending",
+      "mbid": "25eddc36-f7c2-4bf8-be77-f5ebdf7a365c",
+      "links": [
+        "https://musicbrainz.org/recording/25eddc36-f7c2-4bf8-be77-f5ebdf7a365c"
+      ],
+      "url": "http://mt5577:3000/api/album/4VukqVwuLbYSpUAYNPHGt9/Always+Comes+Around",
+      "visibility": "public"
+    },
+    {
+      "id": "tjE97bXH5focgY47EknBVU",
+      "title": "Butterfly",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 212,
+      "status": "pending",
+      "mbid": "50e3c05b-0599-4c9c-a827-1887d704f2dd",
+      "links": [
+        "https://musicbrainz.org/recording/50e3c05b-0599-4c9c-a827-1887d704f2dd"
+      ],
+      "url": "http://mt5577:3000/api/album/tjE97bXH5focgY47EknBVU/Butterfly",
+      "visibility": "public"
+    },
+    {
+      "id": "sYTxo8ty7nKsDntGNtgec7",
+      "title": "Everybody Needs Love",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 286,
+      "status": "pending",
+      "mbid": "e9e86af0-5153-41d4-a7ed-44d945a6d468",
+      "links": [
+        "https://musicbrainz.org/recording/e9e86af0-5153-41d4-a7ed-44d945a6d468"
+      ],
+      "url": "http://mt5577:3000/api/album/sYTxo8ty7nKsDntGNtgec7/Everybody+Needs+Love",
+      "visibility": "public"
+    },
+    {
+      "id": "9iTMf6PM3H3FHyqgPe8k6c",
+      "title": "Who I Am",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 174,
+      "status": "pending",
+      "mbid": "e83a14cd-23b3-4424-b97d-c1f97347a78d",
+      "links": [
+        "https://musicbrainz.org/recording/e83a14cd-23b3-4424-b97d-c1f97347a78d"
+      ],
+      "url": "http://mt5577:3000/api/album/9iTMf6PM3H3FHyqgPe8k6c/Who+I+Am",
+      "visibility": "public"
+    },
+    {
+      "id": "5uQYpe1d8w8NcV7z12RdoG",
+      "title": "End of My Rope",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 234,
+      "status": "pending",
+      "mbid": "672db11d-0d9c-4a17-8249-385693358095",
+      "links": [
+        "https://musicbrainz.org/recording/672db11d-0d9c-4a17-8249-385693358095"
+      ],
+      "url": "http://mt5577:3000/api/album/5uQYpe1d8w8NcV7z12RdoG/End+of+My+Rope",
+      "visibility": "public"
+    },
+    {
+      "id": "9kumP6MFmTACCAVJv3Qc5C",
+      "title": "Sea of Forgetfulness",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 346,
+      "status": "pending",
+      "mbid": "1ef3f454-c305-4c1d-8d38-7847773474c6",
+      "links": [
+        "https://musicbrainz.org/recording/1ef3f454-c305-4c1d-8d38-7847773474c6"
+      ],
+      "url": "http://mt5577:3000/api/album/9kumP6MFmTACCAVJv3Qc5C/Sea+of+Forgetfulness",
+      "visibility": "public"
+    },
+    {
+      "id": "3vdPHQaJjY7ptD8bajKdbY",
+      "title": "I Will Find You",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 221,
+      "status": "pending",
+      "mbid": "a42381cf-f395-4e0c-b50b-b7b590e6e273",
+      "links": [
+        "https://musicbrainz.org/recording/a42381cf-f395-4e0c-b50b-b7b590e6e273"
+      ],
+      "url": "http://mt5577:3000/api/album/3vdPHQaJjY7ptD8bajKdbY/I+Will+Find+You",
+      "visibility": "public"
+    },
+    {
+      "id": "qUZqebSN9QRPmCJ4ga4VyC",
+      "title": "My Friend",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 254,
+      "status": "pending",
+      "mbid": "69aa56ca-46a0-4196-9a6c-7c0d0a86dff7",
+      "links": [
+        "https://musicbrainz.org/recording/69aa56ca-46a0-4196-9a6c-7c0d0a86dff7"
+      ],
+      "url": "http://mt5577:3000/api/album/qUZqebSN9QRPmCJ4ga4VyC/My+Friend",
+      "visibility": "public"
+    },
+    {
+      "id": "pENnMCQXgCHr7cNHVcYRoW",
+      "title": "You Are the One",
+      "artists": [
+        {
+          "id": "1GbTUpJRo56wFFHNy2DVt2",
+          "name": "Seven Day Jesus",
+          "area": "US",
+          "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+        }
+      ],
+      "duration": 259,
+      "status": "pending",
+      "mbid": "22d15e98-3a42-4a9e-aa5f-30a053d87aca",
+      "links": [
+        "https://musicbrainz.org/recording/22d15e98-3a42-4a9e-aa5f-30a053d87aca"
+      ],
+      "url": "http://mt5577:3000/api/album/pENnMCQXgCHr7cNHVcYRoW/You+Are+the+One",
+      "visibility": "public"
+    }
+  ],
+  "released": "1998-01-12T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "7be4abe7-e750-43b9-9563-240034f00fbc",
+  "links": [
+    "https://musicbrainz.org/album/7be4abe7-e750-43b9-9563-240034f00fbc",
+    "https://www.amazon.com/gp/product/B000000V1C",
+    "https://www.discogs.com/release/8244154"
+  ],
+  "url": "http://mt5577:3000/api/album/gikor5c6vJMx3UTVG7WDwL/Seven+Day+Jesus",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "1GbTUpJRo56wFFHNy2DVt2",
+      "name": "Seven Day Jesus",
+      "area": "US",
+      "url": "http://mt5577:3000/api/artist/1GbTUpJRo56wFFHNy2DVt2/Seven+Day+Jesus"
+    }
+  ]
+}

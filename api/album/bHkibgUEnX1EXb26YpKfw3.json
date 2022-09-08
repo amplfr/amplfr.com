@@ -1,0 +1,281 @@
+{
+  "id": "bHkibgUEnX1EXb26YpKfw3",
+  "title": "The Bends",
+  "items": [
+    {
+      "id": "twRdrd3zgmDSodLaqRctqa",
+      "title": "Planet Telex",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 259,
+      "status": "pending",
+      "mbid": "49bb3701-1b75-4232-8999-ff5318adf676",
+      "links": [
+        "https://musicbrainz.org/recording/49bb3701-1b75-4232-8999-ff5318adf676",
+        "https://open.spotify.com/track/37JISltgxizbDAyNEEqkTY"
+      ],
+      "url": "http://mt5577:3000/api/album/twRdrd3zgmDSodLaqRctqa/Planet+Telex",
+      "visibility": "public"
+    },
+    {
+      "id": "rrQdbT2aDucf7ckkKYPiiM",
+      "title": "The Bends",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 246,
+      "status": "pending",
+      "mbid": "ad922fb0-f2ac-4d47-803f-a61cfa69117e",
+      "links": [
+        "https://musicbrainz.org/recording/ad922fb0-f2ac-4d47-803f-a61cfa69117e",
+        "https://open.spotify.com/track/7oDFvnqXkXuiZa1sACXobj"
+      ],
+      "url": "http://mt5577:3000/api/album/rrQdbT2aDucf7ckkKYPiiM/The+Bends",
+      "visibility": "public"
+    },
+    {
+      "id": "tACjLE3wS5D9bVVp5cxqX5",
+      "title": "High and Dry",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 258,
+      "status": "pending",
+      "mbid": "83cf16bc-01db-4766-9e3e-f3c796639cf2",
+      "links": [
+        "https://musicbrainz.org/recording/83cf16bc-01db-4766-9e3e-f3c796639cf2",
+        "https://open.spotify.com/track/2a1iMaoWQ5MnvLFBDv4qkf",
+        "https://www.youtube.com/watch?v=7qFfFVSerQo"
+      ],
+      "url": "http://mt5577:3000/api/album/tACjLE3wS5D9bVVp5cxqX5/High+and+Dry",
+      "visibility": "public"
+    },
+    {
+      "id": "gByZmMHJP2aWBSnsa3tEH3",
+      "title": "Fake Plastic Trees",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 291,
+      "status": "pending",
+      "isrc": ["GBAYE9400056", "GBAYE9400669"],
+      "mbid": "1e73e7a6-7378-46e5-97a7-2c299c656a29",
+      "links": [
+        "https://musicbrainz.org/recording/1e73e7a6-7378-46e5-97a7-2c299c656a29",
+        "https://open.spotify.com/track/73CKjW3vsUXRpy3NnX4H7F",
+        "https://www.youtube.com/watch?v=n5h0qHwNrHk"
+      ],
+      "url": "http://mt5577:3000/api/album/gByZmMHJP2aWBSnsa3tEH3/Fake+Plastic+Trees",
+      "visibility": "public"
+    },
+    {
+      "id": "mhJTEjwtqQsxYFMWpiMLBM",
+      "title": "Bones",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 189,
+      "status": "pending",
+      "mbid": "10b3772d-e300-46a0-b456-415edaf60507",
+      "links": [
+        "https://musicbrainz.org/recording/10b3772d-e300-46a0-b456-415edaf60507",
+        "https://open.spotify.com/track/76RAlQcfuQknnQFruYDj6Q"
+      ],
+      "url": "http://mt5577:3000/api/album/mhJTEjwtqQsxYFMWpiMLBM/Bones",
+      "visibility": "public"
+    },
+    {
+      "id": "7iDacSLuRndGTUWjT3tD5L",
+      "title": "(Nice Dream)",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 233,
+      "status": "pending",
+      "mbid": "b271dd19-ecee-4f87-b98a-a26b724f00e9",
+      "links": [
+        "https://musicbrainz.org/recording/b271dd19-ecee-4f87-b98a-a26b724f00e9",
+        "https://open.spotify.com/track/1tZcw7GtIqviL32bzaKdSo"
+      ],
+      "url": "http://mt5577:3000/api/album/7iDacSLuRndGTUWjT3tD5L/(Nice+Dream)",
+      "visibility": "public"
+    },
+    {
+      "id": "kREnNawsJqg7PFfX3LYqEy",
+      "title": "Just",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 234,
+      "status": "pending",
+      "mbid": "e234705a-d068-43d5-a122-cef8f056588e",
+      "links": [
+        "https://musicbrainz.org/recording/e234705a-d068-43d5-a122-cef8f056588e",
+        "https://open.spotify.com/track/1dyTcli07c77mtQK3ahUZR",
+        "https://www.youtube.com/watch?v=oIFLtNYI3Ls"
+      ],
+      "url": "http://mt5577:3000/api/album/kREnNawsJqg7PFfX3LYqEy/Just",
+      "visibility": "public"
+    },
+    {
+      "id": "8ZrmbHaTiK8Ss8Zm8zPcjR",
+      "title": "My Iron Lung",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 276,
+      "status": "pending",
+      "mbid": "938ecadc-f343-4c06-a754-c9f262be1088",
+      "links": [
+        "https://musicbrainz.org/recording/938ecadc-f343-4c06-a754-c9f262be1088",
+        "https://open.spotify.com/track/0jyikFM0Umv0KlnrOEKtTG"
+      ],
+      "url": "http://mt5577:3000/api/album/8ZrmbHaTiK8Ss8Zm8zPcjR/My+Iron+Lung",
+      "visibility": "public"
+    },
+    {
+      "id": "5Uj1B96VYxreYrYWLQUxVF",
+      "title": "Bullet Proof..I Wish I Was",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 209,
+      "status": "pending",
+      "mbid": "3dbd1679-8988-4859-9879-a570e87edc47",
+      "links": [
+        "https://musicbrainz.org/recording/3dbd1679-8988-4859-9879-a570e87edc47",
+        "https://open.spotify.com/track/5XuU9htN358NTMCcqRvfDV"
+      ],
+      "url": "http://mt5577:3000/api/album/5Uj1B96VYxreYrYWLQUxVF/Bullet+Proof..I+Wish+I+Was",
+      "visibility": "public"
+    },
+    {
+      "id": "dgKc9byJmtHb6Ku6vuTFkB",
+      "title": "Black Star",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 247,
+      "status": "pending",
+      "mbid": "e949857d-94d3-4e54-a9e6-af6bc1caf43d",
+      "links": [
+        "https://musicbrainz.org/recording/e949857d-94d3-4e54-a9e6-af6bc1caf43d",
+        "https://open.spotify.com/track/6UO72VSXEONxdfLyABihs9"
+      ],
+      "url": "http://mt5577:3000/api/album/dgKc9byJmtHb6Ku6vuTFkB/Black+Star",
+      "visibility": "public"
+    },
+    {
+      "id": "srqVzTdiBmAfsAw5z1NfJD",
+      "title": "Sulk",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 223,
+      "status": "pending",
+      "mbid": "b6f2797c-4de2-418a-b935-24ad8fcd8251",
+      "links": [
+        "https://musicbrainz.org/recording/b6f2797c-4de2-418a-b935-24ad8fcd8251",
+        "https://open.spotify.com/track/1elQc2QcyuBkI8FUIbNvcy"
+      ],
+      "url": "http://mt5577:3000/api/album/srqVzTdiBmAfsAw5z1NfJD/Sulk",
+      "visibility": "public"
+    },
+    {
+      "id": "bEWdq9oNqaxDxDBpnq9hpj",
+      "title": "Street Spirit (Fade Out)",
+      "artists": [
+        {
+          "id": "dKsQCazuEHnvVqJUuiVBPV",
+          "name": "Radiohead",
+          "area": "Abingdon-on-Thames, GB",
+          "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        }
+      ],
+      "duration": 253,
+      "status": "pending",
+      "mbid": "99385b86-235b-4780-a8de-62993cae0388",
+      "links": [
+        "https://musicbrainz.org/recording/99385b86-235b-4780-a8de-62993cae0388",
+        "https://open.spotify.com/track/2QwObYJWyJTiozvs0RI7CF",
+        "https://www.youtube.com/watch?v=LCJblaUkkfc"
+      ],
+      "url": "http://mt5577:3000/api/album/bEWdq9oNqaxDxDBpnq9hpj/Street+Spirit+(Fade+Out)",
+      "visibility": "public"
+    }
+  ],
+  "released": "2015-12-31T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "56c0c5d9-77bf-4f3a-b3c3-38d701135cae",
+  "links": [
+    "https://musicbrainz.org/album/56c0c5d9-77bf-4f3a-b3c3-38d701135cae",
+    "https://www.amazon.com/gp/product/B01F0XLPDC",
+    "https://www.discogs.com/release/13356917"
+  ],
+  "url": "http://mt5577:3000/api/album/bHkibgUEnX1EXb26YpKfw3/The+Bends",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "dKsQCazuEHnvVqJUuiVBPV",
+      "name": "Radiohead",
+      "area": "Abingdon-on-Thames, GB",
+      "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+    }
+  ]
+}

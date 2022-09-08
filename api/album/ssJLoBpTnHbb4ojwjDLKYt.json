@@ -1,0 +1,286 @@
+{
+  "id": "ssJLoBpTnHbb4ojwjDLKYt",
+  "title": "(What's the Story) Morning Glory?",
+  "items": [
+    {
+      "id": "pLR8y92byj7cycE3UUYTi8",
+      "title": "Hello",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 202,
+      "status": "pending",
+      "isrc": ["GBBQY9502012", "GBQCP1400107"],
+      "mbid": "96d67d9c-0be7-40df-a5fa-d82e4bd410d2",
+      "links": [
+        "https://musicbrainz.org/recording/96d67d9c-0be7-40df-a5fa-d82e4bd410d2"
+      ],
+      "url": "http://mt5577:3000/api/album/pLR8y92byj7cycE3UUYTi8/Hello",
+      "visibility": "public"
+    },
+    {
+      "id": "p3tSa8CY7NoGwx3uzp23sd",
+      "title": "Roll With It",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 240,
+      "status": "pending",
+      "isrc": ["GBAAW9500184", "GBBQY9502002", "GBQCP1400108"],
+      "mbid": "3badc834-a683-4fca-920b-cd5658e6fa47",
+      "links": [
+        "https://musicbrainz.org/recording/3badc834-a683-4fca-920b-cd5658e6fa47",
+        "https://www.youtube.com/watch?v=DrARl0dzd-0"
+      ],
+      "url": "http://mt5577:3000/api/album/p3tSa8CY7NoGwx3uzp23sd/Roll+With+It",
+      "visibility": "public"
+    },
+    {
+      "id": "4MZY5TrtyK9XMgSyh51KFk",
+      "title": "Wonderwall",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 259,
+      "status": "pending",
+      "isrc": [
+        "GBAAW9500189",
+        "GBBBN0009370",
+        "GBBQY9502013",
+        "GBQCP1400109",
+        "USRHD0530001"
+      ],
+      "mbid": "580f4553-e29a-4d19-989c-1b097b76de48",
+      "links": [
+        "https://musicbrainz.org/recording/580f4553-e29a-4d19-989c-1b097b76de48",
+        "https://www.youtube.com/watch?v=vU05Eksc_iM"
+      ],
+      "url": "http://mt5577:3000/api/album/4MZY5TrtyK9XMgSyh51KFk/Wonderwall",
+      "visibility": "public"
+    },
+    {
+      "id": "rWxxfBZRqNipUTaQ63AX8q",
+      "title": "Don’t Look Back in Anger",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 288,
+      "status": "pending",
+      "isrc": ["GBAAW9500190", "GBQCP1400110"],
+      "mbid": "15b32a80-3965-4061-80c4-894e13d99735",
+      "links": [
+        "https://musicbrainz.org/recording/15b32a80-3965-4061-80c4-894e13d99735",
+        "https://www.youtube.com/watch?v=YZG7z4FOn0g"
+      ],
+      "url": "http://mt5577:3000/api/album/rWxxfBZRqNipUTaQ63AX8q/Don%E2%80%99t+Look+Back+in+Anger",
+      "visibility": "public"
+    },
+    {
+      "id": "76FGzRC35hZd9nHaaowZ8X",
+      "title": "Hey Now!",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 342,
+      "status": "pending",
+      "isrc": ["GBBQY9502004", "GBQCP1400111"],
+      "mbid": "1aef090e-335d-4ea3-8284-6060ec321f76",
+      "links": [
+        "https://musicbrainz.org/recording/1aef090e-335d-4ea3-8284-6060ec321f76"
+      ],
+      "url": "http://mt5577:3000/api/album/76FGzRC35hZd9nHaaowZ8X/Hey+Now!",
+      "visibility": "public"
+    },
+    {
+      "id": "poDmYZYpNmnagGeSrGVW5H",
+      "title": "[untitled]",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 45,
+      "status": "pending",
+      "isrc": ["GBBQY9502005", "GBQCP1400112"],
+      "mbid": "699b13a8-49df-47df-8b9e-d1badfe52b1e",
+      "links": [
+        "https://musicbrainz.org/recording/699b13a8-49df-47df-8b9e-d1badfe52b1e"
+      ],
+      "url": "http://mt5577:3000/api/album/poDmYZYpNmnagGeSrGVW5H/%5Buntitled%5D",
+      "visibility": "public"
+    },
+    {
+      "id": "7v7mWRZuj6iHENvgHbAQeh",
+      "title": "Some Might Say",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 328,
+      "status": "pending",
+      "isrc": ["GBAAW9500100", "GBQCP1400113"],
+      "mbid": "40a795d7-38d7-4829-a1b8-a8c7e1ced6fa",
+      "links": [
+        "https://musicbrainz.org/recording/40a795d7-38d7-4829-a1b8-a8c7e1ced6fa",
+        "https://www.youtube.com/watch?v=oxOjIj18I9E"
+      ],
+      "url": "http://mt5577:3000/api/album/7v7mWRZuj6iHENvgHbAQeh/Some+Might+Say",
+      "visibility": "public"
+    },
+    {
+      "id": "65V8XCk735iotDfYEE6LTK",
+      "title": "Cast No Shadow",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 292,
+      "status": "pending",
+      "isrc": ["GBBQY9502007", "GBQCP1400114"],
+      "mbid": "3cb660b8-8480-4afa-9de4-f3b4ce2c1de0",
+      "links": [
+        "https://musicbrainz.org/recording/3cb660b8-8480-4afa-9de4-f3b4ce2c1de0"
+      ],
+      "url": "http://mt5577:3000/api/album/65V8XCk735iotDfYEE6LTK/Cast+No+Shadow",
+      "visibility": "public"
+    },
+    {
+      "id": "kFwTDUcdotW6tjUkcUVz4E",
+      "title": "She’s Electric",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 220,
+      "status": "pending",
+      "mbid": "95bf6a56-a5d8-4206-b624-522797976446",
+      "links": [
+        "https://musicbrainz.org/recording/95bf6a56-a5d8-4206-b624-522797976446"
+      ],
+      "url": "http://mt5577:3000/api/album/kFwTDUcdotW6tjUkcUVz4E/She%E2%80%99s+Electric",
+      "visibility": "public"
+    },
+    {
+      "id": "xjdz242YiH8XkH4mmBojTF",
+      "title": "Morning Glory",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 303,
+      "status": "pending",
+      "isrc": ["GBAAW9500196", "GBQCP1400116"],
+      "mbid": "4b460bcc-b651-4270-90dc-3ca4e879bc5e",
+      "links": [
+        "https://musicbrainz.org/recording/4b460bcc-b651-4270-90dc-3ca4e879bc5e",
+        "https://www.youtube.com/watch?v=Wm54XyLwBAk"
+      ],
+      "url": "http://mt5577:3000/api/album/xjdz242YiH8XkH4mmBojTF/Morning+Glory",
+      "visibility": "public"
+    },
+    {
+      "id": "g4VGVcjSHj6AiuyVyWKf1T",
+      "title": "[untitled]",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 40,
+      "status": "pending",
+      "isrc": ["GBBQY9502010", "GBQCP1400117"],
+      "mbid": "c3e1397b-4608-4206-a489-14a4643d74b0",
+      "links": [
+        "https://musicbrainz.org/recording/c3e1397b-4608-4206-a489-14a4643d74b0"
+      ],
+      "url": "http://mt5577:3000/api/album/g4VGVcjSHj6AiuyVyWKf1T/%5Buntitled%5D",
+      "visibility": "public"
+    },
+    {
+      "id": "czsVRaDCo95YC5DpgXLm6t",
+      "title": "Champagne Supernova",
+      "artists": [
+        {
+          "id": "uzcAqPjm82SStWr7UAaP2G",
+          "name": "Oasis",
+          "area": "Manchester, GB",
+          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+        }
+      ],
+      "duration": 448,
+      "status": "pending",
+      "isrc": ["GBAAW9500197", "GBQCP1400118"],
+      "mbid": "cb0892d9-e2fc-46d8-a40a-616bea78c52a",
+      "links": [
+        "https://musicbrainz.org/recording/cb0892d9-e2fc-46d8-a40a-616bea78c52a",
+        "https://www.youtube.com/watch?v=VGfDg7wju6M"
+      ],
+      "url": "http://mt5577:3000/api/album/czsVRaDCo95YC5DpgXLm6t/Champagne+Supernova",
+      "visibility": "public"
+    }
+  ],
+  "released": "2013-12-31T00:00:00.000Z",
+  "countries": ["GB"],
+  "mbid": "d6494c5a-a55a-45e3-a302-67bc721aadc7",
+  "links": [
+    "https://musicbrainz.org/album/d6494c5a-a55a-45e3-a302-67bc721aadc7",
+    "https://www.discogs.com/release/6140257"
+  ],
+  "url": "http://mt5577:3000/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "uzcAqPjm82SStWr7UAaP2G",
+      "name": "Oasis",
+      "area": "Manchester, GB",
+      "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+    }
+  ]
+}

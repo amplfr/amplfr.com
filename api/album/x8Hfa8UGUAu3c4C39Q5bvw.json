@@ -1,0 +1,163 @@
+{
+  "id": "x8Hfa8UGUAu3c4C39Q5bvw",
+  "title": "Apathetic EP",
+  "items": [
+    {
+      "id": "njBSDqMDT9bycxic5CW67E",
+      "title": "The Truth",
+      "artists": [
+        {
+          "id": "8HaeZxfzwfHrP87DfrqmXV",
+          "name": "Relient K",
+          "area": "Canton, US",
+          "url": "http://mt5577:3000/api/artist/8HaeZxfzwfHrP87DfrqmXV/Relient+K"
+        }
+      ],
+      "duration": 196,
+      "status": "pending",
+      "mbid": "277c3617-0847-46dc-ab9c-1c23b02a67fb",
+      "links": [
+        "https://musicbrainz.org/recording/277c3617-0847-46dc-ab9c-1c23b02a67fb"
+      ],
+      "url": "http://mt5577:3000/api/album/njBSDqMDT9bycxic5CW67E/The+Truth",
+      "visibility": "public"
+    },
+    {
+      "id": "aysJGNpxsVu1oAxWsTbaga",
+      "title": "Apathetic Way to Be",
+      "artists": [
+        {
+          "id": "8HaeZxfzwfHrP87DfrqmXV",
+          "name": "Relient K",
+          "area": "Canton, US",
+          "url": "http://mt5577:3000/api/artist/8HaeZxfzwfHrP87DfrqmXV/Relient+K"
+        }
+      ],
+      "duration": 201,
+      "status": "pending",
+      "mbid": "9135f2d0-83be-46f2-a2ba-34aa81e499f6",
+      "links": [
+        "https://musicbrainz.org/recording/9135f2d0-83be-46f2-a2ba-34aa81e499f6"
+      ],
+      "url": "http://mt5577:3000/api/album/aysJGNpxsVu1oAxWsTbaga/Apathetic+Way+to+Be",
+      "visibility": "public"
+    },
+    {
+      "id": "dm5UyJtASxii2tmh2e8BgT",
+      "title": "Be My Escape (acoustic)",
+      "artists": [
+        {
+          "id": "8HaeZxfzwfHrP87DfrqmXV",
+          "name": "Relient K",
+          "area": "Canton, US",
+          "url": "http://mt5577:3000/api/artist/8HaeZxfzwfHrP87DfrqmXV/Relient+K"
+        }
+      ],
+      "duration": 242,
+      "status": "pending",
+      "mbid": "0d6a0bd3-a0e7-4f61-93f7-f1915ce855f8",
+      "links": [
+        "https://musicbrainz.org/recording/0d6a0bd3-a0e7-4f61-93f7-f1915ce855f8"
+      ],
+      "url": "http://mt5577:3000/api/album/dm5UyJtASxii2tmh2e8BgT/Be+My+Escape+(acoustic)",
+      "visibility": "public"
+    },
+    {
+      "id": "ssZXzaAJS8znPcBWtGio4D",
+      "title": "Which to Bury, Us or the Hatchet (acoustic)",
+      "artists": [
+        {
+          "id": "8HaeZxfzwfHrP87DfrqmXV",
+          "name": "Relient K",
+          "area": "Canton, US",
+          "url": "http://mt5577:3000/api/artist/8HaeZxfzwfHrP87DfrqmXV/Relient+K"
+        }
+      ],
+      "duration": 164,
+      "status": "pending",
+      "mbid": "1f5640ab-7db4-4a9c-a654-d7cc326bf34a",
+      "links": [
+        "https://musicbrainz.org/recording/1f5640ab-7db4-4a9c-a654-d7cc326bf34a"
+      ],
+      "url": "http://mt5577:3000/api/album/ssZXzaAJS8znPcBWtGio4D/Which+to+Bury%2C+Us+or+the+Hatchet+(acoustic)",
+      "visibility": "public"
+    },
+    {
+      "id": "5iLzt3wEUhQ8std6KPbJRu",
+      "title": "Over Thinking (acoustic)",
+      "artists": [
+        {
+          "id": "8HaeZxfzwfHrP87DfrqmXV",
+          "name": "Relient K",
+          "area": "Canton, US",
+          "url": "http://mt5577:3000/api/artist/8HaeZxfzwfHrP87DfrqmXV/Relient+K"
+        }
+      ],
+      "duration": 249,
+      "status": "pending",
+      "mbid": "c58e6610-ffd6-4de3-ae53-af582dca0653",
+      "links": [
+        "https://musicbrainz.org/recording/c58e6610-ffd6-4de3-ae53-af582dca0653"
+      ],
+      "url": "http://mt5577:3000/api/album/5iLzt3wEUhQ8std6KPbJRu/Over+Thinking+(acoustic)",
+      "visibility": "public"
+    },
+    {
+      "id": "hJFQviZTms1e7QT1r51Qtx",
+      "title": "In Like a Lion (Always Winter)",
+      "artists": [
+        {
+          "id": "8HaeZxfzwfHrP87DfrqmXV",
+          "name": "Relient K",
+          "area": "Canton, US",
+          "url": "http://mt5577:3000/api/artist/8HaeZxfzwfHrP87DfrqmXV/Relient+K"
+        }
+      ],
+      "duration": 223,
+      "status": "pending",
+      "mbid": "13ea0fce-7bd1-4c38-afd8-8b51a553ca15",
+      "links": [
+        "https://musicbrainz.org/recording/13ea0fce-7bd1-4c38-afd8-8b51a553ca15"
+      ],
+      "url": "http://mt5577:3000/api/album/hJFQviZTms1e7QT1r51Qtx/In+Like+a+Lion+(Always+Winter)",
+      "visibility": "public"
+    },
+    {
+      "id": "tGAjE7M1X1xFUetazK16Y9",
+      "title": "The Thief",
+      "artists": [
+        {
+          "id": "8HaeZxfzwfHrP87DfrqmXV",
+          "name": "Relient K",
+          "area": "Canton, US",
+          "url": "http://mt5577:3000/api/artist/8HaeZxfzwfHrP87DfrqmXV/Relient+K"
+        }
+      ],
+      "duration": 141,
+      "status": "pending",
+      "mbid": "aa905b4c-9cfd-437c-a9ee-eb6b70838a6e",
+      "links": [
+        "https://musicbrainz.org/recording/aa905b4c-9cfd-437c-a9ee-eb6b70838a6e"
+      ],
+      "url": "http://mt5577:3000/api/album/tGAjE7M1X1xFUetazK16Y9/The+Thief",
+      "visibility": "public"
+    }
+  ],
+  "released": "2005-11-07T00:00:00.000Z",
+  "countries": ["US"],
+  "mbid": "fc1eec24-23dc-430c-80fa-f75c6b954238",
+  "links": [
+    "https://musicbrainz.org/album/fc1eec24-23dc-430c-80fa-f75c6b954238",
+    "https://www.amazon.com/gp/product/B000BM7YK6"
+  ],
+  "url": "http://mt5577:3000/api/album/x8Hfa8UGUAu3c4C39Q5bvw/Apathetic+EP",
+  "visibility": "public",
+  "artists": [
+    {
+      "id": "8HaeZxfzwfHrP87DfrqmXV",
+      "name": "Relient K",
+      "area": "Canton, US",
+      "url": "http://mt5577:3000/api/artist/8HaeZxfzwfHrP87DfrqmXV/Relient+K"
+    }
+  ]
+}
