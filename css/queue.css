@@ -156,10 +156,6 @@
   position: relative;
   left: 64px;
   line-height: 2em;
-}
-#sidebar.closed #queue {
-  height: calc(100% - 192px);
-}
 #sidebar.closed #queue li:before,
 #sidebar.closed #queue li {
   position: initial;
