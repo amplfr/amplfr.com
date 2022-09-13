@@ -89,12 +89,22 @@ class ItemElement extends HTMLDivElement {
       }
     }, this);
 
-    container.appendChild(this.#buildArtists(src)); // handle special case artists
+    const artists = this.#buildArtists(src); // handle special case artists
+    if (!!artists) container.appendChild(artists);
 
     // set the element title
     let title = src.title;
     title += ` - ${src.artists.map((a) => a.name).join(", ")}`;
     container.setAttribute("title", title);
+
+    container.setAttribute("draggable", true);
+    container.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("x-amplfr/id", src.id);
+      e.dataTransfer.setData("x-amplfr/json", JSON.stringify(src));
+      e.dataTransfer.setData("text/uri-list", `/api/${src.id}`);
+      e.dataTransfer.setData("text/plain", `/api/${src.id}`);
+      e.dataTransfer.setData("text/html", container.innerHTML);
+    });
 
     this.#isBuilt = true; // get here, and there's no need to run it again
     if (!useShadow) return;

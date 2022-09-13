@@ -83,9 +83,20 @@ class AlbumElement extends HTMLDivElement {
       buildItemElement(item, child);
       child.setAttribute("class", "item");
       child.setAttribute("is", "amplfr-item");
+      child.setAttribute("draggable", true);
+      child.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("x-amplfr/id", item.id);
+        e.dataTransfer.setData("x-amplfr/json", JSON.stringify(item));
+        e.dataTransfer.setData("text/uri-list", `/api/${item.id}`);
+        e.dataTransfer.setData("text/plain", `/api/${item.id}`);
+        e.dataTransfer.setData("text/html", child.innerHTML);
+        e.stopPropagation(); // don't also bubble up to the parent
+      });
+      item.albumid = src.id; // add albumid so any item on this album can use this albumart
 
       const li = document.createElement("li");
       li.appendChild(child);
+      li.style.touchAction = "none";
       e.appendChild(li);
     });
 
@@ -163,6 +174,21 @@ class AlbumElement extends HTMLDivElement {
     } catch (error) {}
     title += ` - ${src.artists.map((a) => a.name).join(", ")}`;
     container.setAttribute("title", title);
+    container.setAttribute("draggable", true);
+    container.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("x-amplfr/id", `album/${src.id}`);
+      e.dataTransfer.setData("x-amplfr/json", JSON.stringify(src));
+      e.dataTransfer.setData("text/uri-list", `/api/album/${src.id}`);
+      e.dataTransfer.setData("text/plain", `/api/album/${src.id}`);
+      e.dataTransfer.setData("text/html", container.innerHTML);
+      if (src.items && src.items.length > 0)
+        e.dataTransfer.setData(
+          "x-amplfr/id",
+          src.items.map((i) => i.id).join(" ")
+        );
+      e.stopPropagation(); // don't also bubble up to the parent
+    });
+    container.style.touchAction = "none";
 
     this.#isBuilt = true; // get here, and there's no need to run it again
     if (!useShadow) return;

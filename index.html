@@ -297,6 +297,15 @@
         infoTile.setAttribute("id", elementID);
         infoTile = info.appendChild(infoTile);
 
+        // allow drag and drop to Queue
+        a.setAttribute("draggable", true);
+        a.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData("x-amplfr/id", `album/${id}`);
+          e.dataTransfer.setData("text/uri-list", `/api/album/${id}`);
+          e.dataTransfer.setData("text/plain", `/api/album/${id}`);
+          e.dataTransfer.setData("text/html", a.innerHTML);
+        });
+
         return infoTile;
       };
       // document.querySelector("main .container")
