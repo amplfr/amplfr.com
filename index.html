@@ -30,7 +30,7 @@
       <i class="material-symbols-outlined md-light" title="Show the menu" id="menu">menu</i>
     </div>
     <div id="sidebar">
-      <i id="play" class="material-icons filled">play_arrow</i>
+      <i id="play" class="material-icons filled"></i>
       <div id="playing" class="item"></div>
       <!-- prettier-ignore -->
       <span id="player" class="">
@@ -40,10 +40,11 @@
         <i id="shuffle" class="material-icons md-light" title="Shuffle">shuffle</i>
         <i id="next" class="material-icons md-light" title="Next">skip_next</i>
       </span>
-      <ol id="history" class="hidden"></ol>
-      <!-- prettier-ignore -->
-      <ol id="queue"></ol>
-      <ul id="playlists" class="hidden"></ul>
+      <div id="lists">
+        <ol id="history" reversed></ol>
+        <ol id="queue"></ol>
+        <ul id="playlists"></ul>
+      </div>
       <!-- prettier-ignore -->
       <span id="sidebarIcons">
         <i id="queueIcon" class="material-symbols-outlined md-light" title="Queue">playlist_play</i>
@@ -254,7 +255,7 @@
         <!-- prettier-ignore -->
         <span><a href="/terms">Terms of Use,</a> <a href="/privacy">Privacy Policy,</a> <a href="/legal">Legal Requests, and other legalese.</a> </span>
         <!-- prettier-ignore -->
-        <span><a href="//amplfr.github.com/api">API,</a> <a href="//amplfr.github.com/">Repository, and other developer resources.</a> </span>
+        <span><a href="//amplfr.github.io/api">API,</a> <a href="//amplfr.github.io/">Repository, and other developer resources.</a> </span>
       </div>
       <div class="container" id="info"></div>
     </main>
@@ -340,7 +341,6 @@
               e.currentTarget.parentElement.classList.remove("visible");
             };
             close.addEventListener("click", closeAction);
-            close.addEventListener("touchend", closeAction);
           }
 
           infoTile.classList.toggle("visible"); // now make the infoTile visible
@@ -348,7 +348,6 @@
 
         if (infoTile) {
           a.addEventListener("click", toggleInfoTile);
-          a.addEventListener("touchend", toggleInfoTile);
         }
       });
     </script>

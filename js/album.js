@@ -9,12 +9,6 @@ class AlbumElement extends HTMLDivElement {
       if (typeof src == "string")
         // src is an ID, so build() will fetch() and process
         this.#isBuilt = src;
-      // this.#isBuilt = this.fetch(src)
-      // fetch(`/api/album/${src}.json`)
-      //   .then((req) => req.json())
-      //   .then((rv) => {
-      //     this.#isBuilt = rv;
-      //   });
       else if (typeof src == "object")
         // src is an Item object
         this.#isBuilt = src;
@@ -110,8 +104,6 @@ class AlbumElement extends HTMLDivElement {
     e.setAttribute("class", "released");
 
     released = new Date(released);
-    // released = released.toISOString(); // convert to ISO format - YYYY-MM-DDTHH:mm:ss.sssZ
-    // released = released.split("T")[0]; // just keep the date portion - YYYY-MM-DD
     released = new Intl.DateTimeFormat().format(released);
     e.innerText = released;
 
@@ -161,8 +153,8 @@ class AlbumElement extends HTMLDivElement {
     });
 
     container.appendChild(this.#buildArtists(src)); // handle special case Artists
-    // container.appendChild(this.#buildReleased(src)); // handle special case Released
-    container.appendChild(this.#buildItems(src)); // handle special case Items
+    const itemsElement = this.#buildItems(src);
+    container.appendChild(itemsElement);
 
     // set the element title
     let released,
