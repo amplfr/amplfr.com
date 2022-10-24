@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- prettier-ignore -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <link href="/css/item.css" rel="stylesheet" />
+    <script src="/js/amplfr.js"></script>
+    <title>AmplfrItem test</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-size: 5em;
+      }
+    </style>
+    <script>
+      // const item = new AmplfrItem("eDu4Y113AnxWJCdqpnCrHv", "audio");
+      // const item = new AmplfrItem("kREnNawsJqg7PFfX3LYqEy", true);
+      const item = new AmplfrItem(
+        {
+          title: "Rhapsody in Blue",
+          artist: "George Gershwin",
+          artwork: "/test/Rhapsody_in_Blue_cover.jpg",
+          url: "/test/US_Marine_Band_Rhapsody_in_Blue.oga",
+          // url: "/test/rhapsody_64kb.mp3",
+        },
+        true
+      );
+      // const item = new AmplfrItem(
+      //   // "/test/US_Marine_Band_Rhapsody_in_Blue.oga",
+      //   "/test/rhapsody_64kb.mp3",
+      //   true
+      // );
+      // const item = new AmplfrItem(
+      //   "http://localhost:8080/api/wWXnqZ4ieknmWq2wUWb8oP.mp3",
+      //   true
+      // );
+      document.body.appendChild(item);
+
+      item.addEventListener("canplay", (e) => {
+        console.log("canplay");
+      });
+    </script>
+  </body>
+</html>

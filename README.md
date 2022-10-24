@@ -77,10 +77,14 @@ npx pwa-asset-generator ./img/icon.svg ./img -i ./index.html -m ./manifest.json 
     - allows User to share to another App (especially Android, maybe iOS)
     - use [internal URL shortner](#shortner) using first 6 characters of ID and the whole Title/Name
 
-      | Shortened URL                           | Actual URL                                              |
-      | --------------------------------------- | ------------------------------------------------------- |
-      | https://amplfr.com/aUrL68/Fix+You       | https://amplfr.com/aUrL68afopDCZH7m32qnrE/Fix+You       |
-      | https://amplfr.com/wWXnqZ/Monkey+Wrench | https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench |
+      | Shortened URL                                 | Actual URL                                              |
+      | --------------------------------------------- | ------------------------------------------------------- |
+      | https://amplfr.com/aUrL68/Fix+You             | https://amplfr.com/aUrL68afopDCZH7m32qnrE/Fix+You       |
+      | https://ampl.fr/@user/wWXnqZ/Monkey+Wrench    | https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench |
+      | https://amplfr.com/@user/wWXnqZ/Monkey+Wrench | https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench |
+      | https://user@amplfr.com/wWXnqZ/Monkey+Wrench  | https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench |
+
+    - use [QR Code-svg](https://github.com/datalog/qrcode-svg) to generate on screen QR code for the share URL
 
 - Media sources
 
@@ -100,6 +104,13 @@ npx pwa-asset-generator ./img/icon.svg ./img -i ./index.html -m ./manifest.json 
   - plays media from [local device](#local_media_playback)
 
 ## features
+
+- Player Playing.ended actions - a per-Item action that occurs after that Item finishes playing (its 'ended' event)
+
+  - play next Item (default)
+  - stop playing
+  - repeat/loop (indefinitely)
+  - repeat/loop N times
 
 - Player end of list (EOL) Options - a list of 4/+ recommended options that User wants Player to do at the end of the current Playlist instead of just stopping
 

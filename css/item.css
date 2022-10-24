@@ -1,23 +1,197 @@
+.item {
+  --color: black;
+  --colorAccent: red;
+  height: 2em;
+  font-family: sans-serif;
+  display: inline-block;
+  width: 100%;
+}
+.item:focus,
+.item:hover {
+  background-color: whitesmoke;
+}
 .item * {
   text-overflow: clip;
   white-space: nowrap;
-  display: block;
+  color: var(--color);
+  text-decoration: none;
+}
+.item button {
+  color: whitesmoke;
+  font-size: 2em;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  text-shadow: 0 0px 8px black;
+  filter: opacity(0.75);
+  z-index: 128;
+  transition: 150ms linear;
+  background-color: unset;
+  border: none;
+  padding: 0px;
+}
+.item button:active,
+.item button:hover {
+  cursor: pointer;
+  filter: unset;
+  text-shadow: 0 0px 12px black;
 }
 .item .artwork {
   background-position: center;
   background-size: cover;
   float: left;
-  margin-right: 4px;
   height: 2em;
   width: 2em;
+  text-shadow: 0 0px 8px black;
+  filter: opacity(0.75);
+  z-index: 128;
+  color: whitesmoke;
 }
 .item .title {
   font-size: 1em;
+  /* padding-left: calc(2em + 4px); */
+  padding-left: 4px;
 }
-.item .artists {
-  font-size: 0.688em;
+.item .artists,
+.item .artist {
 }
-.item .collection {
-  font-size: 0.563em;
+.item .artists * {
+  width: fit-content;
+  margin-right: 12px;
+}
+.item .album {
+  /* font-size: 0.563em; */
   font-style: italic;
+}
+.item .time {
+  /* color: rgb(150 150 150 / 50%); */
+  color: var(--colorAccent);
+  opacity: 50%;
+  font-size: 0.5em;
+  float: right;
+  margin-top: 1.1em;
+}
+.item * span.material-icons {
+  /* margin: auto 12px auto 0px; */
+  /* font-size: 0.333em; */
+}
+.item ul {
+  display: flex;
+  font-size: 0.688em;
+  margin-block: 0px;
+  margin-inline: 0px;
+  padding-inline: 0px;
+}
+.item ul li {
+  display: inline;
+  white-space: pre;
+  margin-left: 4px;
+}
+/* based on https://stackoverflow.com/a/34845727 */
+.item ul li:after {
+  content: "\2022";
+  margin-left: 4px;
+}
+.item ul li.icons {
+  margin: auto 0px auto auto;
+}
+.item ul li.icons icon {
+  font-size: 0.75em;
+  color: var(--colorAccent);
+  opacity: 50%;
+  /* font-size: 0.5em; */
+}
+.item ul li.icons:after,
+.item ul li:nth-last-child(2):after {
+  content: "";
+  margin: 0px;
+}
+.item a:hover,
+.item * a:hover {
+  text-decoration: underline;
+}
+
+.item ul li .icon.material-icons {
+  font-size: inherit;
+  cursor: pointer;
+  color: var(--colorAccent);
+  opacity: 50%;
+}
+
+.item svg#logoA {
+  /* fill: lightgrey; */
+  fill: var(--colorAccent);
+  position: relative;
+  margin: auto 0px auto auto;
+  height: 1em;
+  width: 1em;
+  filter: opacity(0.75);
+}
+
+.item .timeline {
+  appearance: inherit;
+  /* background-color: rgb(150 150 150 / 50%); */
+  background-color: var(--color);
+  opacity: 50%;
+  height: 2px;
+  width: calc(100% - 2em);
+  width: 100%;
+  position: relative;
+  /* transition: right 250ms linear; */
+  transition: 250ms linear;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: calc(100% - var(--preview-position) * 100%);
+  background-color: rgb(150, 150, 150);
+  display: none;
+}
+.timeline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: calc(100% - var(--progress-position) * 100%);
+  /* background-color: #45455a; */
+  background-color: var(--colorAccent);
+}
+.timeline .thumb-indicator {
+  --scale: 0;
+  position: absolute;
+  transform: translateX(-50%) scale(var(--scale));
+  height: 200%;
+  top: -50%;
+  left: calc(var(--progress-position) * 100%);
+  /* background-color: #414258; */
+  background-color: var(--colorAccent);
+  border-radius: 50%;
+  transition: transform 150ms ease-in-out;
+  transition: right 250ms linear;
+  aspect-ratio: 1 / 1;
+}
+.timeline-container:hover .timeline::before {
+  display: block;
+}
+.timeline-container:hover .thumb-indicator {
+  --scale: 2;
+}
+.timeline-container:hover .timeline {
+  height: 100%;
+}
+.timeline-container {
+  height: 4px;
+  /* margin-inline: 0.5rem; */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: 0px;
+  margin-left: 2em;
+  width: calc(100% - 2em);
+  position: relative;
+  padding: 0px;
 }

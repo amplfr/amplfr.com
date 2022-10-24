@@ -9,12 +9,6 @@ class AlbumElement extends HTMLDivElement {
       if (typeof src == "string")
         // src is an ID, so build() will fetch() and process
         this.#isBuilt = src;
-      // this.#isBuilt = this.fetch(src)
-      // fetch(`/api/album/${src}.json`)
-      //   .then((req) => req.json())
-      //   .then((rv) => {
-      //     this.#isBuilt = rv;
-      //   });
       else if (typeof src == "object")
         // src is an Item object
         this.#isBuilt = src;
@@ -83,9 +77,20 @@ class AlbumElement extends HTMLDivElement {
       buildItemElement(item, child);
       child.setAttribute("class", "item");
       child.setAttribute("is", "amplfr-item");
+      child.setAttribute("draggable", true);
+      child.addEventListener("dragstart", (e) => {
+        e.dataTransfer.setData("x-amplfr/id", item.id);
+        e.dataTransfer.setData("x-amplfr/json", JSON.stringify(item));
+        e.dataTransfer.setData("text/uri-list", `/api/${item.id}`);
+        e.dataTransfer.setData("text/plain", `/api/${item.id}`);
+        e.dataTransfer.setData("text/html", child.innerHTML);
+        e.stopPropagation(); // don't also bubble up to the parent
+      });
+      item.albumid = src.id; // add albumid so any item on this album can use this albumart
 
       const li = document.createElement("li");
       li.appendChild(child);
+      li.style.touchAction = "none";
       e.appendChild(li);
     });
 
@@ -99,8 +104,6 @@ class AlbumElement extends HTMLDivElement {
     e.setAttribute("class", "released");
 
     released = new Date(released);
-    // released = released.toISOString(); // convert to ISO format - YYYY-MM-DDTHH:mm:ss.sssZ
-    // released = released.split("T")[0]; // just keep the date portion - YYYY-MM-DD
     released = new Intl.DateTimeFormat().format(released);
     e.innerText = released;
 
@@ -150,8 +153,8 @@ class AlbumElement extends HTMLDivElement {
     });
 
     container.appendChild(this.#buildArtists(src)); // handle special case Artists
-    // container.appendChild(this.#buildReleased(src)); // handle special case Released
-    container.appendChild(this.#buildItems(src)); // handle special case Items
+    const itemsElement = this.#buildItems(src);
+    container.appendChild(itemsElement);
 
     // set the element title
     let released,
@@ -163,6 +166,21 @@ class AlbumElement extends HTMLDivElement {
     } catch (error) {}
     title += ` - ${src.artists.map((a) => a.name).join(", ")}`;
     container.setAttribute("title", title);
+    container.setAttribute("draggable", true);
+    container.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("x-amplfr/id", `album/${src.id}`);
+      e.dataTransfer.setData("x-amplfr/json", JSON.stringify(src));
+      e.dataTransfer.setData("text/uri-list", `/api/album/${src.id}`);
+      e.dataTransfer.setData("text/plain", `/api/album/${src.id}`);
+      e.dataTransfer.setData("text/html", container.innerHTML);
+      if (src.items && src.items.length > 0)
+        e.dataTransfer.setData(
+          "x-amplfr/id",
+          src.items.map((i) => i.id).join(" ")
+        );
+      e.stopPropagation(); // don't also bubble up to the parent
+    });
+    container.style.touchAction = "none";
 
     this.#isBuilt = true; // get here, and there's no need to run it again
     if (!useShadow) return;

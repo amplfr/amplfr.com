@@ -8,12 +8,9 @@ class ItemElement extends HTMLDivElement {
 
     if (!!src) {
       if (typeof src == "string")
-        // src is an ID
-        // this.#isBuilt = this.fetch(src)
-        this.fetch(src).then((rv) => {
-          this.#isBuilt = rv;
-        });
-      if (typeof src == "object")
+        // src is an ID, so build() will fetch() and process
+        this.#isBuilt = src;
+      else if (typeof src == "object")
         // src is an Item object
         this.#isBuilt = src;
     }
@@ -57,11 +54,21 @@ class ItemElement extends HTMLDivElement {
 
     return e;
   }
-  #build() {
+  async #build() {
     if (this.#isBuilt == true) return; // no need to build again if already done so
 
     // use the attributes from either the passed Item object, or the HTMLElement.dataset
-    const src = this.#isBuilt || this.dataset;
+    let src = this.#isBuilt || this.dataset;
+    if (
+      typeof src == "string" ||
+      (Object.keys(src).length === 1 && src.id) ||
+      !!this.href
+    ) {
+      // if we only have the ID, then fetch(ID) the rest of the data
+      const req = await fetch(`/api/${src.id || src}.json`);
+      src = await req.json();
+    } else if (Object.keys(src).length < 1) return; // if there's no info, then there's nothing else to do
+
     const useShadow = false; // toggle if resulting elements should go in shadow DOM instead
     let container;
 
@@ -69,7 +76,7 @@ class ItemElement extends HTMLDivElement {
     else container = this;
     container.setAttribute("class", this.#type);
 
-    container.dataset.id = src.id;
+    container.dataset.id = "amplfr-" + src.id;
     container.appendChild(this.#buildArtwork(src)); // handle special case artwork
     // handle the other special cases after the childTags
 
@@ -89,12 +96,22 @@ class ItemElement extends HTMLDivElement {
       }
     }, this);
 
-    container.appendChild(this.#buildArtists(src)); // handle special case artists
+    const artists = this.#buildArtists(src); // handle special case artists
+    if (!!artists) container.appendChild(artists);
 
     // set the element title
     let title = src.title;
     title += ` - ${src.artists.map((a) => a.name).join(", ")}`;
     container.setAttribute("title", title);
+
+    container.setAttribute("draggable", true);
+    container.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("x-amplfr/id", src.id);
+      e.dataTransfer.setData("x-amplfr/json", JSON.stringify(src));
+      e.dataTransfer.setData("text/uri-list", `/api/${src.id}`);
+      e.dataTransfer.setData("text/plain", `/api/${src.id}`);
+      e.dataTransfer.setData("text/html", container.innerHTML);
+    });
 
     this.#isBuilt = true; // get here, and there's no need to run it again
     if (!useShadow) return;
@@ -130,24 +147,12 @@ class ItemElement extends HTMLDivElement {
 
   attributeChangedCallback(name, oldValue, newValue) {}
 
-  static async fetch(id) {
-    const validID =
-      /[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}/;
-    // if id is a string, then try to
-    if (typeof id == "string" || !validID.test(id)) {
-      const err = new Error();
-      err.name = "InvalidRequest";
-      err.message = "An invalid ID was used.";
-      throw err;
-    }
-
-    const req = await fetch(`/api/${id}.json`);
-    return await req.json();
-  }
-
   get amplfrid() {
     // ID may be found in a few different spots, especially depending on the phase
-    return this?.dataset?.id || this?.shadowRoot?.id || this.#isBuilt?.id;
+    // return this?.dataset?.id || this?.shadowRoot?.id || this.#isBuilt?.id;
+    const id = this?.dataset?.id || this?.shadowRoot?.id || this.#isBuilt?.id;
+
+    return id.split("-")[1] || id;
   }
 }
 
