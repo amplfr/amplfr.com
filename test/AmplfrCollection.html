@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- prettier-ignore -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <link href="/css/item.css" rel="stylesheet" />
+    <!-- <link href="/css/album.css" rel="stylesheet" /> -->
+    <link href="/css/collection.css" rel="stylesheet" />
+    <script src="/js/amplfr.js"></script>
+    <title>AmplfrCollection test</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-size: 4em;
+      }
+    </style>
+    <script>
+      const url = document.location.origin + "/api/queue";
+      // const collection = new AmplfrCollection(url);
+      // document.body.appendChild(collection);
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => {
+          if (Array.isArray(json)) json = json.map((x) => x.id || x);
+
+          json.title = "Queue";
+          json.url = url;
+
+          const collection = new AmplfrCollection(json);
+
+          document.body.appendChild(collection);
+        });
+    </script>
+  </body>
+</html>
