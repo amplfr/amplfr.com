@@ -71,6 +71,7 @@ class ItemElement extends HTMLDivElement {
 
     const useShadow = false; // toggle if resulting elements should go in shadow DOM instead
     let container;
+
     if (useShadow) container = document.createElement("div");
     else container = this;
     container.setAttribute("class", this.#type);

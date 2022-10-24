@@ -10,6 +10,10 @@
 #playing {
   position: relative;
 }
+#sidebar,
+#playing {
+  position: relative;
+}
 #player {
   display: flex;
   position: fixed;
