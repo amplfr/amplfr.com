@@ -317,7 +317,8 @@ class AmplfrItem extends HTMLDivElement {
     const dataset = Array.from(this.dataset);
     if (!source) {
       if (dataset.length > 0) source = dataset; // use dataset
-      else if (!!this.src) source = this.src; // use src
+      else if (typeof this.src == "string" && this.src != "")
+        source = await AmplfrItem.parse(this.src); // use src
       else return; // nothing else to do here
     }
 
@@ -337,6 +338,17 @@ class AmplfrItem extends HTMLDivElement {
     if (!!source.album) this._data.album = source.album; // if album exists, save it
     if (!!source.href) this._data.href = source.href; // if href exists, save it
     if (!!source.src) this._data.src = source.src; // if src exists, save it
+
+    // if URL exists, save it. fallback to src
+    try {
+      if (!!source.url || !!source.src)
+        this._data.url = new URL(
+          source.url || source.src,
+          document.location.origin
+        );
+    } catch (err) {
+      console.warn(err);
+    }
 
     this.title = this._data?.title; // save the title as the title of the element
 
@@ -494,17 +506,13 @@ class AmplfrItem extends HTMLDivElement {
     // 6. canplay         when the browser can start playing the specified audio/video (when it has buffered enough to begin)
     // 7. canplaythrough  when the browser estimates it can play through the specified audio/video without having to stop for buffering
     this._options.media.addEventListener("canplay", (e) => {
-      log("canplay");
-      // logprogress("canplay");
+      // log("canplay");
       updateControl("button", "play_arrow", "Play");
     });
     // prettier-ignore
     this._options.media.addEventListener("canplaythrough", (e) => {
-      log("canplaythrough")
-      // logprogress('canplaythrough');
     });
     this._options.media.addEventListener("durationchange", (e) => {
-      // log("durationchange");
       _this.#updateTime();
     });
     // this._options.media.addEventListener("emptied", (e) => log("emptied"));
@@ -513,13 +521,8 @@ class AmplfrItem extends HTMLDivElement {
       if (!!_this._options?.standalone)
         updateControl("button", "replay", "Replay");
     });
-    this._options.media.addEventListener("loadeddata", (e) => {
-      // log("loadeddata")
-      logprogress("loadeddata");
-    });
+    // this._options.media.addEventListener("loadeddata", (e) => {});
     this._options.media.addEventListener("loadedmetadata", (e) => {
-      log("loadedmetadata");
-      // logprogress("loadedmetadata");
       _this.#updateTime();
 
       // attempt a HEAD request for the media file to get its size
@@ -537,38 +540,29 @@ class AmplfrItem extends HTMLDivElement {
         })
         .catch((err) => console.warn(err.message || err));
     });
-    this._options.media.addEventListener("loadstart", (e) => {
-      // log("loadstart")
-      logprogress("loadstart");
-    });
+    // this._options.media.addEventListener("loadstart", (e) => {});
     this._options.media.addEventListener("pause", (e) => {
-      // log("pause");
       if (e.currentTarget != _this._options.media) return;
       updateControl("button", "play_arrow", "Play");
 
       // _this.#updateTime(false); // stop updating time
     });
     this._options.media.addEventListener("play", (e) => {
-      // log("play");
       if (e.currentTarget != _this._options.media) return;
       updateControl("button", "pause", "Pause");
     });
-    this._options.media.addEventListener("playing", (e) => {
-      // log("playing");
-    });
+    // this._options.media.addEventListener("playing", (e) => {});
     this._options.media.addEventListener("progress", (e) => {
-      // log("progress");
-      logprogress("progress");
-      // logprogress(`progress - ${_this.currentTime}`);
-
-      // update what percentage has been downloaded thus far
+      // update what percentage (of time) has been downloaded thus far
       if (!!_this.buffered.length && _this._options.loaded !== true) {
+        // save the values here to keep get calls to a minimum
         const buffered = _this.buffered;
         const duration = _this.duration;
         let loaded = 0;
+        // use a for-loop in case there are multiple disjoint buffered sections
         for (let r = 0; r < buffered.length; r++)
-          loaded += buffered.end(r) - buffered.start(r);
-        _this._options.loaded = loaded / duration;
+          loaded += buffered.end(r) - buffered.start(r); // add up the durations that are buffered
+        _this._options.loaded = loaded / duration; // get the percent loaded
 
         // is this completely loaded?
         if (_this._options.loaded >= 1) {
@@ -588,13 +582,11 @@ class AmplfrItem extends HTMLDivElement {
     // this._options.media.addEventListener("ratechange", (e) => log("ratechange"));
     // this._options.media.addEventListener("resize", (e) => log("resize"));
     this._options.media.addEventListener("seeked", (e) => {
-      // log("seeked");
       _this.#updateTime(); // one-off to update the time
     });
     // this._options.media.addEventListener("seeking", (e) => log("seeking"));
     // this._options.media.addEventListener("suspend", (e) => log("suspend"));
     this._options.media.addEventListener("timeupdate", (e) => {
-      // log("timeupdate");
       _this.#updateTime();
     });
     // this._options.media.addEventListener("volumechange", (e) => log("volumechange"));
@@ -619,6 +611,7 @@ class AmplfrItem extends HTMLDivElement {
         text
           .split("")
           .reduce((s, c) => (Math.imul(31, s) + c.charCodeAt(0)) | 0, 0);
+
       this._data.id = this._data.id;
     }
 
@@ -632,9 +625,7 @@ class AmplfrItem extends HTMLDivElement {
    */
   get sourceURL() {
     if (!this._data.sourceURL)
-      try {
-        this._data.sourceURL = new URL(this._data?.url || this.src);
-      } catch (error) {}
+      this._data.sourceURL = this._data?.url.toString();
 
     return this._data.sourceURL;
   }
@@ -898,7 +889,8 @@ class AmplfrItem extends HTMLDivElement {
 
     // append primary elements (order matters)
     if (!!this._options.standalone) this.appendArtwork(); // handle special case artwork
-    this.appendTime();
+    // this.appendLogo();
+    // this.appendTime();
     this.appendTitle();
     this.appendTimeline(); // after Title but before Artist(s), Collection, etc.
 
@@ -907,7 +899,9 @@ class AmplfrItem extends HTMLDivElement {
       this._options.root,
       this.appendArtists,
       this.appendAlbum,
-      this.appendControlsAdditional
+      this.appendControlsAdditional,
+      this.appendTime,
+      this.appendLogo
     );
 
     // if this._options.mediaType isn't deferred (NULL), call appendMedia(this._options.mediaType) now
@@ -999,6 +993,9 @@ class AmplfrItem extends HTMLDivElement {
 
       root.appendChild(artistE);
     });
+
+    // add class 'metadata' if root is a LI
+    if (root.tagName == "LI") root.classList.add("metadata");
   }
   appendAlbum(root = this._options.root) {
     const album = this._data.album;
@@ -1040,6 +1037,9 @@ class AmplfrItem extends HTMLDivElement {
     }
 
     root.appendChild(albumE);
+
+    // add class 'metadata' if root is a LI
+    if (root.tagName == "LI") root.classList.add("metadata");
   }
   appendChildTags(
     root = this._options.root,
@@ -1059,7 +1059,8 @@ class AmplfrItem extends HTMLDivElement {
         e.textContent = text;
         e.classList.add(tag);
 
-        return root.appendChild(e);
+        // return root.appendChild(e);
+        root.appendChild(e);
       }
     });
   }
@@ -1150,11 +1151,37 @@ class AmplfrItem extends HTMLDivElement {
       _this._options.controls[ctrl.text] = e;
     });
   }
-  appendTime() {
+  appendLogo(root = this._options.root) {
+    const logoE = document.createElement("a");
+
+    // SVG and Path elements need to use createElementNS() to include Namespace
+    // see https://stackoverflow.com/a/10546700
+    const NS = "http://www.w3.org/2000/svg";
+    const logoSVG = document.createElementNS(NS, "svg");
+    const logoPath = document.createElementNS(NS, "path");
+
+    logoPath.setAttribute(
+      "d",
+      "M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z"
+    );
+    logoSVG.appendChild(logoPath);
+
+    logoSVG.classList.add("logo");
+    logoSVG.setAttribute("viewBox", "0 0 173 187");
+    logoE.appendChild(logoSVG);
+
+    logoE.setAttribute("href", "//amplfr.com");
+    root.appendChild(logoE);
+
+    // add class 'icons' if root is a LI
+    if (root.tagName == "LI") root.classList.add("logo");
+  }
+  appendTime(root = this._options.root) {
     // add the time element (to root)
     const timeE = document.createElement("div");
     timeE.classList.add("time");
-    this._options.root.appendChild(timeE);
+    // this._options.root.appendChild(timeE);
+    root.appendChild(timeE);
 
     this._options.time = timeE; // save timeE for easy access later
 
@@ -1167,6 +1194,9 @@ class AmplfrItem extends HTMLDivElement {
       timeE.classList.toggle("remaining");
       _this.#updateTime();
     });
+
+    // add class 'icons' if root is a LI
+    if (root.tagName == "LI") root.classList.add("time");
   }
   appendTimeline() {
     // add the timeline container element (to root)
@@ -1195,9 +1225,13 @@ class AmplfrItem extends HTMLDivElement {
 
     // set the current time
     if (!!this._options.time) {
-      if (this._options.time.classList.contains("remaining"))
+      if (this._options.time.classList.contains("remaining")) {
         this._options.time.innerText = `-${(duration - seconds).toMMSS()}`;
-      else this._options.time.innerText = seconds.toMMSS();
+        this._options.time.title = "Time remaining";
+      } else {
+        this._options.time.innerText = seconds.toMMSS();
+        this._options.time.title = "Time elapsed";
+      }
     }
 
     // set the timeline position

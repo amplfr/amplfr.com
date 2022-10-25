@@ -1,0 +1,72 @@
+.collection * {
+  /* display: block !important; */
+}
+.collection .artwork {
+  /* background-position: center; */
+  /* background-size: cover; */
+  /* float: left; */
+  /* margin-right: 4px; */
+  /* height: 2em; */
+  /* width: 2em; */
+  /* margin-left: 0px !important; */
+}
+.collection .title {
+  /* font-size: 1em; */
+  /* width: calc(100% - 4.1em); */
+}
+.collection .artists {
+  /* font-size: 0.688em; */
+}
+.collection .released,
+.collection .countries {
+  font-size: 0.563em;
+  font-style: italic;
+}
+
+.collection > ol.items {
+  margin-block: 0px;
+  padding-left: 0px;
+}
+
+.collection > ol.items > li {
+  height: 2em;
+  counter-increment: doc;
+  white-space: break-spaces;
+  display: list-item !important;
+  text-shadow: 2px 2px 0px whitesmoke;
+  counter-increment: doc;
+  width: calc(100% + 4em);
+  overflow: hidden;
+  position: relative;
+  /* left: -64px; */
+  left: -1em;
+  /* user-select: none; */
+}
+
+.collection > ol.items > li::before {
+  content: counter(doc);
+  /*   cursor: ns-resize; */
+  text-align: center;
+  margin: auto 0px;
+  width: 2em;
+  float: left;
+  position: relative;
+  left: 1em;
+  line-height: 2em;
+  color: whitesmoke;
+  text-shadow: 0px 0px 8px rgb(0 0 0);
+  font-size: 1em;
+  z-index: 2;
+}
+.collection ol.items .item button {
+  left: 0px;
+  top: 0px;
+}
+.collection .item {
+  left: -1em;
+  position: relative;
+  width: calc(100% + -4em);
+}
+.collection .item .timeline-container {
+  width: calc(100% - 2em) !important;
+}
