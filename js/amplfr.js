@@ -351,17 +351,6 @@ class AmplfrItem extends HTMLDivElement {
     }
 
     this.title = this._data?.title; // save the title as the title of the element
-
-    // set needed fields that may not be set yet
-    // let url = this._data?.url || this.src;
-    // if (!!url) {
-    //   try {
-    //     this._data.url = new URL(url);
-    //   } catch (err) {}
-    //   this.src = this._data?.url.href || url;
-    //   this._data.domain =
-    //     this._data.domain || this._data?.url.hostname.replace(/www\.|m\./, "");
-    // }
   }
 
   _makeDraggable() {
@@ -604,18 +593,18 @@ class AmplfrItem extends HTMLDivElement {
    * Gets the ID
    * @returns {string}
    */
-  get sourceID() {
-    if (!this._data.id) {
+  get id() {
+    if (!this._data?.id) {
       // from https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0?permalink_comment_id=4261728#gistcomment-4261728
       const hash = (text) =>
         text
           .split("")
           .reduce((s, c) => (Math.imul(31, s) + c.charCodeAt(0)) | 0, 0);
 
-      this._data.id = this._data.id;
+      // use the domain plus hash() of the sourceURL
+      this._data.id =
+        this.domain + "-" + (hash(this.sourceURL) + "").replace(/^-/, "");
     }
-
-    // `${this.domain}-${this.sourceURL.pathname}${this.sourceURL.search}`;
 
     return this._data.id;
   }
@@ -640,7 +629,7 @@ class AmplfrItem extends HTMLDivElement {
   get domain() {
     if (!this._data.domain)
       try {
-        this._data.domain = this.sourceURL.domain;
+        this._data.domain = this._data?.url?.hostname;
       } catch (error) {}
 
     return this._data.domain;

@@ -196,11 +196,16 @@ main .container {
 }
 
 #legal {
-  margin: 24px 64px;
-  display: inline-block;
+  grid-template-columns: none;
 }
 #legal span {
-  margin-right: 16px;
+  margin: 24px auto;
+}
+#legal * {
+  font-size: 1em;
+  color: unset;
+  text-shadow: unset;
+  overflow: unset;
 }
 
 @media (min-width: 800px) {
