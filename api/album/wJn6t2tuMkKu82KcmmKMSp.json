@@ -337,5 +337,11 @@
       "area": "London, GB",
       "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
     }
-  ]
+  ],
+  "album": {
+    "id": "wJn6t2tuMkKu82KcmmKMSp",
+    "title": "X&Y",
+    "date": "2005-06-06",
+    "year": 2005
+  }
 }
