@@ -1,8 +1,9 @@
 .item {
   --color: black;
   --colorAccent: red;
-  height: 2em;
+  min-height: 2em;
   font-family: sans-serif;
+  font-size: 2em;
   display: inline-block;
   width: 100%;
 }
@@ -14,6 +15,7 @@
   text-overflow: clip;
   white-space: nowrap;
   color: var(--color);
+  fill: var(--color);
   text-decoration: none;
 }
 .item button {
@@ -52,28 +54,20 @@
   /* padding-left: calc(2em + 4px); */
   padding-left: 4px;
 }
-.item .artists,
-.item .artist {
-}
 .item .artists * {
   width: fit-content;
   margin-right: 12px;
 }
 .item .album {
-  /* font-size: 0.563em; */
   font-style: italic;
 }
 .item .time {
-  /* color: rgb(150 150 150 / 50%); */
   color: var(--colorAccent);
   opacity: 50%;
-  font-size: 0.5em;
+  /* font-size: 0.688em;
   float: right;
-  margin-top: 1.1em;
-}
-.item * span.material-icons {
-  /* margin: auto 12px auto 0px; */
-  /* font-size: 0.333em; */
+  margin-top: 0.5em; */
+  cursor: pointer;
 }
 .item ul {
   display: flex;
@@ -88,7 +82,9 @@
   margin-left: 4px;
 }
 /* based on https://stackoverflow.com/a/34845727 */
-.item ul li:after {
+/* .item ul li.metadata:after { */
+.item ul li.metadata:not():last-child():after {
+  /* .item ul li:not():last-child():after { */
   content: "\2022";
   margin-left: 4px;
 }
@@ -101,11 +97,12 @@
   opacity: 50%;
   /* font-size: 0.5em; */
 }
-.item ul li.icons:after,
-.item ul li:nth-last-child(2):after {
+/* .item ul li.icons:after,
+.item ul li.time:after,
+.item ul li.logo:after {
   content: "";
   margin: 0px;
-}
+} */
 .item a:hover,
 .item * a:hover {
   text-decoration: underline;
@@ -118,14 +115,10 @@
   opacity: 50%;
 }
 
-.item svg#logoA {
-  /* fill: lightgrey; */
-  fill: var(--colorAccent);
-  position: relative;
-  margin: auto 0px auto auto;
+.item svg.logo {
   height: 1em;
-  width: 1em;
-  filter: opacity(0.75);
+  opacity: 50%;
+  float: right;
 }
 
 .item .timeline {
@@ -185,13 +178,10 @@
 }
 .timeline-container {
   height: 4px;
-  /* margin-inline: 0.5rem; */
   cursor: pointer;
   display: flex;
   align-items: center;
   margin: 0px;
-  margin-left: 2em;
-  width: calc(100% - 2em);
   position: relative;
   padding: 0px;
 }

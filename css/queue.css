@@ -187,6 +187,7 @@
   position: relative;
   left: 64px;
   line-height: 2em;
+}
 #sidebar.closed #queue li:before,
 #sidebar.closed #queue li {
   position: initial;
@@ -194,6 +195,13 @@
 }
 #sidebar.closed #queue * .item .artwork {
   float: unset !important;
+}
+
+.placeholder {
+  background-color: #edf2f7;
+  border: 2px dashed #cbd5e0;
+  margin-bottom: 1rem;
+  z-index: -1;
 }
 
 .item .options {

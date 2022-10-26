@@ -1,16 +1,4 @@
-const sidebar = document.querySelector("#sidebar");
-
-const queuecontrols = sidebar.querySelector("#queue-controls");
-const queue = sidebar.querySelector("#queue");
-const history = sidebar.querySelector("#history");
-const playlists = sidebar.querySelector("#playlists");
-
-const playing = document.querySelector("#playing");
-const play = document.querySelector("#play");
-const player = document.querySelector("#player");
-sidebar.isClosed = () => {
-  return Object.values(sidebar.classList).includes("closed");
-};
+let reorderStart = undefined;
 
 const listeners = ["click", "touchend"];
 const setupInterface = (elementFunctionPairs, listeners) => {
@@ -25,10 +13,20 @@ const setupInterface = (elementFunctionPairs, listeners) => {
   });
 };
 
+const itemMenu = (e) => {
+  const { clientX: mouseX, clientY: mouseY } = e;
+
+  console.info(`itemMenu() - ${e.currentTarget} - ${mouseX},${mouseY}px (X,Y)`);
+
+  // contextMenu.style.left = `${mouseX}px`;
+  // contextMenu.style.top = `${mouseY}px`;
+};
+
 const queueButton = document.querySelector("#queueIcon");
 const sidebarToggle = (e) => {
   e.preventDefault();
-  if (sidebar.isClosed()) {
+  // if (sidebar.isClosed()) {
+  if (Object.values(sidebar.classList).includes("closed")) {
     // open the sidebar and scroll to the Queue
     sidebar.classList.remove("closed");
     // sidebar.querySelector("#queuelist").scrollIntoView();
@@ -46,6 +44,14 @@ const flatten = (arr) =>
   arr.flatMap((e) => (typeof e[Symbol.iterator] === "function" ? [...e] : e));
 
 const defaultSkipTime = 10; // Time to skip in seconds by default
+/**
+ * Player handles both Queue (list of items to play in adjustable order) and playing the current item.
+ * Queue has a list of item IDs/URLs all having their source URL, title, artist(s), and duration (or whatever is known)
+ * The first #preloadCount items in Queue have #setupMedia() run to setup each with its requested content metadata, ready to play.
+ *    The URL of each item determines which #preload() and #setupMedia() is run, to address any specifics
+ *      - YouTube [https://developers.google.com/youtube/iframe_api_reference]
+ *        -
+ */
 class Player {
   #play = null; // the play element
   #player = null; // the player (controls) parent element
@@ -62,15 +68,16 @@ class Player {
   #queueSorted = null;
   #preloadCount = 2; // navigator.hardwareConcurrency || 4; // max number of items to preload
 
-  constructor(ol, playing, play, player, history) {
-    this.#queue = ol;
-    this.#playing = playing;
-    this.#play = play;
-    this.#player = player;
-    this.#playerTime = player.querySelector("#time");
-    this.#history = history;
-    // this.#totalDurationLabel =
-    //   this.#queue.parentElement.querySelector("#queue-totaltime");
+  // prettier-ignore
+  constructor() { // constructor(ol, playing, play, player, history) {
+    const sidebar = document.querySelector("#sidebar");
+
+    this.#queue = sidebar.querySelector("#queue"); // ol;
+    this.#playing = sidebar.querySelector("#playing"); // playing;
+    this.#play = sidebar.querySelector("#play"); // play;
+    this.#player = sidebar.querySelector("#player"); // player;
+    this.#playerTime = this.#player.querySelector("#time"); // player.querySelector("#time");
+    this.#history = sidebar.querySelector("#history"); // history;
 
     this.loadFromURL();
     this.#setupObserver();
@@ -122,17 +129,30 @@ class Player {
 
     return obj;
   }
+  /**
+   * Called by add() to add item to Queue, and add appropriate Event Listeners
+   * @param {Object|AmplfrItem|String} item
+   * @param {Number} insertAt The position in Queue where to add item; -1 indicates at the end of the Queue
+   * @param {boolean} alreadyBuilt True only if item is already an ItemElement
+   */
   async #setupItem(item, insertAt = -1, alreadyBuilt = false) {
     let obj;
     if (alreadyBuilt) obj = item;
-    else obj = new ItemElement(item);
+    else {
+      // if (!item.artwork)
+      //   item.artwork =
+      //     "/artwork/" + (item.albumid ?? `item/${item.id}` + ".jpg");
+      // item = item.id || item;
+      obj = new AmplfrItem(item);
+    }
 
     // preload the necessary number of Items
-    if (insertAt <= this.#preloadCount || this.length <= this.#preloadCount)
-      this.#preload(obj);
+    if (insertAt <= this.#preloadCount && this.length <= this.#preloadCount)
+      // this.#preloadMedia(obj);
+      obj.appendMedia();
 
-    // create a LI element to put obj into
-    const li = document.createElement("li");
+    const li = document.createElement("li"); // create a LI element to put obj into
+    obj.classList.add("item"); // ensure obj has class 'item'
     li.appendChild(obj);
     obj = this.#domInsert(insertAt, li); // add obj to the queue DOM
 
@@ -156,6 +176,22 @@ class Player {
 
     // allow item to be re-ordered
     obj.addEventListener("mousedown", reorderStart);
+    obj.addEventListener("dragenter", (e) => {
+      e.stopPropagation();
+    });
+    obj.addEventListener("dragover", (e) => {
+      e.stopPropagation();
+    });
+    obj.addEventListener("drop", (e) => {
+      e.stopPropagation();
+    });
+
+    // if nothing is playing, promote() the first item in the Queue
+    // if (
+    //   (insertAt == 0 || this.length == 1) &&
+    //   this.#playing.childElementCount === 0
+    // )
+    //   this.#promote(); // this.#promote(obj);
   }
   #setupMedia(mediaElement = this.#playingMedia) {
     if (!mediaElement || mediaElement.error) {
@@ -355,7 +391,7 @@ class Player {
    * @param {Element} e The element to append the Media node to
    * @returns
    */
-  async #preload(e) {
+  async #preloadMedia(e) {
     const id = e.amplfrid;
     let media = e.querySelector(`#play-${id}`);
     if (media) return;
@@ -400,7 +436,8 @@ class Player {
     this.#playing.appendChild(itemElement); // save itemElement to Playing
 
     // make sure the media is setup by passing itemElement - do this early
-    await this.#preload(itemElement);
+    // await this.#preloadMedia(itemElement);
+    await itemElement.appendMedia();
 
     // this.#playing.replaceChild(itemElement, lastPlayed);
     this.#playingMedia = itemElement.querySelector("audio");
@@ -564,8 +601,8 @@ class Player {
     // check if items need to be fluffed before continuing
     if (items.length == 1) {
       // maybe its an ID
-      if (typeof items[0] == "string")
-        return this.add(position, await this.#getJSON(`/api/${items[0]}.json`));
+      // if (typeof items[0] == "string")
+      //   return this.add(position, await this.#getJSON(`/api/${items[0]}.json`));
       // if items is a nested array, flatten() it
       if (Array.isArray(items[0])) items = flatten(items); // if its a nested array
     }
@@ -588,11 +625,13 @@ class Player {
       if (item.items && Array.isArray(item.items))
         return await this.add(position + offset, item.items); // add all of the i.items
 
-      if (item.dataset && item.dataset.id) item = item.dataset;
-      if (item.id) {
-        await this.#setupItem(item, position);
-      }
+      if (!!item.dataset && !!item.dataset.id) item = item.dataset;
+
+      await this.#setupItem(item, position);
     });
+
+    // if nothing is playing, promote() the first item in the Queue
+    if (this.#playing.childElementCount === 0) this.#promote();
   }
 
   remove(x) {
@@ -695,7 +734,9 @@ Number.prototype.toMMSS = function () {
   return `${neg}${m}:${s.toString().padStart(2, "0")}`;
 };
 
-const Q = new Player(queue, playing, play, player, history);
+// const Q = new Player(queue, playing, play, player, history);
+const Q = new Player();
+({ reorderStart } = await import("./reorder.js"));
 
 // tie the Player controls to their respective Player functions
 //  based on [https://stackoverflow.com/a/21299126]
@@ -712,6 +753,7 @@ setupInterface(elementFunctionPairs, listeners);
 
 // allow URI(s) to be dropped on Queue
 const dragStart = (e) => {
+  console.log(`dragStart`);
   const data = e.dataTransfer;
   // call e.preventDefault() to *allow* something that matches to be dropped
   if (
@@ -725,6 +767,7 @@ const dragStart = (e) => {
 };
 const handleDrop = (e) => {
   e.preventDefault();
+  console.log(`dragStart`);
   const data = e.dataTransfer;
   console.log(`drop - ${e.target} - ${data}`);
 
