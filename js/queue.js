@@ -156,6 +156,15 @@ class Player {
     li.appendChild(obj);
     obj = this.#domInsert(insertAt, li); // add obj to the queue DOM
 
+    // if nothing is playing, promote() the first item in the Queue
+    if (
+      (insertAt == 0 || this.length == 1) &&
+      this.#playing.childElementCount === 0
+    ) {
+      this.#promote(obj);
+      // return; // don't bother adding anything else
+    }
+
     obj.addEventListener("dblclick", (e) => {
       e.preventDefault();
       this.play(e.currentTarget.firstElementChild);
@@ -604,8 +613,12 @@ class Player {
       items.reverse();
 
     await items.forEach(async (item, offset) => {
-      // if item is an already built ItemElement
-      if (item instanceof AmplfrItem)
+      // if item is just a URL
+      if (typeof item == "string")
+        return await this.add(position + offset, item); // re-run add() to get the JSON
+
+      //   if item is an already built ItemElement
+      if (item instanceof ItemElement)
         return await this.#setupItem(item, position, true);
 
       // if there is an .items with an array of items
