@@ -13,7 +13,6 @@ Number.prototype.toMMSS = function () {
   return `${neg}${m}:${s.toString().padStart(2, "0")}`;
 };
 Number.prototype.toHumanBytes = function () {
-  // function formatBytes(bytes, decimals) {
   if (Number.isNaN(this.valueOf())) return "";
 
   // based on https://gist.github.com/zentala/1e6f72438796d74531803cc3833c039c
@@ -87,8 +86,8 @@ const parseURL = async (url) => {
   const bytes = parseInt(response.headers.get("Content-Length"), 10);
   const mime = response.headers.get("Content-Type");
   let obj = {
+    // default the title to the filename minus dashes, etc.
     title: url.split("/").pop().split(".")[0].replace(/[-_]/g, " "),
-    // src: src.toString(),
     src: [
       {
         mime,
@@ -96,13 +95,15 @@ const parseURL = async (url) => {
         url: src.toString(),
       },
     ],
+    url,
   };
 
-  const jsmediatags = window.jsmediatags;
-  if (!!jsmediatags) {
+  // if JSMediaTags is available, then use it to extract the needed ID3v2 tags
+  if (!!window.jsmediatags) {
+    // call jsmediatags as a Promise
     const jsmediatagsPromise = async (src) =>
       await new Promise((resolve, reject) => {
-        new jsmediatags.Reader(src)
+        new window.jsmediatags.Reader(src)
           .setTagsToRead(["album", "artist", "picture", "title", "year"])
           .read({
             onSuccess: (tag) => resolve(tag),
@@ -110,6 +111,7 @@ const parseURL = async (url) => {
           });
       });
 
+    // await for jsmediatagsPromise() to finish
     try {
       let { tags } = await jsmediatagsPromise(src);
 
@@ -118,10 +120,11 @@ const parseURL = async (url) => {
       if (!!tags.album) obj.album = tags.album;
       if (!!tags.year) obj.year = tags.year;
       if (!!tags.picture) {
+        // convert the picture to a Data URL for the obj.artwork
         const { data, format } = tags.picture;
         let base64String = "";
         for (let i = 0; i < data.length; i++)
-          base64String += String.fromCharCode(data[i]);
+          base64String += String.fromCharCode(data[i]); // convert each UTF-16 byte to ASCII character
         obj.artwork = `data:${format};base64,${window.btoa(base64String)}`;
       }
     } catch (err) {
@@ -228,34 +231,27 @@ class AmplfrItem extends HTMLDivElement {
    * If null (default) value is used, then the child HTMLMediaElement will not be created until appendMedia() is called.
    */
   // constructor(data, mediaType = null) {
-  constructor(data, options = {}) {
+  constructor(data, options = false) {
     super(); // Always call super first in constructor
 
     this._data = {};
-    this._options = {};
-    this._options.useShadow = false; // toggle if resulting elements should go in shadow DOM instead
+    this._options = {
+      useShadow: false, // toggle if resulting elements should go in shadow DOM instead
+      controls: {}, // use an object instead of boolean for easy access to controls later
+      standalone: true, // set to false if this is part of an AmplfrCollection
+      // mediaType: options?.media || options, // defaults to null
+      childTags: ["title", "collection"],
+      class: 'amplfr-item',
+    };
+    if (options.controls != null) this._options.controls = options?.controls;
+    if (options.standalone != null)
+      this._options.standalone = options?.standalone;
+    if (options.mediaType != null || typeof options == "boolean")
+      this._options.mediaType = options?.media || options;
 
-    this._options.controls = options?.controls || {}; // use an object instead of boolean for easy access to controls later
-    this._options.standalone = options?.standalone || true; // set to false if this is part of an AmplfrCollection
-    this._options.mediaType = options?.media || options;
-    this._options.childTags = ["title", "collection"];
-
-    // only if this object is an AmplfrItem vs some extended class
     if (this instanceof AmplfrItem)
       if (typeof data == "string") {
-        // // check if domain is just an AmplfrID
-        // if (data.length == 22 && data.match(validAmplfrID)) {
-        //   // use a URL that points to the API endpoint for the AmplfrID
-        //   this.src = document.location.origin + `/api/${data}.json`;
-        //   this._data = parseAmplfr(this.src); // parse url as a Amplfr URL, saving the promise
-        // }
-        // // if data is a string, hopefully it's a URL (under 2083 characters) with additional data
-        // else if (data.length <= 2083) {
-        // this.src = data; // save the URL
-        // this._data = this.parse(this.src); // fetch the URL, saving the promise
-        // this._data = AmplfrItem.parse(this.src); // fetch the URL, saving the promise
         this._data = AmplfrItem.parse(data); // fetch the URL, saving the promise
-        // }
       } else this._populate(data);
   }
 
@@ -265,7 +261,6 @@ class AmplfrItem extends HTMLDivElement {
    * @param {string} [url] The URL endpoint/file to fetch and parse.
    * @returns {ItemSourceData}
    */
-  // async _parse(url) {
   static async parse(url) {
     if (!url && !!this.src) url = this.src; // use src
 
@@ -513,28 +508,27 @@ class AmplfrItem extends HTMLDivElement {
     // this._options.media.addEventListener("loadeddata", (e) => {});
     this._options.media.addEventListener("loadedmetadata", (e) => {
       _this.#updateTime();
+    });
+    this._options.media.addEventListener("loadstart", (e) => {
+      if (e.currentTarget != _this._options.media) return;
+      updateControl("button", "downloading", "Downloading...");
 
       // attempt a HEAD request for the media file to get its size
       // this is a best effort attempt, hence the .then()
       fetch(this._options.media.currentSrc, { method: "HEAD" })
         .then((res) => {
           if (res.ok) {
-            // use either the Content-Range or Content-Length header values
-            this._options.mediaBytes = parseInt(
-              res.headers.get("Content-Range")?.split("/")[1] ||
-                res.headers.get("Content-Length"),
-              10
-            );
+            // use either the Content-Range (total) or Content-Length header values
+            let ContentRange = res.headers.get("Content-Range")?.split("/")[1]
+            let ContentLength = res.headers.get("Content-Length")
+            this._options.mediaBytes = parseInt(ContentRange ?? ContentLength)
           }
         })
         .catch((err) => console.warn(err.message || err));
     });
-    // this._options.media.addEventListener("loadstart", (e) => {});
     this._options.media.addEventListener("pause", (e) => {
       if (e.currentTarget != _this._options.media) return;
       updateControl("button", "play_arrow", "Play");
-
-      // _this.#updateTime(false); // stop updating time
     });
     this._options.media.addEventListener("play", (e) => {
       if (e.currentTarget != _this._options.media) return;
@@ -556,7 +550,7 @@ class AmplfrItem extends HTMLDivElement {
         // is this completely loaded?
         if (_this._options.loaded >= 1) {
           // dispatch a "loaded" event
-          _this.dispatchEvent(
+          this._options.media.dispatchEvent(
             new Event("loaded", {
               bubbles: true,
               detail: {
@@ -787,6 +781,8 @@ class AmplfrItem extends HTMLDivElement {
   // prettier-ignore
   get duration() { return this._options.media?.duration }
   // prettier-ignore
+  get durationMMSS() { return (!!this.duration) ? Number(this.duration).toMMSS() : null }
+  // prettier-ignore
   get ended() { return this._options.media?.ended }
   // prettier-ignore
   get loop() { return this._options.media?.loop }
@@ -814,6 +810,7 @@ class AmplfrItem extends HTMLDivElement {
       "emptied",
       "ended",
       "error",
+      "loaded",   // added
       "loadeddata",
       "loadedmetadata",
       "loadstart",
@@ -859,14 +856,10 @@ class AmplfrItem extends HTMLDivElement {
     await this._populate();
 
     this._options.isBuilt = true; // get here, and there's no need to run again
+    this._options.root.setAttribute("is", this._options.class);
 
     this._options.root.classList.add("item");
     // this._options.root.dataset.id = this.domain + "=" + this._data.id; // FIXME maybe
-
-    // TODO add option if this is standalone (default is true)
-    //  (option.standalone === true)
-    //    this.appendArtwork()
-    //    this.appendAdditionalControls() // see below
 
     // TODO need to append appropriate additional controls
     //  - probably in appendAdditionalControls()
@@ -942,16 +935,19 @@ class AmplfrItem extends HTMLDivElement {
     let artwork =
       this._data?.artwork ||
       "/albumart/" + (this._data.albumid || `item/${this._data.id}`) + ".jpg";
-    // if (!artwork || artwork.indexOf("undefined") > -1) artwork = null;
-    if (!artwork || artwork.indexOf("undefined") > -1) return;
 
-    // let artworkE = document.createElement("div");
     let artworkE = new Image();
     artworkE.classList.add("artwork");
-    artworkE.src = artwork;
-    artworkE.style.backgroundColor = "grey";
 
-    this.#decorateWithImageColor(artworkE);
+    if (!artwork || artwork.indexOf("undefined") > -1) {
+      artworkE.style.backgroundColor = "grey";
+      // use a blank 1x1 PNG
+      artworkE.src =
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=";
+    } else {
+      artworkE.src = artwork;
+      this.#decorateWithImageColor(artworkE);
+    }
 
     return this._options.root.appendChild(artworkE);
   }
@@ -1204,8 +1200,7 @@ class AmplfrItem extends HTMLDivElement {
     thumb.classList.add("thumb-indicator");
     timelineE.appendChild(thumb);
   }
-  #updateTime(continuously) {
-    // if (continuously === false) clearInterval(this._options.updater); // stop updating
+  #updateTime() {
     if (!this || !this._options.media) return; // no media, nothing else to do here
 
     const seconds = this.currentTime || this._options.media.currentTime;
@@ -1226,12 +1221,6 @@ class AmplfrItem extends HTMLDivElement {
     // set the timeline position
     if (!!this._options.progress)
       this._options.progress.style.setProperty("--progress-position", percent);
-
-    // keep updating
-    // if (continuously === true) {
-    //   const _this = this;
-    //   this._options.updater = setInterval(_this.#updateTime.bind(_this), 250);
-    // }
   }
 
   async #decorateWithImageColor(img, palettes) {
@@ -1254,11 +1243,13 @@ class AmplfrItem extends HTMLDivElement {
       }
     }
 
+    // from https://alienryderflex.com/hsp.html
     const hsp = (rgb) => {
       const [r, g, b] = rgb;
 
       return Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
     };
+    // from https://lokeshdhakar.com/projects/color-thief/#faq
     const rgbToHex = (r, g, b) =>
       "#" +
       [r, g, b]
@@ -1331,7 +1322,7 @@ class AmplfrCollection extends AmplfrItem {
         }
       } else if (Array.isArray(data)) {
         // look at each of the entries as its own AmplfrItem
-        this._data = data.map((x) => super.parse(x));
+        this._data = data.map((x) => AmplfrCollection.parse(x)); // super.parse(x));
         // this._populate(data); // now populate the data
       } else this._populate(data);
     }
@@ -1470,9 +1461,6 @@ class AmplfrCollection extends AmplfrItem {
         this._data = {}; // reset _data object
       } else if (Array.isArray(this._data) && this._data[0].then) {
         // await for all of the Promises to resolve
-        // obj = await Promise.allSettled(this._data).then((results) =>
-        //   results.map((x) => x.value)
-        // );
         obj = await Promise.allSettled(this._data);
         obj = obj.map((x) => x.value);
         this._data = {}; // reset _data object
@@ -1507,7 +1495,7 @@ class AmplfrCollection extends AmplfrItem {
 
     if (Array.isArray(obj)) this._data.items = obj; // if obj is an array, save it as list of items
 
-    this.title = this._data?.title;
+    if (!!this._data?.title) this.title = this._data.title;
 
     // set needed fields that may not be set yet
     // let url = this._data?.url || this.src;
@@ -1555,7 +1543,11 @@ class AmplfrCollection extends AmplfrItem {
 
       // if item is already an AmplfrItem
       if (item instanceof AmplfrItem) itemE = item; // just save item as itemE
-      else itemE = new AmplfrItem(item); // upgrade item to be an AmplfrItem
+      else
+        itemE = new AmplfrItem(item, {
+          controls: false,
+          standalone: false,
+        }); // upgrade item to be an AmplfrItem
 
       // preload a select number of items
       if (i < this._options.preloadCount) itemE.appendMedia();

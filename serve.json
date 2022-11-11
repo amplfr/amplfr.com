@@ -1,4 +1,24 @@
 {
-    "cleanUrls": true,
-    "directoryListing": false
+  "cleanUrls": true,
+  "directoryListing": false,
+  "headers": [
+    {
+      "source": "**/*.@(json)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
+      "source": "/api/queue",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    }
+  ]
 }
