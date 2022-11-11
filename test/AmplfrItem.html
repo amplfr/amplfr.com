@@ -10,7 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
     <link href="/css/item.css" rel="stylesheet" />
     <script src="/js/amplfr.js"></script>
-    <title>AmplfrItem test</title>
+    <title>>Amplfr</title>
   </head>
   <body>
     <style>
@@ -80,10 +80,11 @@
         log(`${e.type}`);
       });
       item.addEventListener("durationchange", (e) => {
-        log(`${e.type} - ${item.duration}`);
+        log(`${e.type} - ${item.durationMMSS}`);
       });
       item.addEventListener("loadedmetadata", (e) => {
         log(`${e.type}`);
+        document.title = `>Amplfr - '${e.target.parentElement.title}'`;
       });
       item.addEventListener("loadeddata", (e) => {
         logprogress(`${e.type}`);

@@ -241,6 +241,7 @@ class AmplfrItem extends HTMLDivElement {
       standalone: true, // set to false if this is part of an AmplfrCollection
       // mediaType: options?.media || options, // defaults to null
       childTags: ["title", "collection"],
+      class: 'amplfr-item',
     };
     if (options.controls != null) this._options.controls = options?.controls;
     if (options.standalone != null)
@@ -507,28 +508,27 @@ class AmplfrItem extends HTMLDivElement {
     // this._options.media.addEventListener("loadeddata", (e) => {});
     this._options.media.addEventListener("loadedmetadata", (e) => {
       _this.#updateTime();
+    });
+    this._options.media.addEventListener("loadstart", (e) => {
+      if (e.currentTarget != _this._options.media) return;
+      updateControl("button", "downloading", "Downloading...");
 
       // attempt a HEAD request for the media file to get its size
       // this is a best effort attempt, hence the .then()
       fetch(this._options.media.currentSrc, { method: "HEAD" })
         .then((res) => {
           if (res.ok) {
-            // use either the Content-Range or Content-Length header values
-            this._options.mediaBytes = parseInt(
-              res.headers.get("Content-Range")?.split("/")[1] ||
-                res.headers.get("Content-Length"),
-              10
-            );
+            // use either the Content-Range (total) or Content-Length header values
+            let ContentRange = res.headers.get("Content-Range")?.split("/")[1]
+            let ContentLength = res.headers.get("Content-Length")
+            this._options.mediaBytes = parseInt(ContentRange ?? ContentLength)
           }
         })
         .catch((err) => console.warn(err.message || err));
     });
-    // this._options.media.addEventListener("loadstart", (e) => {});
     this._options.media.addEventListener("pause", (e) => {
       if (e.currentTarget != _this._options.media) return;
       updateControl("button", "play_arrow", "Play");
-
-      // _this.#updateTime(false); // stop updating time
     });
     this._options.media.addEventListener("play", (e) => {
       if (e.currentTarget != _this._options.media) return;
@@ -550,7 +550,7 @@ class AmplfrItem extends HTMLDivElement {
         // is this completely loaded?
         if (_this._options.loaded >= 1) {
           // dispatch a "loaded" event
-          _this.dispatchEvent(
+          this._options.media.dispatchEvent(
             new Event("loaded", {
               bubbles: true,
               detail: {
@@ -810,6 +810,7 @@ class AmplfrItem extends HTMLDivElement {
       "emptied",
       "ended",
       "error",
+      "loaded",   // added
       "loadeddata",
       "loadedmetadata",
       "loadstart",
@@ -855,14 +856,10 @@ class AmplfrItem extends HTMLDivElement {
     await this._populate();
 
     this._options.isBuilt = true; // get here, and there's no need to run again
+    this._options.root.setAttribute("is", this._options.class);
 
     this._options.root.classList.add("item");
     // this._options.root.dataset.id = this.domain + "=" + this._data.id; // FIXME maybe
-
-    // TODO add option if this is standalone (default is true)
-    //  (option.standalone === true)
-    //    this.appendArtwork()
-    //    this.appendAdditionalControls() // see below
 
     // TODO need to append appropriate additional controls
     //  - probably in appendAdditionalControls()
@@ -1246,11 +1243,13 @@ class AmplfrItem extends HTMLDivElement {
       }
     }
 
+    // from https://alienryderflex.com/hsp.html
     const hsp = (rgb) => {
       const [r, g, b] = rgb;
 
       return Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
     };
+    // from https://lokeshdhakar.com/projects/color-thief/#faq
     const rgbToHex = (r, g, b) =>
       "#" +
       [r, g, b]
