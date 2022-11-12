@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- prettier-ignore -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <link href="/css/item.css" rel="stylesheet" />
+    <script src="/js/amplfr.js"></script>
+    <title>>Amplfr</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-size: 1em;
+      }
+    </style>
+    <script>
+      const title = ">Amplfr";
+
+      const setup = () => {
+        let src
+        if (document.location.search != '') {
+          if (document.location.search.indexOf('=') > -1) {
+            src = {}
+            const URLparams = new URLSearchParams(document.location.search)
+            for (const [k, v] of URLparams) src[k] = v
+          }
+          else src = document.location.search.replace(/^\?/, "")
+        }
+        if (document.location.hash != "") {
+          src = document.location.hash.replace(/^#/, "")
+        }
+
+        if (!!src) {
+          // remove any existing AmplfrItems
+          let existing = document.querySelector('.item[is=amplfr-item]')
+          if (!!existing) existing.parentNode.removeChild(existing)
+
+          const item = new AmplfrItem(src, true);
+          document.body.appendChild(item);
+
+          const log = (msg) => console.log(`${item.sourceURL} - ${msg}`);
+          const logprogress = (msg) => {
+            let bytes = item.bytes;
+            let loaded = 0;
+            let played = 0;
+            // from https://stackoverflow.com/a/27466608
+            if (!!item.buffered.length) {
+              loaded = (100 * item.buffered.end(0)) / item.duration;
+              played = (100 * item.currentTime) / item.duration;
+            }
+
+            if (bytes > 0) msg += ` ${bytes.toHumanBytes()}`;
+            if (bytes > 0) msg += ` ${((loaded / 100) * bytes).toHumanBytes()}`;
+            msg += ` ${loaded.toFixed(0)}% loaded `;
+            if (bytes > 0) msg += ` ${((played / 100) * bytes).toHumanBytes()}`;
+            msg += ` ${played.toFixed(0)}% played`;
+
+            log(msg);
+          };
+          const warn = (msg) => {
+            console.warn(`${_this._options.media.currentSrc} - ${msg}`);
+            updateControl("button", "report", `Warning: ${msg}`);
+          };
+          // 1. loadstart       starting to load
+          // 2. durationchange  once enough is downloaded that the duration is known
+          // 3. loadedmetadata  once enough is downloaded that the duration, dimensions (video only) and text tracks are known
+          // 4. loadeddata      when data for the current frame is loaded, but not enough data to play next frame
+          // 5. progress        downloading
+          // 6. canplay         when the browser can start playing the specified audio/video (when it has buffered enough to begin)
+          // 7. canplaythrough  when the browser estimates it can play through the specified audio/video without having to stop for buffering
+          item.addEventListener("loadstart", (e) => {
+            document.title = `${title} - loading '${e.target.parentElement.title}'`;
+            log(`${e.type}`);
+          });
+          item.addEventListener("durationchange", (e) => {
+            log(`${e.type} - ${item.durationMMSS}`);
+          });
+          item.addEventListener("loadedmetadata", (e) => {
+            document.title = `${title} - '${e.target.parentElement.title}'`;
+            log(`${e.type}`);
+          });
+          item.addEventListener("loadeddata", (e) => {
+            logprogress(`${e.type}`);
+          });
+          item.addEventListener("progress", (e) => {
+            logprogress(`${e.type}`);
+          });
+          item.addEventListener("canplay", (e) => {
+            logprogress(`${e.type}`);
+          });
+          item.addEventListener("canplaythrough", (e) => {
+            logprogress(`${e.type}`);
+          });
+          item.addEventListener("loaded", (e) => {
+            logprogress(`${e.type}`);
+          });
+          item.addEventListener("ended", (e) => {
+            logprogress(`${e.type}`);
+          });
+        }
+      };
+
+      window.addEventListener("hashchange", (e) => setup(), false);
+      setup();
+    </script>
+  </body>
+</html>
