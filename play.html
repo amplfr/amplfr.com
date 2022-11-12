@@ -22,15 +22,25 @@
       const title = ">Amplfr";
 
       const setup = () => {
+        let src
+        if (document.location.search != '') {
+          if (document.location.search.indexOf('=') > -1) {
+            src = {}
+            const URLparams = new URLSearchParams(document.location.search)
+            for (const [k, v] of URLparams) src[k] = v
+          }
+          else src = document.location.search.replace(/^\?/, "")
+        }
         if (document.location.hash != "") {
+          src = document.location.hash.replace(/^#/, "")
+        }
+
+        if (!!src) {
           // remove any existing AmplfrItems
           let existing = document.querySelector('.item[is=amplfr-item]')
           if (!!existing) existing.parentNode.removeChild(existing)
 
-          const item = new AmplfrItem(
-            document.location.hash.replace(/^#/, ""),
-            true
-          );
+          const item = new AmplfrItem(src, true);
           document.body.appendChild(item);
 
           const log = (msg) => console.log(`${item.sourceURL} - ${msg}`);
