@@ -249,10 +249,25 @@ class AmplfrItem extends HTMLDivElement {
     if (options.mediaType != null || typeof options == "boolean")
       this._options.mediaType = options?.media || options;
 
-    if (this instanceof AmplfrItem)
-      if (typeof data == "string") {
-        this._data = AmplfrItem.parse(data); // fetch the URL, saving the promise
-      } else this._populate(data);
+    if (!(this instanceof AmplfrItem)) return
+
+    if (typeof data !== "string") {
+      this._populate(data);
+      return
+    }
+
+    if (data.indexOf('{') > -1) {
+      let obj
+      try {
+        obj = JSON.parse(decodeURI(data))
+        this._populate(obj)
+        return
+      } catch (err) {
+        console.warn(err)
+      }
+    }
+
+    this._data = AmplfrItem.parse(data); // fetch the URL, saving the promise
   }
 
   /**
