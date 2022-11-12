@@ -1172,11 +1172,13 @@ class AmplfrItem extends HTMLDivElement {
 
     const _this = this;
     timeE.addEventListener("click", (e) => {
-      timeE.classList.toggle("remaining");
+      e.preventDefault()
+      e.currentTarget.classList.toggle("remaining");
       _this.#updateTime();
     });
     timeE.addEventListener("touchend", (e) => {
-      timeE.classList.toggle("remaining");
+      e.preventDefault()
+      e.currentTarget.classList.toggle("remaining");
       _this.#updateTime();
     });
 
