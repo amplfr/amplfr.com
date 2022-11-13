@@ -35,37 +35,38 @@
           src = document.location.hash.replace(/^#/, "")
         }
 
+        let item
+        const log = (msg) => console.log(`${item.sourceURL} - ${msg}`);
+        const logprogress = (msg) => {
+          let bytes = item.bytes;
+          let loaded = 0;
+          let played = 0;
+          // from https://stackoverflow.com/a/27466608
+          if (!!item.buffered.length) {
+            loaded = (100 * item.buffered.end(0)) / item.duration;
+            played = (100 * item.currentTime) / item.duration;
+          }
+
+          if (bytes > 0) msg += ` ${bytes.toHumanBytes()}`;
+          if (bytes > 0) msg += ` ${((loaded / 100) * bytes).toHumanBytes()}`;
+          msg += ` ${loaded.toFixed(0)}% loaded `;
+          if (bytes > 0) msg += ` ${((played / 100) * bytes).toHumanBytes()}`;
+          msg += ` ${played.toFixed(0)}% played`;
+
+          log(msg);
+        };
+        const warn = (msg) => {
+          console.warn(`${_this._options.media.currentSrc} - ${msg}`);
+          updateControl("button", "report", `Warning: ${msg}`);
+        };
         if (!!src) {
           // remove any existing AmplfrItems
           let existing = document.querySelector('.item[is=amplfr-item]')
           if (!!existing) existing.parentNode.removeChild(existing)
 
-          const item = new AmplfrItem(src, true);
+          item = new AmplfrItem(src, true);
           document.body.appendChild(item);
 
-          const log = (msg) => console.log(`${item.sourceURL} - ${msg}`);
-          const logprogress = (msg) => {
-            let bytes = item.bytes;
-            let loaded = 0;
-            let played = 0;
-            // from https://stackoverflow.com/a/27466608
-            if (!!item.buffered.length) {
-              loaded = (100 * item.buffered.end(0)) / item.duration;
-              played = (100 * item.currentTime) / item.duration;
-            }
-
-            if (bytes > 0) msg += ` ${bytes.toHumanBytes()}`;
-            if (bytes > 0) msg += ` ${((loaded / 100) * bytes).toHumanBytes()}`;
-            msg += ` ${loaded.toFixed(0)}% loaded `;
-            if (bytes > 0) msg += ` ${((played / 100) * bytes).toHumanBytes()}`;
-            msg += ` ${played.toFixed(0)}% played`;
-
-            log(msg);
-          };
-          const warn = (msg) => {
-            console.warn(`${_this._options.media.currentSrc} - ${msg}`);
-            updateControl("button", "report", `Warning: ${msg}`);
-          };
           // 1. loadstart       starting to load
           // 2. durationchange  once enough is downloaded that the duration is known
           // 3. loadedmetadata  once enough is downloaded that the duration, dimensions (video only) and text tracks are known
@@ -79,6 +80,8 @@
           });
           item.addEventListener("durationchange", (e) => {
             log(`${e.type} - ${item.durationMMSS}`);
+
+            updateMetadata();
           });
           item.addEventListener("loadedmetadata", (e) => {
             document.title = `${title} - '${e.target.parentElement.title}'`;
@@ -102,6 +105,117 @@
           item.addEventListener("ended", (e) => {
             logprogress(`${e.type}`);
           });
+        }
+
+        let updatePositionState = () => {};
+        let updateMetadata = () => {};
+        if ("mediaSession" in navigator) {
+          updatePositionState = () => {
+            if ("setPositionState" in navigator.mediaSession) {
+              log(
+                `Updating position state (currentTime: ${item.currentTime}, duration: ${item.durationMMSS})...`
+              );
+              navigator.mediaSession.setPositionState({
+                duration: item.duration,
+                playbackRate: item.playbackRate,
+                position: item.currentTime,
+              });
+            }
+          };
+          updateMetadata = () => {
+            const title = item.title
+            log(`Playing '${title || ""}'`);
+            let obj = {
+              title,
+              artist: item.artists.join(', '),
+            }
+
+            const artwork = item.artwork
+            if (!!artwork)
+              obj.artwork = [
+                {
+                  src: artwork,
+                },
+              ]
+            const album = item.album
+            if (!!album)
+              obj.album = album
+              
+            navigator.mediaSession.metadata = new MediaMetadata(obj);
+            updatePositionState(); // Media is loaded, set the duration.
+          };
+
+          /* Previous Track & Next Track */
+          // navigator.mediaSession.setActionHandler("previoustrack", () => {
+          //   log('> User clicked "Previous Track" icon.');
+          //   item.previous();
+          // });
+          // navigator.mediaSession.setActionHandler("nexttrack", () => {
+          //   log('> User clicked "Next Track" icon.');
+          //   item.next();
+          // });
+
+          navigator.mediaSession.setActionHandler("seekbackward", (e) => {
+            log('> User clicked "Seek Backward" icon.');
+            const skipTime = e.seekOffset || defaultSkipTime;
+            item.currentTime = Math.max(
+              item.currentTime - skipTime,
+              0
+            );
+            updatePositionState();
+          });
+
+          navigator.mediaSession.setActionHandler("seekforward", (e) => {
+            log('> User clicked "Seek Forward" icon.');
+            const skipTime = e.seekOffset || defaultSkipTime;
+            item.currentTime = Math.min(
+              item.currentTime + skipTime,
+              item.duration
+            );
+            updatePositionState();
+          });
+
+          /* Play & Pause */
+          // navigator.mediaSession.setActionHandler("play", async function () {
+          navigator.mediaSession.setActionHandler("play", () => {
+            log('> User clicked "Play" icon.');
+            item.play();
+          });
+          navigator.mediaSession.setActionHandler("pause", () => {
+            log('> User clicked "Pause" icon.');
+            item.pause();
+          });
+          item.addEventListener("play", () => {
+            navigator.mediaSession.playbackState = "playing";
+          });
+          item.addEventListener("pause", () => {
+            navigator.mediaSession.playbackState = "paused";
+          });
+
+          /* Stop (supported since Chrome 77) */
+          try {
+            navigator.mediaSession.setActionHandler("stop", () => {
+              log('> User clicked "Stop" icon.');
+              // TODO: Clear UI playback...
+            });
+          } catch (error) {
+            log('Warning! The "stop" media session action is not supported.');
+          }
+
+          /* Seek To (supported since Chrome 78) */
+          try {
+            navigator.mediaSession.setActionHandler("seekto", (e) => {
+              log('> User clicked "Seek To" icon.');
+              if (e.fastSeek && "fastSeek" in item) {
+                item.fastSeek(e.seekTime);
+                return;
+              }
+              item.currentTime = e.seekTime;
+              updatePositionState();
+            });
+          } catch (error) {
+            log('Warning! The "seekto" media session action is not supported.');
+          }
         }
       };
 
