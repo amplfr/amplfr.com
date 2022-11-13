@@ -622,10 +622,10 @@ class AmplfrItem extends HTMLDivElement {
    * @example "https://amplfr.com/"
    */
   get sourceURL() {
-    if (!this._data.sourceURL)
-      this._data.sourceURL = this._data?.url.toString();
+    if (!this._data?.sourceURL)
+      this._data.sourceURL = this._data?.url?.toString();
 
-    return this._data.sourceURL;
+    return this._data?.sourceURL;
   }
   get src() {
     return this._options?.media?.src || !this._options?.media?.currentSrc;
@@ -815,6 +815,8 @@ class AmplfrItem extends HTMLDivElement {
   get seekable() { return this._options.media?.seekable }
   // prettier-ignore
   get volume() { return this._options.media?.volume }
+  // prettier-ignore
+  get artwork() { return this._options?.artwork }
 
   addEventListener(type, listener, options) {
     const mediaListeners = [
@@ -885,7 +887,7 @@ class AmplfrItem extends HTMLDivElement {
     // TODO ensure that Title, Artist(s), Album are links (when available)
 
     // append primary elements (order matters)
-    if (!!this._options.standalone) this.appendArtwork(); // handle special case artwork
+    if (!!this._options.standalone) this._options.artwork = this.appendArtwork(); // handle special case artwork
     // this.appendLogo();
     // this.appendTime();
     this.appendTitle();
