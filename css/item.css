@@ -17,6 +17,7 @@
   color: var(--color);
   fill: var(--color);
   text-decoration: none;
+  z-index: 1;
 }
 .item button {
   color: whitesmoke;
@@ -27,7 +28,7 @@
   text-shadow: 0 0px 8px black;
   filter: opacity(0.75);
   z-index: 128;
-  transition: 150ms linear;
+  /* transition: 150ms linear; */
   background-color: unset;
   border: none;
   padding: 0px;
@@ -38,21 +39,44 @@
   filter: unset;
   text-shadow: 0 0px 12px black;
 }
+.item.square button {
+  font-size: 50vw;
+  translate: 50% 50%;
+  left: 0px;
+  top: 0px;
+}
 .item .artwork {
   background-position: center;
   background-size: cover;
   float: left;
   height: 2em;
-  width: 2em;
-  text-shadow: 0 0px 8px black;
+  /* width: 2em; */
+  /* text-shadow: 0 0px 8px black; */
   filter: opacity(0.75);
-  z-index: 128;
+  z-index: -1 !important;
   color: whitesmoke;
+  /* aspect-ratio: 1 / 1; */
+  /* height: 100%; */
+  user-select: none;
+}
+.item.square .artwork {
+  height: inherit;
+  width: inherit;
+  aspect-ratio: 1/1;
+  margin-bottom: -25vw;
+  float: none;
 }
 .item .title {
   font-size: 1em;
   /* padding-left: calc(2em + 4px); */
   padding-left: 4px;
+  z-index: 2;
+  color: var(--color);
+  fill: var(--color);
+  filter: opacity(1);
+}
+.item.square .title {
+  font-size: 10vw;
 }
 .item .artists * {
   width: fit-content;
@@ -63,7 +87,7 @@
 }
 .item .time {
   color: var(--colorAccent);
-  opacity: 50%;
+  opacity: 80%;
   /* font-size: 0.688em;
   float: right;
   margin-top: 0.5em; */
@@ -75,6 +99,9 @@
   margin-block: 0px;
   margin-inline: 0px;
   padding-inline: 0px;
+}
+.item.square ul {
+  font-size: 6.8vw;
 }
 .item ul li {
   display: inline;
@@ -184,4 +211,5 @@
   margin: 0px;
   position: relative;
   padding: 0px;
+  touch-action: none;
 }
