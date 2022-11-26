@@ -1218,12 +1218,51 @@ class AmplfrItem extends HTMLDivElement {
     const thumb = document.createElement("div");
     thumb.classList.add("thumb-indicator");
     timelineE.appendChild(thumb);
+
+    // Timeline - use PointerEvents instead of MouseEvents
+    timelineContainerE.addEventListener("pointermove", handleTimelineUpdate)
+    timelineContainerE.addEventListener("pointerdown", toggleScrubbing)
+    document.addEventListener("pointerup", e => {
+      if (isScrubbing) toggleScrubbing(e)
+    })
+    document.addEventListener("pointermove", e => {
+      if (isScrubbing) handleTimelineUpdate(e)
+    })
+
+    let isScrubbing = false
+    let wasPaused
+    const _this = this
+    function toggleScrubbing(e) {
+      const rect = timelineContainerE.getBoundingClientRect()
+      const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
+      isScrubbing = (e.buttons & 1) === 1
+      // videoContainer.classList.toggle("scrubbing", isScrubbing)
+      if (isScrubbing) {
+        wasPaused = _this.paused
+        _this.pause()
+      } else {
+        _this.currentTime = percent * _this.duration
+        if (!wasPaused) _this.play()
+      }
+
+      handleTimelineUpdate(e)
+    }
+
+    function handleTimelineUpdate(e) {
+      const rect = timelineContainerE.getBoundingClientRect()
+      const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
+
+      if (isScrubbing) {
+        e.preventDefault()
+        timelineContainerE.style.setProperty("--progress-position", percent)
+        _this.#updateTime(percent * _this.duration)
+      }
+    }
   }
-  #updateTime() {
+  #updateTime(seconds = this.currentTime) {
     if (!this || !this._options.media) return; // no media, nothing else to do here
 
-    const seconds = this.currentTime || this._options.media.currentTime;
-    const duration = this.duration || this._options.media.duration;
+    const duration = this.duration || 0 // this._options.media.duration;
     const percent = seconds / duration;
 
     // set the current time
