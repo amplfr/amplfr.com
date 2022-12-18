@@ -876,6 +876,7 @@ class AmplfrItem extends HTMLDivElement {
         "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=";
     } else {
       artworkE.src = artwork;
+      artworkE.alt = this.title || this._data.title;
       this.#decorateWithImageColor(artworkE);
     }
 
@@ -1086,6 +1087,7 @@ class AmplfrItem extends HTMLDivElement {
     logoE.appendChild(logoSVG);
 
     logoE.setAttribute("href", "//amplfr.com");
+    logoE.setAttribute("title", "Amplfr.com");
     root.appendChild(logoE);
 
     // add class 'icons' if root is a LI
