@@ -1,0 +1,30 @@
+name: test-integration
+on:
+  pull_request:
+  push:
+    branches: [ 'main' ]
+  # The "workflow_dispatch" event gives us a button in GitHub's "Action" UI
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '17'
+          # cache: 'npm'
+          # cache-dependency-path: '**/.github/workflows/*.yml'
+
+      - name: Minify JavaScript
+        run: |-
+          npx terser --compress --mangle --toplevel --keep-classnames -o js/amplfr.min.js -- js/amplfr.js
+
+      - name: Generate manifest.json's icons
+        run: |-
+          npx pwa-asset-generator ./img/icon.svg ./img -i ./index.html -m ./manifest.json --favicon
+
+# run the following to test locally:
+# act

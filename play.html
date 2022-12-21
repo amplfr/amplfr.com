@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
     <link href="/css/item.css" rel="stylesheet" />
-    <script src="/js/amplfr.js"></script>
+    <script src="/js/amplfr.min.js"></script>
     <title>>Amplfr</title>
   </head>
   <body>
@@ -18,7 +18,13 @@
         font-size: 1em;
         display: contents;
       }
+      #container {
+        height: 600px;
+        width: 800px;
+        margin: 0 auto;
+      }
     </style>
+    <div id="container"></div>
     <script>
       const title = ">Amplfr";
 
@@ -65,7 +71,8 @@
           if (!!existing) existing.parentNode.removeChild(existing)
 
           item = new AmplfrItem(src, true);
-          document.body.appendChild(item);
+          // document.body.appendChild(item);
+          document.querySelector('#container').appendChild(item);
           item.classList.add('square')
 
           // 1. loadstart       starting to load
