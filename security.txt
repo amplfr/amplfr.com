@@ -1,0 +1,3 @@
+Contact: mailto:security@amplfr.com
+Preferred-Languages: en
+Canonical: https://amplfr.com/security.txt
