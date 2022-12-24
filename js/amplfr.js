@@ -1,7 +1,5 @@
 const validAmplfrID =
   /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}$/;
-const validAmplfrCollectionID =
-  /[0-9A-Za-z]{1,25}\/[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}/;
 Number.prototype.toMMSS = function () {
   if (Number.isNaN(this.valueOf())) return "";
   let neg = this < 0 ? "-" : "";

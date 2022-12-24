@@ -11,15 +11,26 @@
     <!-- <link href="/css/album.css" rel="stylesheet" /> -->
     <link href="/css/collection.css" rel="stylesheet" />
     <script src="/js/amplfr.js"></script>
+    <script src="/js/collection.js"></script>
     <title>AmplfrCollection test</title>
   </head>
   <body>
     <style>
       body {
-        font-size: 4em;
+        font-size: 1em;
+        display: contents;
+      }
+      #container {
+        width: 25em;
+        margin: 0 auto;
+        font-size: 2em;
       }
     </style>
+    <div id="container"></div>
     <script>
+      const title = ">Amplfr";
+
+      let collection
       const url = document.location.origin + "/api/queue";
       // const collection = new AmplfrCollection(url);
       // document.body.appendChild(collection);
@@ -31,10 +42,10 @@
           json.title = "Queue";
           json.url = url;
 
-          const collection = new AmplfrCollection(json);
+          collection = new AmplfrCollection(json);
 
-          document.body.appendChild(collection);
-        });
+          document.querySelector('#container').appendChild(collection);
+        })
     </script>
   </body>
 </html>

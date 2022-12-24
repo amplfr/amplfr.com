@@ -1,4 +1,6 @@
-import { AmplfrItem } from './amplfr.js'
+const validAmplfrCollectionID =
+  /[0-9A-Za-z]{1,25}\/[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}/;
+
 /**
  * AmplfrCollection is an HTML element comprised of a list of {@link AmplfrItem}s.
  * @name AmplfrCollection
@@ -535,10 +537,6 @@ class AmplfrCollection extends AmplfrItem {
     //    - more simple header - title, controls
     //    - already works, but header is TODO
     this.appendArtwork(); // handle special case artwork
-
-
-
-
     // this.appendChildTags(this._options.root, this._data, [
     //   "title",
     //   "collection",
