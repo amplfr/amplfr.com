@@ -30,6 +30,8 @@
   ],
   "theme_color": "#000000",
   "background_color": "#FFFFFF",
-  "display": "fullscreen",
-  "orientation": "portrait"
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "dir": "ltr",
+  "lang": "en-US"
 }
