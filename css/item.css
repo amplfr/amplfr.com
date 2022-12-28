@@ -3,11 +3,10 @@
   --colorAccent: red;
   min-height: 2em;
   font-family: sans-serif;
-  font-size: 2em;
-  width: 100%;
-  max-width: 100vw;
+  /* font-size: 2em; */
+  max-width: 100%;
   margin: 0 auto;
-  position: relative;
+  max-height: 100%;
 }
 .item:not(.square) {
   display: grid;
@@ -28,7 +27,7 @@
   z-index: 1;
 }
 .item.square * {
-  text-shadow: 2px 2px 4px var(--colorAccent);
+  /* text-shadow: 2px 2px 4px var(--colorAccent); */
 }
 .item button {
   color: whitesmoke;
@@ -50,9 +49,8 @@
   text-shadow: 0 0px 12px black;
 }
 .item.square button {
-  font-size: min(50vh, 50vw);
-  left: min(15vh, 15vw);
-  top: min(15vh, 15vw);
+  font-size: min(100vmin, 25em);
+  left: unset;
 }
 .item .artwork {
   background-position: center;
@@ -65,11 +63,11 @@
   user-select: none;
 }
 .item.square .artwork {
-  height: inherit;
-  width: inherit;
-  aspect-ratio: 1/1;
-  margin-bottom: max(-24vh, -24vw);
-  float: none;
+  height: min(100vmin, 100%);
+  width: 100vmin;
+  margin-bottom: 0px;
+  max-width: 100%;
+  max-height: 100%;
 }
 .item .title {
   z-index: 2;
@@ -79,7 +77,8 @@
   width: fit-content;
 }
 .item.square .title {
-  font-size: min(10vh, 10vw);
+  /* font-size: min(10vh, 10vw); */
+  /* font-size: 10vmin; */
 }
 .item .artists * {
   width: fit-content;
@@ -111,7 +110,7 @@
   grid-area: -1 / 2 / -1 / span 2;
 }
 .item.square ul {
-  font-size: min(7vh, 7vw);
+  /* font-size: min(7vh, 7vw); */
 }
 .item ul li {
   display: inline;
@@ -131,7 +130,6 @@
   font-size: 0.75em;
   color: var(--colorAccent);
   opacity: 50%;
-  /* font-size: 0.5em; */
 }
 .item a:hover,
 .item * a:hover {
