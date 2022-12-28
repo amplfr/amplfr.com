@@ -7,7 +7,7 @@
       {
         "id": "dKsQCazuEHnvVqJUuiVBPV",
         "name": "Radiohead",
-        "url": "http://mt5577:3000/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+        "url": "/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
       }
     ]
   },
@@ -19,7 +19,7 @@
         "id": "oAf7C1VHUL8qy2UujSgnsw",
         "name": "Craig's Brother",
         "area": "US",
-        "url": "http://mt5577:3000/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+        "url": "/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
       }
     ],
     "duration": 184,
@@ -28,7 +28,7 @@
     "links": [
       "https://musicbrainz.org/recording/6ef1d268-ca3d-4e48-aafa-f5e733fb64e1"
     ],
-    "url": "http://mt5577:3000/api/hdhjfv5sbnGhm6gvvBQmBD/My+Annie",
+    "url": "/api/hdhjfv5sbnGhm6gvvBQmBD/My+Annie",
     "visibility": "public"
   },
   {
@@ -39,7 +39,7 @@
         "id": "wSv42DNe1JPrei75iEqub7",
         "name": "Coldplay",
         "area": "London, GB",
-        "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+        "url": "/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
       }
     ],
     "duration": 295,
@@ -56,7 +56,7 @@
       "https://www.youtube.com/watch?v=k4V3Mo61fJM",
       "https://www.youtube.com/watch?v=Oncu0bgdcXU"
     ],
-    "url": "http://mt5577:3000/api/aUrL68afopDCZH7m32qnrE/Fix+You",
+    "url": "/api/aUrL68afopDCZH7m32qnrE/Fix+You",
     "visibility": "public"
   },
   {
@@ -67,7 +67,7 @@
         "id": "mTKCx7T69sv7EkfSHaDtPb",
         "name": "Foo Fighters",
         "area": "Seattle, US",
-        "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+        "url": "/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
       }
     ],
     "duration": 231,
@@ -76,7 +76,7 @@
     "links": [
       "https://musicbrainz.org/recording/26502c24-e08c-45a0-a7b6-44f7471d7054"
     ],
-    "url": "http://mt5577:3000/api/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench",
+    "url": "/api/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench",
     "visibility": "public"
   },
   {
@@ -87,7 +87,7 @@
         "id": "mEa7ryXmexWF4qGBrUDf7g",
         "name": "Nirvana",
         "area": "Aberdeen, US",
-        "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+        "url": "/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
       }
     ],
     "duration": 301,
@@ -98,7 +98,7 @@
       "https://open.spotify.com/track/1f3yAtsJtY87CTmM8RLnxf",
       "https://www.youtube.com/watch?v=hTWKbfoikeg"
     ],
-    "url": "http://mt5577:3000/api/6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like+Teen+Spirit",
+    "url": "/api/6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like+Teen+Spirit",
     "visibility": "public"
   },
   "eDu4Y113AnxWJCdqpnCrHv"

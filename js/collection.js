@@ -48,7 +48,7 @@ class AmplfrCollection extends AmplfrItem {
           this._data.items = data.split(/\s/);
         else if (data.match(validAmplfrCollectionID)) {
           // use a URL that points to the API endpoint for the AmplfrID
-          this.src = document.location.origin + `/api/${data}.json`;
+          this._options.src = document.location.origin + `/api/${data}.json`;
           this._data = parseAmplfr(this.src); // parse url as a Amplfr URL, saving the promise
         }
 
@@ -328,6 +328,10 @@ class AmplfrCollection extends AmplfrItem {
 
   // prettier-ignore
   get sourceID() { return `${this.domain}-${this._data?.id}`; }
+  // prettier-ignore
+  get src() {
+    return this._options?.src || !this._options?.currentSrc;
+  }
   // prettier-ignore
   get domain() { return this._data.domain || null; }
   // prettier-ignore

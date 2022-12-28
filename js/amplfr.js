@@ -210,7 +210,7 @@ class AmplfrItem extends HTMLDivElement {
     switch (domain) {
       case "amplfr":
       case "amplfr.com":
-        let {default: parseAmplfr} = await import('./parseAmplfr.js')
+        let { default: parseAmplfr } = await import('./parseAmplfr.js')
         obj = parseAmplfr(url);
         break;
       default:
@@ -243,7 +243,7 @@ class AmplfrItem extends HTMLDivElement {
     }
 
     // pull out all of the "string" keys from obj, saving to this.dataset
-    const keys = ["id", "url", "title", "artwork", "albumid", "start", "end"];
+    const keys = ["id", "src", "url", "href", "title", "artwork", "album", "albumid", "start", "end"];
     keys.forEach((k) => {
       if (!!source[k] && typeof source[k] == "string")
         this._data[k] = source[k];
@@ -255,9 +255,10 @@ class AmplfrItem extends HTMLDivElement {
     if (!!source.artist) artists.push(source.artist);
     if (artists.length > 0) this._data.artists = artists.flat();
 
-    if (!!source.album) this._data.album = source.album; // if album exists, save it
-    if (!!source.href) this._data.href = source.href; // if href exists, save it
-    if (!!source.src) this._data.src = source.src; // if src exists, save it
+    // if (!!source.album) this._data.album = source.album; // if album exists, save it
+    // if (!!source.href) this._data.href = source.href; // if href exists, save it
+    // if (!!source.src) this._data.src = source.src; // if src exists, save it
+    // if (!!source.url) this._data.url = source.url; // if url exists, save it
 
     // if URL exists, save it. fallback to src
     try {
@@ -318,13 +319,13 @@ class AmplfrItem extends HTMLDivElement {
     this._options.media.preload = "metadata";
 
     if (!this._data.src || !Array.isArray(this._data.src)) {
-      this._options.media.src = this._data.url;
+      this._options.media.src = this._data.src  // || this._data.url;
       if (!!type) this._options.media.type = type;
     } else {
       this._data.src.forEach((f) => {
         // append a source element for each URL/MIME-type
         const source = document.createElement("source");
-        source.src = f.url || f.src;
+        source.src = f.src || f.url;
         source.type = f.mime;
         this._options.media.appendChild(source); // append to the media element
       });
@@ -396,15 +397,18 @@ class AmplfrItem extends HTMLDivElement {
       let res;
       try {
         res = await fetch(URL, { method: "HEAD" });
-      } catch (err) {}
+      } catch (err) { }
       if (!res.ok)
         warn(
           `Cannot load "${URL}" (HTTP${res.status}: ${res.statusText}).\n` +
-            `Please double check the URL and try again.`
+          `Please double check the URL and try again.`
         );
     });
     this._options.media.addEventListener("stalled", (e) => warn("stalled"));
-    this._options.media.addEventListener("waiting", (e) => warn("waiting"));
+    this._options.media.addEventListener("waiting", (e) => {
+      warn("waiting")
+      updateControl("button", "downloading", "Waiting");
+    });
 
     // 1. loadstart       starting to load
     //    - does this mean HTTP 2xx result?
@@ -538,7 +542,7 @@ class AmplfrItem extends HTMLDivElement {
     return this._data?.sourceURL;
   }
   get src() {
-    return this._options?.media?.src || !this._options?.media?.currentSrc;
+    return this._data?.src
   }
   /**
    * Gets the domain from the source URL
@@ -549,7 +553,7 @@ class AmplfrItem extends HTMLDivElement {
     if (!this._data.domain)
       try {
         this._data.domain = this._data?.url?.hostname;
-      } catch (error) {}
+      } catch (error) { }
 
     return this._data.domain;
   }
@@ -660,11 +664,11 @@ class AmplfrItem extends HTMLDivElement {
     }
   };
   // prettier-ignore
-  set muted(v=!this.muted) { if (!!this._options.media) this._options.media.muted = (!!v) }
+  set muted(v = !this.muted) { if (!!this._options.media) this._options.media.muted = (!!v) }
   // prettier-ignore
-  set playbackRate(v=1) { if (!!this._options.media) this._options.media.playbackRate = v }
+  set playbackRate(v = 1) { if (!!this._options.media) this._options.media.playbackRate = v }
   // prettier-ignore
-  set volume(v=1) { if (!!this._options.media) this._options.media.volume = v }
+  set volume(v = 1) { if (!!this._options.media) this._options.media.volume = v }
 
   // media property get'ers - each returns null if this._options.media is null
   get startTime() {
@@ -674,7 +678,7 @@ class AmplfrItem extends HTMLDivElement {
     if (!startTime) {
       try {
         searchParams = this.sourceURL.searchParams;
-      } catch (error) {}
+      } catch (error) { }
 
       startTime = searchParams["s"] || !!searchParams["start"] || 0;
       this._data.startTime = startTime;
@@ -688,7 +692,7 @@ class AmplfrItem extends HTMLDivElement {
     if (!endTime) {
       try {
         searchParams = this.sourceURL.searchParams;
-      } catch (error) {}
+      } catch (error) { }
 
       endTime = searchParams["e"] || !!searchParams["end"] || this.duration;
       this._data.endTime = endTime;
@@ -773,6 +777,10 @@ class AmplfrItem extends HTMLDivElement {
    * connectedCallback() is called when this element is (re-)added to the DOM
    */
   async connectedCallback() {
+    this.render()
+  }
+
+  async render() {
     if (this._options.isBuilt == true) return; // no need to build again if already done
 
     // start the build
@@ -780,7 +788,8 @@ class AmplfrItem extends HTMLDivElement {
       this._options.root = document.createElement("div");
     else this._options.root = this;
 
-    await this._populate();
+    if (!this._data?.src)
+      await this._populate();
 
     this._options.isBuilt = true; // get here, and there's no need to run again
     this._options.root.setAttribute("is", this._options.class);
@@ -834,11 +843,11 @@ class AmplfrItem extends HTMLDivElement {
     shadow.appendChild(this._options.root);
   }
 
-  disconnectedCallback() {}
+  disconnectedCallback() { }
 
-  adoptedCallback() {}
+  adoptedCallback() { }
 
-  attributeChangedCallback(name, oldValue, newValue) {}
+  attributeChangedCallback(name, oldValue, newValue) { }
 
   appendAdditional(root, ...Fns) {
     // make the containing UL
@@ -943,9 +952,8 @@ class AmplfrItem extends HTMLDivElement {
         albumE.dataset.date = dateText || album.date;
       }
       if (!!albumE?.dataset.year) {
-        albumE.title += ` (${
-          albumE.dataset.year || dateObj?.getFullUTCYear()
-        })`;
+        albumE.title += ` (${albumE.dataset.year || dateObj?.getFullUTCYear()
+          })`;
       }
     }
 
@@ -1032,7 +1040,15 @@ class AmplfrItem extends HTMLDivElement {
       {
         conditional: navigator.canShare,
         text: "share",
-        fn: _this.share,
+        fn: async () => {
+          let url = new URL(_this.sourceURL, 'https://amplfr.com/')
+          url = url.toString()
+          if (navigator.canShare) navigator.share({
+            title: `Amplfr.com - ${_this.title}`,
+            text: `Play "${_this.title}"`,
+            url,
+          })
+        },
         title: "Share this",
       },
     ];
@@ -1042,7 +1058,7 @@ class AmplfrItem extends HTMLDivElement {
     additionalControls.forEach((ctrl) => {
       // skip this control if already added
       if (!!_this._options.controls[ctrl.text]) return;
-      if (!!ctrl?.conditional) return; // bail if the check doesn't pass
+      if (!ctrl?.conditional) return; // bail if the check doesn't pass
 
       // add the control button
       const e = document.createElement("span");

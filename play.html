@@ -23,25 +23,30 @@
         margin: 0 auto;
         font-size: 2em;
       }
+      @media (max-width: 800px) {
+        #container {
+          width: 100% !important;
+        }
+      }
     </style>
     <div id="container"></div>
     <script>
       const title = ">Amplfr";
 
       const setup = () => {
-        let src
-        if (document.location.search != '') {
-          if (document.location.search.indexOf('=') > -1) {
-            src = {}
-            const URLparams = new URLSearchParams(document.location.search)
-            for (const [k, v] of URLparams) src[k] = v
-          }
-          else src = document.location.search.replace(/^\?/, "")
+        let src;
+        if (document.location.search != "") {
+          if (document.location.search.indexOf("=") > -1) {
+            src = {};
+            const URLparams = new URLSearchParams(document.location.search);
+            for (const [k, v] of URLparams) src[k] = v;
+            src.url = document.location;
+          } else src = document.location.search.replace(/^\?/, "");
         }
         if (document.location.hash != "")
-          src = document.location.hash.replace(/^#/, "")
+          src = document.location.hash.replace(/^#/, "");
 
-        let item
+        let item;
         const log = (msg) => console.log(`${item.sourceURL} - ${msg}`);
         const logprogress = (msg) => {
           let bytes = item.bytes;
@@ -67,12 +72,12 @@
         };
         if (!!src) {
           // remove any existing AmplfrItems
-          let existing = document.querySelector('.item[is=amplfr-item]')
-          if (!!existing) existing.parentNode.removeChild(existing)
+          let existing = document.querySelector(".item[is=amplfr-item]");
+          if (!!existing) existing.parentNode.removeChild(existing);
 
           item = new AmplfrItem(src, true);
-          document.querySelector('#container').appendChild(item);
-          // item.classList.add('square')
+          document.querySelector("#container").appendChild(item);
+          item.classList.add("square");
 
           // 1. loadstart       starting to load
           // 2. durationchange  once enough is downloaded that the duration is known
@@ -115,7 +120,7 @@
           });
         }
 
-        const defaultSkipTime = 10
+        const defaultSkipTime = 10;
         let updatePositionState = () => {};
         let updateMetadata = () => {};
         if ("mediaSession" in navigator) {
@@ -132,20 +137,19 @@
             }
           };
           updateMetadata = () => {
-            const title = item.title
+            const title = item.title;
             log(`Playing '${title || ""}'`);
             let obj = {
               title,
-              artist: item.artists.join(', '),
-            }
+              artist: item.artists.join(", "),
+            };
 
-            const artwork = item.artwork
+            const artwork = item.artwork;
             if (!!artwork && !!artwork.currentSrc)
-              obj.artwork = [{ src: artwork.currentSrc }]
-            const album = item.album
-            if (!!album)
-              obj.album = album
-              
+              obj.artwork = [{ src: artwork.currentSrc }];
+            const album = item.album;
+            if (!!album) obj.album = album;
+
             navigator.mediaSession.metadata = new MediaMetadata(obj);
             updatePositionState(); // Media is loaded, set the duration.
           };
@@ -163,10 +167,7 @@
           navigator.mediaSession.setActionHandler("seekbackward", (e) => {
             log('> User clicked "Seek Backward" icon.');
             const skipTime = e.seekOffset || defaultSkipTime;
-            item.currentTime = Math.max(
-              item.currentTime - skipTime,
-              0
-            );
+            item.currentTime = Math.max(item.currentTime - skipTime, 0);
             updatePositionState();
           });
 
