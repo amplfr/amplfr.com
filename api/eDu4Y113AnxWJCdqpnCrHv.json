@@ -6,7 +6,7 @@
       "id": "wSv42DNe1JPrei75iEqub7",
       "name": "Coldplay",
       "area": "London, GB",
-      "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+      "url": "/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
     }
   ],
   "album": {
@@ -14,7 +14,7 @@
     "title": "X&Y",
     "date": "2005-06-06",
     "year": 2005,
-    "url": "http://mt5577:3000/api/album/wJn6t2tuMkKu82KcmmKMSp/X%38Y"
+    "url": "/api/album/wJn6t2tuMkKu82KcmmKMSp/X%38Y"
   },
   "duration": 288,
   "status": "pending",
@@ -27,6 +27,6 @@
     "https://www.youtube.com/watch?v=04tC72kZM_o",
     "https://www.youtube.com/watch?v=0k_1kvDh2UA"
   ],
-  "url": "http://mt5577:3000/api/eDu4Y113AnxWJCdqpnCrHv/Speed+of+Sound",
+  "url": "/api/eDu4Y113AnxWJCdqpnCrHv/Speed+of+Sound",
   "visibility": "public"
 }

@@ -9,7 +9,12 @@
         "name": "Radiohead",
         "url": "/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
       }
-    ]
+    ],
+    "album": {
+      "id": "dKsQCazuEHnvVqJUuiVBPV",
+      "title": "The Bends",
+      "url": "/api/album/dKsQCazuEHnvVqJUuiVBPV/The+Bends"
+    }
   },
   {
     "id": "hdhjfv5sbnGhm6gvvBQmBD",
@@ -22,6 +27,11 @@
         "url": "/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
       }
     ],
+    "album": {
+      "id": "oAf7C1VHUL8qy2UujSgnsw",
+      "title": "Homecoming",
+      "url": "/api/album/oAf7C1VHUL8qy2UujSgnsw/Homecoming"
+    },
     "duration": 184,
     "status": "pending",
     "mbid": "6ef1d268-ca3d-4e48-aafa-f5e733fb64e1",
@@ -70,6 +80,11 @@
         "url": "/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
       }
     ],
+    "album": {
+      "id": "mTKCx7T69sv7EkfSHaDtPb",
+      "title": "The Color and the Shape",
+      "url": "/api/album/mTKCx7T69sv7EkfSHaDtPb/The+Color+and+the+Shape"
+    },
     "duration": 231,
     "status": "pending",
     "mbid": "26502c24-e08c-45a0-a7b6-44f7471d7054",
@@ -90,6 +105,11 @@
         "url": "/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
       }
     ],
+    "album": {
+      "id": "mEa7ryXmexWF4qGBrUDf7g",
+      "title": "Nevermind",
+      "url": "/api/album/mEa7ryXmexWF4qGBrUDf7g/Nevermind"
+    },
     "duration": 301,
     "status": "pending",
     "mbid": "5fb524f1-8cc8-4c04-a921-e34c0a911ea7",
