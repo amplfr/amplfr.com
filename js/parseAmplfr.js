@@ -52,6 +52,16 @@ const parseAmplfr = async (url) => {
 
   // get the list of media files
   let files = obj.src || obj.files;
+  if (!files) obj = await fetchSrc(obj)
+
+  return obj;
+};
+
+const fetchSrc = async (obj) => {
+  const id = obj.id;
+  let response;
+
+  let files = obj.src || obj.files;
   if (!files) {
     // if files isn't provided, fetch() it
     response = await fetch(`/api/${id}.files`);
@@ -65,7 +75,7 @@ const parseAmplfr = async (url) => {
       .filter((f) => media.canPlayType(f.mime || f) !== "") // skip anything client can't play
       .map((f) => {
         // f.src = url.substring(0, url.lastIndexOf(".", -8)).replace(id, f.filename); // use f.filename to set the correct src
-        f.src = url.substring(0, url.lastIndexOf("/")+1) + f.filename; // use f.filename to set the correct src
+        f.src = url.substring(0, url.lastIndexOf("/") + 1) + f.filename; // use f.filename to set the correct src
         return f;
       })
       .sort((a, b) => {
@@ -88,4 +98,8 @@ const parseAmplfr = async (url) => {
   return obj;
 };
 
-export default await parseAmplfr
+// export default await parseAmplfr
+export {
+  parseAmplfr,
+  fetchSrc,
+}

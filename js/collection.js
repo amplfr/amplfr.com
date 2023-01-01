@@ -2,13 +2,6 @@ const validAmplfrCollectionID =
   /[0-9A-Za-z]{1,25}\/[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}/;
 
 /**
- * AmplfrCollection is an HTML element comprised of a list of {@link AmplfrItem}s.
- * @name AmplfrCollection
- * @see {@link AmplfrItem}
- * @extends AmplfrItem
- * @inheritdoc
- */
-/**
  * Data fields needed to build an AmplfrCollection
  * @typedef {object} CollectionSourceData
  * @property {string} url - Canonical URL for the collection
@@ -16,10 +9,20 @@ const validAmplfrCollectionID =
  * @property {AmplfrItem[]|string[]} items - In order list of items that make up the collection. Each item can be an ItemElement object, URL, AmplfrID, or other supported identifier.
  * @property {string} [artwork] - URL for artwork
  */
+/**
+ * AmplfrCollection is an HTML element comprised of a list of {@link AmplfrItem}s.
+ * @name AmplfrCollection
+ * @see {@link AmplfrItem}
+ * @extends AmplfrItem
+ * @inheritdoc
+ * 
+ * Displayed the same as AmplfrItem if only one Item is listed, but
+ */
 class AmplfrCollection extends AmplfrItem {
   // #useShadow = false; // toggle if resulting elements should go in shadow DOM instead
   _data; // holds internal data object
   _options;
+  static #parseAmplfrFn
 
   /**
    * @param {CollectionSourceData|ItemSourceData[]|string|string[]|null} data Source URL(s), data object(s) used to populate this. Can be one of the following:
@@ -30,7 +33,7 @@ class AmplfrCollection extends AmplfrItem {
    *  - NULL - will use the element's dataset (as CollectionSourceData) or src (as URL to parse) attributes.
    */
   constructor(data) {
-    super(); // Always call super first in constructor
+    super(false); // Always call super first in constructor
 
     this._data = {};
     this._options = {};
@@ -41,6 +44,9 @@ class AmplfrCollection extends AmplfrItem {
 
     // only if this object is an AmplfrCollection vs some extended class
     if (this instanceof AmplfrCollection) {
+      if (!!AmplfrItem && AmplfrItem.isAmplfrID(data)) // single AmplfrID
+        data = [data]
+
       if (typeof data == "string") {
         // if data has any whitespace characters (a URL should not)
         //  then split on each whitespace character and save each token as an item
@@ -49,13 +55,11 @@ class AmplfrCollection extends AmplfrItem {
         else if (data.match(validAmplfrCollectionID)) {
           // use a URL that points to the API endpoint for the AmplfrID
           this._options.src = document.location.origin + `/api/${data}.json`;
-          this._data = parseAmplfr(this.src); // parse url as a Amplfr URL, saving the promise
+          this._data = AmplfrCollection.parseAmplfr(this.src); // parse url as a Amplfr URL, saving the promise
         }
-
         // if data is a string, hopefully it's a URL (under 2083 characters) with additional data
         else if (data.length <= 2083) {
-          this.src = data; // save the URL
-          this._data = this._parse(this.src); // fetch the URL, saving the promise
+          this._data = this._parse(data); // fetch the URL, saving the promise
         }
       } else if (Array.isArray(data)) {
         // look at each of the entries as its own AmplfrItem
@@ -65,6 +69,15 @@ class AmplfrCollection extends AmplfrItem {
       } else
         this._populate(data);
     }
+  }
+
+  static async parseAmplfr(url) {
+    if (!AmplfrCollection.#parseAmplfrFn) {
+      let { default: parseAmplfr } = await import('./parseAmplfr.js')
+      AmplfrCollection.#parseAmplfrFn = parseAmplfr
+    }
+
+    return AmplfrCollection.#parseAmplfrFn(url)
   }
 
   /**
@@ -250,6 +263,29 @@ class AmplfrCollection extends AmplfrItem {
     if (!!this._data?.title)
       this.title = this._data.title;
 
+    // create a child element for each item, populate it, and append it to e
+    // items.forEach((item, i) => {
+    // this._options.items = this._data.items.map((item, i) => {
+    this._data.items.forEach((item, i) => {
+      let itemE;
+
+      // if item is already an AmplfrItem
+      if (item instanceof AmplfrItem)
+        itemE = item; // just save item as itemE
+      else
+        // itemE = new AmplfrItem(item, {
+        //   controls: false,
+        //   standalone: false,
+        // }); // upgrade item to be an AmplfrItem
+        itemE = new AmplfrItem(item); // upgrade item to be an AmplfrItem
+
+      // preload a select number of items
+      if (i < this._options.preloadCount)
+        itemE.appendMedia();
+
+      // return itemE; // save the itemE
+      this._data.items[i] = itemE; // save the itemE
+    });
     // set needed fields that may not be set yet
     // let url = this._data?.url || this.src;
     // if (!!url) {
@@ -282,41 +318,30 @@ class AmplfrCollection extends AmplfrItem {
   }
 
   appendItems() {
-    const items = this._data.items;
-    if (!items || items.length < 1)
-      return;
-
     const e = document.createElement("ol");
     e.classList.add("items");
 
+    this._options.root.appendChild(e);
+
+    this._options.items = e
+
     // create a child element for each item, populate it, and append it to e
-    // items.forEach((item, i) => {
-    this._options.items = items.map((item, i) => {
+    const _this = this
+    this._data.items.forEach((item, i) => {
       const li = document.createElement("li");
-      let itemE;
 
-      // if item is already an AmplfrItem
-      if (item instanceof AmplfrItem)
-        itemE = item; // just save item as itemE
-
-      else
-        itemE = new AmplfrItem(item, {
-          controls: false,
-          standalone: false,
-        }); // upgrade item to be an AmplfrItem
-
-
-      // preload a select number of items
-      if (i < this._options.preloadCount)
-        itemE.appendMedia();
-
-      li.appendChild(itemE); // append itemE to the LI
+      li.appendChild(item); // append itemE to the LI
       e.appendChild(li); // append LI to the OL
 
-      return itemE; // save the itemE
+      // add per-item event handlers
+      li.addEventListener("dblclick", function (ev) {
+        ev.preventDefault();
+        _this.item = ev.target
+      });
+      li.addEventListener("touchend", function (ev) {
+        ev.preventDefault();
+      });
     });
-
-    this._options.root.appendChild(e);
   }
 
   /**
@@ -341,10 +366,10 @@ class AmplfrCollection extends AmplfrItem {
   // prettier -ignore
   // get items() { return this._options.items || null }
   get items() {
-    if (!this._options.items)
-      this._options.items = this._options.root.querySelectorAll(".item"); // save all of the items
+    if (!this._data.items)
+      this._data.items = this._options.root.querySelectorAll(".item"); // save all of the items
 
-    return this._options.items;
+    return this._data.items;
   }
   // prettier-ignore
   get item() { return this._options.itemNumber; }
@@ -357,63 +382,115 @@ class AmplfrCollection extends AmplfrItem {
    * @param {number} i The index of the item to select.
    */
   set item(i) {
-    if (i == this._options.itemNumber)
-      return; // nothing to do if already set to this._options.itemNumber
+    /**
+     * item() sets the current item to play in the collection
+     *  - puts currently playing item in Played
+     *  - gets requested item, and puts it in Playing
+     *    - has to remove the requested item's parent element
+     *    - has to determine the "direction" - if previous, then need to get item from Played
+     */
+    let forwardDirection
+    let itemE
+    const itemCount = this.items.length;
+    if (typeof i == 'number') {
+      if (i == this._options.itemNumber)
+        return; // nothing to do if already set to this._options.itemNumber
 
-    const playing = this.paused === false ? true : false; // ==false means its playing, but null means nothing
-    if (playing === true)
+      if (i <= 0) i = itemCount + i; // zero or negative values count back from the last item
+
+      forwardDirection = (i >= (this._options.itemNumber || 1))
+      itemE = this._data.items[(i - 1) % itemCount]
+    }
+    else if (i.getAttribute('is') == 'amplfr-item') {
+      itemE = i
+      // forwardDirection = false  // insert what was Playing back 
+    }
+    else return // not sure what i is, so just return
+
+    const isPlaying = this.paused === false ? true : false; // ==false means its playing, but null means nothing
+    if (isPlaying === true)
       this.pause();
 
-    const itemCount = this.items.length;
-    // if (i <= 0) i = this._options.items.length + i; // zero or negative values count back from the last item
-    // i = Math.max(1, Math.min(i, this._options.items.length)); // keep i in range
-    if (i <= 0)
-      i = itemCount + i; // zero or negative values count back from the last item
-    i = Math.max(1, Math.min(i, itemCount)); // keep i in range
+    const parentE = itemE.parentElement // needed to clean up otherwise empty LI
 
-    this._options.current.classList.remove("current"); // previously current item isn't anymore
+    // move anything in Playing to Played/Items
+    if (this._options.playing.hasChildNodes()) {
+      const li = document.createElement("li");
+      li.appendChild(this._options.playing.childNodes[0]); // append itemE to the LI
+
+      // which list gets what was in Playing?
+      if (this.loop) this._options.items.appendChild(li)
+      else if (forwardDirection) this._options.played.appendChild(li)
+      // else this._options.items.appendChild(li)
+      else this._options.items.insertBefore(li, this._options.items.firstChild)
+    }
+
+    // overwrite anything already in Playing with itemE
+    // this._options.playingE.replaceChildren(itemE)
+    itemE.appendControls()
+
+    // this._options.current.classList.remove("current"); // previously current item isn't anymore
     this._options.itemNumber = i;
-    this._options.current = this.items[i - 1];
+    // this._options.current = this.items[i - 1];
+    this._options.current = itemE
+    this._options.playing.replaceChildren(itemE)
+    this._options.playing.scrollIntoView()
+
+    // remove parentE as long as it isn't the main list of items, and it doesn't have any child nodes
+    if (parentE != this._data.items && !parentE.hasChildNodes())
+      parentE.remove()
 
     if (!this._options.current)
       return; // if #current is bad, just quit
 
-    this._options.current.classList.add("current"); // newly current item is now current
+    // this._options.current.classList.add("current"); // newly current item is now current
     this._options.current.appendMedia(); // ensure that #current's media is ready
 
 
     // start playing the new item if previous item was playing
-    if (playing === true)
+    if (isPlaying === true)
       this.play();
+
+    if (this._options.itemNumber == 1 && this.loop == false) {
+      // disable the previous button
+      this._options.controls.querySelector('#previous').classList.add('disabled')
+    }
 
     // if #current is the last item and this.loop is false
     if (
       // this._options.itemNumber == this._options.items.length - 1 &&
-      this._options.itemNumber == itemCount - 1 &&
+      // this._options.itemNumber == itemCount - 1 &&
+      this._options.itemNumber == itemCount &&
       !this.loop) {
+      // disable the next button
+      this._options.controls.querySelector('#next').classList.add('disabled')
+
       // create and dispatch an 'ended' event
       const ev = new Event('ended');
       this.dispatchEvent(ev);
     }
 
-
-
     // prettier-ignore
     // add 'ended' event to go to the next() item
     else
-      this._options.current.addEventListener("ended", this.next(), {
+      this._options.current.addEventListener("ended", this.next, {
         once: true,
       });
   }
   // prettier-ignore
   set track(i) { this.item(i); }
   // prettier-ignore
-  // next() { this.item((this._options.itemNumber || 0) + 1); }
-  next() { this.item = (this._options.itemNumber || 0) + 1; }
+  next() { this.item = (this._options?.itemNumber || 0) + 1; }
   // prettier-ignore
-  previous() { this.item(this._options.itemNumber - 1 || 0); }
+  previous() { this.item = (this._options?.itemNumber - 1 || 1); }
   // prettier-ignore
-  set loop(v = !this._options.loop) { this._options.loop = !!v; }
+  loop() { this.loop = !this.loop; }
+  // prettier-ignore
+  set loop(v = !this._options.loop) {
+    this._options.loop = !!v;
+    // if (this._options.loop == true) 
+    // this._options.controls.querySelector('#repeat').classList.toggle('activated')
+  }
   // prettier-ignore
   set muted(v = !this.muted) {
     if (!!this._options.current)
@@ -430,7 +507,7 @@ class AmplfrCollection extends AmplfrItem {
   // prettier-ignore
   get ended() { return this._options.current?.ended || null; }
   // prettier-ignore
-  get loop() { return this._options.current?.loop || null; }
+  get loop() { return this._options.loop || false; }
   // prettier-ignore
   get muted() { return this._options.current?.muted || null; }
   // prettier-ignore
@@ -517,10 +594,14 @@ class AmplfrCollection extends AmplfrItem {
    * connectedCallback() is called when this element is (re-)added to the DOM
    */
   async connectedCallback() {
-    if (this._options.isBuilt == true)
-      return; // no need to build again if already done
+    this.render()
+  }
 
-    await this._populate();
+  async render() {
+    if (!!this._options.isBuilt) return; // no need to build again if already done
+    this._options.isBuilt = 'building'
+
+    if (!this._data?.src) await this._populate();
 
     // start the build
     if (!!this._options.useShadow)
@@ -540,13 +621,18 @@ class AmplfrCollection extends AmplfrItem {
     //    - artwork/album per item
     //    - more simple header - title, controls
     //    - already works, but header is TODO
-    this.appendArtwork(); // handle special case artwork
+    // this.appendArtwork(); // handle special case artwork
     // this.appendChildTags(this._options.root, this._data, [
     //   "title",
     //   "collection",
     // ]);
-    this.appendTitle();
+    // this.appendTitle();
+    this.appendPlayed();
+    this.appendPlaying();
+    this.appendLogo(this._options.root);
+    this.appendControls();
     this.appendItems(); // handle special case items
+    this.appendControlsAdditional();
 
     this._options.isBuilt = true; // get here, and there's no need to run again
 
@@ -555,6 +641,11 @@ class AmplfrCollection extends AmplfrItem {
     if (!!this._data.title)
       this._options.root.setAttribute("title", this._data.title);
     // this._makeDraggable(); // make it dragable
+
+    // once the items and the OL have been appended
+    // this._options.items = this._options.root.querySelectorAll(".item"); // save all of the items
+    this.item = 1; // select the first item
+
     // finish up the build
     if (!this._options.useShadow || !this.shadowRoot)
       return;
@@ -569,10 +660,168 @@ class AmplfrCollection extends AmplfrItem {
     // Attach the created elements to the shadow dom
     shadow.appendChild(linkElem);
     shadow.appendChild(this._options.root);
+  }
 
-    // once the items and the OL have been appended
-    this._options.items = this._options.root.querySelectorAll(".item"); // save all of the items
-    this.item = 1; // select the first item
+  appendPlayed(root = this._options.root) {
+    // add the control button
+    const playedE = document.createElement("ol");
+    playedE.setAttribute('id', 'played')
+    playedE.classList.add("played");
+    playedE.classList.add("items");
+
+    this._options.played = playedE; // save playedE for easy access later
+    root.appendChild(playedE);
+  }
+
+  appendPlaying(root = this._options.root) {
+    // add the control button
+    const playingE = document.createElement("div");
+    playingE.setAttribute('id', 'playing')
+
+    this._options.playing = playingE; // save playingE for easy access later
+
+    root.appendChild(playingE);
+
+    // set the first item for Playing *after* appending playingE
+    // this.item = 1
+
+    // do *not* set the item to play yet
+    // do it at the end of render()
+  }
+
+  appendControls(root = this._options.root) {
+    // add the control button
+    const e = document.createElement("div");
+    e.setAttribute('id', 'controls')
+    e.classList.add("controls");
+    root.appendChild(e);
+    if (this.items.length == 1) e.classList.add('hidden')
+
+    this._options.controls = e; // save for easy access later
+
+    const _this = this;
+    const controls = [
+      {
+        id: 'previous',
+        title: "Previous",
+        text: 'skip_previous',
+        _this,
+        fn: _this.previous
+      },
+      {
+        id: 'share',
+        title: "Share",
+        text: 'share',
+        _this,
+        fn: _this.share
+      },
+      {
+        id: "search",
+        title: "Search",
+        _this,
+        text: "search",
+        fn: () => { }
+      },
+      {
+        id: 'shuffle',
+        title: "Shuffle",
+        text: 'shuffle',
+        _this,
+        fn: _this.shuffle
+      },
+      {
+        id: 'next',
+        title: "Next",
+        text: 'skip_next',
+        _this,
+        fn: _this.next
+      },
+    ]
+    controls.forEach(ctrl => {
+      const ce = document.createElement("div");
+      ce.setAttribute('id', ctrl.id)
+      ce.setAttribute('title', ctrl.title)
+      ce.classList.add("material-icons");
+      ce.classList.add("md-light");
+      if (ctrl.class) ctrl.class.split(/\s/).forEach((cls) => ce.classList.add(cls))
+      ce.innerText = ctrl.text
+      e.appendChild(ce);
+
+      ce.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ctrl.fn.bind(_this)(ev);
+      });
+      ce.addEventListener("touchend", function (ev) {
+        ev.preventDefault();
+        ctrl.fn.bind(_this)(ev);
+      });
+    })
+  }
+  appendControlsAdditional(root = this._options.root) {
+    // add the control button
+    const e = document.createElement("div");
+    e.setAttribute('id', 'additional')
+    e.classList.add("controls");
+    root.appendChild(e);
+    if (this.items.length == 1) e.classList.add('hidden')
+
+    this._options.controls_additional = e; // save for easy access later
+
+    const _this = this;
+    const controls = [
+      {
+        id: "playlist",
+        title: "Playlist",
+        // class: "activated",
+        _this,
+        text: "playlist_play",
+        fn: (e) => {
+          this.classList.toggle('minimized')
+          e.target.classList.toggle('activated')
+        }
+      },
+      {
+        id: "add",
+        title: "Add",
+        _this,
+        text: "playlist_add",
+        fn: () => { }
+      },
+      {
+        id: "history",
+        title: "History",
+        _this,
+        text: "history",
+        fn: () => { }
+      },
+      {
+        id: 'repeat',
+        title: "Repeat",
+        text: 'repeat',
+        _this,
+        // fn: _this.loop
+        fn: () => { _this.loop = (!_this.loop) }
+      },
+    ]
+    controls.forEach(ctrl => {
+      const ce = document.createElement("div");
+      ce.setAttribute('id', ctrl.id)
+      ce.setAttribute('title', ctrl.title)
+      ce.classList.add("material-icons");
+      ce.classList.add("md-light");
+      if (ctrl.class) ctrl.class.split(/\s/).forEach((cls) => ce.classList.add(cls))
+      ce.innerText = ctrl.text
+      e.appendChild(ce);
+
+      ce.addEventListener("click", function (ev) {
+        ev.preventDefault();
+        ctrl.fn.bind(_this)(ev);
+      });
+      ce.addEventListener("touchend", function (ev) {
+        ev.preventDefault();
+        ctrl.fn.bind(_this)(ev);
+      });
+    })
   }
 }
 // prettier-ignore

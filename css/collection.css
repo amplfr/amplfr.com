@@ -1,5 +1,6 @@
 .collection * {
   /* display: block !important; */
+  transition: 250ms linear width;
 }
 .collection .artwork {
   /* background-position: center; */
@@ -23,9 +24,45 @@
   font-style: italic;
 }
 
+.collection > .controls {
+  background-color: #7a7a7a;
+  height: 2em;
+  width: inherit;
+  z-index: 16;
+  overflow: hidden;
+  /* color: #7a7a7a; */
+  display: flex;
+  /* display: inline; */
+}
+.collection > .controls * {
+  margin: 0px auto;
+  font-size: 2em !important;
+  color: whitesmoke;
+}
+.collection > .controls {
+  cursor: pointer;
+}
+.collection > .controls .activated {
+  background-color: white;
+  color: #7a7a7a;
+}
+.collection > .controls .disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.collection > #playing {
+  font-size: 2em;
+  transition: 0.25s linear;
+  z-index: 16;
+}
+
 .collection > ol.items {
   margin-block: 0px;
   padding-left: 0px;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+  list-style-type: none;
 }
 
 .collection > ol.items > li {
@@ -35,38 +72,129 @@
   display: list-item !important;
   text-shadow: 2px 2px 0px whitesmoke;
   counter-increment: doc;
-  width: calc(100% + 4em);
-  overflow: hidden;
+  /* overflow: hidden; */
   position: relative;
-  /* left: -64px; */
-  left: -1em;
+  /* left: -1em; */
   /* user-select: none; */
+  margin-right: 0px;
+  width: calc(100% + 2em);
 }
 
 .collection > ol.items > li::before {
   content: counter(doc);
-  /*   cursor: ns-resize; */
+  /* cursor: ns-resize; */
   text-align: center;
-  margin: auto 0px;
-  width: 2em;
+  margin: 0px;
+  width: 1em;
   float: left;
   position: relative;
-  left: 1em;
-  line-height: 2em;
+  left: 0em;
+  line-height: 1em;
   color: whitesmoke;
   text-shadow: 0px 0px 8px rgb(0 0 0);
-  font-size: 1em;
+  font-size: 2em;
   z-index: 2;
+  opacity: 0.75;
+  font-family: sans-serif;
+  margin-left: 0px;
 }
 .collection ol.items .item button {
   left: 0px;
   top: 0px;
 }
-.collection .item {
-  left: -1em;
+.collection ol.items li .item {
+  left: -2em;
   position: relative;
-  width: calc(100% + -4em);
+  width: calc(100% + -2em);
+  /* max-width: 50vmin; */
+  /* padding-right: 0px; */
+  /* margin-right: 0px; */
 }
-.collection .item .timeline-container {
-  width: calc(100% - 2em) !important;
+.collection ol.items li .item .timeline-container {
+  width: calc(100% - 0em) !important;
+}
+.collection ol.items.played {
+  filter: grayscale(1);
+}
+.collection .hidden,
+/* .collection.minimized #playing .item a svg.logo, */
+.collection ol li .item .timeline .timeline .thumb-indicator,
+.collection ol li .item button,
+.collection ol li .item ul li.time .time,
+.collection ol li .item ul li.logo .logo {
+  display: none !important;
+}
+.collection ol li .item .artwork {
+  filter: none;
+}
+.collection ol li .item .timeline-container:hover .timeline {
+  height: 4px;
+}
+.collection ol li .item .timeline-container .timeline::before {
+  display: initial;
+}
+
+.collection.minimized {
+  width: 2em;
+  filter: drop-shadow(2px 0px 2px black);
+  text-shadow: none;
+  max-height: 100vh;
+  height: 100vh;
+}
+.collection.minimized #playing {
+  font-size: 1em;
+}
+/* .collection.minimized .controls *:not(:last-child) { */
+.collection.minimized .controls * {
+  width: 0px !important;
+  height: 0px !important;
+  opacity: 0;
+}
+.collection.minimized #controls.controls {
+  /* position: relative; */
+  /* height: 2em; */
+  /* display: flex; */
+  /* padding-bottom: 2em; */
+  /* top: 2em; */
+}
+.collection.minimized .controls #playlist,
+/* .collection.minimized .controls #share, */
+.collection.minimized .controls #search {
+  z-index: 2;
+  width: initial !important;
+  height: initial !important;
+  opacity: 1;
+}
+.collection.minimized #playing .item,
+.collection.minimized ol.items li {
+  width: 2em;
+  overflow-x: clip;
+}
+.collection.minimized ol.items li.show {
+  width: 100% !important;
+  background-color: whitesmoke;
+}
+.collection.minimized ol.items li .item {
+  min-width: initial;
+  /* width: 2em; */
+}
+
+.collection > a > svg.logo {
+  height: 0px;
+  width: 0px;
+  display: block;
+}
+.collection.minimized > a > svg.logo {
+  height: 2em;
+  width: 2em;
+  position: relative;
+  aspect-ratio: 1/1;
+  background-color: #7a7a7a;
+}
+.collection.minimized #playing .item a svg.logo {
+  /* position: relative; */
+  /* font-size: 4rem; */
+}
+.collection.minimized #playing .item .title {
+  font-size: 2em;
 }

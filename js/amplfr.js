@@ -142,6 +142,8 @@ class AmplfrItem extends HTMLDivElement {
   constructor(data, options = false) {
     super(); // Always call super first in constructor
 
+    if (!(this instanceof AmplfrItem) || data === false) return
+
     this._data = {};
     this._options = {
       useShadow: false, // toggle if resulting elements should go in shadow DOM instead
@@ -152,12 +154,11 @@ class AmplfrItem extends HTMLDivElement {
       class: 'amplfr-item',
     };
     if (options.controls != null) this._options.controls = options?.controls;
+    if (options.logo != null) this._options.logo = options?.logo;
     if (options.standalone != null)
       this._options.standalone = options?.standalone;
     if (options.mediaType != null || typeof options == "boolean")
       this._options.mediaType = options?.media || options;
-
-    if (!(this instanceof AmplfrItem)) return
 
     if (typeof data !== "string") {
       this._populate(data);
@@ -178,6 +179,10 @@ class AmplfrItem extends HTMLDivElement {
     this._data = AmplfrItem.parse(data); // fetch the URL, saving the promise
   }
 
+  static isAmplfrID(text) {
+    // return typeof text == "string" && text.match(validAmplfrID)
+    return typeof text == "string" && validAmplfrID.test(text)
+  }
   /**
    * Fetches the given URL, parses the received media file, and returns an object with the extracted metadata.
    * The return object can be used as input for _populate().
@@ -201,7 +206,8 @@ class AmplfrItem extends HTMLDivElement {
     }
 
     // check if domain is just an AmplfrID
-    if (typeof url == "string" && url.match(validAmplfrID)) {
+    // if (typeof url == "string" && url.match(validAmplfrID)) {
+    if (AmplfrItem.isAmplfrID(url)) {
       domain = 'amplfr'
       url = document.location.origin + `/api/${url}.json`
     }
@@ -210,7 +216,9 @@ class AmplfrItem extends HTMLDivElement {
     switch (domain) {
       case "amplfr":
       case "amplfr.com":
-        let { default: parseAmplfr } = await import('./parseAmplfr.js')
+        // let { default: parseAmplfr } = await import('./parseAmplfr.js')
+        let { parseAmplfr } = await import('./parseAmplfr.js')
+        // if (!parseAmplfr) ({ parseAmplfr } = await import('./parseAmplfr.js'))
         obj = parseAmplfr(url);
         break;
       default:
@@ -255,10 +263,15 @@ class AmplfrItem extends HTMLDivElement {
     if (!!source.artist) artists.push(source.artist);
     if (artists.length > 0) this._data.artists = artists.flat();
 
-    // if (!!source.album) this._data.album = source.album; // if album exists, save it
+    if (!!source.album) this._data.album = source.album; // if album exists, save it
     // if (!!source.href) this._data.href = source.href; // if href exists, save it
-    // if (!!source.src) this._data.src = source.src; // if src exists, save it
     // if (!!source.url) this._data.url = source.url; // if url exists, save it
+    if (!!source.src) this._data.src = source.src; // if src exists, save it
+    else {
+      let { fetchSrc } = await import('./parseAmplfr.js')
+      let { src } = fetchSrc(source)
+      this._data.src = src
+    }
 
     // if URL exists, save it. fallback to src
     try {
@@ -578,7 +591,7 @@ class AmplfrItem extends HTMLDivElement {
    */
   play() {
     // pause if not already
-    if (!this.paused) {
+    if (!this.paused && this._options.media) {
       this._options.media.pause();
       return;
     }
@@ -806,7 +819,8 @@ class AmplfrItem extends HTMLDivElement {
     // TODO ensure that Title, Artist(s), Album are links (when available)
 
     // append primary elements (order matters)
-    if (!!this._options.standalone) this._options.artwork = this.appendArtwork(); // handle special case artwork
+    // if (!!this._options.standalone) this._options.artwork = this.appendArtwork(); // handle special case artwork
+    this._options.artwork = this.appendArtwork(); // handle special case artwork
     // this.appendLogo();
     // this.appendTime();
     this.appendTitle();
@@ -868,6 +882,9 @@ class AmplfrItem extends HTMLDivElement {
   }
 
   appendArtwork() {
+    // skip the rest if artwork isn't wanted, or this has already been run
+    if (this._options?.artwork == false) return;
+
     let artwork =
       this._data?.artwork ||
       "/albumart/" + (this._data.albumid || `item/${this._data.id}`) + ".jpg";
@@ -1005,16 +1022,24 @@ class AmplfrItem extends HTMLDivElement {
   }
   appendControls(root = this._options.root) {
     // skip the rest if controls aren't wanted, or this has already been run
-    if (
-      this._options?.controls == false ||
-      !this._options.standalone ||
-      !!this._options?.controls?.button
-    )
-      return;
+    // if (
+    //   this._options?.controls == false ||
+    //   !this._options.standalone ||
+    //   !!this._options?.controls?.button
+    // )
+    //   return;
 
     // add the control button
     const e = document.createElement("button");
     e.classList.add("material-icons");
+
+    // if (
+    //   this._options?.controls == false ||
+    //   !this._options.standalone ||
+    //   !!this._options?.controls?.button
+    // )
+    //   e.classList.add("hidden")
+
     root.appendChild(e);
 
     const _this = this;
