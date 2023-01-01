@@ -794,15 +794,15 @@ class AmplfrItem extends HTMLDivElement {
   }
 
   async render() {
-    if (this._options.isBuilt == true) return; // no need to build again if already done
+    if (!!this._options.isBuilt) return; // no need to build again if already done
+    this._options.isBuilt = 'building'
 
     // start the build
     if (this._options?.useShadow)
       this._options.root = document.createElement("div");
     else this._options.root = this;
 
-    if (!this._data?.src)
-      await this._populate();
+    if (!this._data?.src) await this._populate();
 
     this._options.isBuilt = true; // get here, and there's no need to run again
     this._options.root.setAttribute("is", this._options.class);
