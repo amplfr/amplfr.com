@@ -78,6 +78,8 @@
   /* user-select: none; */
   margin-right: 0px;
   width: calc(100% + 2em);
+  /* width: 100%; */
+  cursor: pointer;
 }
 
 .collection > ol.items > li::before {
@@ -118,7 +120,9 @@
 }
 .collection .hidden,
 /* .collection.minimized #playing .item a svg.logo, */
-.collection ol li .item .timeline .timeline .thumb-indicator,
+/* .collection ol li .item .timeline-container, */
+.collection ol li .item .timeline-container .timeline,
+.collection ol li .item .timeline-container .timeline .thumb-indicator,
 .collection ol li .item button,
 .collection ol li .item ul li.time .time,
 .collection ol li .item ul li.logo .logo {
@@ -133,9 +137,13 @@
 .collection ol li .item .timeline-container .timeline::before {
   display: initial;
 }
+.collection #playing .item,
+.collection ol.items li {
+  overflow-x: clip;
+}
 
 .collection.minimized {
-  width: 2em;
+  /* width: 2em; */
   filter: drop-shadow(2px 0px 2px black);
   text-shadow: none;
   max-height: 100vh;
@@ -150,12 +158,13 @@
   height: 0px !important;
   opacity: 0;
 }
-.collection.minimized #controls.controls {
+.collection.minimized .controls {
   /* position: relative; */
   /* height: 2em; */
   /* display: flex; */
   /* padding-bottom: 2em; */
   /* top: 2em; */
+  width: 2em;
 }
 .collection.minimized .controls #playlist,
 /* .collection.minimized .controls #share, */
@@ -165,10 +174,9 @@
   height: initial !important;
   opacity: 1;
 }
-.collection.minimized #playing .item,
 .collection.minimized ol.items li {
   width: 2em;
-  overflow-x: clip;
+  /* overflow-x: clip; */
 }
 .collection.minimized ol.items li.show {
   width: 100% !important;
@@ -190,11 +198,28 @@
   position: relative;
   aspect-ratio: 1/1;
   background-color: #7a7a7a;
+  fill: whitesmoke;
 }
 .collection.minimized #playing .item a svg.logo {
   /* position: relative; */
   /* font-size: 4rem; */
 }
 .collection.minimized #playing .item .title {
-  font-size: 2em;
+  /* font-size: 2em; */
+  display: none;
+}
+
+.collection.minimized #playing .item ul,
+.collection.minimized #playing .item ul li * {
+  display: none;
+}
+
+.collection.minimized #playing .item:hover {
+  background-color: unset;
+}
+.collection.minimized #playing .item .timeline-container {
+  position: relative;
+  top: calc(1em - 4px);
+  left: -2em;
+  width: 2em;
 }

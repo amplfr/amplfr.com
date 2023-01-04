@@ -12,7 +12,7 @@
   display: grid;
   grid-template-rows: 1em 4px auto;
   grid-template-columns: 2em auto;
-  min-width: 8em;
+  /* min-width: 8em; */
 }
 .item:focus,
 .item:hover {
@@ -66,7 +66,7 @@
 .item.square .artwork {
   height: min(100vmin, 100%);
   width: 100vmin;
-  margin-bottom: 0px;
+  margin-bottom: -15.5%;
   max-width: 100%;
   max-height: 100%;
 }
@@ -120,7 +120,8 @@
   margin-left: 2px;
 }
 /* based on https://stackoverflow.com/a/34845727 */
-.item ul li.metadata:not():last-child():after {
+/* .item ul li.metadata:not():last-child():after { */
+.item ul li.metadata:not(:first-child)::before {
   content: "\2022";
   margin-left: 4px;
 }
