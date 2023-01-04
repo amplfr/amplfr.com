@@ -433,7 +433,7 @@ class AmplfrItem extends HTMLDivElement {
     // 7. canplaythrough  when the browser estimates it can play through the specified audio/video without having to stop for buffering
     this._options.media.addEventListener("canplay", (e) => {
       // log("canplay");
-      updateControl("button", "play_arrow", "Play");
+      updateControl("button", "play_arrow", `Play "${_this.title}"`);
     });
     // prettier-ignore
     this._options.media.addEventListener("canplaythrough", (e) => {
@@ -445,7 +445,7 @@ class AmplfrItem extends HTMLDivElement {
     this._options.media.addEventListener("ended", (e) => {
       log("ended");
       if (!!_this._options?.standalone)
-        updateControl("button", "replay", "Replay");
+        updateControl("button", "replay", `Replay "${_this.title}"`);
     });
     // this._options.media.addEventListener("loadeddata", (e) => {});
     this._options.media.addEventListener("loadedmetadata", (e) => {
@@ -453,7 +453,7 @@ class AmplfrItem extends HTMLDivElement {
     });
     this._options.media.addEventListener("loadstart", (e) => {
       if (e.currentTarget != _this._options.media) return;
-      updateControl("button", "downloading", "Downloading...");
+      updateControl("button", "downloading", `Downloading "${_this.title}"`);
 
       // attempt a HEAD request for the media file to get its size
       // this is a best effort attempt, hence the .then()
@@ -470,11 +470,11 @@ class AmplfrItem extends HTMLDivElement {
     });
     this._options.media.addEventListener("pause", (e) => {
       if (e.currentTarget != _this._options.media) return;
-      updateControl("button", "play_arrow", "Play");
+      updateControl("button", "play_arrow", `Play "${_this.title}"`);
     });
     this._options.media.addEventListener("play", (e) => {
       if (e.currentTarget != _this._options.media) return;
-      updateControl("button", "pause", "Pause");
+      updateControl("button", "pause", `Pause "${_this.title}"`);
     });
     // this._options.media.addEventListener("playing", (e) => {});
     this._options.media.addEventListener("progress", (e) => {
@@ -808,8 +808,6 @@ class AmplfrItem extends HTMLDivElement {
     this._options.root.setAttribute("is", this._options.class);
 
     this._options.root.classList.add("item");
-    // this._options.root.dataset.id = this.domain + "=" + this._data.id; // FIXME maybe
-
     // TODO need to append appropriate additional controls
     //  - probably in appendAdditionalControls()
     //  - play/pause already taken care of
@@ -819,15 +817,10 @@ class AmplfrItem extends HTMLDivElement {
     // TODO ensure that Title, Artist(s), Album are links (when available)
 
     // append primary elements (order matters)
-    // if (!!this._options.standalone) this._options.artwork = this.appendArtwork(); // handle special case artwork
-    this._options.artwork = this.appendArtwork(); // handle special case artwork
-    // this.appendLogo();
-    // this.appendTime();
+    this.appendArtwork();
     this.appendTitle();
     this.appendTimeline(); // after Title but before Artist(s), Collection, etc.
-
-    // append additional (secondary) elements
-    this.appendAdditional(
+    this.appendAdditional( // append additional (secondary) elements
       this._options.root,
       this.appendArtists,
       this.appendAlbum,
@@ -881,13 +874,13 @@ class AmplfrItem extends HTMLDivElement {
     root.appendChild(additional);
   }
 
-  appendArtwork() {
+  appendArtwork(root = this._options.root) {
     // skip the rest if artwork isn't wanted, or this has already been run
     if (this._options?.artwork == false) return;
 
     let artwork =
       this._data?.artwork ||
-      "/albumart/" + (this._data.albumid || `item/${this._data.id}`) + ".jpg";
+      "/albumart/" + (this._data.album.id || this._data.albumid || `item/${this._data.id}`) + ".jpg";
 
     let artworkE = new Image();
     artworkE.classList.add("artwork");
@@ -903,7 +896,7 @@ class AmplfrItem extends HTMLDivElement {
       this.#decorateWithImageColor(artworkE);
     }
 
-    return this._options.root.appendChild(artworkE);
+    return root.appendChild(artworkE);
   }
   appendArtists(root = this._options.root) {
     const artists = this._data.artists;
@@ -1189,7 +1182,6 @@ class AmplfrItem extends HTMLDivElement {
       const rect = timelineContainerE.getBoundingClientRect()
       const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
       isScrubbing = (e.buttons & 1) === 1
-      // videoContainer.classList.toggle("scrubbing", isScrubbing)
       if (isScrubbing) {
         wasPaused = _this.paused
         _this.pause()
