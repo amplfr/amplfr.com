@@ -326,22 +326,31 @@ class AmplfrCollection extends AmplfrItem {
     this._options.items = e
 
     // create a child element for each item, populate it, and append it to e
+    this._data.items.forEach((item, i) => e.appendChild(this.#appendItem(item)))
+  }
+  #appendItem(item) {
     const _this = this
-    this._data.items.forEach((item, i) => {
-      const li = document.createElement("li");
+    const li = document.createElement("li");
 
-      li.appendChild(item); // append itemE to the LI
-      e.appendChild(li); // append LI to the OL
+    li.appendChild(item); // append itemE to the LI
 
-      // add per-item event handlers
-      li.addEventListener("dblclick", function (ev) {
+    // add per-item event handlers
+    li.addEventListener("dblclick", function (ev) {
+      let item = ev.target.querySelector('.item') || ev.target
+      if (item.getAttribute('is') == 'amplfr-item') {
         ev.preventDefault();
-        _this.item = ev.target
-      });
-      li.addEventListener("touchend", function (ev) {
-        ev.preventDefault();
-      });
+        _this.item = item
+      }
     });
+    li.addEventListener("touchend", function (ev) {
+      let item = ev.target.querySelector('.item') || ev.target
+      if (item.getAttribute('is') == 'amplfr-item') {
+        ev.preventDefault();
+        _this.item = item
+      }
+    });
+
+    return li
   }
 
   /**
@@ -391,6 +400,7 @@ class AmplfrCollection extends AmplfrItem {
      */
     let forwardDirection
     let itemE
+    let itemNumber
     const itemCount = this.items.length;
     if (typeof i == 'number') {
       if (i == this._options.itemNumber)
@@ -398,40 +408,33 @@ class AmplfrCollection extends AmplfrItem {
 
       if (i <= 0) i = itemCount + i; // zero or negative values count back from the last item
 
-      forwardDirection = (i >= (this._options.itemNumber || 1))
       itemE = this._data.items[(i - 1) % itemCount]
+      itemNumber = i || 1
+      forwardDirection = (i >= (this._options.itemNumber || itemNumber))
     }
     else if (i.getAttribute('is') == 'amplfr-item') {
       itemE = i
       // forwardDirection = false  // insert what was Playing back 
+      itemNumber = this._data.items.indexOf(itemE)
     }
     else return // not sure what i is, so just return
 
     const isPlaying = this.paused === false ? true : false; // ==false means its playing, but null means nothing
-    if (isPlaying === true)
-      this.pause();
+    if (isPlaying === true) this.pause();
 
     const parentE = itemE.parentElement // needed to clean up otherwise empty LI
 
     // move anything in Playing to Played/Items
     if (this._options.playing.hasChildNodes()) {
-      const li = document.createElement("li");
-      li.appendChild(this._options.playing.childNodes[0]); // append itemE to the LI
+      const li = this.#appendItem(this._options.playing.childNodes[0]) // append itemE to the LI
 
       // which list gets what was in Playing?
       if (this.loop) this._options.items.appendChild(li)
       else if (forwardDirection) this._options.played.appendChild(li)
-      // else this._options.items.appendChild(li)
       else this._options.items.insertBefore(li, this._options.items.firstChild)
     }
 
-    // overwrite anything already in Playing with itemE
-    // this._options.playingE.replaceChildren(itemE)
-    itemE.appendControls()
-
-    // this._options.current.classList.remove("current"); // previously current item isn't anymore
-    this._options.itemNumber = i;
-    // this._options.current = this.items[i - 1];
+    this._options.itemNumber = itemNumber
     this._options.current = itemE
     this._options.playing.replaceChildren(itemE)
     this._options.playing.scrollIntoView()
@@ -457,11 +460,7 @@ class AmplfrCollection extends AmplfrItem {
     }
 
     // if #current is the last item and this.loop is false
-    if (
-      // this._options.itemNumber == this._options.items.length - 1 &&
-      // this._options.itemNumber == itemCount - 1 &&
-      this._options.itemNumber == itemCount &&
-      !this.loop) {
+    if (this._options.itemNumber == itemCount && !this.loop) {
       // disable the next button
       this._options.controls.querySelector('#next').classList.add('disabled')
 
@@ -469,10 +468,7 @@ class AmplfrCollection extends AmplfrItem {
       const ev = new Event('ended');
       this.dispatchEvent(ev);
     }
-
-    // prettier-ignore
-    // add 'ended' event to go to the next() item
-    else
+    else // add 'ended' event to go to the next() item
       this._options.current.addEventListener("ended", this.next, {
         once: true,
       });
