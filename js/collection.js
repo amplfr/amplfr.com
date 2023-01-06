@@ -11,9 +11,11 @@ const validAmplfrCollectionID =
  */
 /**
  * AmplfrCollection is an HTML element comprised of a list of {@link AmplfrItem}s.
+ * The overriding methods (e.g. {@link AmplfrCollection#play}) operates on the currently selected Item, whereas methods like {@link AmplfrCollection#item} (or AmplfrCollection.item = N) sets the currently selected Item.
  * @name AmplfrCollection
  * @see {@link AmplfrItem}
- * @extends AmplfrItem
+ * @class
+ * @extends {AmplfrItem}
  * @inheritdoc
  * 
  * Displayed the same as AmplfrItem if only one Item is listed, but

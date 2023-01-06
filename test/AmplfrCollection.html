@@ -8,10 +8,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <link href="/css/item.css" rel="stylesheet" />
-    <!-- <link href="/css/album.css" rel="stylesheet" /> -->
     <link href="/css/collection.css" rel="stylesheet" />
-    <script src="/js/amplfr.js"></script>
-    <script src="/js/collection.js"></script>
+    <script src="/js/amplfr.min.js"></script>
     <title>AmplfrCollection test</title>
   </head>
   <body>
@@ -29,11 +27,8 @@
     <div id="container"></div>
     <script>
       const title = ">Amplfr";
-
       let collection;
       const url = document.location.origin + "/api/queue";
-      // const collection = new AmplfrCollection(url);
-      // document.body.appendChild(collection);
       fetch(url)
         .then((response) => response.json())
         .then((json) => {

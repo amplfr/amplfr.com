@@ -125,15 +125,17 @@ const parseURL = async (url) => {
   return obj;
 };
 /**
- * AmplfrItem is an HTML element created from a URL, comprised of the related Title, Artist(s), and other metadata.
+ * AmplfrItem is an HTML element created from a URL or {@link ItemSourceData}, comprised of the related Title, Artist(s), and other metadata.
  * @name AmplfrItem
- * @extends HTMLDivElement
+ * @class
+ * @extends {HTMLDivElement}
  */
 class AmplfrItem extends HTMLDivElement {
   _data; // holds internal data object
   _options; // holds options and internal parameters
 
   /**
+   * @constructor
    * @param {ItemSourceData|string|null} data ItemSourceData object or URL to populate the element. Using a null value will use the element's dataset or src attributes.
    * @param {string|boolean|null} [mediaType] "Audio" or "video" to indicate the type to be used for the child HTMLMediaElement created as part of creating this when added to the DOM.
    * If non-null value is given, then the child HTMLMediaElement will be created once added to the DOM - e.g., document.body.appendChild(AmplfrItem).
@@ -528,6 +530,8 @@ class AmplfrItem extends HTMLDivElement {
   /**
    * Gets the ID
    * @returns {string}
+   * @readonly
+   * @override
    */
   get id() {
     if (!this._data?.id) {
@@ -608,8 +612,8 @@ class AmplfrItem extends HTMLDivElement {
   pause() { this._options.media?.pause() }
   /**
    * Stops the media.
-   * Equivilent to {@link pause} and {@link seekTo}(0)
-   * @see {@link appendMedia} for loading the media
+   * Equivilent to {@link AmplfrItem#pause|pause()} and {@link AmplfrItem#seekTo|seekTo(0)}
+   * @see {@link AmplfrItem#appendMedia} for loading the media
    */
   stop() {
     this._options.media?.pause();
