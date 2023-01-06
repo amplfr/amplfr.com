@@ -1,0 +1,23 @@
+{
+  "name": "amplfr.com",
+  "scripts": {
+    "minify": "node_modules/.bin/terser --compress --mangle --toplevel --keep-classnames -o js/amplfr.min.js -- js/amplfr.js js/collection.js",
+    "assets": "node_modules/.bin/pwa-asset-generator ./img/icon.svg ./img -i ./index.html -m ./manifest.json --favicon",
+    "jsdoc": "node_modules/.bin/jsdoc js/amplfr.js js/collection.js -d docs",
+    "serve": "node_modules/.bin/serve -p 8080 --ssl-cert ca-cert.pem --ssl-key ca-key-nopass.pem",
+    "start": "npm run minify && npm run assets && npm run jsdoc",
+    "clean": "npm run clean-js && npm run clean-images",
+    "clean-js": "rm -rf node_modules/ package-lock.json js/amplfr.min.js",
+    "clean-images": "rm -f favicon.ico img/apple-splash-*.jpg img/apple-icon*.png img/favicon-*.png img/manifest-icon-*.png"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amplfr/amplfr.com.git"
+  },
+  "devDependencies": {
+    "jsdoc": "^4.0.0",
+    "pwa-asset-generator": "^6.2.0",
+    "serve": "^14.1.2",
+    "terser": "^5.16.1"
+  }
+}
