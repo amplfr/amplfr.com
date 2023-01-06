@@ -29,7 +29,7 @@ jobs:
         id: pages
         uses: actions/upload-pages-artifact@v1
         with:
-          path: ./_site
+          path: .
           name: github-pages
           retention-days: 1
       - name: Deploy Pages
