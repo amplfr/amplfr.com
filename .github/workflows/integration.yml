@@ -22,9 +22,32 @@ jobs:
           # cache-dependency-path: "**/package-lock.json"
       - run: npm ci
       - run: npm run minify
-      - run: npm run assets
-      - run: npm run jsdoc
+      # - run: npm run assets
 
+      - name: Build JSdocs
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./js
+          output_dir: ./docs
+          # config_file: conf.json
+          # front_page: README.md
+
+  deploy:
+    needs: build
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
       - name: Upload Pages
         id: pages
         uses: actions/upload-pages-artifact@v1
@@ -32,7 +55,7 @@ jobs:
           path: .
           name: github-pages
           retention-days: 1
-      - name: Deploy Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
 # run the following to test locally:
