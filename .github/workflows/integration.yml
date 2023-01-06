@@ -27,13 +27,13 @@ jobs:
 
       - name: Upload Pages
         id: pages
-        uses: actions/upload-pages-artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
           name: github-pages
           retention-days: 1
       - name: Deploy Pages
-        id: pages
-        uses: actions/deploy-pages
+        id: deployment
+        uses: actions/deploy-pages@v1
 # run the following to test locally:
 # act
