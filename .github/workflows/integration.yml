@@ -22,7 +22,8 @@ jobs:
           # cache-dependency-path: "**/package-lock.json"
       - run: npm ci
       - run: npm run minify
-      # - run: npm run assets
+      - run: npm run assets
+      - run: npm run clean-js
 
       - name: Build JSdocs
         uses: andstor/jsdoc-action@v1

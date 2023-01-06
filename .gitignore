@@ -1,5 +1,5 @@
 !.github/.*
-.vscode
+/.vscode
 /coverage
 /mochawesome-report
 /node_modules

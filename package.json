@@ -7,7 +7,7 @@
     "serve": "node_modules/.bin/serve -p 8080 --ssl-cert ca-cert.pem --ssl-key ca-key-nopass.pem",
     "start": "npm run minify && npm run assets && npm run jsdoc",
     "clean": "npm run clean-js && npm run clean-images",
-    "clean-js": "rm -rf node_modules/ package-lock.json js/amplfr.min.js",
+    "clean-js": "rm -rf node_modules/",
     "clean-images": "rm -f favicon.ico img/apple-splash-*.jpg img/apple-icon*.png img/favicon-*.png img/manifest-icon-*.png"
   },
   "repository": {
