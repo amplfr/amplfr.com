@@ -32,6 +32,14 @@ jobs:
           # config_file: conf.json
           # front_page: README.md
 
+      - name: Upload Pages
+        id: pages
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: .
+          name: github-pages
+          retention-days: 1
+
   deploy:
     needs: build
 
@@ -48,13 +56,6 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - name: Upload Pages
-        id: pages
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: .
-          name: github-pages
-          retention-days: 1
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
