@@ -4,8 +4,8 @@ Number.prototype.toMMSS = function () {
   if (Number.isNaN(this.valueOf())) return "";
   let neg = this < 0 ? "-" : "";
   let t = Math.abs(this);
-  let s = Math.round(t % 60),
-    m = Math.floor(t / 60);
+  let s = Math.round(t % 60);
+  let m = Math.floor(t / 60);
 
   if (m >= 60) m = `${m / 60}:${(m % 60).toString().padStart(2, "0")}`;
   return `${neg}${m}:${s.toString().padStart(2, "0")}`;
@@ -124,6 +124,13 @@ const parseURL = async (url) => {
 
   return obj;
 };
+
+/**
+ * @typedef AmplfrItemOptions
+ * @property {boolean} [controls=true] Whether to display play/pause control
+ * @property {logo} [logo=true] Whether to display the logo
+ */
+
 /**
  * AmplfrItem is an HTML element created from a URL or {@link ItemSourceData}, comprised of the related Title, Artist(s), and other metadata.
  * @name AmplfrItem
@@ -137,7 +144,7 @@ class AmplfrItem extends HTMLDivElement {
   /**
    * @constructor
    * @param {ItemSourceData|string|null} data ItemSourceData object or URL to populate the element. Using a null value will use the element's dataset or src attributes.
-   * @param {string|boolean|null} [mediaType] "Audio" or "video" to indicate the type to be used for the child HTMLMediaElement created as part of creating this when added to the DOM.
+   * @param {AmplfrItemOptions|boolean|null} [mediaType] "Audio" or "video" to indicate the type to be used for the child HTMLMediaElement created as part of creating this when added to the DOM.
    * If non-null value is given, then the child HTMLMediaElement will be created once added to the DOM - e.g., document.body.appendChild(AmplfrItem).
    * If null (default) value is used, then the child HTMLMediaElement will not be created until appendMedia() is called.
    */
@@ -203,7 +210,6 @@ class AmplfrItem extends HTMLDivElement {
     } catch (err) {
       domain = url; // in case url wasn't a real URL
     } finally {
-      // domain = domain.split('/')[0]
       [domain, id] = domain.split('/')
     }
 

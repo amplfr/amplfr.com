@@ -47,7 +47,7 @@
           src = document.location.hash.replace(/^#/, "");
 
         let item;
-        const log = (msg) => console.log(`${item.sourceURL} - ${msg}`);
+        const log = (msg) => console.log(`A> ${item.sourceURL} - ${msg}`);
         const logprogress = (msg) => {
           let bytes = item.bytes;
           let loaded = 0;
@@ -67,7 +67,7 @@
           log(msg);
         };
         const warn = (msg) => {
-          console.warn(`${_this._options.media.currentSrc} - ${msg}`);
+          console.warn(`A> ${_this._options.media.currentSrc} - ${msg}`);
           updateControl("button", "report", `Warning: ${msg}`);
         };
         if (!!src) {

@@ -11,14 +11,14 @@ const validAmplfrCollectionID =
  */
 /**
  * AmplfrCollection is an HTML element comprised of a list of {@link AmplfrItem}s.
- * The overriding methods (e.g. {@link AmplfrCollection#play}) operates on the currently selected Item, whereas methods like {@link AmplfrCollection#item} (or AmplfrCollection.item = N) sets the currently selected Item.
+ * The overriding methods (e.g. {@link AmplfrCollection#play}) mostly all operate on the currently selected item, whereas methods like {@link AmplfrCollection#item} (or AmplfrCollection.item = N) sets the currently selected Item.
  * @name AmplfrCollection
  * @see {@link AmplfrItem}
  * @class
  * @extends {AmplfrItem}
  * @inheritdoc
  * 
- * Displayed the same as AmplfrItem if only one Item is listed, but
+ * Displayed the same as AmplfrItem if only one Item is listed, but as a list otherwise
  */
 class AmplfrCollection extends AmplfrItem {
   // #useShadow = false; // toggle if resulting elements should go in shadow DOM instead
@@ -266,8 +266,6 @@ class AmplfrCollection extends AmplfrItem {
       this.title = this._data.title;
 
     // create a child element for each item, populate it, and append it to e
-    // items.forEach((item, i) => {
-    // this._options.items = this._data.items.map((item, i) => {
     this._data.items.forEach((item, i) => {
       let itemE;
 
@@ -275,10 +273,6 @@ class AmplfrCollection extends AmplfrItem {
       if (item instanceof AmplfrItem)
         itemE = item; // just save item as itemE
       else
-        // itemE = new AmplfrItem(item, {
-        //   controls: false,
-        //   standalone: false,
-        // }); // upgrade item to be an AmplfrItem
         itemE = new AmplfrItem(item); // upgrade item to be an AmplfrItem
 
       // preload a select number of items
@@ -288,26 +282,6 @@ class AmplfrCollection extends AmplfrItem {
       // return itemE; // save the itemE
       this._data.items[i] = itemE; // save the itemE
     });
-    // set needed fields that may not be set yet
-    // let url = this._data?.url || this.src;
-    // if (!!url) {
-    //   try {
-    //     this._data.url = new URL(url);
-    //   } catch (err) {}
-    //   this.src = this._data?.url.href || url;
-    //   this._data.domain =
-    //     this._data.domain || this._data?.url.hostname.replace(/www\.|m\./, "");
-    // }
-    // if (!this._data.id)
-    //   // from https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0?permalink_comment_id=4261728#gistcomment-4261728
-    //   this._data.id =
-    //     this._data.id ||
-    //     (
-    //       `${this.domain}-${this._data.url.pathname}${this._data.url.search}` ||
-    //       ""
-    //     )
-    //       .split("")
-    //       .reduce((s, c) => (Math.imul(31, s) + c.charCodeAt(0)) | 0, 0);
   }
 
   _makeDraggable() {
@@ -383,7 +357,16 @@ class AmplfrCollection extends AmplfrItem {
     return this._data.items;
   }
   // prettier-ignore
+  get length() { return this.items; }
+  /**
+   * Returns the index of the current item
+   */
+  // prettier-ignore
   get item() { return this._options.itemNumber; }
+  /**
+   * Returns the index of the current item
+   * {@see AmplfrCollection#item}
+   */
   // prettier-ignore
   get track() { return this._options.itemNumber; }
 
@@ -471,14 +454,34 @@ class AmplfrCollection extends AmplfrItem {
       this.dispatchEvent(ev);
     }
     else // add 'ended' event to go to the next() item
-      this._options.current.addEventListener("ended", this.next, {
+      this._options.current.addEventListener("ended", function (ev) {
+        const _this = ev.target.closest('.collection')
+        _this.next()
+        _this.play()
+      }, {
         once: true,
       });
   }
+  /**
+   * {@see AmplfrCollection#item}
+   */
+  // prettier-ignore
+  set current(i) { this.item(i); }
+  /**
+   * {@see AmplfrCollection#item}
+   */
   // prettier-ignore
   set track(i) { this.item(i); }
+  /**
+   * Changes the current item to the next in the list
+   * {@see AmplfrCollection#item}
+   */
   // prettier-ignore
   next() { this.item = (this._options?.itemNumber || 0) + 1; }
+  /**
+   * Changes the current item to the previous in the list
+   * {@see AmplfrCollection#item}
+   */
   // prettier-ignore
   previous() { this.item = (this._options?.itemNumber - 1 || 1); }
   // prettier-ignore
@@ -512,6 +515,12 @@ class AmplfrCollection extends AmplfrItem {
   get volume() { return this._options.current?.volume || null; }
 
   // media controls - mapped to this._options.current item
+  /**
+   * Plays the current item. 
+   * If i is set and different from the currently selected item, change to that item, and then play that.
+   * @param {number} [i] Optional index of item to play
+   * @see AmplfrCollection#item 
+   */
   play(i = this._options.itemNumber) {
     if (i !== this._options.itemNumber)
       this.item = i;
