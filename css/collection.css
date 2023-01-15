@@ -50,10 +50,13 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
-.collection > #playing {
+.collection #playing {
   font-size: 2em;
   transition: 0.25s linear;
   z-index: 16;
+}
+.collection #playing .item button {
+  top: unset;
 }
 
 .collection > ol.items {
@@ -65,20 +68,16 @@
   list-style-type: none;
 }
 
-.collection > ol.items > li {
+.collection > ol.items > li,
+.collection > ol.played > li {
   height: 2em;
   counter-increment: doc;
   white-space: break-spaces;
   display: list-item !important;
   text-shadow: 2px 2px 0px whitesmoke;
-  counter-increment: doc;
-  /* overflow: hidden; */
   position: relative;
-  /* left: -1em; */
-  /* user-select: none; */
   margin-right: 0px;
   width: calc(100% + 2em);
-  /* width: 100%; */
   cursor: pointer;
 }
 

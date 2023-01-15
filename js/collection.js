@@ -1,6 +1,3 @@
-const validAmplfrCollectionID =
-  /[0-9A-Za-z]{1,25}\/[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}/;
-
 /**
  * Data fields needed to build an AmplfrCollection
  * @typedef {object} CollectionSourceData
@@ -34,7 +31,7 @@ class AmplfrCollection extends AmplfrItem {
    *  - string[] - list of item URLs, either an array or string of whitespace-separated URLs.
    *  - NULL - will use the element's dataset (as CollectionSourceData) or src (as URL to parse) attributes.
    */
-  constructor(data) {
+  constructor(data, options = true) {
     super(false); // Always call super first in constructor
 
     this._data = {};
@@ -43,10 +40,16 @@ class AmplfrCollection extends AmplfrItem {
     this._options.useShadow = false; // toggle if resulting elements should go in shadow DOM instead
     this._options.preloadCount = 2; // navigator.hardwareConcurrency || 2; // max number of items to preload
 
+    if (options.controls != null) this._options.controls = options?.controls;
+    if (options.media != null) this._options.media = options?.media || options;
+    if (options == false) {
+      this._options.controls = false
+      this._options.media = false
+    }
 
     // only if this object is an AmplfrCollection vs some extended class
     if (this instanceof AmplfrCollection) {
-      if (!!AmplfrItem && AmplfrItem.isAmplfrID(data)) // single AmplfrID
+      if (!!AmplfrItem && AmplfrItem.isValidID(data)) // single AmplfrID
         data = [data]
 
       if (typeof data == "string") {
@@ -61,13 +64,11 @@ class AmplfrCollection extends AmplfrItem {
         }
         // if data is a string, hopefully it's a URL (under 2083 characters) with additional data
         else if (data.length <= 2083) {
-          this._data = this._parse(data); // fetch the URL, saving the promise
+          this._data = AmplfrCollection.parse(data); // fetch the URL, saving the promise
         }
       } else if (Array.isArray(data)) {
         // look at each of the entries as its own AmplfrItem
-        this._data = data.map((x) => AmplfrCollection.parse(x)); // super.parse(x));
-
-        // this._populate(data); // now populate the data
+        this._data = data.map((x) => AmplfrItem.parse(x)); // super.parse(x));
       } else
         this._populate(data);
     }
@@ -75,20 +76,24 @@ class AmplfrCollection extends AmplfrItem {
 
   static async parseAmplfr(url) {
     if (!AmplfrCollection.#parseAmplfrFn) {
-      let { default: parseAmplfr } = await import('./parseAmplfr.js')
+      let { parseAmplfr } = await import('./parseAmplfr.js')
       AmplfrCollection.#parseAmplfrFn = parseAmplfr
     }
 
     return AmplfrCollection.#parseAmplfrFn(url)
   }
 
+  static isValidID(text) {
+    return typeof text == "string" &&
+      /[0-9A-Za-z]{1,25}\/[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}/.test(text)
+  }
   /**
    * Fetches the given URL, parses the received media file, and returns an object with the extracted metadata.
    * The return object can be used as input for _populate().
    * @param {string} [url] The URL endpoint/file to fetch and parse.
    * @returns {CollectionSourceData}
    */
-  async _parse(url) {
+  static async parse(url) {
     if (!url && !!this.src)
       url = this.src; // use src
 
@@ -97,12 +102,9 @@ class AmplfrCollection extends AmplfrItem {
     try {
       // if url is actually a URL, then fetch(url) and save the results
       urlObj = new URL(url);
-      this._data.domain = urlObj.hostname.replace(/www\.|m\./, "");
-      this._data.url = urlObj;
     } catch (error) {
       // url isn't a URL
       urlObj = null;
-      this._data.domain = "";
     }
 
     let text = url;
@@ -110,7 +112,6 @@ class AmplfrCollection extends AmplfrItem {
       if (!!urlObj) {
         // if urlObj isn't null then url is a URL
         const response = await fetch(url);
-        // const size = parseInt(response.headers.get("Content-Length"), 10);
         const mime = response.headers.get("Content-Type");
 
         if (response.ok && !!response.body) {
@@ -128,7 +129,7 @@ class AmplfrCollection extends AmplfrItem {
             case "audio/x-mpegurl":
             case "application/vnd.apple.mpegurl": // non-standard
             case "application/vnd.apple.mpegurl.audio": // non-standard
-              return this._parseM3U(urlObj, text);
+              return AmplfrCollection._parseM3U(urlObj, text);
               break;
 
             default: // split by whitespace into separate items
@@ -148,7 +149,7 @@ class AmplfrCollection extends AmplfrItem {
    * @param {string} text The raw M3U (M3U8) text
    * @returns {CollectionSourceData}
    */
-  _parseM3U(urlObj, text) {
+  static _parseM3U(urlObj, text) {
     const lines = text.split(/\n|\r\n/); // break text into separate lines
     let obj;
 
@@ -213,54 +214,53 @@ class AmplfrCollection extends AmplfrItem {
   /**
    *
    */
-  async _populate(obj) {
+  async _populate(source) {
     if (!!this._data) {
       // was this._parse(URL) called in the constructor?
       if (this._data.then) {
-        obj = await this._data; // await for the Promise to resolve
+        source = await this._data; // await for the Promise to resolve
         this._data = {}; // reset _data object
       } else if (Array.isArray(this._data) && this._data[0].then) {
         // await for all of the Promises to resolve
-        obj = await Promise.allSettled(this._data);
-        obj = obj.map((x) => x.value);
+        source = await Promise.allSettled(this._data);
+        source = source.map((x) => x.value);
         this._data = {}; // reset _data object
       }
     }
 
     // check if there's enough data already provided
-    if (!obj) {
+    if (!source) {
       if (Object.keys(this.dataset).length > 1)
-        obj = this.dataset; // use dataset
+        source = this.dataset; // use dataset
       else if (!!this.src)
-        obj = this.src; // use src
+        source = this.src; // use src
       else
         return; // nothing else to do here
     }
 
     // if obj is a string, hopefully it's a URL (under 2083 characters) with additional data
-    if (typeof obj == "string" && obj.length <= 2083) {
-      let url = obj;
-      obj = await this._parse(url);
+    if (typeof source == "string" && source.length <= 2083) {
+      let url = source;
+      source = await AmplfrCollection.parse(url);
     }
 
     // pull out all of the "string" keys from obj, saving to this.dataset
     const keys = ["id", "url", "title", "artwork", "items", "start", "end"];
     keys.forEach((k) => {
-      if (!!obj[k] && typeof obj[k] == "string")
-        this._data[k] = obj[k];
+      if (!!source[k] && typeof source[k] == "string")
+        this._data[k] = source[k];
     });
 
     // add the obj.artists (or obj.artist) to a flattened array
     let artists = [];
-    if (!!obj.artists)
-      artists.push(...obj.artists);
-    if (!!obj.artist)
-      artists.push(obj.artist);
-    if (artists.length > 0)
-      this._data.artists = artists.flat();
+    if (!!source.artists) artists.push(...source.artists);
+    if (!!source.artist) artists.push(source.artist);
+    if (artists.length > 0) this._data.artists = artists.flat();
 
-    if (Array.isArray(obj))
-      this._data.items = obj; // if obj is an array, save it as list of items
+    if (source.items && source.items.length > 0)
+      this._data.items = source.items;
+    else if (Array.isArray(source))
+      this._data.items = source; // if obj is an array, save it as list of items
 
     if (!!this._data?.title)
       this.title = this._data.title;
@@ -291,6 +291,10 @@ class AmplfrCollection extends AmplfrItem {
       e.dataTransfer.setData("text/uri-list", this.sourceURL());
       e.dataTransfer.setData("text/plain", this.sourceURL());
     });
+  }
+
+  at(position) {
+    return this.items[position]
   }
 
   appendItems() {
@@ -357,7 +361,7 @@ class AmplfrCollection extends AmplfrItem {
     return this._data.items;
   }
   // prettier-ignore
-  get length() { return this.items; }
+  get length() { return this.items.length; }
   /**
    * Returns the index of the current item
    */
@@ -383,6 +387,7 @@ class AmplfrCollection extends AmplfrItem {
      *    - has to remove the requested item's parent element
      *    - has to determine the "direction" - if previous, then need to get item from Played
      */
+    if (this._options.media == false) return
     let forwardDirection
     let itemE
     let itemNumber
@@ -391,11 +396,11 @@ class AmplfrCollection extends AmplfrItem {
       if (i == this._options.itemNumber)
         return; // nothing to do if already set to this._options.itemNumber
 
+      itemNumber = i || 1
+      forwardDirection = (i >= (this._options.itemNumber || itemNumber))
       if (i <= 0) i = itemCount + i; // zero or negative values count back from the last item
 
       itemE = this._data.items[(i - 1) % itemCount]
-      itemNumber = i || 1
-      forwardDirection = (i >= (this._options.itemNumber || itemNumber))
     }
     else if (i.getAttribute('is') == 'amplfr-item') {
       itemE = i
@@ -419,7 +424,7 @@ class AmplfrCollection extends AmplfrItem {
       else this._options.items.insertBefore(li, this._options.items.firstChild)
     }
 
-    this._options.itemNumber = itemNumber
+    this._options.itemNumber = itemNumber % (itemCount + 1)
     this._options.current = itemE
     this._options.playing.replaceChildren(itemE)
     this._options.playing.scrollIntoView()
@@ -432,23 +437,24 @@ class AmplfrCollection extends AmplfrItem {
       return; // if #current is bad, just quit
 
     // this._options.current.classList.add("current"); // newly current item is now current
-    this._options.current.appendMedia(); // ensure that #current's media is ready
-
+    if (!!this._options.media)
+      this._options.current.appendMedia(); // ensure that #current's media is ready
 
     // start playing the new item if previous item was playing
     if (isPlaying === true)
       this.play();
 
-    if (this._options.itemNumber == 1 && this.loop == false) {
-      // disable the previous button
-      this._options.controls.querySelector('#previous').classList.add('disabled')
-    }
+    const _this = this
+    // this._options.current.addEventListener("loaded", function (ev) {
+    this._options.current.addEventListener("canplaythrough", function (ev) {
+      console.log(ev.target.closest('.collection').item)
+      _this.items[itemNumber + 1].appendMedia()
+    }, {
+      once: true,
+    });
 
     // if #current is the last item and this.loop is false
     if (this._options.itemNumber == itemCount && !this.loop) {
-      // disable the next button
-      this._options.controls.querySelector('#next').classList.add('disabled')
-
       // create and dispatch an 'ended' event
       const ev = new Event('ended');
       this.dispatchEvent(ev);
@@ -639,7 +645,7 @@ class AmplfrCollection extends AmplfrItem {
     this.appendLogo(this._options.root);
     this.appendControls();
     this.appendItems(); // handle special case items
-    this.appendControlsAdditional();
+    // this.appendControlsAdditional();
 
     this._options.isBuilt = true; // get here, and there's no need to run again
 
@@ -697,6 +703,7 @@ class AmplfrCollection extends AmplfrItem {
   }
 
   appendControls(root = this._options.root) {
+    if (this._options.controls == false) return
     // add the control button
     const e = document.createElement("div");
     e.setAttribute('id', 'controls')
@@ -704,7 +711,7 @@ class AmplfrCollection extends AmplfrItem {
     root.appendChild(e);
     if (this.items.length == 1) e.classList.add('hidden')
 
-    this._options.controls = e; // save for easy access later
+    this._options.controls = this._options.controls || {};  // e; // save for easy access later
 
     const _this = this;
     const controls = [
@@ -713,7 +720,22 @@ class AmplfrCollection extends AmplfrItem {
         title: "Previous",
         text: 'skip_previous',
         _this,
+        updateStatus: (e) => {
+          if (!_this.loop && (_this.item <= 1 || !_this.item)) e.classList.add('disabled')
+          else e.classList.remove('disabled')
+        },
         fn: _this.previous
+      },
+      {
+        id: 'loop',
+        title: "Repeat",
+        text: 'repeat',
+        _this,
+        updateStatus: (e) => {
+          if (_this.loop) e.classList.add('activated')
+          else e.classList.remove('activated')
+        },
+        fn: () => { _this.loop = (!_this.loop) }
       },
       {
         id: 'share',
@@ -741,7 +763,87 @@ class AmplfrCollection extends AmplfrItem {
         title: "Next",
         text: 'skip_next',
         _this,
+        updateStatus: (e) => {
+          if (!_this.loop && (_this.item >= _this.length || !_this.item)) e.classList.add('disabled')
+          else e.classList.remove('disabled')
+        },
         fn: _this.next
+      },
+    ]
+    this._options.controlsToUpdate = this._options.controlsToUpdate || {}
+    controls.forEach(ctrl => {
+      const ce = document.createElement("div");
+      ce.setAttribute('id', ctrl.id)
+      ce.setAttribute('title', ctrl.title)
+      ce.classList.add("material-icons");
+      ce.classList.add("md-light");
+      if (ctrl.class) ctrl.class.split(/\s/).forEach((cls) => ce.classList.add(cls))
+      if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') {
+        ctrl.updateStatus(ce)
+
+        this._options.controlsToUpdate[ctrl.id] = ctrl.updateStatus
+      }
+      ce.innerText = ctrl.text
+      e.appendChild(ce);
+      this._options.controls[ctrl.id] = ce
+
+
+      function action(ev) {
+        ev.preventDefault();
+        if (ev.target.classList.contains('disabled')) return // don't do anything if target is disabled
+        ctrl.fn.bind(_this)(ev);
+        // if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') ctrl.updateStatus(ev.target)
+
+        // run through all of the controls that may be affected by an outside change
+        Object.entries(_this._options.controlsToUpdate).forEach(([id, fn]) => {
+          fn(_this._options.controls[id])
+        })
+      }
+      ce.addEventListener("click", (ev) => action(ev));
+      ce.addEventListener("touchend", (ev) => action(ev));
+      // ce.addEventListener("touchend", function (ev) {
+      //   ev.preventDefault();
+      //   if (ev.target.classList.contains('disabled')) return // don't do anything if target is disabled
+      //   ctrl.fn.bind(_this)(ev);
+      //   if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') ctrl.updateStatus(ev.target)
+      // });
+    })
+  }
+  appendControlsAdditional(root = this._options.root) {
+    // add the control button
+    const e = document.createElement("div");
+    e.setAttribute('id', 'additional')
+    e.classList.add("controls");
+    root.appendChild(e);
+    if (this.items.length == 1) e.classList.add('hidden')
+
+    this._options.controls = this._options.controls || {}; // save for easy access later
+
+    const _this = this;
+    const controls = [
+      {
+        id: "playlist",
+        title: "Playlist",
+        _this,
+        text: "playlist_play",
+        fn: (e) => {
+          this.classList.toggle('minimized')
+          e.target.classList.toggle('activated')
+        }
+      },
+      {
+        id: "history",
+        title: "History",
+        _this,
+        text: "history",
+        fn: () => { }
+      },
+      {
+        id: "add",
+        title: "Add",
+        _this,
+        text: "playlist_add",
+        fn: () => { }
       },
     ]
     controls.forEach(ctrl => {
@@ -764,71 +866,8 @@ class AmplfrCollection extends AmplfrItem {
       });
     })
   }
-  appendControlsAdditional(root = this._options.root) {
-    // add the control button
-    const e = document.createElement("div");
-    e.setAttribute('id', 'additional')
-    e.classList.add("controls");
-    root.appendChild(e);
-    if (this.items.length == 1) e.classList.add('hidden')
-
-    this._options.controls_additional = e; // save for easy access later
-
-    const _this = this;
-    const controls = [
-      {
-        id: "playlist",
-        title: "Playlist",
-        // class: "activated",
-        _this,
-        text: "playlist_play",
-        fn: (e) => {
-          this.classList.toggle('minimized')
-          e.target.classList.toggle('activated')
-        }
-      },
-      {
-        id: "add",
-        title: "Add",
-        _this,
-        text: "playlist_add",
-        fn: () => { }
-      },
-      {
-        id: "history",
-        title: "History",
-        _this,
-        text: "history",
-        fn: () => { }
-      },
-      {
-        id: 'repeat',
-        title: "Repeat",
-        text: 'repeat',
-        _this,
-        // fn: _this.loop
-        fn: () => { _this.loop = (!_this.loop) }
-      },
-    ]
-    controls.forEach(ctrl => {
-      const ce = document.createElement("div");
-      ce.setAttribute('id', ctrl.id)
-      ce.setAttribute('title', ctrl.title)
-      ce.classList.add("material-icons");
-      ce.classList.add("md-light");
-      if (ctrl.class) ctrl.class.split(/\s/).forEach((cls) => ce.classList.add(cls))
-      ce.innerText = ctrl.text
-      e.appendChild(ce);
-
-      ce.addEventListener("click", function (ev) {
-        ev.preventDefault();
-        ctrl.fn.bind(_this)(ev);
-      });
-      ce.addEventListener("touchend", function (ev) {
-        ev.preventDefault();
-        ctrl.fn.bind(_this)(ev);
-      });
-    })
+  share() {
+    return 'https://amplfr.com/#' + this.items.map(e => e.id).join('+')
   }
 }
 // prettier-ignore

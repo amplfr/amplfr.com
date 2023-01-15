@@ -20,7 +20,7 @@
         display: contents;
       }
       #container {
-        width: 25em;
+        /* width: 25em; */
         margin: 0 auto;
         font-size: 2em;
       }
@@ -28,7 +28,6 @@
     <div id="container"></div>
     <script>
       const title = ">Amplfr";
-      let collection;
       const url = document.location.origin + "/api/queue";
       fetch(url)
         .then((response) => response.json())
@@ -38,11 +37,14 @@
           json.title = "Queue";
           json.url = url;
 
-          collection = new AmplfrCollection(json);
+          let collection = new AmplfrCollection(json, false);
           // collection = new AmplfrCollection("kREnNawsJqg7PFfX3LYqEy");
           collection.loop = true;
 
           document.querySelector("#container").appendChild(collection);
+
+          if (collection.clientWidth < collection.clientHeight)
+            collection.querySelector("#playing .item").classList.add("square");
         });
     </script>
   </body>
