@@ -57,7 +57,7 @@ class AmplfrCollection extends AmplfrItem {
         //  then split on each whitespace character and save each token as an item
         if (/\s/.test(data))
           this._data.items = data.split(/\s/);
-        else if (data.match(validAmplfrCollectionID)) {
+        else if (AmplfrCollection.isValidID(data)) {
           // use a URL that points to the API endpoint for the AmplfrID
           this._options.src = document.location.origin + `/api/${data}.json`;
           this._data = AmplfrCollection.parseAmplfr(this.src); // parse url as a Amplfr URL, saving the promise

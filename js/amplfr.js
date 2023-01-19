@@ -1,5 +1,3 @@
-const validAmplfrID =
-  /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}$/;
 Number.prototype.toMMSS = function () {
   if (Number.isNaN(this.valueOf())) return "";
   let neg = this < 0 ? "-" : "";
@@ -188,9 +186,8 @@ class AmplfrItem extends HTMLDivElement {
     this._data = AmplfrItem.parse(data); // fetch the URL, saving the promise
   }
 
-  static isAmplfrID(text) {
-    // return typeof text == "string" && text.match(validAmplfrID)
-    return typeof text == "string" && validAmplfrID.test(text)
+  static isValidID(text) {
+    return typeof text == "string" && /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}$/.test(text)
   }
   /**
    * Fetches the given URL, parses the received media file, and returns an object with the extracted metadata.
@@ -214,8 +211,7 @@ class AmplfrItem extends HTMLDivElement {
     }
 
     // check if domain is just an AmplfrID
-    // if (typeof url == "string" && url.match(validAmplfrID)) {
-    if (AmplfrItem.isAmplfrID(url)) {
+    if (AmplfrItem.isValidID(url)) {
       domain = 'amplfr'
       url = document.location.origin + `/api/${url}.json`
     }
