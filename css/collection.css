@@ -1,3 +1,6 @@
+.collection {
+  font-size: 32px;
+}
 .collection * {
   /* display: block !important; */
   transition: 250ms linear width;
@@ -70,20 +73,12 @@
 
 .collection > ol.items > li,
 .collection > ol.played > li {
-  height: 2em;
   counter-increment: doc;
-  white-space: break-spaces;
-  display: list-item !important;
-  text-shadow: 2px 2px 0px whitesmoke;
-  position: relative;
-  margin-right: 0px;
-  width: calc(100% + 2em);
   cursor: pointer;
 }
 
 .collection > ol.items > li::before {
   content: counter(doc);
-  /* cursor: ns-resize; */
   text-align: center;
   margin: 0px;
   width: 1em;
@@ -221,4 +216,36 @@
   top: calc(1em - 4px);
   left: -2em;
   width: 2em;
+}
+
+.collection.square #playing .item {
+  width: 100vmin;
+  grid-template-columns: 0px auto;
+  padding-top: calc(100vmin - 2em);
+  max-width: unset;
+}
+.collection.square #playing .item .artwork {
+  height: min(100vmin, 100%);
+  width: 100vmin;
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  grid-area: 1;
+  top: 0px;
+}
+.collection.square #playing .item * {
+  text-shadow: 2px 2px 4px var(--colorAccent);
+  z-index: 2;
+}
+.collection.square #playing .item button {
+  font-size: min(100vmin, 25em);
+  left: unset;
+  top: 0px;
+  z-index: 1;
+}
+.collection.square #playing .item svg.logo * {
+  filter: drop-shadow(2px 2px 4px var(--colorAccent));
+}
+.collection.square #playing .item .timeline {
+  filter: drop-shadow(2px 2px 4px var(--color));
 }

@@ -14,7 +14,9 @@
   grid-template-columns: 2em auto;
   /* min-width: 8em; */
 }
+.item:active,
 .item:focus,
+.item:focus-within,
 .item:hover {
   background-color: whitesmoke;
   /* background-color: var(--colorAccent); */

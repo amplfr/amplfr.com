@@ -9,7 +9,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
     <link href="/css/item.css" rel="stylesheet" />
-    <script src="/js/amplfr.js"></script>
+    <link href="/css/collection.css" rel="stylesheet" />
+    <script src="/js/amplfr.min.js"></script>
     <title>>Amplfr</title>
   </head>
   <body>
@@ -18,22 +19,11 @@
         font-size: 1em;
         display: contents;
       }
-      #container {
-        width: 25em;
-        margin: 0 auto;
-        font-size: 2em;
-      }
-      @media (max-width: 800px) {
-        #container {
-          width: 100% !important;
-        }
-      }
     </style>
-    <div id="container"></div>
     <script>
       const title = ">Amplfr";
 
-      const setup = () => {
+      const setup = async () => {
         let src;
         if (document.location.search != "") {
           if (document.location.search.indexOf("=") > -1) {
@@ -75,9 +65,20 @@
           let existing = document.querySelector(".item[is=amplfr-item]");
           if (!!existing) existing.parentNode.removeChild(existing);
 
-          item = new AmplfrItem(src, true);
-          document.querySelector("#container").appendChild(item);
-          item.classList.add("square");
+          if (typeof src == "string")
+            if (src.indexOf(" ") >= 0)
+              // split src into an array of IDs if its a string (still)
+              src = src.split(/\s/);
+            else if (src[0] == "/") {
+              let url = document.location.origin + src;
+              let json = await fetch(url).then((response) => response.json());
+              json.url = url;
+              src = json;
+            }
+
+          item = new AmplfrCollection(src);
+          document.body.appendChild(item);
+          // item.classList.add("square");
 
           // 1. loadstart       starting to load
           // 2. durationchange  once enough is downloaded that the duration is known
