@@ -20,7 +20,7 @@
       "links": [
         "https://musicbrainz.org/recording/96d67d9c-0be7-40df-a5fa-d82e4bd410d2"
       ],
-      "url": "http://mt5577:3000/api/album/pLR8y92byj7cycE3UUYTi8/Hello",
+      "url": "http://mt5577:3000/api/pLR8y92byj7cycE3UUYTi8/Hello",
       "visibility": "public"
     },
     {
@@ -42,7 +42,7 @@
         "https://musicbrainz.org/recording/3badc834-a683-4fca-920b-cd5658e6fa47",
         "https://www.youtube.com/watch?v=DrARl0dzd-0"
       ],
-      "url": "http://mt5577:3000/api/album/p3tSa8CY7NoGwx3uzp23sd/Roll+With+It",
+      "url": "http://mt5577:3000/api/p3tSa8CY7NoGwx3uzp23sd/Roll+With+It",
       "visibility": "public"
     },
     {
@@ -70,7 +70,7 @@
         "https://musicbrainz.org/recording/580f4553-e29a-4d19-989c-1b097b76de48",
         "https://www.youtube.com/watch?v=vU05Eksc_iM"
       ],
-      "url": "http://mt5577:3000/api/album/4MZY5TrtyK9XMgSyh51KFk/Wonderwall",
+      "url": "http://mt5577:3000/api/4MZY5TrtyK9XMgSyh51KFk/Wonderwall",
       "visibility": "public"
     },
     {
@@ -92,7 +92,7 @@
         "https://musicbrainz.org/recording/15b32a80-3965-4061-80c4-894e13d99735",
         "https://www.youtube.com/watch?v=YZG7z4FOn0g"
       ],
-      "url": "http://mt5577:3000/api/album/rWxxfBZRqNipUTaQ63AX8q/Don%E2%80%99t+Look+Back+in+Anger",
+      "url": "http://mt5577:3000/api/rWxxfBZRqNipUTaQ63AX8q/Don%E2%80%99t+Look+Back+in+Anger",
       "visibility": "public"
     },
     {
@@ -113,7 +113,7 @@
       "links": [
         "https://musicbrainz.org/recording/1aef090e-335d-4ea3-8284-6060ec321f76"
       ],
-      "url": "http://mt5577:3000/api/album/76FGzRC35hZd9nHaaowZ8X/Hey+Now!",
+      "url": "http://mt5577:3000/api/76FGzRC35hZd9nHaaowZ8X/Hey+Now!",
       "visibility": "public"
     },
     {
@@ -134,7 +134,7 @@
       "links": [
         "https://musicbrainz.org/recording/699b13a8-49df-47df-8b9e-d1badfe52b1e"
       ],
-      "url": "http://mt5577:3000/api/album/poDmYZYpNmnagGeSrGVW5H/%5Buntitled%5D",
+      "url": "http://mt5577:3000/api/poDmYZYpNmnagGeSrGVW5H/%5Buntitled%5D",
       "visibility": "public"
     },
     {
@@ -156,7 +156,7 @@
         "https://musicbrainz.org/recording/40a795d7-38d7-4829-a1b8-a8c7e1ced6fa",
         "https://www.youtube.com/watch?v=oxOjIj18I9E"
       ],
-      "url": "http://mt5577:3000/api/album/7v7mWRZuj6iHENvgHbAQeh/Some+Might+Say",
+      "url": "http://mt5577:3000/api/7v7mWRZuj6iHENvgHbAQeh/Some+Might+Say",
       "visibility": "public"
     },
     {
@@ -177,7 +177,7 @@
       "links": [
         "https://musicbrainz.org/recording/3cb660b8-8480-4afa-9de4-f3b4ce2c1de0"
       ],
-      "url": "http://mt5577:3000/api/album/65V8XCk735iotDfYEE6LTK/Cast+No+Shadow",
+      "url": "http://mt5577:3000/api/65V8XCk735iotDfYEE6LTK/Cast+No+Shadow",
       "visibility": "public"
     },
     {
@@ -197,7 +197,7 @@
       "links": [
         "https://musicbrainz.org/recording/95bf6a56-a5d8-4206-b624-522797976446"
       ],
-      "url": "http://mt5577:3000/api/album/kFwTDUcdotW6tjUkcUVz4E/She%E2%80%99s+Electric",
+      "url": "http://mt5577:3000/api/kFwTDUcdotW6tjUkcUVz4E/She%E2%80%99s+Electric",
       "visibility": "public"
     },
     {
@@ -219,7 +219,7 @@
         "https://musicbrainz.org/recording/4b460bcc-b651-4270-90dc-3ca4e879bc5e",
         "https://www.youtube.com/watch?v=Wm54XyLwBAk"
       ],
-      "url": "http://mt5577:3000/api/album/xjdz242YiH8XkH4mmBojTF/Morning+Glory",
+      "url": "http://mt5577:3000/api/xjdz242YiH8XkH4mmBojTF/Morning+Glory",
       "visibility": "public"
     },
     {
@@ -240,7 +240,7 @@
       "links": [
         "https://musicbrainz.org/recording/c3e1397b-4608-4206-a489-14a4643d74b0"
       ],
-      "url": "http://mt5577:3000/api/album/g4VGVcjSHj6AiuyVyWKf1T/%5Buntitled%5D",
+      "url": "http://mt5577:3000/api/g4VGVcjSHj6AiuyVyWKf1T/%5Buntitled%5D",
       "visibility": "public"
     },
     {
@@ -262,7 +262,7 @@
         "https://musicbrainz.org/recording/cb0892d9-e2fc-46d8-a40a-616bea78c52a",
         "https://www.youtube.com/watch?v=VGfDg7wju6M"
       ],
-      "url": "http://mt5577:3000/api/album/czsVRaDCo95YC5DpgXLm6t/Champagne+Supernova",
+      "url": "http://mt5577:3000/api/czsVRaDCo95YC5DpgXLm6t/Champagne+Supernova",
       "visibility": "public"
     }
   ],
