@@ -1,6 +1,7 @@
 !.github/.*
 /.vscode
 /coverage
+/docs
 /mochawesome-report
 /node_modules
 *.pem
