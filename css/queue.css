@@ -5,10 +5,7 @@
   width: 400px;
   z-index: 4;
   transition: width 0.25s linear, left 0.25s linear, margin-top 0.25s linear;
-}
-#sidebar,
-#playing {
-  position: relative;
+  flex-shrink: 1;
 }
 #sidebar,
 #playing {
@@ -27,28 +24,31 @@
   overflow: hidden;
   margin-top: 4em;
 }
-#sidebar #lists {
+#sidebar .collection {
   position: fixed;
   width: inherit;
   color: whitesmoke;
-  text-shadow: 2px 2px 0px rgb(0 0 0);
+  /* text-shadow: 2px 2px 0px rgb(0 0 0); */
   background-color: #3e3638;
-  height: calc(100% - 256px);
+  height: calc(100% - 4em);
   z-index: 8;
   overflow: clip overlay;
   /* padding-bottom: calc(100vh - 100%); */
-  margin-top: 6em;
+  margin-top: 2em;
+  background-color: whitesmoke;
+  box-shadow: 0px 3px 5px 3px whitesmoke;
 }
 #sidebar.closed #player {
   margin-top: 2em;
 }
 #sidebar.closed #lists {
-  margin-top: 4em;
+  margin-top: 2em;
 }
 #sidebarIcons {
   display: flex;
   position: fixed;
   bottom: 0px;
+  box-shadow: 0px 3px 5px 3px whitesmoke;
 }
 #sidebarIcons *,
 #player * {
@@ -128,9 +128,6 @@
   transition: 0.25s linear;
   z-index: 16;
 }
-#sidebar.closed #playing {
-  width: 0px;
-}
 #playing.item collection,
 #header #playing .collection {
   display: none;
@@ -159,10 +156,10 @@
   color: #3e3638;
   text-shadow: 2px 2px 0px whitesmoke;
 }
-#queue li,
-#history li {
+#queue > li,
+#history > li {
   counter-increment: doc;
-  background-color: #231f20;
+  /* background-color: #231f20; */
   width: calc(100% + 64px);
   overflow: hidden;
   height: 64px;
@@ -176,8 +173,8 @@
   filter: grayscale(1);
   color: lightslategray;
 }
-#queue li:before,
-#history li:before {
+#queue > li:before,
+#history > li:before {
   content: counter(doc);
   cursor: ns-resize;
   text-align: center;
@@ -187,11 +184,7 @@
   position: relative;
   left: 64px;
   line-height: 2em;
-}
-#sidebar.closed #queue li:before,
-#sidebar.closed #queue li {
-  position: initial;
-  width: 64px;
+  text-shadow: 2px 2px 0px rgb(0 0 0);
 }
 #sidebar.closed #queue * .item .artwork {
   float: unset !important;
@@ -225,12 +218,12 @@
   }
   #sidebar #lists,
   #sidebar.closed #lists {
-    margin-top: 6em;
+    margin-top: 4em;
   }
   #sidebar.closed #playing,
   #sidebar.closed #playing > .item {
     font-size: 2em;
-    width: 0px;
+    /* width: 0px; */
   }
   #sidebar.closed #play {
     font-size: 4em !important;
@@ -241,17 +234,6 @@
 }
 
 /* narrow screen */
-@media (max-width: 1750px) {
-  #sidebar,
-  #playing {
-    position: fixed;
-  }
-}
-@media (max-width: 1250px) {
-  #sidebar.closed #playing {
-    width: 0px;
-  }
-}
 @media (max-width: 800px) {
   #sidebar,
   #playing {

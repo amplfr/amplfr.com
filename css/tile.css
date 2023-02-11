@@ -16,8 +16,6 @@
 
 .container {
   grid-template-columns: repeat(auto-fill, calc(50vw - 32px));
-  width: calc(100vw - 32px);
-  max-width: calc(100vw - 64px);
   margin: 0px auto;
   display: grid;
   grid-auto-flow: row dense;
@@ -87,9 +85,7 @@
 .tile .large .artwork {
   height: 400px;
   width: 400px;
-  /* float: left; */
   filter: blur(4px);
-  /* display: none; */
   position: fixed;
   top: 0px;
   z-index: 1;
@@ -99,7 +95,6 @@
 @media (min-width: 464px) {
   .container {
     grid-template-columns: repeat(auto-fill, 200px);
-    max-width: 400px;
   }
   .container a,
   .tile {
@@ -124,6 +119,7 @@
     width: 400px;
     height: 400px;
     grid-area: span 2 / -3 / span 2 / -1;
+    grid-area: span 2 / span 2;
   }
   .tile.tile3x2,
   .tile.tile3x2 div,
@@ -136,9 +132,6 @@
 }
 
 @media (min-width: 664px) {
-  .container {
-    max-width: 600px;
-  }
   .tile.tile3x2,
   .tile.tile3x2 div,
   .tile3x2 {
@@ -146,29 +139,5 @@
     height: 400px;
     grid-row-end: span 2;
     grid-column-end: span 3;
-  }
-}
-
-@media (min-width: 928px) {
-  .container {
-    max-width: 800px;
-  }
-}
-
-@media (min-width: 1340px) {
-  .container {
-    max-width: 1200px;
-  }
-}
-
-@media (min-width: 2250px) {
-  .container {
-    max-width: 1800px;
-  }
-}
-
-@media (min-width: 2850px) {
-  .container {
-    max-width: 2400px;
   }
 }
