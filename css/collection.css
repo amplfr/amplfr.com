@@ -80,7 +80,6 @@
 .collection > ol.items > li::before {
   content: counter(doc);
   text-align: center;
-  margin: 0px;
   width: 1em;
   float: left;
   position: relative;
@@ -92,7 +91,7 @@
   z-index: 2;
   opacity: 0.75;
   font-family: sans-serif;
-  margin-left: 0px;
+  margin: 0px auto;
 }
 .collection ol.items .item button {
   left: 0px;

@@ -5,63 +5,190 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amplfr.com</title>
-    <link rel="manifest" href="/manifest.json"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/index.css" rel="stylesheet">
-    <link href="/css/album.css" rel="stylesheet">
-    <link href="/css/item.css" rel="stylesheet">
-    <link href="/css/queue.css" rel="stylesheet">
-    <link href="/css/tile.css" rel="stylesheet">
-    <link href="/css/searchbar.css" rel="stylesheet">
-    <!-- <script src="/js/item.js"></script> -->
-    <!-- <script src="/js/album.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
-    <script src="/js/amplfr.js"></script>
-    <script src="/js/collection.js"></script>
+    <link rel="manifest" href="/manifest.json" crossOrigin="use-credentials" />
+    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0">
+    <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/album.css">
+    <link rel="stylesheet" href="/css/item.css">
+    <link rel="stylesheet" href="/css/collection.css">
+    <link rel="stylesheet" href="/css/queue.css">
+    <link rel="stylesheet" href="/css/tile.css">
+    <link rel="stylesheet" href="/css/contents.css">
+    <link rel="stylesheet" href="/css/searchbar.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <script src="/js/amplfr.min.js"></script>
+    <script src="/js/queue.js"></script>
     <script defer src="/js/tiles.js"></script>
   </head>
   <body>
     <!-- prettier-ignore -->
     <div id="header">
       <!-- prettier-ignore -->
-      <a href="/" class="logo"><svg style="font-size: 2em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 173 187">
+      <a href="/" class="logo"><svg style="font-size: 2em" xmlns="//www.w3.org/2000/svg" viewBox="0 0 173 187">
           <path id="logoA" d="M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z"></path>
-        </svg><svg style="font-size: 2em" class="wide-only" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 567 243">
+        </svg><svg style="font-size: 2em" class="wide-only" xmlns="//www.w3.org/2000/svg" viewBox="0 0 567 243">
           <path id="logomplfr" d="M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"></path>
         </svg></a>
-      <a href="/upload" class="wide-only"><i class="material-symbols-outlined" title="Upload">cloud_upload</i></a>
-      <a href="#search"><i id="searchIcon" class="material-symbols-outlined md-light" title="Search">search</i></a>
-      <i class="material-symbols-outlined md-light" title="Show the menu" id="menu">menu</i>
+      <a href="/upload" class=""><i class="material-symbols-outlined" title="Upload">cloud_upload</i></a>
     </div>
     <div id="sidebar">
-      <i id="play" class="material-icons filled"></i>
-      <div id="playing" class="item"></div>
-      <!-- prettier-ignore -->
-      <span id="player" class="">
-        <i id="previous" class="material-icons md-light" title="Previous">skip_previous</i>
-        <i id="repeat" class="material-icons md-light" title="Repeat">repeat</i>
-        <div id="time" class="" title="">00:00</div>
-        <i id="shuffle" class="material-icons md-light" title="Shuffle">shuffle</i>
-        <i id="next" class="material-icons md-light" title="Next">skip_next</i>
-      </span>
-      <div id="lists">
-        <ol id="history" reversed></ol>
-        <ol id="queue"></ol>
-        <ul id="playlists"></ul>
-      </div>
       <!-- prettier-ignore -->
       <span id="sidebarIcons">
         <i id="queueIcon" class="material-symbols-outlined md-light" title="Queue">playlist_play</i>
         <i class="material-symbols-outlined">history</i>
         <i class="material-symbols-outlined">format_list_numbered</i>
-        <!-- prettier-ignore -->
-        <a href="/" class="logo"><svg style="font-size: 2em" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 173 187">
-          <path d="M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z" />
-        </svg></a>
       </span>
     </div>
-    <script async type="module" src="/js/queue.js"></script>
+    <style>
+      #header *, .logo {
+        font-size: 0.5em;
+      }
+
+      .collection #playing {
+        background-color: unset !important;
+        width: 100%;
+        backdrop-filter: blur(50px) contrast(0.8);
+        box-shadow: 0px 3px 5px 3px whitesmoke;
+      }
+      .collection .hidden,
+      .collection #playing .item ul li.logo .logo {
+        display: none !important;
+      }
+      .collection #playing .item button {
+        font-size: 2em !important;
+      }
+
+      #sidebar .collection {
+        margin-top: 4em;
+        transition: inherit;
+      }
+      #sidebar .controls {
+        position: absolute;
+      }
+
+      #sidebar .collection #playing .item {
+        margin: 0px;
+      }
+      #sidebar .collection ol.items:not(#played) {
+        overflow: clip overlay;
+        height: calc(100vh - 8em);
+        margin-top: 2em;
+      }
+      #sidebar.closed .collection .controls #playlist, 
+      #sidebar.closed .collection .controls #search {
+        z-index: 2;
+        width: initial !important;
+        height: initial !important;
+        opacity: 1;
+      }
+      #sidebar.closed .collection .controls * {
+        width: 0px !important;
+        height: 0px !important;
+        opacity: 0;
+      }
+      .container.headerOffset {
+        background-color: darkgray;
+      }
+
+      #sidebar .collection #playing .item:active,
+      #sidebar .collection #playing .item:focus,
+      #sidebar .collection #playing .item:focus-within,
+      #sidebar .collection #playing .item:hover {
+        background-color: unset !important;
+      }
+      #sidebar .collection #playing .item .artwork {
+        filter: unset;
+      }
+
+      .container.headerOffset::before {
+        background-color: #7a7a7a;
+      }
+
+      .container.headerOffset {
+        position: fixed;
+        left: 0px;
+        width: 100vw;
+      }
+
+      main .container:nth-child(2) {
+        margin-top: 128px
+      }
+      
+      @media (max-width: 1350px) {
+        #sidebar .collection #playing {
+          font-size: 1em !important;
+          /* width: calc(100vw - 276px); */
+        }
+        #sidebar .collection #playing .item {
+          width: calc(100vw - 276px);
+        }
+        #header *, .logo {
+          font-size: 1em;
+        }
+        main .container:nth-child(2) {
+          margin-top: 64px
+        }
+        #sidebar .collection {
+          margin-top: 2em;
+        }
+      }
+      @media (max-width: 800px) {
+        #sidebar .collection #playing .item {
+          width: calc(100vw - 122px);
+        }
+      }
+    </style>
+    <script>
+      const title = ">Amplfr";
+      const url = "/api/queue"; // = document.location.origin + "/api/queue";
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => {
+          // json.title = "Queue";
+          json.url = url;
+
+          let queue = new AmplfrQueue(json);
+          queue.loop = true;
+
+          const sidebar = document.querySelector("#sidebar")
+          sidebar.insertBefore(queue, sidebar.firstChild);
+
+          // queue.push('album/ssJLoBpTnHbb4ojwjDLKYt')
+        })
+        .catch(err => {
+          console.warn(err.message || err)
+        });
+    </script>
+    <script>
+      const listeners = ["click", "touchend"];
+      const setupInterface = (elementFunctionPairs, listeners) => {
+        Object.keys(elementFunctionPairs).forEach((b) => {
+          let e = document.querySelector(b);
+          let fn = elementFunctionPairs[b];
+
+          if (fn == null) return;
+          listeners.forEach((L) => {
+            e.addEventListener(L, fn);
+          });
+        });
+      };
+
+      const queueButton = document.querySelector("#queueIcon");
+      const sidebarToggle = (e) => {
+        e.preventDefault();
+        // if (sidebar.isClosed()) {
+        if (Object.values(sidebar.classList).includes("closed")) {
+          // open the sidebar and scroll to the Queue
+          sidebar.classList.remove("closed");
+          // sidebar.querySelector("#queuelist").scrollIntoView();
+          // queuecontrols.scrollIntoView(true);
+        } else sidebar.classList.add("closed");
+        // searchbar.classList.toggle("narrow");
+        queueButton.classList.toggle("selected");
+      };
+      setupInterface({ "#queueIcon": sidebarToggle }, listeners);
+    </script>
     <!-- prettier-ignore -->
     <div id="searchbar" class="closed">
       <form method="GET" class="search container" id="searchform">
@@ -256,9 +383,8 @@
       <div class="container" id="legal">
         <span>&copy; Amplfr.com <a href="/terms">Terms of Use,</a>
           <a href="/privacy">Privacy Policy,</a>
-          <a href="/legal">Legal Requests, and other legalese.</a> |
-          <a href="//amplfr.github.io/api">API,</a>
-          <a href="//amplfr.github.io/">Repository, and other developer resources.</a>
+          <a href="/legal">Legal Requests.</a> |
+          <a href="//amplfr.github.io/">API, Repository, and developer resources.</a>
           | <a href="//twitter.com/amplfr">@Amplfr</a></span>
       </div>
       <div class="container" id="info"></div>
@@ -281,16 +407,42 @@
       //     },
       //   });
     </script>
+    <!-- prettier-ignore -->
+    <template id="list-item" class="list">
+      <li class="item"><span class="num"></span><span class="title"></span><span class="duration"></span><span class="artists"></span>
+      <span class="options">
+        <i class="itemAppendQueue material-icons" title="Add this to your Queue">playlist_play</i>
+        <i class="itemAppendPlaylist material-icons" title="Add this to a Playlist">playlist_add</i>
+        <i class="itemShare material-icons" title="Share">share</i>
+        <i class="itemRate material-icons" title="Rate">thumbs_up_down</i>
+      </span></li>
+    </template>
+    <!-- prettier-ignore -->
+    <template id="list-collection">
+      <div class="contents">
+        <div class="title"></div>
+        <div class="artists"></div>
+        <span class="options">
+          <i class="contentsAppendQueue material-icons" title="Add this to your Queue">playlist_play</i>
+          <i class="contentsAppendPlaylist material-icons" title="Add this to a Playlist">playlist_add</i>
+          <i class="contentsShare material-icons" title="Share this">share</i>
+          <i class="contentsRate material-icons" title="Rate this">thumbs_up_down</i>
+        </span>
+        <ol class="items"></ol>
+      </div>
+    </template>
+    <script src="/js/tiles.js"></script>
     <script async>
       const info = document.querySelector("#info");
-
-      const appendInfoTile = (a) => {
+      const appendInfoTile = async (a) => {
         let infoTile;
+        let obj;
         let [proto, empty, host, type, id, etc] = a.href.split("/");
         switch (type) {
           case "album":
-            // infoTile = new AlbumElement(id);
-            infoTile = new AmplfrCollection(`${type}/${id}`); // `${proto}://${host}/api/album/${id}.json`);
+            let response = await fetch(`/api/${type}/${id}.json`)
+            let obj = await response.json()
+            infoTile = buildAlbum(obj, collectionTemplate);
             break;
           default:
             return;
@@ -298,8 +450,9 @@
         let elementID = `${type}-${id}`;
         a.dataset.tile = elementID;
 
+        info.appendChild(infoTile);
+        infoTile = info.lastElementChild; // need to reassign before setAttribute() since obj was a document-fragment
         infoTile.setAttribute("id", elementID);
-        infoTile = info.appendChild(infoTile);
 
         // allow drag and drop to Queue
         a.setAttribute("draggable", true);
@@ -312,25 +465,17 @@
 
         return infoTile;
       };
-      // document.querySelector("main .container")
       const recommendedContainer = document.querySelector(
         "main #recommended.container"
       );
-      recommendedContainer.querySelectorAll("a.tile-link").forEach((a) => {
-        let infoTile = appendInfoTile(a);
+      recommendedContainer.querySelectorAll("a.tile-link").forEach(async (a) => {
+        let infoTile = await appendInfoTile(a);
 
         const toggleInfoTile = (e) => {
-          e.preventDefault();
           let currentTarget = e.currentTarget;
-
-          // TODO create target element here if it doesn't already exist
           if (!infoTile) infoTile = appendInfoTile(currentTarget);
           if (!infoTile) return;
-
-          // set the top of infoTile to the top of e
-          infoTile.style.top =
-            currentTarget.offsetTop -
-            currentTarget.parentElement.firstElementChild.clientHeight;
+          e.preventDefault();
 
           // add the X to close the infoTile if not already there
           let close = infoTile.querySelector(".close");
@@ -346,6 +491,10 @@
             close.addEventListener("click", closeAction);
           }
 
+          // set the top of infoTile to the top of e
+          let offsetTop = (currentTarget.offsetTop || 0) + (currentTarget.parentElement.offsetTop || 0)
+          infoTile.style.setProperty('top', offsetTop + 'px');
+
           infoTile.classList.toggle("visible"); // now make the infoTile visible
         };
 
@@ -353,6 +502,27 @@
           a.addEventListener("click", toggleInfoTile);
         }
       });
+    </script>
+    <script type="module">
+      const registerServiceWorker = async () => {
+        if ("serviceWorker" in navigator) {
+          try {
+            const registration = await navigator.serviceWorker.register("/sw.js", {
+              scope: "/",
+            });
+            if (registration.installing) {
+              console.log("Service worker installing");
+            } else if (registration.waiting) {
+              console.log("Service worker installed");
+            } else if (registration.active) {
+              console.log("Service worker active");
+            }
+          } catch (error) {
+            console.error(`Registration failed with ${error}`);
+          }
+        }
+      };
+      registerServiceWorker();
     </script>
   </body>
 </html>

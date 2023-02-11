@@ -1,7 +1,7 @@
 {
   "name": "Amplfr",
   "short_name": "Amplfr",
-  "start_url": "/?pwa=true",
+  "start_url": "/?source=pwa",
   "icons": [
     {
       "src": "img/manifest-icon-192.maskable.png",
