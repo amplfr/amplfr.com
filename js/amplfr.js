@@ -218,6 +218,7 @@ class AmplfrItem extends HTMLDivElement {
 
     let obj;
     switch (domain) {
+      case "localhost":
       case "amplfr":
       case "amplfr.com":
         // let { default: parseAmplfr } = await import('./parseAmplfr.js')
@@ -273,7 +274,7 @@ class AmplfrItem extends HTMLDivElement {
     if (!!source.src) this._data.src = source.src; // if src exists, save it
     else {
       let { fetchSrc } = await import('./parseAmplfr.js')
-      let { src } = fetchSrc(source)
+      let { src } = await fetchSrc(source)
       this._data.src = src
     }
 
@@ -334,6 +335,7 @@ class AmplfrItem extends HTMLDivElement {
     this._options.media.autoplay = false; // wait to play
     this._options.media.controls = false; // no native controls
     this._options.media.preload = "metadata";
+    this._options.media.setAttribute('crossorigin', 'anonymous')
 
     if (!this._data.src || !Array.isArray(this._data.src)) {
       this._options.media.src = this._data.src  // || this._data.url;
@@ -808,7 +810,8 @@ class AmplfrItem extends HTMLDivElement {
       this._options.root = document.createElement("div");
     else this._options.root = this;
 
-    if (!this._data?.src) await this._populate();
+    // if (!this._data?.src) await this._populate();
+    if (!this._data || !!this._data.then) await this._populate();
 
     this._options.isBuilt = true; // get here, and there's no need to run again
     this._options.root.setAttribute("is", this._options.class);
@@ -886,7 +889,7 @@ class AmplfrItem extends HTMLDivElement {
 
     let artwork =
       this._data?.artwork ||
-      "/albumart/" + (this._data.album.id || this._data.albumid || `item/${this._data.id}`) + ".jpg";
+      "/albumart/" + (this._data.album?.id || this._data.albumid || `item/${this._data.id}`) + ".jpg";
 
     let artworkE = new Image();
     artworkE.classList.add("artwork");
@@ -1021,12 +1024,13 @@ class AmplfrItem extends HTMLDivElement {
   }
   appendControls(root = this._options.root) {
     // skip the rest if controls aren't wanted, or this has already been run
-    // if (
-    //   this._options?.controls == false ||
-    //   !this._options.standalone ||
-    //   !!this._options?.controls?.button
-    // )
-    //   return;
+    if (
+      this._options?.controls == false
+      // ||
+      //   !this._options.standalone ||
+      //   !!this._options?.controls?.button
+    )
+      return;
 
     // add the control button
     const e = document.createElement("button");

@@ -5,22 +5,36 @@
  * @private
  * @returns {ItemSourceData}
  */
-const parseAmplfr = async (url) => {
+const parseAmplfr = async (url, files = true) => {
   let response;
   let obj;
 
-  response = await fetch(url);
-  if (response.ok && !!response.body)
-    obj = await response.json();
+  try {
+    response = await fetch(url);
+    if (response.ok && !!response.body)
+      obj = await response.json();
+  } catch (err) {
+    console.warn(`Problem fetch'ing '${url}' - ${err.message || err}`)
+    return null
+  }
+
   const id = obj.id;
+  const items = obj.items
+  const name = obj.name
+  const origin = url?.origin || (new URL(url)).origin  // if we make it here, url should convert to valid URL()
+
   obj = {
     id,
     title: obj.title,
     album: obj.album,
     artists: obj.artists,
     artwork: "/albumart/" + (obj?.album?.id || `item/${id}`) + ".jpg",
-    url: obj.url || url, // ensure URL is included
+    // url: obj.url || url, // ensure URL is included
+    url,
   };
+
+  if (!!items && Array.isArray(items)) obj.items = items
+  if (!!name && name.length > 0) obj.name = name
 
   /**
    * Adds a nicely formatted obj.href based on obj.url, but without the "/api" or ".json"
@@ -51,7 +65,7 @@ const parseAmplfr = async (url) => {
   appendHREF(obj.artists);
 
   // get the list of media files
-  let files = obj.src || obj.files;
+  files = obj.src || obj.files || !files;
   if (!files) obj = await fetchSrc(obj)
 
   return obj;
@@ -59,15 +73,18 @@ const parseAmplfr = async (url) => {
 
 const fetchSrc = async (obj) => {
   const id = obj.id;
+  // const url = obj.url || `/api/${id}`
+  const url = obj.url || '/api/'
   let response;
 
   let files = obj.src || obj.files;
   if (!files) {
     // if files isn't provided, fetch() it
-    response = await fetch(`/api/${id}.files`);
+    response = await fetch(`/api/${id}.files`)
     if (response.ok && !!response.body)
       files = await response.json();
   }
+
   if (!!files) {
     const media = document.createElement("video");
     obj.src = files

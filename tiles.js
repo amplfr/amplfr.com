@@ -1,4 +1,3 @@
-const API = "caches" in self ? caches.open("api") : {};
 const list = document.getElementById("list");
 const tileContainer = document.getElementById("recommended");
 const albumTemplate = document.getElementById("list-album-template");
@@ -29,9 +28,7 @@ const appendArtists = (dest, artists) => {
     // listCount++
     obj.querySelector(".name").innerText = artist.name;
     obj.querySelector(".country").innerText = artist.country || "";
-    obj.querySelector(".link").href = `//mt5577:3000/api/artist/${
-      artist.id
-    }/${encodeURI(artist.name)}`;
+    obj.querySelector(".link").href = `/api/artist/${artist.id}/${encodeURI(artist.name)}`;
 
     dest.append(obj);
 
@@ -51,9 +48,7 @@ const appendItems = (dest, items, dontShowArtists = false) => {
     // obj.querySelector('.number').innerText = i + 1
     obj.querySelector(".title").innerText = item.title;
     obj.querySelector(".duration").innerText = Number(item.duration).toMMSS();
-    obj.querySelector(".link").href = `//mt5577:3000/api/${item.id}/${encodeURI(
-      item.title
-    )}`;
+    obj.querySelector(".link").href = `/api/${item.id}/${encodeURI(item.title)}`;
     if (!dontShowArtists)
       //   obj.querySelector(".artists").innerText = (item.artists || item.artist)
       obj.querySelector(".artists").innerHTML = (item.artists || item.artist)
@@ -83,9 +78,7 @@ const appendAlbums = (dest, albums, template = albumTemplate) => {
     obj.querySelector(".artists").innerText = album.artists
       .map((a) => a.name)
       .join(", ");
-    obj.querySelector(".link").href = `//mt5577:3000/api/album/${
-      album.id
-    }/${encodeURI(album.title)}`;
+    obj.querySelector(".link").href = `/api/album/${album.id}/${encodeURI(album.title)}`;
 
     dest.append(obj);
 
@@ -107,7 +100,7 @@ const appendAlbums = (dest, albums, template = albumTemplate) => {
   });
 };
 
-const toggleTileDetails = (e) => {};
+const toggleTileDetails = (e) => { };
 
 const buildAlbum = (album, template) => {
   let dontShowArtists = false;
@@ -177,8 +170,8 @@ const appendAlbumTiles = (dest, albums, template = albumTemplate) => {
   let tileCounter =
     dest.querySelectorAll(".tile").length > 0
       ? Object.values(dest.querySelectorAll(".tile"))
-          .map((t) => 1 * t.dataset["tiles"] || 1)
-          .reduce((acc, t) => acc + t)
+        .map((t) => 1 * t.dataset["tiles"] || 1)
+        .reduce((acc, t) => acc + t)
       : 0;
   let multiplier = Math.max(
     Math.floor((tileCounter + albums.length) / maxTiles),
@@ -255,7 +248,7 @@ const appendAlbumTiles = (dest, albums, template = albumTemplate) => {
     // h = Math.max(Math.ceil((h + items * 18) / 200) * 200, 600)
     // lastDiv.style.setProperty('height', `${h}px`)
 
-    obj.href = `//mt5577:3000/api/album/${album.id}/${encodeURI(album.title)}`;
+    obj.href = `/api/album/${album.id}/${encodeURI(album.title)}`;
     obj.style.setProperty(
       "background-image",
       `url("/albumart/${album.id}.jpg")`

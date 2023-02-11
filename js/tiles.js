@@ -1,4 +1,4 @@
-const API = "caches" in self ? caches.open("api") : {};
+// const API = "caches" in self ? caches.open("api") : {};
 const list = document.getElementById("list");
 const infoContainer = document.getElementById("info");
 const tileContainer = document.getElementById("recommended");
@@ -29,9 +29,7 @@ const appendArtists = (dest, artists) => {
     // listCount++
     obj.querySelector(".name").innerText = artist.name;
     obj.querySelector(".country").innerText = artist.country || "";
-    // obj.querySelector(".link").href = `//mt5577:3000/api/artist/${
-    //   artist.id
-    // }/${encodeURI(artist.name)}`;
+    // obj.querySelector(".link").href = `/api/artist/${artist.id}/${encodeURI(artist.name)}`;
 
     dest.append(obj);
 
@@ -91,9 +89,7 @@ const appendAlbums = (dest, albums, template = tileAlbumTemplate) => {
     obj.querySelector(".artists").innerText = album.artists
       .map((a) => a.name)
       .join(", ");
-    obj.querySelector(".link").href = `//mt5577:3000/api/album/${
-      album.id
-    }/${encodeURI(album.title)}`;
+    obj.querySelector(".link").href = `/api/album/${album.id}/${encodeURI(album.title)}`;
 
     dest.append(obj);
 

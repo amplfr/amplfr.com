@@ -13,7 +13,6 @@
  * @see {@link AmplfrItem}
  * @class
  * @extends {AmplfrItem}
- * @inheritdoc
  * 
  * Displayed the same as AmplfrItem if only one Item is listed, but as a list otherwise
  */
@@ -66,9 +65,6 @@ class AmplfrCollection extends AmplfrItem {
         else if (data.length <= 2083) {
           this._data = AmplfrCollection.parse(data); // fetch the URL, saving the promise
         }
-      } else if (Array.isArray(data)) {
-        // look at each of the entries as its own AmplfrItem
-        this._data = data.map((x) => AmplfrItem.parse(x)); // super.parse(x));
       } else
         this._populate(data);
     }
@@ -97,7 +93,10 @@ class AmplfrCollection extends AmplfrItem {
     if (!url && !!this.src)
       url = this.src; // use src
 
-    let obj;
+    let obj = {}
+    if (!!url && typeof url != 'string' && Object.keys(url).length > 0)
+      obj = url // if url is an object, just return it
+
     let urlObj;
     try {
       // if url is actually a URL, then fetch(url) and save the results
@@ -117,29 +116,38 @@ class AmplfrCollection extends AmplfrItem {
         if (response.ok && !!response.body) {
           // if response is JSON, just return response as JSON
           if (mime === "application/json")
-            return await response.json();
+            // return await response.json();
+            obj = await response.json();
+          else {
+            // response *isn't* JSON, so need to massage it to a CollectionSourceData object
+            text = await response.text(); // get the raw text
+            switch (mime) {
+              // M3U or M3U8 playlist file
+              case "application/mpegurl":
+              case "application/x-mpegurl":
+              case "audio/mpegurl":
+              case "audio/x-mpegurl":
+              case "application/vnd.apple.mpegurl": // non-standard
+              case "application/vnd.apple.mpegurl.audio": // non-standard
+                // return AmplfrCollection._parseM3U(urlObj, text);
+                obj = AmplfrCollection._parseM3U(urlObj, text);
+                break;
 
-          // response *isn't* JSON, so need to massage it to a CollectionSourceData object
-          text = await response.text(); // get the raw text
-          switch (mime) {
-            // M3U or M3U8 playlist file
-            case "application/mpegurl":
-            case "application/x-mpegurl":
-            case "audio/mpegurl":
-            case "audio/x-mpegurl":
-            case "application/vnd.apple.mpegurl": // non-standard
-            case "application/vnd.apple.mpegurl.audio": // non-standard
-              return AmplfrCollection._parseM3U(urlObj, text);
-              break;
-
-            default: // split by whitespace into separate items
-              break;
+              default: // split by whitespace into separate items
+                break;
+            }
           }
         }
       }
-    } catch (error) { }
-    obj = {};
-    obj.items = text.split(/\s/);
+      else {
+        obj.items = text.split(/\s/);
+      }
+    } catch (error) {
+      console.warn(error.messsage || error)
+    }
+    // obj = {};
+
+    // if ()
 
     return obj;
   }
@@ -236,7 +244,7 @@ class AmplfrCollection extends AmplfrItem {
         source = this.src; // use src
       else
         return; // nothing else to do here
-    }
+    } else if (typeof source == "boolean") return
 
     // if obj is a string, hopefully it's a URL (under 2083 characters) with additional data
     if (typeof source == "string" && source.length <= 2083) {
@@ -245,25 +253,21 @@ class AmplfrCollection extends AmplfrItem {
     }
 
     // pull out all of the "string" keys from obj, saving to this.dataset
-    const keys = ["id", "url", "title", "artwork", "items", "start", "end"];
+    const keys = ["id", "url", "title", "artwork"];
     keys.forEach((k) => {
       if (!!source[k] && typeof source[k] == "string")
         this._data[k] = source[k];
     });
 
-    // add the obj.artists (or obj.artist) to a flattened array
-    let artists = [];
-    if (!!source.artists) artists.push(...source.artists);
-    if (!!source.artist) artists.push(source.artist);
-    if (artists.length > 0) this._data.artists = artists.flat();
+    if (!!this._data?.title)
+      this.title = this._data.title;
 
     if (source.items && source.items.length > 0)
       this._data.items = source.items;
     else if (Array.isArray(source))
       this._data.items = source; // if obj is an array, save it as list of items
-
-    if (!!this._data?.title)
-      this.title = this._data.title;
+    else
+      this._data.items = [source]
 
     // create a child element for each item, populate it, and append it to e
     this._data.items.forEach((item, i) => {
@@ -273,7 +277,7 @@ class AmplfrCollection extends AmplfrItem {
       if (item instanceof AmplfrItem)
         itemE = item; // just save item as itemE
       else
-        itemE = new AmplfrItem(item); // upgrade item to be an AmplfrItem
+        itemE = new AmplfrItem(item, this._options.media); // upgrade item to be an AmplfrItem
 
       // preload a select number of items
       if (i < this._options.preloadCount)
@@ -306,9 +310,9 @@ class AmplfrCollection extends AmplfrItem {
     this._options.items = e
 
     // create a child element for each item, populate it, and append it to e
-    this._data.items.forEach((item, i) => e.appendChild(this.#appendItem(item)))
+    this._data.items.forEach((item, i) => e.appendChild(this._appendItem(item)))
   }
-  #appendItem(item) {
+  _appendItem(item) {
     const _this = this
     const li = document.createElement("li");
 
@@ -350,8 +354,12 @@ class AmplfrCollection extends AmplfrItem {
   get domain() { return this._data.domain || null; }
   // prettier-ignore
   get artist() { return this.artists; }
-  // prettier-ignore
-  get artists() { return this._data?.artists || null; }
+  get artists() {
+    if (!this._data.artists)
+      this._data.artists = new Set(this.items.map(item => item.artists()))
+
+    return this._data.artists;
+  }
   // prettier -ignore
   // get items() { return this._options.items || null }
   get items() {
@@ -376,8 +384,17 @@ class AmplfrCollection extends AmplfrItem {
 
   // collection controls
   /**
+   * Changed item event
+   * @event AmplfrItem#change
+   * @type {object}
+   * @property {number} number The index of the currently selected item
+   * @property {AmplfrItem} item The currently selected item
+   */
+  /**
    * Sets the current item
-   * @param {number} i The index of the item to select.
+   * @param {number|AmplfrItem} i The index of the item to select or specifc item to select.
+   * @emits AmplfrItem#change
+   * @emits ended Fired once the last item finishes
    */
   set item(i) {
     /**
@@ -387,7 +404,7 @@ class AmplfrCollection extends AmplfrItem {
      *    - has to remove the requested item's parent element
      *    - has to determine the "direction" - if previous, then need to get item from Played
      */
-    if (this._options.media == false) return
+    if (this._options.media == false || this.items.length < 1) return
     let forwardDirection
     let itemE
     let itemNumber
@@ -404,7 +421,6 @@ class AmplfrCollection extends AmplfrItem {
     }
     else if (i.getAttribute('is') == 'amplfr-item') {
       itemE = i
-      // forwardDirection = false  // insert what was Playing back 
       itemNumber = this._data.items.indexOf(itemE)
     }
     else return // not sure what i is, so just return
@@ -416,7 +432,7 @@ class AmplfrCollection extends AmplfrItem {
 
     // move anything in Playing to Played/Items
     if (this._options.playing.hasChildNodes()) {
-      const li = this.#appendItem(this._options.playing.childNodes[0]) // append itemE to the LI
+      const li = this._appendItem(this._options.playing.childNodes[0]) // append itemE to the LI
 
       // which list gets what was in Playing?
       if (this.loop) this._options.items.appendChild(li)
@@ -426,6 +442,14 @@ class AmplfrCollection extends AmplfrItem {
 
     this._options.itemNumber = itemNumber % (itemCount + 1)
     this._options.current = itemE
+
+    // create and dispatch an 'ended' event
+    const ev = new CustomEvent('change', {
+      number: this._options.itemNumber,
+      item: this._options.current,
+    });
+    this.dispatchEvent(ev);
+
     this._options.playing.replaceChildren(itemE)
     this._options.playing.scrollIntoView()
 
@@ -444,14 +468,17 @@ class AmplfrCollection extends AmplfrItem {
     if (isPlaying === true)
       this.play();
 
-    const _this = this
-    // this._options.current.addEventListener("loaded", function (ev) {
-    this._options.current.addEventListener("canplaythrough", function (ev) {
-      console.log(ev.target.closest('.collection').item)
-      _this.items[itemNumber + 1].appendMedia()
-    }, {
-      once: true,
-    });
+    // load the next item unless there isn't one
+    if (!!this.items[itemNumber + 1]) {
+      const _this = this
+      // this._options.current.addEventListener("loaded", function (ev) {
+      this._options.current.addEventListener("canplaythrough", function (ev) {
+        // console.log(ev.target.closest('.collection').item)
+        _this.items[itemNumber + 1].appendMedia()
+      }, {
+        once: true,
+      });
+    }
 
     // if #current is the last item and this.loop is false
     if (this._options.itemNumber == itemCount && !this.loop) {
@@ -489,14 +516,17 @@ class AmplfrCollection extends AmplfrItem {
    * {@see AmplfrCollection#item}
    */
   // prettier-ignore
-  previous() { this.item = (this._options?.itemNumber - 1 || 1); }
+  previous() { this.item = (this._options?.itemNumber - 1); }
   // prettier-ignore
   loop() { this.loop = !this.loop; }
   // prettier-ignore
   set loop(v = !this._options.loop) {
     this._options.loop = !!v;
-    // if (this._options.loop == true) 
-    // this._options.controls.querySelector('#repeat').classList.toggle('activated')
+    if (!!this._options.controls)
+      if (this._options.loop)
+        this._options.controls['loop'].classList.add('activated')
+      else
+        this._options.controls['loop'].classList.remove('activated')
   }
   // prettier-ignore
   set muted(v = !this.muted) {
@@ -614,7 +644,8 @@ class AmplfrCollection extends AmplfrItem {
     if (!!this._options.isBuilt) return; // no need to build again if already done
     this._options.isBuilt = 'building'
 
-    if (!this._data?.src) await this._populate();
+    // has _data been completely processed yet?
+    if (!this._data || !!this._data.then) await this._populate();
 
     // start the build
     if (!!this._options.useShadow)
@@ -660,6 +691,8 @@ class AmplfrCollection extends AmplfrItem {
     this.item = 1; // select the first item
 
     // finish up the build
+    const isReady = new Event('rendered')
+    this.dispatchEvent(isReady)
     if (!this._options.useShadow || !this.shadowRoot)
       return;
     const shadow = this.attachShadow({ mode: "open" }); // Create a shadow root
@@ -764,7 +797,7 @@ class AmplfrCollection extends AmplfrItem {
         text: 'skip_next',
         _this,
         updateStatus: (e) => {
-          if (!_this.loop && (_this.item >= _this.length || !_this.item)) e.classList.add('disabled')
+          if (_this.length > 0 && _this.item >= _this.length && !_this.loop) e.classList.add('disabled')
           else e.classList.remove('disabled')
         },
         fn: _this.next
