@@ -3,7 +3,8 @@ searchbar.isClosed = () => {
   return Object.values(searchbar.classList).includes("closed");
 };
 
-const searchButton = document.querySelector("#searchIcon");
+// const searchButton = document.querySelector("#searchIcon");
+const searchButton = document.querySelector("#controls #search");
 const searchInput = document.querySelector("#searchinput");
 const searchbarToggle = (e) => {
   e.preventDefault();

@@ -352,7 +352,7 @@ class AmplfrItem extends HTMLDivElement {
 
     // if there's a start time, then seek to it
     if (this._data?.start > 0) this.seekTo(this._data.start);
-    this._options.media.id = `play-${this.sourceID}`;
+    this._options.media.id = `play-${this.id}`;
 
     this._options.root.appendChild(this._options.media);
 

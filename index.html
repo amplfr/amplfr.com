@@ -149,6 +149,7 @@
           json.url = url;
 
           let queue = new AmplfrQueue(json);
+          window.queue = queue
           queue.loop = true;
 
           const sidebar = document.querySelector("#sidebar")
@@ -157,6 +158,7 @@
           // queue.push('album/ssJLoBpTnHbb4ojwjDLKYt')
         })
         .catch(err => {
+          console.warn(err)
           console.warn(err.message || err)
         });
     </script>
@@ -201,7 +203,7 @@
         <ol id="list"></ol>
       </form>
     </div>
-    <script async src="/js/searchbar.js"></script>
+    <script defer src="/js/searchbar.js"></script>
     <!-- prettier-ignore -->
     <nav>
       <!-- prettier-ignore -->
@@ -389,7 +391,7 @@
       </div>
       <div class="container" id="info"></div>
     </main>
-    <script async>
+    <!-- <script async>
       const menuIcon = document.querySelector("#header i#menu");
       const navMenu = document.querySelector("nav");
       const navMenuToggle = (e) => {
@@ -406,7 +408,7 @@
       //       menuIcon.classList.toggle("selected");
       //     },
       //   });
-    </script>
+    </script> -->
     <!-- prettier-ignore -->
     <template id="list-item" class="list">
       <li class="item"><span class="num"></span><span class="title"></span><span class="duration"></span><span class="artists"></span>
@@ -496,6 +498,7 @@
           infoTile.style.setProperty('top', offsetTop + 'px');
 
           infoTile.classList.toggle("visible"); // now make the infoTile visible
+          infoTile.scrollIntoView({ behavior: 'smooth', block: 'start' });  // infoTile.scrollIntoViewIfNeeded(true);
         };
 
         if (infoTile) {
