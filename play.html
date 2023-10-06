@@ -5,13 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- prettier-ignore -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet"/>
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
     <link href="/css/item.css" rel="stylesheet" />
     <link href="/css/collection.css" rel="stylesheet" />
-    <script src="/js/amplfr.min.js"></script>
-    <title>>Amplfr</title>
+    <!-- <script src="/js/amplfr.min.js"></script> -->
+    <script src="/js/amplfr.js"></script>
+    <script src="/js/collection.js"></script>
+    <script src="/js/queue.js"></script>
+    <title>&#x2BC8;&#847;Amplfr</title>
   </head>
   <body>
     <style>
@@ -21,7 +25,7 @@
       }
     </style>
     <script>
-      const title = ">Amplfr";
+      const title = "&#847;&#x2BC8;Amplfr";
 
       const setup = async () => {
         let src;
@@ -76,9 +80,11 @@
               src = json;
             }
 
-          item = new AmplfrCollection(src);
+          // item = new AmplfrCollection(src);
+          item = new AmplfrQueue(src);
           document.body.appendChild(item);
           // item.classList.add("square");
+          window.item = item;
 
           // 1. loadstart       starting to load
           // 2. durationchange  once enough is downloaded that the duration is known
