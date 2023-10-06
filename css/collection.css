@@ -1,5 +1,10 @@
+button {
+  all: unset;
+  cursor: pointer;
+}
 .collection {
-  font-size: 32px;
+  font-size: 16px;
+  font-family: "Noto Sans", sans-serif;
 }
 .collection * {
   /* display: block !important; */
@@ -58,11 +63,15 @@
   transition: 0.25s linear;
   z-index: 16;
 }
-.collection #playing .item button {
+/* .collection #playing .item button {
   top: unset;
-}
+} */
 
 .collection > ol.items {
+  position: fixed;
+  height: calc(100dvh - 160px);
+  width: 100%;
+  overflow: hidden auto;
   margin-block: 0px;
   padding-left: 0px;
   margin-inline-start: 0px;
@@ -80,27 +89,38 @@
 .collection > ol.items > li::before {
   content: counter(doc);
   text-align: center;
-  width: 1em;
-  float: left;
-  position: relative;
-  left: 0em;
-  line-height: 1em;
+  /* width: 1em; */
+  /* float: left; */
+  /* position: relative; */
+  /* left: 0em; */
+  /* line-height: 1em; */
+  color: whitesmoke;
+  /* text-shadow: 0px 0px 8px rgb(0 0 0); */
+  /* font-size: 2em; */
+  /* z-index: 2; */
+  /* opacity: 0.75; */
+  /* font-family: sans-serif; */
+  /* margin: 0px auto; */
+
+  position: absolute;
+  font-size: 3.5em;
+  width: 1.15em;
+  line-height: 1.15em;
   color: whitesmoke;
   text-shadow: 0px 0px 8px rgb(0 0 0);
-  font-size: 2em;
   z-index: 2;
   opacity: 0.75;
-  font-family: sans-serif;
-  margin: 0px auto;
+  left: 0px;
 }
 .collection ol.items .item button {
   left: 0px;
   top: 0px;
 }
 .collection ol.items li .item {
-  left: -2em;
+  /* left: -2em; */
   position: relative;
-  width: calc(100% + -2em);
+  /* width: calc(100% + -2em); */
+  width: calc(100% - 64px);
   /* max-width: 50vmin; */
   /* padding-right: 0px; */
   /* margin-right: 0px; */
