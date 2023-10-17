@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- prettier-ignore -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <link href="/css/item.css" rel="stylesheet" />
+    <link href="/css/collection.css" rel="stylesheet" />
+    <!-- <script src="/js/amplfr.min.js"></script> -->
+    <script src="/js/amplfr.js"></script>
+    <script src="/js/collection.js"></script>
+    <script src="/js/queue.js"></script>
+    <script src="/js/index.js"></script>
+    <title>Amplfr.com</title>
+  </head>
+  <body>
+    <style>
+      :root {
+        --color: #000;
+        --colorAccent: #fff;
+      }
+      body {
+        /* --queueGutter: calc(min(600px, 50vw - 32px)); */
+        --queueGutter: min(600px, 50vw);
+        display: inline-block;
+        margin: 128px 0px 0px 64px;
+        transition: margin 300ms;
+        width: calc(100vw - var(--queueGutter));
+        margin-left: var(--queueGutter);
+        overflow-x: hidden;
+      }
+      body.queueMin {
+        /* --queueGutter: 64px; */
+        margin-left: 64px;
+        /* width: calc(100vw - 16px - 64px); */
+        width: calc(100vw - 64px);
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      input,
+      select,
+      button,
+      span,
+      a,
+      p {
+        color: #000;
+        font-family: "Noto Sans", sans-serif;
+        font-weight: 400;
+        margin: 0px;
+      }
+
+      #queue {
+        z-index: 1;
+        position: fixed;
+        left: 0px;
+        /* background-color: #aaa; */
+        width: 100%;
+      }
+      #queue.collection #playing {
+        position: fixed;
+        width: 100dvw;
+        top: 0px;
+        left: 0px;
+        z-index: 24;
+      }
+      #queue.collection .controls,
+      #queue.collection > ol.items {
+        transition: width 300ms;
+        /* width: calc(min(600px, calc(50vw - 32px)) - 64px); */
+        width: var(--queueGutter);
+      }
+      body.queueMin #queue .controls,
+      body.queueMin #queue > ol.items {
+        overflow-y: hidden;
+        width: 64px;
+      }
+      body.queueMin #queue > ol.items {
+        overflow: visible;
+      }
+      body.queueMin #queue > ol.items li:hover {
+        overflow-x: visible;
+        width: var(--queueGutter) !important;
+      }
+      #queue .items .logo {
+        display: none;
+      }
+      #queue .items {
+        background-color: #aaa;
+        /* position: static; */
+        /* height: calc(100% - 128px); */
+        height: calc(100dvh - 256px);
+        /* max-height: calc(100dvh - 256px); */
+        /* height: calc(100% - 192px); */
+      }
+
+      #queue .controls {
+        font-size: 2em;
+        z-index: 20;
+      }
+      #queue .controls button:first-of-type {
+        margin-left: 0px;
+      }
+
+      #queue .controls button:first-of-type {
+        margin-left: 0px;
+      }
+      #queue #whatsnext.controls {
+        position: fixed;
+        bottom: 0px;
+      }
+      #queue #playing.square,
+      #queue #playing.square .item {
+        height: 100vmin;
+        width: 100vmin;
+      }
+
+      @media (max-width: 800px) {
+        .item a.logo svg.logomplfr {
+          display: none;
+        }
+      }
+      @media (max-width: 640px) {
+        body {
+          margin-top: 64px;
+          margin-left: 64px;
+          width: calc(100vw - 64px);
+        }
+        body:not(.queueMin) #queue.collection {
+          width: 100%;
+          position: static;
+          margin-left: -64px;
+        }
+        #queue.collection {
+          height: unset;
+        }
+        #queue.collection #playing {
+          font-size: 1em;
+        }
+        #queue.collection ol.items {
+          position: static;
+        }
+        #queue.collection .controls,
+        #queue.collection ol.items {
+          height: 100%;
+          width: 100dvw;
+        }
+        #queue.collection #controls {
+          position: sticky;
+          top: 64px;
+          height: 64px;
+        }
+        #queue.collection #whatsnext.controls {
+          /* position: static; */
+          position: sticky;
+          height: 64px;
+        }
+      }
+    </style>
+    <style>
+      body.poster {
+        margin-top: 0px;
+      }
+      body.poster #queue {
+        height: min(100vmin, 100%);
+        top: 0px;
+        margin-top: 100vmin;
+      }
+      body.poster #playing .item {
+        /* display: inline-flex; */
+        flex-direction: column;
+        padding-left: 0px;
+        /* display: block; */
+      }
+      body.poster #playing {
+        height: 100vmin;
+        width: 100vmin;
+      }
+      body.poster #playing .item {
+        height: min(100vmin, 100%);
+        width: 100vmin;
+        /* height: 8em; */
+        overflow: visible;
+        position: absolute;
+        bottom: 0px;
+      }
+      body.poster #playing .item .artwork {
+        height: 100vmin;
+        width: 100vmin;
+        max-width: 100%;
+        /* max-height: 100%; */
+        position: absolute;
+        top: 0px;
+      }
+      body.poster #playing .item button {
+        font-size: 47vmin;
+        margin-top: 20vmin;
+        margin-left: 27vmin;
+      }
+      body.poster #playing .item .title,
+      body.poster #playing .item .artist,
+      body.poster #playing .item .album {
+        width: 100%;
+        /* position: absolute; */
+        /* display: flex; */
+        font-size: 2em;
+        display: inline-block;
+        text-shadow: 1px 1px 2px var(--colorAccent);
+        align-self: flex-end;
+      }
+      body.poster #playing .item .title {
+        /* margin-top: 65vmin; */
+        /* padding-top: 100px; */
+      }
+      body.poster #playing .item * {
+        z-index: 2;
+        line-height: initial;
+        position: relative;
+        bottom: 0px;
+        right: 4px;
+        font-size: 2em;
+      }
+
+      body.poster #playing .logo {
+        /* position: absolute; */
+        font-size: 1em;
+        top: 0px;
+        /* right: 0px; */
+        /* float:right; */
+        filter: drop-shadow(1px 1px 2px var(--colorAccent));
+        bottom: unset;
+      }
+
+      #playing .item button.play {
+        z-index: 4;
+      }
+
+      body.poster #playing .item .album {
+        width: initial;
+      }
+    </style>
+    <style>
+      #filters {
+        display: flex;
+        gap: 0.25rem;
+        overflow: auto;
+        /* padding: 0.5rem; */
+        padding: 11px 0.5rem;
+        margin-left: 64px;
+        /* background: linear-gradient(90deg, rgb(255 255 255 / 10%), transparent); */
+      }
+      body.columns #filters {
+        margin-left: 0px;
+      }
+      #filters > button {
+        flex-shrink: 0;
+        background-color: rgb(0 0 0 / 5%);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem;
+        border: 0px;
+        /* color: white; */
+        font-size: 0.75em;
+        font-weight: 500;
+      }
+
+      #also-like-items {
+        display: grid;
+        gap: 0.5rem;
+        /* grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); */
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        padding: 0.5rem;
+        /* margin-right: 64px; */
+      }
+      #also-like-items > button {
+        display: flex;
+        aspect-ratio: 1;
+      }
+      #also-like-items > button > img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0.25rem;
+      }
+      @media (max-width: 800) {
+        #also-like-items {
+          grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+        }
+      }
+      @media (max-width: 600px) {
+        #also-like-items {
+          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        }
+      }
+      @media (max-width: 328px) {
+        #also-like-items {
+          grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+        }
+      }
+      #apps-container {
+        display: grid;
+        gap: 0.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+        margin: 1rem 0rem;
+      }
+      #apps-container > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: rgb(var(--theme-medium));
+        padding: 1rem 0.75rem;
+        border-radius: 0.2rem;
+        text-decoration: none;
+      }
+      #apps-container > a > img {
+        height: 2rem;
+        width: 2rem;
+        flex-shrink: 0;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        text-align: center;
+      }
+      #apps-container > a > .label {
+        width: calc(100% - 2.5rem);
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        overflow: hidden;
+      }
+      #apps-container > a > .label > .name {
+        font-size: 0.74rem;
+        color: rgb(0 0 0 / 1);
+      }
+      #apps-container > a > .label > .url {
+        font-size: 0.7rem;
+        color: rgb(0 0 0 / 50%);
+      }
+      #apps-container > a > .label > :is(.name, .url) {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      @media (max-width: 800) {
+        #apps-container {
+          grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+        }
+      }
+
+      div.horiz {
+        display: flex;
+        max-height: 500px;
+        overflow: auto hidden;
+        margin: 8px 0px;
+        /* width: calc(100dvw - 76px); */
+        width: 100%;
+      }
+      /* body.narrow .horiz {
+        margin-left: -64px;
+      } */
+      div.horiz img {
+        /* thank you [Clippy — CSS clip-path maker](https://bennettfeely.com/clippy/) */
+        -webkit-clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+        clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+        margin: 0px -3.4%;
+        margin: 0px -1.1%;
+        margin: 0px -2.1%;
+      }
+      div.horiz img:first-of-type {
+        margin-left: 0px;
+      }
+      div.horiz img:last-of-type {
+        margin-right: 0px;
+      }
+
+      #footer {
+        display: inline;
+        gap: 0.25rem;
+        margin: 1rem 0px;
+        overflow: auto;
+        padding: 1em 0px;
+      }
+      #footer > a {
+        background-color: rgb(0 0 0 / 5%);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem rem;
+        border: 0px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+    </style>
+    <!-- <div id="container"></div> -->
+    <div id="filters" class="no-scrollbar">
+      <button type="button">latest</button>
+      <button type="button">trending</button>
+      <button type="button">live</button>
+      <button type="button">minutes&colon;0-5</button>
+      <button type="button">minutes&colon;5-30</button>
+      <button type="button">genre&colon;pop</button>
+      <button type="button">genre&colon;classical</button>
+    </div>
+    <div id="also-like-items">
+      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"></button>
+    </div>
+    <div class="horiz">
+      <!-- prettier-ignore --><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk">
+    </div>
+    <div id="apps-container">
+      <a href="#">
+        <img src="https://picsum.photos/500?random=4" />
+        <div class="label">
+          <span class="name">Your Work - CodePen</span>
+          <span class="url">codepen.io</span>
+        </div>
+      </a>
+      <a href="#">
+        <i class="fa-brands fa-youtube"></i>
+        <div class="label">
+          <span class="name">YouTube</span>
+          <span class="url">youtube.com</span>
+        </div>
+      </a>
+      <a href="#">
+        <i class="fa-brands fa-spotify"></i>
+        <div class="label">
+          <span class="name">Spotify</span>
+          <span class="url">spotify.com</span>
+        </div>
+      </a>
+      <a href="#">
+        <i class="fa-brands fa-twitter"></i>
+        <div class="label">
+          <span class="name">Twitter</span>
+          <span class="url">twitter.com</span>
+        </div>
+      </a>
+      <a href="#">
+        <i class="fa-brands fa-airbnb"></i>
+        <div class="label">
+          <span class="name">Airbnb</span>
+          <span class="url">airbnb.com</span>
+        </div>
+      </a>
+      <a href="#">
+        <i class="fa-brands fa-wikipedia-w"></i>
+        <div class="label">
+          <span class="name">Wikipedia</span>
+          <span class="url">wikipedia.com</span>
+        </div>
+      </a>
+      <a href="#">
+        <i class="fa-brands fa-github"></i>
+        <div class="label">
+          <span class="name">Github</span>
+          <span class="url">github.com</span>
+        </div>
+      </a>
+      <a href="#">
+        <i class="fa-brands fa-xbox"></i>
+        <div class="label">
+          <span class="name">Xbox</span>
+          <span class="url">xbox.com</span>
+        </div>
+      </a>
+    </div>
+    <div id="footer" class="no-scrollbar">
+      <a href="/">© Amplfr.com</a>
+      <a href="/terms">Terms of Use</a>
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/legal">Legal Requests</a>
+      <a href="//amplfr.github.io/">API/developer resources</a>
+      <a href="//twitter.com/amplfr">@Amplfr</a>
+    </div>
+    <script>
+      const title = ">Amplfr";
+      const url = document.location.origin + "/api/queue";
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => {
+          if (Array.isArray(json)) json = json.map((x) => x.id || x);
+
+          json.title = "Queue";
+          json.url = url;
+
+          // let collection = new AmplfrCollection(json);
+          let queue = new AmplfrQueue(json);
+          // let collection = new AmplfrCollection(json, false);
+          // collection = new AmplfrCollection("kREnNawsJqg7PFfX3LYqEy");
+          queue.loop = true;
+          window.queue = queue;
+
+          // DEBUG begin
+          queue.push("album/ssJLoBpTnHbb4ojwjDLKYt");
+          const logEvent = (ev) => {
+            console.log(ev.type);
+            if (ev.detail) console.log(ev.detail);
+          };
+          // queue.addEventListener("change", logEvent);
+          queue.addEventListener("change", (ev) => {
+            logEvent(ev);
+
+            const item = ev.detail.item;
+            // item.addEventListener("populated", (ev2) => {
+            item.addEventListener("rendered", (ev2) => {
+              item.appendLogo();
+            });
+          });
+          queue.addEventListener("rendered", logEvent);
+          queue.addEventListener("playedAndAppended", logEvent);
+          queue.addEventListener("played", logEvent);
+          // DEBUG end
+
+          // document.querySelector("#container").appendChild(collection);
+          // document.body.appendChild(queue);
+          document.body.insertAdjacentElement("afterbegin", queue);
+          queue.setAttribute("id", "queue");
+
+          // if (queue.clientWidth < queue.clientHeight)
+          //   queue.querySelector("#playing .item").classList.add("square");
+
+          const dom_controls = document.querySelector("#controls");
+          const dom_queue = document.querySelector("#queue");
+          const dom_ol_queue = document.querySelector("ol#queue");
+
+          const createElement = (tagName, values) => {
+            let newElement = document.createElement(tagName);
+            if (!!values.innerText) newElement.innerText = values.innerText;
+
+            if (!!values.classes) {
+              if (!Array.isArray(values.classes)) {
+                // treat it as a String if it has a length and then make an Array of size 1
+                if (values.classes?.length) values.classes = [values.classes];
+                else
+                  Object.entries(values.classes).forEach(([k, v]) => {
+                    newElement.classList.toggle(k, v || true);
+                  });
+              }
+              // re-check if it is an Array again in case we converted
+              if (Array.isArray(values.classes)) {
+                values.classes.forEach((k) => {
+                  newElement.classList.add(k);
+                });
+              }
+            }
+
+            if (!!values.attributes)
+              Object.entries(values.attributes).forEach(([k, v]) => {
+                newElement.setAttribute(k, v);
+              });
+
+            return newElement;
+          };
+
+          let toggleQueue = createElement("button", {
+            classes: {
+              "material-symbols-outlined": true,
+              activated: !document.body.classList.contains("queueMin"),
+            },
+            attributes: {
+              id: "toggleQueue",
+              title: "show or hide Queue",
+            },
+            innerText: "playlist_play",
+          });
+          dom_controls.insertAdjacentElement("afterbegin", toggleQueue);
+          toggleQueue.addEventListener("click", (ev) => {
+            ev.preventDefault();
+
+            // show or hide Queue and update toggleQueue's class to match
+            toggleQueue.classList.toggle(
+              "activated",
+              !document.body.classList.toggle("queueMin")
+            );
+          });
+
+          // insert the whatsnew.controls DIV
+          // let dom_whatsnext = createElement("div", "controls");
+          let dom_whatsnext = createElement("div", {
+            classes: "controls",
+            attributes: { id: "whatsnext" },
+          });
+          // let whatsnew = createElement(
+          //   "button",
+          //   "material-symbols-outlined",
+          //   {
+          //     id: "addNew",
+          //     title: "Add more to the Queue",
+          //   },
+          //   "playlist_add"
+          // );
+          dom_queue.insertAdjacentElement("beforeend", dom_whatsnext);
+          let dom_addnew = createElement("button", {
+            classes: "material-symbols-outlined",
+            attributes: {
+              id: "addNew",
+              title: "Add more to the Queue",
+            },
+            innerText: "playlist_add",
+          });
+          dom_whatsnext.insertAdjacentElement("beforeend", dom_addnew);
+
+          // move some buttons from #controls to #whatsnext
+          dom_whatsnext.insertAdjacentElement(
+            "beforeend",
+            dom_controls.querySelector("button#loop")
+          );
+          dom_whatsnext.insertAdjacentElement(
+            "beforeend",
+            dom_controls.querySelector("button#shuffle")
+          );
+          dom_whatsnext.insertAdjacentElement(
+            "beforeend",
+            dom_controls.querySelector("button#share")
+          );
+        });
+
+      const div_horiz = document.querySelector("div.horiz");
+      div_horiz.addEventListener("wheel", scrollHorizontal);
+    </script>
+  </body>
+</html>
