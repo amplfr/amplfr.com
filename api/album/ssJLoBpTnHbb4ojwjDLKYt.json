@@ -10,7 +10,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 202,
@@ -20,8 +20,14 @@
       "links": [
         "https://musicbrainz.org/recording/96d67d9c-0be7-40df-a5fa-d82e4bd410d2"
       ],
-      "url": "http://mt5577:3000/api/pLR8y92byj7cycE3UUYTi8/Hello",
-      "visibility": "public"
+      "url": "/api/pLR8y92byj7cycE3UUYTi8/Hello",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "p3tSa8CY7NoGwx3uzp23sd",
@@ -31,7 +37,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 240,
@@ -42,8 +48,14 @@
         "https://musicbrainz.org/recording/3badc834-a683-4fca-920b-cd5658e6fa47",
         "https://www.youtube.com/watch?v=DrARl0dzd-0"
       ],
-      "url": "http://mt5577:3000/api/p3tSa8CY7NoGwx3uzp23sd/Roll+With+It",
-      "visibility": "public"
+      "url": "/api/p3tSa8CY7NoGwx3uzp23sd/Roll+With+It",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "4MZY5TrtyK9XMgSyh51KFk",
@@ -53,7 +65,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 259,
@@ -70,8 +82,14 @@
         "https://musicbrainz.org/recording/580f4553-e29a-4d19-989c-1b097b76de48",
         "https://www.youtube.com/watch?v=vU05Eksc_iM"
       ],
-      "url": "http://mt5577:3000/api/4MZY5TrtyK9XMgSyh51KFk/Wonderwall",
-      "visibility": "public"
+      "url": "/api/4MZY5TrtyK9XMgSyh51KFk/Wonderwall",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "rWxxfBZRqNipUTaQ63AX8q",
@@ -81,7 +99,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 288,
@@ -92,8 +110,14 @@
         "https://musicbrainz.org/recording/15b32a80-3965-4061-80c4-894e13d99735",
         "https://www.youtube.com/watch?v=YZG7z4FOn0g"
       ],
-      "url": "http://mt5577:3000/api/rWxxfBZRqNipUTaQ63AX8q/Don%E2%80%99t+Look+Back+in+Anger",
-      "visibility": "public"
+      "url": "/api/rWxxfBZRqNipUTaQ63AX8q/Don%E2%80%99t+Look+Back+in+Anger",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "76FGzRC35hZd9nHaaowZ8X",
@@ -103,7 +127,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 342,
@@ -113,8 +137,14 @@
       "links": [
         "https://musicbrainz.org/recording/1aef090e-335d-4ea3-8284-6060ec321f76"
       ],
-      "url": "http://mt5577:3000/api/76FGzRC35hZd9nHaaowZ8X/Hey+Now!",
-      "visibility": "public"
+      "url": "/api/76FGzRC35hZd9nHaaowZ8X/Hey+Now!",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "poDmYZYpNmnagGeSrGVW5H",
@@ -124,7 +154,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 45,
@@ -134,8 +164,14 @@
       "links": [
         "https://musicbrainz.org/recording/699b13a8-49df-47df-8b9e-d1badfe52b1e"
       ],
-      "url": "http://mt5577:3000/api/poDmYZYpNmnagGeSrGVW5H/%5Buntitled%5D",
-      "visibility": "public"
+      "url": "/api/poDmYZYpNmnagGeSrGVW5H/%5Buntitled%5D",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "7v7mWRZuj6iHENvgHbAQeh",
@@ -145,7 +181,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 328,
@@ -156,8 +192,14 @@
         "https://musicbrainz.org/recording/40a795d7-38d7-4829-a1b8-a8c7e1ced6fa",
         "https://www.youtube.com/watch?v=oxOjIj18I9E"
       ],
-      "url": "http://mt5577:3000/api/7v7mWRZuj6iHENvgHbAQeh/Some+Might+Say",
-      "visibility": "public"
+      "url": "/api/7v7mWRZuj6iHENvgHbAQeh/Some+Might+Say",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "65V8XCk735iotDfYEE6LTK",
@@ -167,7 +209,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 292,
@@ -177,8 +219,14 @@
       "links": [
         "https://musicbrainz.org/recording/3cb660b8-8480-4afa-9de4-f3b4ce2c1de0"
       ],
-      "url": "http://mt5577:3000/api/65V8XCk735iotDfYEE6LTK/Cast+No+Shadow",
-      "visibility": "public"
+      "url": "/api/65V8XCk735iotDfYEE6LTK/Cast+No+Shadow",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "kFwTDUcdotW6tjUkcUVz4E",
@@ -188,7 +236,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 220,
@@ -197,8 +245,14 @@
       "links": [
         "https://musicbrainz.org/recording/95bf6a56-a5d8-4206-b624-522797976446"
       ],
-      "url": "http://mt5577:3000/api/kFwTDUcdotW6tjUkcUVz4E/She%E2%80%99s+Electric",
-      "visibility": "public"
+      "url": "/api/kFwTDUcdotW6tjUkcUVz4E/She%E2%80%99s+Electric",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "xjdz242YiH8XkH4mmBojTF",
@@ -208,7 +262,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 303,
@@ -219,8 +273,14 @@
         "https://musicbrainz.org/recording/4b460bcc-b651-4270-90dc-3ca4e879bc5e",
         "https://www.youtube.com/watch?v=Wm54XyLwBAk"
       ],
-      "url": "http://mt5577:3000/api/xjdz242YiH8XkH4mmBojTF/Morning+Glory",
-      "visibility": "public"
+      "url": "/api/xjdz242YiH8XkH4mmBojTF/Morning+Glory",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "g4VGVcjSHj6AiuyVyWKf1T",
@@ -230,7 +290,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 40,
@@ -240,8 +300,14 @@
       "links": [
         "https://musicbrainz.org/recording/c3e1397b-4608-4206-a489-14a4643d74b0"
       ],
-      "url": "http://mt5577:3000/api/g4VGVcjSHj6AiuyVyWKf1T/%5Buntitled%5D",
-      "visibility": "public"
+      "url": "/api/g4VGVcjSHj6AiuyVyWKf1T/%5Buntitled%5D",
+      "visibility": "public",
+      "album": {
+        "id": "ssJLoBpTnHbb4ojwjDLKYt",
+        "title": "(What's the Story) Morning Glory?",
+        "date": 2013,
+        "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      }
     },
     {
       "id": "czsVRaDCo95YC5DpgXLm6t",
@@ -251,7 +317,7 @@
           "id": "uzcAqPjm82SStWr7UAaP2G",
           "name": "Oasis",
           "area": "Manchester, GB",
-          "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+          "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
         }
       ],
       "duration": 448,
@@ -262,7 +328,7 @@
         "https://musicbrainz.org/recording/cb0892d9-e2fc-46d8-a40a-616bea78c52a",
         "https://www.youtube.com/watch?v=VGfDg7wju6M"
       ],
-      "url": "http://mt5577:3000/api/czsVRaDCo95YC5DpgXLm6t/Champagne+Supernova",
+      "url": "/api/czsVRaDCo95YC5DpgXLm6t/Champagne+Supernova",
       "visibility": "public"
     }
   ],
@@ -273,14 +339,14 @@
     "https://musicbrainz.org/album/d6494c5a-a55a-45e3-a302-67bc721aadc7",
     "https://www.discogs.com/release/6140257"
   ],
-  "url": "http://mt5577:3000/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F",
+  "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F",
   "visibility": "public",
   "artists": [
     {
       "id": "uzcAqPjm82SStWr7UAaP2G",
       "name": "Oasis",
       "area": "Manchester, GB",
-      "url": "http://mt5577:3000/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+      "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
     }
   ]
 }
