@@ -38,6 +38,30 @@ Number.prototype.toHumanBytes = function () {
  *    "https://twitter.com/foofighters/"
  *  ]
  * }
+ * @event AmplfrItem#abort Passes underlying HTMLMediaElement's abort event
+ * @event AmplfrItem#canplay Passes underlying HTMLMediaElement's canplay event
+ * @event AmplfrItem#canplaythrough Passes underlying HTMLMediaElement's canplaythrough event
+ * @event AmplfrItem#durationchange Passes underlying HTMLMediaElement's durationchange event
+ * @event AmplfrItem#emptied Passes underlying HTMLMediaElement's emptied event
+ * @event AmplfrItem#ended Passes underlying HTMLMediaElement's ended event
+ * @event AmplfrItem#error Passes underlying HTMLMediaElement's error event
+ * @event AmplfrItem#loaded Fires when underlying HTMLMediaElement is completely loaded
+ * @event AmplfrItem#loadeddata Passes underlying HTMLMediaElement's loadeddata event
+ * @event AmplfrItem#loadedmetadata Passes underlying HTMLMediaElement's loadedmetadata event
+ * @event AmplfrItem#loadstart Passes underlying HTMLMediaElement's loadstart event
+ * @event AmplfrItem#pause Passes underlying HTMLMediaElement's pause event
+ * @event AmplfrItem#play Passes underlying HTMLMediaElement's play event
+ * @event AmplfrItem#playing Passes underlying HTMLMediaElement's playing event
+ * @event AmplfrItem#progress Passes underlying HTMLMediaElement's progress event
+ * @event AmplfrItem#ratechange Passes underlying HTMLMediaElement's ratechange event
+ * @event AmplfrItem#resize Passes underlying HTMLMediaElement's resize event
+ * @event AmplfrItem#seeked Passes underlying HTMLMediaElement's seeked event
+ * @event AmplfrItem#seeking Passes underlying HTMLMediaElement's seeking event
+ * @event AmplfrItem#stalled Passes underlying HTMLMediaElement's stalled event
+ * @event AmplfrItem#suspend Passes underlying HTMLMediaElement's suspend event
+ * @event AmplfrItem#timeupdate Passes underlying HTMLMediaElement's timeupdate event
+ * @event AmplfrItem#volumechange Passes underlying HTMLMediaElement's volumechange event
+ * @event AmplfrItem#waiting Passes underlying HTMLMediaElement's waiting event
  */
 /**
  * Data fields needed to build an AmplfrItem
@@ -145,6 +169,10 @@ class AmplfrItem extends HTMLDivElement {
    * @param {AmplfrItemOptions|boolean|null} [mediaType] "Audio" or "video" to indicate the type to be used for the child HTMLMediaElement created as part of creating this when added to the DOM.
    * If non-null value is given, then the child HTMLMediaElement will be created once added to the DOM - e.g., document.body.appendChild(AmplfrItem).
    * If null (default) value is used, then the child HTMLMediaElement will not be created until appendMedia() is called.
+   * @param {Object} [options=false]
+   * @param {boolean} [options.controls=false]
+   * @param {boolean} [options.controls.logo=true] Whether to display the logo
+   * @param {HTMLElement} [options.playing] Existing HTML element to populate with playing item
    */
   constructor(data, options = false) {
     super(); // Always call super first in constructor
@@ -290,6 +318,7 @@ class AmplfrItem extends HTMLDivElement {
     }
 
     this.title = this._data?.title; // save the title as the title of the element
+    this.dispatchEvent(new Event('populated'))
   }
 
   _makeDraggable() {
@@ -541,7 +570,7 @@ class AmplfrItem extends HTMLDivElement {
     if (!this._data?.id) {
       // from https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0?permalink_comment_id=4261728#gistcomment-4261728
       const hash = (text) =>
-        text
+        (text || '')
           .split("")
           .reduce((s, c) => (Math.imul(31, s) + c.charCodeAt(0)) | 0, 0);
 
@@ -742,6 +771,9 @@ class AmplfrItem extends HTMLDivElement {
   get networkState() { return this._options.media?.networkState }
   // prettier-ignore
   get paused() { return this._options.media?.paused }
+  get playing() {
+    return this.paused === false ? true : false; // ==false means its playing, but null means nothing
+  }
   // prettier-ignore
   get playbackRate() { return this._options.media?.playbackRate }
   // prettier-ignore
@@ -790,8 +822,9 @@ class AmplfrItem extends HTMLDivElement {
       }
 
       this._options.media.addEventListener(type, listener, options);
-      // else this.addEventListener(type, listener, options)
     }
+    // anything not known, send it onwards to the parent class
+    else super.addEventListener(type, listener, options)
   }
 
   /**
@@ -1123,10 +1156,26 @@ class AmplfrItem extends HTMLDivElement {
     );
     logoSVG.appendChild(logoPath);
 
-    logoSVG.classList.add("logo");
     logoSVG.setAttribute("viewBox", "0 0 173 187");
     logoE.appendChild(logoSVG);
 
+    if (this._options?.logomplfr != false) {
+      const logoWideSVG = document.createElementNS(NS, "svg");
+      const logoWidePath = document.createElementNS(NS, "path");
+
+      logoWidePath.setAttribute(
+        "d",
+        "M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"
+      );
+      logoWideSVG.appendChild(logoWidePath);
+
+      // logoWideSVG.classList.add("logoWide");
+      logoWideSVG.setAttribute("viewBox", "0 0 567 243");
+      logoWideSVG.classList.add("logomplfr");
+      logoE.appendChild(logoWideSVG);
+    }
+
+    logoE.classList.add("logo");
     logoE.setAttribute("href", "//amplfr.com");
     logoE.setAttribute("title", "Amplfr.com");
     root.appendChild(logoE);
@@ -1159,10 +1208,11 @@ class AmplfrItem extends HTMLDivElement {
     if (root.tagName == "LI") root.classList.add("time");
   }
   appendTimeline() {
+    if (!!this._options.progress) return
+
     // add the timeline container element (to root)
     const timelineContainerE = document.createElement("div");
     timelineContainerE.classList.add("timeline-container");
-    this._options.root.appendChild(timelineContainerE);
     this._options.progress = timelineContainerE; // save timelineContainerE for easy access later
 
     // add the timeline element (to timeline container element)
@@ -1174,6 +1224,9 @@ class AmplfrItem extends HTMLDivElement {
     const thumb = document.createElement("div");
     thumb.classList.add("thumb-indicator");
     timelineE.appendChild(thumb);
+
+    // append to (what should be) the end of the root element
+    this._options.root.appendChild(timelineContainerE);
 
     // Timeline - use PointerEvents instead of MouseEvents
     timelineContainerE.addEventListener("pointermove", handleTimelineUpdate)

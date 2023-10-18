@@ -29,6 +29,9 @@ class AmplfrCollection extends AmplfrItem {
    *  - string - Collection URL
    *  - string[] - list of item URLs, either an array or string of whitespace-separated URLs.
    *  - NULL - will use the element's dataset (as CollectionSourceData) or src (as URL to parse) attributes.
+   * @param {Object} [options=true]
+   * @param {HTMLOListElement} [options.ol] Existing HTML OL element to populate with list of items
+   * @param {HTMLElement} [options.playing] Existing HTML element to populate with playing item
    */
   constructor(data, options = true) {
     super(false); // Always call super first in constructor
@@ -38,12 +41,16 @@ class AmplfrCollection extends AmplfrItem {
 
     this._options.useShadow = false; // toggle if resulting elements should go in shadow DOM instead
     this._options.preloadCount = 2; // navigator.hardwareConcurrency || 2; // max number of items to preload
+    this._options.observer // 
 
     if (options.controls != null) this._options.controls = options?.controls;
     if (options.media != null) this._options.media = options?.media || options;
     if (options == false) {
       this._options.controls = false
       this._options.media = false
+    } else {
+      if (options.ol != null) this._options.ol = options.ol;  // to use existing HTML OL element for items
+      if (options.playing != null) this._options.playing = options.playing;  // to use existing HTML element for playing
     }
 
     // only if this object is an AmplfrCollection vs some extended class
@@ -302,17 +309,33 @@ class AmplfrCollection extends AmplfrItem {
   }
 
   appendItems() {
-    const e = document.createElement("ol");
-    e.classList.add("items");
+    // use specified OL element if present. must already exist
+    if (this._options.ol != null)
+      this._options.items = this._options.ol
+    else {
+      const e = document.createElement("ol");
+      this._options.root.appendChild(e);
+      this._options.items = e
+    }
 
-    this._options.root.appendChild(e);
-
-    this._options.items = e
+    // ensure classList includes "items"
+    this._options.items.classList.add("items");
 
     // create a child element for each item, populate it, and append it to e
-    this._data.items.forEach((item, i) => e.appendChild(this._appendItem(item)))
+    this._data.items.forEach((item, i) => this._options.items.appendChild(this._appendItem(item)))
+
+    // setup a MutationObserver to check if the last LI is empty (no children)
+    // this._options.observer = new MutationObserver((list) => {
+    //   // if (this._data.items.length != this._options.items.children)
+    //   console.log('mutation list', list);
+    // });
+    this._options.observer = new MutationObserver((changes) => this._pruneItems(changes));
+    this._options.observer.observe(this._options.items, {
+      childList: true,
+    });
   }
   _appendItem(item) {
+    if (item == null) return
     const _this = this
     const li = document.createElement("li");
 
@@ -327,6 +350,7 @@ class AmplfrCollection extends AmplfrItem {
       }
     });
     li.addEventListener("touchend", function (ev) {
+      if (ev.detail <= 1) return
       let item = ev.target.querySelector('.item') || ev.target
       if (item.getAttribute('is') == 'amplfr-item') {
         ev.preventDefault();
@@ -335,6 +359,14 @@ class AmplfrCollection extends AmplfrItem {
     });
 
     return li
+  }
+  _pruneItems(changes) {
+    // console.log('mutation list', changes);
+    if (this._data.items.length != this._options.items.children.length + this._options.playing.children.length)
+      this._options.items.childNodes.forEach(e => {
+        if (!e.hasChildNodes() && e.tagName === 'LI')
+          e.remove()
+      })
   }
 
   /**
@@ -383,13 +415,6 @@ class AmplfrCollection extends AmplfrItem {
   get track() { return this._options.itemNumber; }
 
   // collection controls
-  /**
-   * Changed item event
-   * @event AmplfrItem#change
-   * @type {object}
-   * @property {number} number The index of the currently selected item
-   * @property {AmplfrItem} item The currently selected item
-   */
   /**
    * Sets the current item
    * @param {number|AmplfrItem} i The index of the item to select or specifc item to select.
@@ -480,6 +505,9 @@ class AmplfrCollection extends AmplfrItem {
       });
     }
 
+    /**
+     * @event AmplfrItem#ended Fires when last item has ended. Loop must be set to false.
+     */
     // if #current is the last item and this.loop is false
     if (this._options.itemNumber == itemCount && !this.loop) {
       // create and dispatch an 'ended' event
@@ -691,8 +719,7 @@ class AmplfrCollection extends AmplfrItem {
     this.item = 1; // select the first item
 
     // finish up the build
-    const isReady = new Event('rendered')
-    this.dispatchEvent(isReady)
+    this.dispatchEvent(new Event('rendered'))
     if (!this._options.useShadow || !this.shadowRoot)
       return;
     const shadow = this.attachShadow({ mode: "open" }); // Create a shadow root
@@ -720,13 +747,20 @@ class AmplfrCollection extends AmplfrItem {
   }
 
   appendPlaying(root = this._options.root) {
+    // use specified OL element if present. must already exist
     // add the control button
-    const playingE = document.createElement("div");
-    playingE.setAttribute('id', 'playing')
+    if (this._options.playing != null)
+      this._options.playing = this._options.playing
+    else {
+      const playingE = document.createElement("div");
+      // playingE.setAttribute('id', 'playing')
 
-    this._options.playing = playingE; // save playingE for easy access later
+      root.appendChild(playingE);
+      this._options.playing = playingE; // save playingE for easy access later
+    }
 
-    root.appendChild(playingE);
+    // make sure this has its ID set as "playing"
+    this._options.playing.setAttribute('id', 'playing')
 
     // set the first item for Playing *after* appending playingE
     // this.item = 1

@@ -12,3 +12,5 @@ albumart/*.png
 img/apple*jpg
 img/manifest-icon-*.png
 img/icons/
+**.min.css
+**.min.js

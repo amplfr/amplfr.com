@@ -15,6 +15,13 @@ class AmplfrQueue extends AmplfrCollection {
     super(data, options); // Always call super first in constructor
   }
 
+  /**
+   * Changes the contents of the Queue by removing or replacing existing {@link AmplfrItem}s and/or adding new {@link AmplfrItem}s in place.
+   * Based on (and uses) [Array.prototype.splice()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice).
+   * @param {Number} [start= -1]
+   * @param {Number} deleteCount 
+   * @param  {...any} items One or more {@link AmplfrItem}s
+   */
   async splice(start = -1, deleteCount = 0, ...items) {
     // create a child element for each item, populate it, and append it to e
     items = items.flat()  // need to use flat() and then map(), so flatMap() doesn't work here
@@ -62,19 +69,39 @@ class AmplfrQueue extends AmplfrCollection {
         }
       })
   }
+  /**
+   * Add one or more {@link AmplfrItem}s to the end of the Queue
+   * @param  {...any} items One or more {@link AmplfrItem}s
+   * {@link AmplfrItem}
+   * @returns Length of the Queue after the additional {@link AmplfrItem}s have been added
+   */
   async push(...items) {
     await this.splice(-1, 0, items)
     return this.length
   }
+  /**
+   * Add one or more {@link AmplfrItem}s to the beginning of the Queue
+   * @param  {...any} items One or more {@link AmplfrItem}s
+   * {@link AmplfrItem}
+   * @returns Length of the Queue after the additional {@link AmplfrItem}s have been added
+   */
   async unshift(...items) {
     await this.splice(0, 0, items)
     return this.length
   }
 
+
   shuffle() {
     let i, m = this.length;
     const items = this._data.items;
-    const itemNodes = this._options.items;
+    const list = this._options.items
+    const childNodes = this._options.items.childNodes; // need the childNodes of items
+
+    const wasLooped = this.loop
+    const isPlaying = this.playing
+    if (isPlaying === true) this.pause();
+    this.loop = false
+    this.item = false;  // unload anything that might be playing first
 
     // mark the items in order
     items.forEach((item, n) => { item.setAttribute('num', n) })
@@ -82,17 +109,16 @@ class AmplfrQueue extends AmplfrCollection {
     // Fisher-Yates (aka Knuth) shuffle
     //  based on https://bost.ocks.org/mike/shuffle/
     while (m) {
-      items[m].setAttribute('num', m)
-
       // pick a random item from 0..m
       i = Math.floor(Math.random() * m--);
 
-      // and swap it with the current element.
-      //   t = this[m];
-      //   this[m] = this[i];
-      //   this[i] = t;
-      itemNodes.insertBefore(itemNodes[m], itemNodes[i]);
+      // ...and swap it with the current element.
+      list.insertBefore(childNodes[m], childNodes[i]);
     }
+
+    this.loop = wasLooped  // restore previous loop status
+    this.item = 1   // load the new first item
+    if (isPlaying) this.play()  // start playing again if were already doing so
   }
   sort(compareFn) {
     compareFn = compareFn || ((a, b) => {
