@@ -84,6 +84,8 @@ button {
 .collection > ol.played > li {
   counter-increment: doc;
   cursor: pointer;
+  /* height: 64px; */
+  height: 4em;
 }
 
 .collection > ol.items > li::before {
@@ -118,12 +120,14 @@ button {
 }
 .collection ol.items li .item {
   /* left: -2em; */
-  position: relative;
+  /* position: relative; */
   /* width: calc(100% + -2em); */
-  width: calc(100% - 64px);
+  /* width: calc(100% - 64px); */
   /* max-width: 50vmin; */
   /* padding-right: 0px; */
   /* margin-right: 0px; */
+  /* height: 4em; */
+  /* margin-left: -4em; */
 }
 .collection ol.items li .item .timeline-container {
   width: calc(100% - 0em) !important;
@@ -134,11 +138,11 @@ button {
 .collection .hidden,
 /* .collection.minimized #playing .item a svg.logo, */
 /* .collection ol li .item .timeline-container, */
-.collection ol li .item .timeline-container .timeline,
-.collection ol li .item .timeline-container .timeline .thumb-indicator,
+/* .collection ol li .item .timeline-container .timeline, */
+/* .collection ol li .item .timeline-container .timeline .thumb-indicator, */
 .collection ol li .item button,
-.collection ol li .item ul li.time .time,
-.collection ol li .item ul li.logo .logo {
+.collection ol li .item a.logo,
+.collection ol li .item .time .time {
   display: none !important;
 }
 .collection ol li .item .artwork {
@@ -152,7 +156,9 @@ button {
 }
 .collection #playing .item,
 .collection ol.items li {
+  background-color: var(--colorAccent);
   overflow-x: clip;
+  font-size: 1em;
 }
 
 .collection.minimized {
@@ -205,7 +211,7 @@ button {
   width: 0px;
   display: block;
 }
-.collection.minimized > a > svg.logo {
+.collection.minimized > a.logo > svg {
   height: 2em;
   width: 2em;
   position: relative;
@@ -267,4 +273,17 @@ button {
 }
 .collection.square #playing .item .timeline {
   filter: drop-shadow(2px 2px 4px var(--color));
+}
+
+div#queue.landscape {
+  margin-left: 100vmin;
+  width: calc(100% - 100vmin);
+}
+div#queue.landscape > ol.items > li::before {
+  margin-left: 100vmin;
+}
+div#queue.landscape #playing {
+  position: fixed;
+  height: 100vmin;
+  width: 100vmin;
 }
