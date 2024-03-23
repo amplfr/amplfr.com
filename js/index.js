@@ -6,14 +6,17 @@
  *  -  600 or less
  */
 const checkBodyWidth = () => {
-    const width = document.body.clientWidth;
-    document.body.classList.toggle("columns", width > 1200);
+    // const width = document.body.clientWidth;
+    const width = document.body.scrollWidth;
+    // document.body.classList.toggle("columns", width > 1200);
+    document.body.classList.add("columns");
 
-    let isNarrow = width <= 800;
-    document.body.classList.toggle("poster", isNarrow);
+    // let isNarrow = width <= 800;
+    // document.body.classList.toggle("poster", isNarrow);
 
     isNarrow = width <= 600;
     document.body.classList.toggle("narrow", isNarrow);
+    document.body.classList.toggle("poster", document.body.scrollHeight <= 600 || isNarrow);
 };
 /**
  * Toggles visibility of Queue element. 
@@ -34,14 +37,16 @@ const toggleQueue = (e = null) => {
     ) {
         e.preventDefault();
         if (e.detail > 1) document.body.classList.toggle("columns");
-        e.currentTarget.classList.toggle("active", !isActive);
-        e = null;
+        // e.currentTarget.classList.toggle("active", !isActive);
+        // e = null;
     }
 
     if (typeof e === "boolean")
         isActive = document.body.classList.toggle("queueClosed", e);
     else isActive = !document.body.classList.toggle("queueClosed");
-    // else document.body.classList.toggle("queueClosed");
+
+    if (!!e.currentTarget?.classList)
+        e.currentTarget.classList.toggle("active", !isActive);
 };
 
 /**
@@ -81,4 +86,41 @@ const scrollHorizontal = (e) => {
         e.preventDefault();
         div.scrollLeft += y;
     }
+};
+
+/**
+ * 
+ * @param {String} tagName String of what element to create.
+ * @param {Object} values Object
+ * @returns 
+ */
+const createElement = (tagName, values) => {
+    let newElement = document.createElement(tagName);
+    if (!values) return newElement
+
+    if (!!values.innerText) newElement.innerText = values.innerText;
+
+    if (!!values.classes) {
+        if (!Array.isArray(values.classes)) {
+            // treat it as a String if it has a length and then make an Array of size 1
+            if (values.classes?.length) values.classes = [values.classes];
+            else
+                Object.entries(values.classes).forEach(([k, v]) => {
+                    newElement.classList.toggle(k, v || true);
+                });
+        }
+        // re-check if it is an Array again in case we converted
+        if (Array.isArray(values.classes)) {
+            values.classes.forEach((k) => {
+                newElement.classList.add(k);
+            });
+        }
+    }
+
+    if (!!values.attributes)
+        Object.entries(values.attributes).forEach(([k, v]) => {
+            newElement.setAttribute(k, v);
+        });
+
+    return newElement;
 };

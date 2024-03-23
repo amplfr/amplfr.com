@@ -78,6 +78,7 @@ const fetchSrc = async (obj) => {
   let response;
 
   let files = obj.src || obj.files;
+  // if (files != undefined) {
   if (!files) {
     // if files isn't provided, fetch() it
     response = await fetch(`/api/${id}.files`)

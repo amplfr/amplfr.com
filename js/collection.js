@@ -45,12 +45,15 @@ class AmplfrCollection extends AmplfrItem {
 
     if (options.controls != null) this._options.controls = options?.controls;
     if (options.media != null) this._options.media = options?.media || options;
+    if (options.played != null) this._options.played = options?.played || options;
     if (options == false) {
       this._options.controls = false
       this._options.media = false
+      this._options.played = false
     } else {
       if (options.ol != null) this._options.ol = options.ol;  // to use existing HTML OL element for items
       if (options.playing != null) this._options.playing = options.playing;  // to use existing HTML element for playing
+      if (options.played != null) this._options.played = options.played;  // to use existing HTML element for played
     }
 
     // only if this object is an AmplfrCollection vs some extended class
@@ -284,7 +287,12 @@ class AmplfrCollection extends AmplfrItem {
       if (item instanceof AmplfrItem)
         itemE = item; // just save item as itemE
       else
-        itemE = new AmplfrItem(item, this._options.media); // upgrade item to be an AmplfrItem
+        // itemE = new AmplfrItem(item, this._options.media); // upgrade item to be an AmplfrItem
+        itemE = new AmplfrItem(item, {
+          // controls: this._options.controls.controls,
+          logo: false,
+          media: this._options.media,
+        }); // upgrade item to be an AmplfrItem
 
       // preload a select number of items
       if (i < this._options.preloadCount)
@@ -349,7 +357,8 @@ class AmplfrCollection extends AmplfrItem {
         _this.item = item
       }
     });
-    li.addEventListener("touchend", function (ev) {
+    // li.addEventListener("touchend", function (ev) {
+    li.addEventListener("pointerdown", function (ev) {
       if (ev.detail <= 1) return
       let item = ev.target.querySelector('.item') || ev.target
       if (item.getAttribute('is') == 'amplfr-item') {
@@ -416,6 +425,13 @@ class AmplfrCollection extends AmplfrItem {
 
   // collection controls
   /**
+   * Changed item event
+   * @event AmplfrItem#change
+   * @type {object}
+   * @property {number} number The index of the currently selected item
+   * @property {AmplfrItem} item The currently selected item
+   */
+  /**
    * Sets the current item
    * @param {number|AmplfrItem} i The index of the item to select or specifc item to select.
    * @emits AmplfrItem#change
@@ -454,10 +470,13 @@ class AmplfrCollection extends AmplfrItem {
     if (isPlaying === true) this.pause();
 
     const parentE = itemE.parentElement // needed to clean up otherwise empty LI
+    let previous = null
 
     // move anything in Playing to Played/Items
-    if (this._options.playing.hasChildNodes()) {
-      const li = this._appendItem(this._options.playing.childNodes[0]) // append itemE to the LI
+    if (this._options?.playing?.hasChildNodes()) {
+      // const li = this._appendItem(this._options.playing.childNodes[0]) // append itemE to the LI
+      previous = this._options.playing.childNodes[0]
+      const li = this._appendItem(previous) // append itemE to the LI
 
       // which list gets what was in Playing?
       if (this.loop) this._options.items.appendChild(li)
@@ -470,13 +489,24 @@ class AmplfrCollection extends AmplfrItem {
 
     // create and dispatch an 'ended' event
     const ev = new CustomEvent('change', {
-      number: this._options.itemNumber,
-      item: this._options.current,
+      detail: {
+        number: this._options.itemNumber,
+        item: this._options.current,
+        previous,
+      }
     });
     this.dispatchEvent(ev);
 
-    this._options.playing.replaceChildren(itemE)
+    this._options.playing.replaceChildren(itemE)  // move selected itemE to child of playing
     this._options.playing.scrollIntoView()
+
+    // const color = itemE.style.getPropertyValue('--color')
+    // const colorAccent = itemE.style.getPropertyValue('--colorAccent')
+    // if (color != '' && colorAccent != '') {
+    //   const root = document.querySelector(':root')
+    //   root.style.setProperty('--color', color)
+    //   root.style.setProperty('--colorAccent', colorAccent)
+    // }
 
     // remove parentE as long as it isn't the main list of items, and it doesn't have any child nodes
     if (parentE != this._data.items && !parentE.hasChildNodes())
@@ -505,9 +535,6 @@ class AmplfrCollection extends AmplfrItem {
       });
     }
 
-    /**
-     * @event AmplfrItem#ended Fires when last item has ended. Loop must be set to false.
-     */
     // if #current is the last item and this.loop is false
     if (this._options.itemNumber == itemCount && !this.loop) {
       // create and dispatch an 'ended' event
@@ -550,7 +577,7 @@ class AmplfrCollection extends AmplfrItem {
   // prettier-ignore
   set loop(v = !this._options.loop) {
     this._options.loop = !!v;
-    if (!!this._options.controls)
+    if (!!this._options.controls && this._options.controls['loop'] != null)
       if (this._options.loop)
         this._options.controls['loop'].classList.add('activated')
       else
@@ -592,6 +619,7 @@ class AmplfrCollection extends AmplfrItem {
   }
   // prettier-ignore
   pause() { this._options.current?.pause(); }
+  // pause() { this._data.items[this.item - 1].pause(); }
   stop() {
     // (safely) call this._options.current.stop() in case it isn't defined in this._options.current
     try {
@@ -622,7 +650,8 @@ class AmplfrCollection extends AmplfrItem {
   // prettier-ignore
   get networkState() { return this._options.current?.networkState || null; }
   // prettier-ignore
-  get paused() { return this._options.current?.paused || null; }
+  get paused() { return this._options.current?.paused; }
+  // get paused() { return this._data.items[this.item - 1]?.paused; }
   // prettier-ignore
   get playbackRate() { return this._options.current?.playbackRate || null; }
   // prettier-ignore
@@ -699,11 +728,12 @@ class AmplfrCollection extends AmplfrItem {
     //   "collection",
     // ]);
     // this.appendTitle();
-    this.appendPlayed();
+    // this.appendPlayed();
     this.appendPlaying();
-    this.appendLogo(this._options.root);
-    this.appendControls();
+    // this.appendLogo(this._options.root);
+    // this.appendControls();
     this.appendItems(); // handle special case items
+    this.appendControls();
     // this.appendControlsAdditional();
 
     this._options.isBuilt = true; // get here, and there's no need to run again
@@ -719,7 +749,8 @@ class AmplfrCollection extends AmplfrItem {
     this.item = 1; // select the first item
 
     // finish up the build
-    this.dispatchEvent(new Event('rendered'))
+    const isReady = new Event('rendered')
+    this.dispatchEvent(isReady)
     if (!this._options.useShadow || !this.shadowRoot)
       return;
     const shadow = this.attachShadow({ mode: "open" }); // Create a shadow root
@@ -736,6 +767,7 @@ class AmplfrCollection extends AmplfrItem {
   }
 
   appendPlayed(root = this._options.root) {
+    if (this._options.controls?.played == false) return
     // add the control button
     const playedE = document.createElement("ol");
     playedE.setAttribute('id', 'played')
@@ -772,7 +804,8 @@ class AmplfrCollection extends AmplfrItem {
   appendControls(root = this._options.root) {
     if (this._options.controls == false) return
     // add the control button
-    const e = document.createElement("div");
+    // const e = document.createElement("div");
+    const e = document.createElement("button");
     e.setAttribute('id', 'controls')
     e.classList.add("controls");
     root.appendChild(e);
@@ -805,6 +838,13 @@ class AmplfrCollection extends AmplfrItem {
         fn: () => { _this.loop = (!_this.loop) }
       },
       {
+        id: 'shuffle',
+        title: "Shuffle",
+        text: 'shuffle',
+        _this,
+        fn: _this.shuffle
+      },
+      {
         id: 'share',
         title: "Share",
         text: 'share',
@@ -817,13 +857,6 @@ class AmplfrCollection extends AmplfrItem {
         _this,
         text: "search",
         fn: () => { }
-      },
-      {
-        id: 'shuffle',
-        title: "Shuffle",
-        text: 'shuffle',
-        _this,
-        fn: _this.shuffle
       },
       {
         id: 'next',
@@ -842,8 +875,9 @@ class AmplfrCollection extends AmplfrItem {
       const ce = document.createElement("div");
       ce.setAttribute('id', ctrl.id)
       ce.setAttribute('title', ctrl.title)
-      ce.classList.add("material-icons");
-      ce.classList.add("md-light");
+      // ce.classList.add("material-icons");
+      // ce.classList.add("md-light");
+      ce.classList.add("material-symbols-outlined");
       if (ctrl.class) ctrl.class.split(/\s/).forEach((cls) => ce.classList.add(cls))
       if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') {
         ctrl.updateStatus(ce)

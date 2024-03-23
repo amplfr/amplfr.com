@@ -46,9 +46,7 @@
         overflow-x: hidden;
       }
       body.queueMin {
-        /* --queueGutter: 64px; */
         margin-left: 64px;
-        /* width: calc(100vw - 16px - 64px); */
         width: calc(100vw - 64px);
       }
       h1,
@@ -72,7 +70,7 @@
         position: fixed;
         left: 0px;
         /* background-color: #aaa; */
-        width: 100%;
+        /* width: 100%; */
       }
       #queue.collection #playing {
         position: fixed;
@@ -81,9 +79,17 @@
         left: 0px;
         z-index: 24;
       }
-      #queue.collection .controls,
+      /* #queue.collection .controls,
       #queue.collection > ol.items {
-        transition: width 300ms;
+        transition: width 250ms; */
+      #queue.collection .controls,
+      #queue.collection ol.items,
+      #queue.collection ol.items li {
+        transition: width 250ms;
+      }
+      #queue.collection .controls,
+      #queue.collection ol.items {
+        /* transition: width 250ms; */
         /* width: calc(min(600px, calc(50vw - 32px)) - 64px); */
         width: var(--queueGutter);
       }
@@ -95,9 +101,13 @@
       body.queueMin #queue > ol.items {
         overflow: visible;
       }
-      body.queueMin #queue > ol.items li:hover {
-        overflow-x: visible;
-        width: var(--queueGutter) !important;
+      @media (hover: hover) {
+        /* https://benborgers.com/posts/media-hover */
+        body.queueMin #queue .controls:hover,
+        body.queueMin #queue.collection ol.items li:hover {
+          overflow-x: visible;
+          width: var(--queueGutter) !important;
+        }
       }
       #queue .items .logo {
         display: none;
@@ -225,10 +235,10 @@
         text-shadow: 1px 1px 2px var(--colorAccent);
         align-self: flex-end;
       }
-      body.poster #playing .item .title {
-        /* margin-top: 65vmin; */
-        /* padding-top: 100px; */
-      }
+      /* body.poster #playing .item .title {
+        margin-top: 65vmin;
+        padding-top: 100px;
+      } */
       body.poster #playing .item * {
         z-index: 2;
         line-height: initial;
@@ -249,11 +259,96 @@
       }
 
       #playing .item button.play {
-        z-index: 4;
+        z-index: 4 !important;
       }
 
       body.poster #playing .item .album {
         width: initial;
+      }
+
+      body.fullscreen {
+        margin-top: 0px;
+      }
+      body.fullscreen.queueMin {
+        margin-left: 64px;
+        /* width: 100dvw; */
+      }
+      body.fullscreen #queue.collection {
+        position: static;
+        height: 100vmin;
+      }
+      /* body.fullscreen .collection #playing,
+      body.fullscreen .collection #playing .item {
+        height: 100vh;
+      } */
+      body.fullscreen .collection #playing .item {
+        margin-left: 0px;
+        padding-left: 0px;
+        /* padding-top: calc(100dvh - 256px); */
+        padding-top: calc(100dvh - 4em);
+        padding-right: 8px;
+        /* width: calc(100dvw - 72px); */
+        width: 100dvw;
+        /* width: calc(100dvw + 64px); */
+        /* font-size: 2em; */
+      }
+      body.fullscreen .collection #playing .item * {
+        z-index: 1;
+      }
+      @media (min-width: 1200px) {
+        body.fullscreen .collection #playing .item {
+          font-size: 2em;
+        }
+      }
+      body.fullscreen #queue.collection #playing .item .artwork {
+        top: 0px;
+        /* height: calc(100vmin - 64px); */
+        height: 100vmin;
+        /* width: calc(100vmin - 64px); */
+        width: 100vmin;
+        aspect-ratio: 1 / 1;
+        /* left: 64px; */
+        /* margin: 0px auto; */
+        /* translate: calc(50vw - 50% + 64px); */
+        translate: calc(50vw - 50vmin);
+      }
+      body.fullscreen #queue.collection #playing .item .album,
+      body.fullscreen #queue.collection #playing .item .artist {
+        float: left;
+      }
+      body.fullscreen #queue.collection #playing {
+        position: static;
+        width: calc(100dvw - 64px);
+        margin-left: -64px;
+      }
+      body.fullscreen #queue.collection .controls,
+      body.fullscreen #queue.collection #whatsnext.controls,
+      body.fullscreen #queue ol.items {
+        /* position: fixed; */
+        position: sticky;
+        left: 0px;
+        margin-left: -64px;
+      }
+      /* body.fullscreen #queue.collection #controls {
+        top: 0px;
+      } */
+      body.fullscreen #queue ol.items {
+        height: calc(100dvh - 128px);
+        /* margin: 64px 0px; */
+        /* top: 0px; */
+        position: sticky;
+        margin-left: -64px;
+      }
+      body.fullscreen #queue.collection #whatsnext {
+        /* bottom: 0px; */
+        bottom: unset;
+      }
+
+      body.fullscreen #queue.collection #playing button.play {
+        transform: translate(calc(50dvw + 64px), 50dvh);
+        transform: translate(50dvw, 50dvh);
+        transform: translate(50vw, 50vmin);
+        margin: calc(-1 * 0.5em);
       }
     </style>
     <style>
@@ -261,32 +356,51 @@
         display: flex;
         gap: 0.25rem;
         overflow: auto;
-        /* padding: 0.5rem; */
-        padding: 11px 0.5rem;
-        margin-left: 64px;
-        /* background: linear-gradient(90deg, rgb(255 255 255 / 10%), transparent); */
+        /* padding: 9px 0.5rem; */
+        padding: 8px 0.5rem;
+        /* margin-left: 64px; */
+        background: linear-gradient(90deg, #7a7a7a, transparent);
+        position: fixed;
+        z-index: 2;
       }
       body.columns #filters {
         margin-left: 0px;
       }
-      #filters > button {
+      #filters button {
         flex-shrink: 0;
-        background-color: rgb(0 0 0 / 5%);
+        background-color: rgb(0 0 0 / 25%);
         padding: 0.5rem 0.75rem;
         border-radius: 0.25rem;
         border: 0px;
-        /* color: white; */
-        font-size: 0.75em;
+        color: white;
+        font-size: 1em;
         font-weight: 500;
+        padding: 0.75rem;
+      }
+      #filters button#search,
+      #filters button#togglePlaylist {
+        /* font-size: 1.5em; */
+        /* padding: 0.7rem; */
+        font-size: 48px;
+        padding-top: unset;
+        padding-bottom: unset;
+        border-radius: unset;
+        background-color: unset;
+        padding-left: unset;
+      }
+      #filters button:active,
+      #filters button:focus,
+      #filters button:target {
+        filter: invert(1);
+        background-color: #000;
       }
 
       #also-like-items {
         display: grid;
         gap: 0.5rem;
-        /* grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); */
-        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(calc(100% / 13), 1fr));
         padding: 0.5rem;
-        /* margin-right: 64px; */
+        width: 100%;
       }
       #also-like-items > button {
         display: flex;
@@ -298,19 +412,33 @@
         object-fit: cover;
         border-radius: 0.25rem;
       }
-      @media (max-width: 800) {
+      @media (max-width: 1600px) {
         #also-like-items {
-          grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 9), 1fr));
+        }
+      }
+      @media (max-width: 1280px) {
+        #also-like-items {
+          /* grid-template-columns: repeat(auto-fit, minmax(calc(100% / 10), 1fr)); */
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 7), 1fr));
+        }
+      }
+      @media (max-width: 800px) {
+        #also-like-items {
+          /* grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); */
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 5), 1fr));
         }
       }
       @media (max-width: 600px) {
         #also-like-items {
-          grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+          /* grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); */
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 4), 1fr));
         }
       }
       @media (max-width: 328px) {
         #also-like-items {
-          grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+          /* grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); */
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3), 1fr));
         }
       }
       #apps-container {
@@ -368,7 +496,6 @@
         max-height: 500px;
         overflow: auto hidden;
         margin: 8px 0px;
-        /* width: calc(100dvw - 76px); */
         width: 100%;
       }
       /* body.narrow .horiz {
@@ -408,6 +535,7 @@
     </style>
     <!-- <div id="container"></div> -->
     <div id="filters" class="no-scrollbar">
+      <button type="button">MxPx</button>
       <button type="button">latest</button>
       <button type="button">trending</button>
       <button type="button">live</button>
@@ -416,6 +544,1139 @@
       <button type="button">genre&colon;pop</button>
       <button type="button">genre&colon;classical</button>
     </div>
+    <style>
+      main {
+        width: 100%;
+        margin-top: 72px;
+      }
+      main img {
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+      }
+      main > * {
+        display: block;
+      }
+      main > * {
+        margin: 8px;
+        display: grid;
+        grid: auto-flow dense / repeat(auto-fill, minmax(250px, max-content));
+        grid-gap: 8px;
+      }
+      main > * > * {
+        box-shadow: 4px 4px 4px 0 darkgray;
+      }
+      main .album ol {
+        box-shadow: none;
+      }
+      main .album ol .title {
+        color: initial;
+      }
+      main .artist > img {
+        grid-area: span 2 / span 2;
+      }
+
+      main .artwork {
+        /* width: 50%; */
+        /* max-width: 50%; */
+        float: left;
+        margin-left: 0px;
+        /* width: 814px; */
+        width: 50%;
+        position: sticky;
+        top: 222px;
+      }
+      main .artwork a {
+        height: 200px;
+        width: 200px;
+        aspect-ratio: 1;
+        display: inline-block;
+      }
+      main .artwork a img {
+        /* width: 100%; */
+        height: 100%;
+        aspect-ratio: 1/1;
+      }
+      main .artwork .artistart {
+        height: 400px;
+        width: 400px;
+        float: left;
+        margin-right: 8px;
+      }
+      /* main > * > .title { */
+      main * .title {
+        position: absolute;
+        cursor: pointer;
+        color: white;
+        box-shadow: none;
+        text-shadow: 2px 2px darkgray;
+        /* max-width: 250px; */
+      }
+      main * .title,
+      main * .duration,
+      main * ol li::marker {
+        text-shadow: 2px 2px darkgray;
+      }
+      main > .album {
+        display: grid;
+        /* grid-gap: 8px; */
+        grid: auto-flow dense / repeat(auto-fill, minmax(49%, max-content));
+      }
+      main > .artist > .album {
+        max-width: 450px;
+      }
+      main > .artist > .album ol {
+        max-width: 450px;
+      }
+      main > .artist > .album > .title:after {
+        content: " +";
+      }
+      main .duration {
+        float: right;
+      }
+      main > * > .title {
+        margin-left: 0px;
+      }
+      main * > p.description {
+        grid-column: span 2;
+        padding: 0px 8px 8px 0px;
+      }
+
+      @media (max-width: 900px) {
+        main .artwork > * {
+          height: 49% !important;
+          width: 49% !important;
+          margin: 0px !important;
+          float: unset !important;
+        }
+      }
+      @media (max-width: 640px) {
+        main .artwork {
+          width: 25%;
+        }
+        main .artwork > * {
+          height: 100% !important;
+          width: 100% !important;
+        }
+        main > * > * {
+          /* margin-left: 814px; */
+          margin-left: 25%;
+        }
+        main .artist .title {
+          top: 128px;
+        }
+      }
+    </style>
+    <main>
+      <div class="album" id="album-Sr2H7RXNV3eZXmMhi2byY9">
+        <h2 class="title">Let It Happen</h2>
+        <img src="/img/albumart/Sr2H7RXNV3eZXmMhi2byY9.jpg" />
+        <ol>
+          <li>
+            <span
+              data-title="Never Learn"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="125.596734693878"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="9gNjCBSdYHqws9N7dh6UpF"
+              data-album="Let It Happen"
+              data-name="MxPx - Never Learn"
+              data-url="/api/stream/9gNjCBSdYHqws9N7dh6UpF/MxPx-Never%20Learn.mp3"
+            >
+              <span class="title">Never Learn</span
+              ><span class="duration">2:05</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Begin to Start"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="209.397551020408"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="MWeqr4VNtgdFTuepKEt5EF"
+              data-album="Let It Happen"
+              data-name="MxPx - Begin to Start"
+              data-url="/api/stream/MWeqr4VNtgdFTuepKEt5EF/MxPx-Begin%20to%20Start.mp3"
+            >
+              <span class="title">Begin to Start</span
+              ><span class="duration">3:29</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Swing Set Girl"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="135.65387755102"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="SSN8UYaozibRB46QRy7CjG"
+              data-album="Let It Happen"
+              data-name="MxPx - Swing Set Girl"
+              data-url="/api/stream/SSN8UYaozibRB46QRy7CjG/MxPx-Swing%20Set%20Girl.mp3"
+            >
+              <span class="title">Swing Set Girl</span
+              ><span class="duration">2:15</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Sick Boy"
+              data-artist="MxPx"
+              data-composer="Mike Ness"
+              data-duration="152.920816326531"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="T3ehvH2crYFuXHzMnAdGms"
+              data-album="Let It Happen"
+              data-name="MxPx - Sick Boy"
+              data-url="/api/stream/T3ehvH2crYFuXHzMnAdGms/MxPx-Sick%20Boy.mp3"
+            >
+              <span class="title">Sick Boy</span
+              ><span class="duration">2:32</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Oh Donna"
+              data-artist="MxPx"
+              data-composer="Ritchie Valens"
+              data-duration="132.989387755102"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="Jpb5ANxxSL21Pm6CtLrjHe"
+              data-album="Let It Happen"
+              data-name="MxPx - Oh Donna"
+              data-url="/api/stream/Jpb5ANxxSL21Pm6CtLrjHe/MxPx-Oh%20Donna.mp3"
+            >
+              <span class="title">Oh Donna</span
+              ><span class="duration">2:12</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Small Town Minds"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="63.3208163265306"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="4w9RU6X659X1XrmYxF8TUx"
+              data-album="Let It Happen"
+              data-name="MxPx - Small Town Minds"
+              data-url="/api/stream/4w9RU6X659X1XrmYxF8TUx/MxPx-Small%20Town%20Minds.mp3"
+            >
+              <span class="title">Small Town Minds</span
+              ><span class="duration">1:03</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="First Class Mail"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="128.130612244898"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="2xPovdJhAr3kFu73UF7UqM"
+              data-album="Let It Happen"
+              data-name="MxPx - First Class Mail"
+              data-url="/api/stream/2xPovdJhAr3kFu73UF7UqM/MxPx-First%20Class%20Mail.mp3"
+            >
+              <span class="title">First Class Mail</span
+              ><span class="duration">2:08</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Can't See Not Saying"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="104.045714285714"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="C6TQMASxdPGpSGPsn8raWJ"
+              data-album="Let It Happen"
+              data-name="MxPx - Can't See Not Saying"
+              data-url="/api/stream/C6TQMASxdPGpSGPsn8raWJ/MxPx-Can%27t%20See%20Not%20Saying.mp3"
+            >
+              <span class="title">Can't See Not Saying</span
+              ><span class="duration">1:44</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="GSF"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="154.279183673469"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="AghgcJZKFtT7M6hVwNxXXo"
+              data-album="Let It Happen"
+              data-name="MxPx - GSF"
+              data-url="/api/stream/AghgcJZKFtT7M6hVwNxXXo/MxPx-GSF.mp3"
+            >
+              <span class="title">GSF</span><span class="duration">2:34</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Thoughts and Ideas"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="107.441632653061"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="41W5bzs5f69xT5QEPEToBx"
+              data-album="Let It Happen"
+              data-name="MxPx - Thoughts and Ideas"
+              data-url="/api/stream/41W5bzs5f69xT5QEPEToBx/MxPx-Thoughts%20and%20Ideas.mp3"
+            >
+              <span class="title">Thoughts and Ideas</span
+              ><span class="duration">1:47</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Easier Said Than Done"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="85.4204081632653"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="DuQiskH7s2cm4FDDd86DBM"
+              data-album="Let It Happen"
+              data-name="MxPx - Easier Said Than Done"
+              data-url="/api/stream/DuQiskH7s2cm4FDDd86DBM/MxPx-Easier%20Said%20Than%20Done.mp3"
+            >
+              <span class="title">Easier Said Than Done</span
+              ><span class="duration">1:25</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Rock and Roll Girl"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="126.458775510204"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="KPREkhS9pqF26o33pPr5FQ"
+              data-album="Let It Happen"
+              data-name="MxPx - Rock and Roll Girl"
+              data-url="/api/stream/KPREkhS9pqF26o33pPr5FQ/MxPx-Rock%20and%20Roll%20Girl.mp3"
+            >
+              <span class="title">Rock and Roll Girl</span
+              ><span class="duration">2:06</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Important Enough to Mention"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="139.728979591837"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="QyJa16sEsbyhAWW2i45Ccq"
+              data-album="Let It Happen"
+              data-name="MxPx - Important Enough to Mention"
+              data-url="/api/stream/QyJa16sEsbyhAWW2i45Ccq/MxPx-Important%20Enough%20to%20Mention.mp3"
+            >
+              <span class="title">Important Enough to Mention</span
+              ><span class="duration">2:19</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Elvis Is Dead"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="111.934693877551"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="4q8rA132nmGUG8TTtHHgHr"
+              data-album="Let It Happen"
+              data-name="MxPx - Elvis Is Dead"
+              data-url="/api/stream/4q8rA132nmGUG8TTtHHgHr/MxPx-Elvis%20Is%20Dead.mp3"
+            >
+              <span class="title">Elvis Is Dead</span
+              ><span class="duration">1:51</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Lifetime Enlightenment"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="67.6832653061225"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="5MKp8wRvntdtXcd98y5Eac"
+              data-album="Let It Happen"
+              data-name="MxPx - Lifetime Enlightenment"
+              data-url="/api/stream/5MKp8wRvntdtXcd98y5Eac/MxPx-Lifetime%20Enlightenment.mp3"
+            >
+              <span class="title">Lifetime Enlightenment</span
+              ><span class="duration">1:07</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Let It Happen"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="177.684897959184"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="BY8tBgaSXFQ8vfQrYWigfA"
+              data-album="Let It Happen"
+              data-name="MxPx - Let It Happen"
+              data-url="/api/stream/BY8tBgaSXFQ8vfQrYWigfA/MxPx-Let%20It%20Happen.mp3"
+            >
+              <span class="title">Let It Happen</span
+              ><span class="duration">2:57</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Hot and Cold"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="131.030204081633"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="698Zywwsym2NX1gcGLDpfr"
+              data-album="Let It Happen"
+              data-name="MxPx - Hot and Cold"
+              data-url="/api/stream/698Zywwsym2NX1gcGLDpfr/MxPx-Hot%20and%20Cold.mp3"
+            >
+              <span class="title">Hot and Cold</span
+              ><span class="duration">2:11</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="So Kill Me"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="108.643265306122"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="J8zF25JXks5txH9fMUKNc4"
+              data-album="Let It Happen"
+              data-name="MxPx - So Kill Me"
+              data-url="/api/stream/J8zF25JXks5txH9fMUKNc4/MxPx-So%20Kill%20Me.mp3"
+            >
+              <span class="title">So Kill Me</span
+              ><span class="duration">1:48</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Suggestion Box"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="135.70612244898"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="3ptCwQuq6nj2UCPXRUuvLB"
+              data-album="Let It Happen"
+              data-name="MxPx - Suggestion Box"
+              data-url="/api/stream/3ptCwQuq6nj2UCPXRUuvLB/MxPx-Suggestion%20Box.mp3"
+            >
+              <span class="title">Suggestion Box</span
+              ><span class="duration">2:15</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Suggestion Box"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="135.70612244898"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="FEHTuvej5twM9kX1nuDPxx"
+              data-album="Let It Happen"
+              data-name="MxPx - Suggestion Box"
+              data-url="/api/stream/FEHTuvej5twM9kX1nuDPxx/MxPx-Suggestion%20Box.mp3"
+            >
+              <span class="title">Suggestion Box</span
+              ><span class="duration">2:15</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Creation"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="83.1477551020408"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="UupqJpMtm3SdihAPT56dQY"
+              data-album="Let It Happen"
+              data-name="MxPx - Creation"
+              data-url="/api/stream/UupqJpMtm3SdihAPT56dQY/MxPx-Creation.mp3"
+            >
+              <span class="title">Creation</span
+              ><span class="duration">1:23</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Want Ad"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="112.718367346939"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="JcRi3yR7a9aXwvgQp5PcoA"
+              data-album="Let It Happen"
+              data-name="MxPx - Want Ad"
+              data-url="/api/stream/JcRi3yR7a9aXwvgQp5PcoA/MxPx-Want%20Ad.mp3"
+            >
+              <span class="title">Want Ad</span
+              ><span class="duration">1:52</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Honest Answers"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="176.352653061224"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="8ZcmPhkzgNcKYghCwofrMA"
+              data-album="Let It Happen"
+              data-name="MxPx - Honest Answers"
+              data-url="/api/stream/8ZcmPhkzgNcKYghCwofrMA/MxPx-Honest%20Answers.mp3"
+            >
+              <span class="title">Honest Answers</span
+              ><span class="duration">2:56</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Late Last Night"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="94.0669387755102"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="3wYz46PeDzhSVmNXPjh2TK"
+              data-album="Let It Happen"
+              data-name="MxPx - Late Last Night"
+              data-url="/api/stream/3wYz46PeDzhSVmNXPjh2TK/MxPx-Late%20Last%20Night.mp3"
+            >
+              <span class="title">Late Last Night</span
+              ><span class="duration">1:34</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Biased Bigotry"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="149.551020408163"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="EKd5Fc2fAGZzMpWy7E8NjZ"
+              data-album="Let It Happen"
+              data-name="MxPx - Biased Bigotry"
+              data-url="/api/stream/EKd5Fc2fAGZzMpWy7E8NjZ/MxPx-Biased%20Bigotry.mp3"
+            >
+              <span class="title">Biased Bigotry</span
+              ><span class="duration">2:29</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Circumstance"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="130.847346938776"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="LqNfStp6x7px2FNVCjav1k"
+              data-album="Let It Happen"
+              data-name="MxPx - Circumstance"
+              data-url="/api/stream/LqNfStp6x7px2FNVCjav1k/MxPx-Circumstance.mp3"
+            >
+              <span class="title">Circumstance</span
+              ><span class="duration">2:10</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Do Your Feet Hurt (Critter Version)"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="196.048979591837"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="8CVZSEk4rPSmxvTXCCGXgk"
+              data-album="Let It Happen"
+              data-name="MxPx - Do Your Feet Hurt (Critter Version)"
+              data-url="/api/stream/8CVZSEk4rPSmxvTXCCGXgk/MxPx-Do%20Your%20Feet%20Hurt%20%28Critter%20Version%29.mp3"
+            >
+              <span class="title">Do Your Feet Hurt (Critter Version)</span
+              ><span class="duration">3:16</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Move to Bremerton (Extended Version)"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="251.715918367347"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="FSWArYGuAjMwFwxXmUS7FG"
+              data-album="Let It Happen"
+              data-name="MxPx - Move to Bremerton (Extended Version)"
+              data-url="/api/stream/FSWArYGuAjMwFwxXmUS7FG/MxPx-Move%20to%20Bremerton%20%28Extended%20Version%29.mp3"
+            >
+              <span class="title">Move to Bremerton (Extended Version)</span
+              ><span class="duration">4:11</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Chick Magnet (Demo Version)"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="182.595918367347"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="PAzax7cDD2FrqzHK2imQ4L"
+              data-album="Let It Happen"
+              data-name="MxPx - Chick Magnet (Demo Version)"
+              data-url="/api/stream/PAzax7cDD2FrqzHK2imQ4L/MxPx-Chick%20Magnet%20%28Demo%20Version%29.mp3"
+            >
+              <span class="title">Chick Magnet (Demo Version)</span
+              ><span class="duration">3:02</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Sorry So Sorry (Demo Version)"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="136.254693877551"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="Peb4i1NFBhKEMNeqdjMDuS"
+              data-album="Let It Happen"
+              data-name="MxPx - Sorry So Sorry (Demo Version)"
+              data-url="/api/stream/Peb4i1NFBhKEMNeqdjMDuS/MxPx-Sorry%20So%20Sorry%20%28Demo%20Version%29.mp3"
+            >
+              <span class="title">Sorry So Sorry (Demo Version)</span
+              ><span class="duration">2:16</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Christalena (Demo Version)"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="126.850612244898"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="5qna4K297d2817MaRNkuwc"
+              data-album="Let It Happen"
+              data-name="MxPx - Christalena (Demo Version)"
+              data-url="/api/stream/5qna4K297d2817MaRNkuwc/MxPx-Christalena%20%28Demo%20Version%29.mp3"
+            >
+              <span class="title">Christalena (Demo Version)</span
+              ><span class="duration">2:06</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="South Bound (Demo Version)"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="152.555102040816"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="44oa2svLo3eMqsXxjd7X4d"
+              data-album="Let It Happen"
+              data-name="MxPx - South Bound (Demo Version)"
+              data-url="/api/stream/44oa2svLo3eMqsXxjd7X4d/MxPx-South%20Bound%20%28Demo%20Version%29.mp3"
+            >
+              <span class="title">South Bound (Demo Version)</span
+              ><span class="duration">2:32</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Life in General (Demo Version)"
+              data-artist="MxPx"
+              data-composer="Mike Herrera"
+              data-duration="113.162448979592"
+              data-albumid="Sr2H7RXNV3eZXmMhi2byY9"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="UpiUxQQSfYmbYsXpPH7Z5y"
+              data-album="Let It Happen"
+              data-name="MxPx - Life in General (Demo Version)"
+              data-url="/api/stream/UpiUxQQSfYmbYsXpPH7Z5y/MxPx-Life%20in%20General%20%28Demo%20Version%29.mp3"
+            >
+              <span class="title">Life in General (Demo Version)</span
+              ><span class="duration">1:53</span>
+            </span>
+          </li>
+        </ol>
+      </div>
+      <div class="album" id="album-Y8SMsGBcTqbr1XLvUUgtyj">
+        <h2 class="title">At the Show</h2>
+        <img src="/img/albumart/Y8SMsGBcTqbr1XLvUUgtyj.jpg" />
+        <ol>
+          <li>
+            <span
+              data-title="Tomorrow's Another Day"
+              data-artist="MxPx"
+              data-duration="189.25715"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="CtbdZMnFQvg4TsSE6pEDvm"
+              data-album="At the Show"
+              data-name="MxPx - Tomorrow's Another Day"
+              data-url="/api/stream/CtbdZMnFQvg4TsSE6pEDvm/MxPx-Tomorrow%27s%20Another%20Day.mp3"
+            >
+              <span class="title">Tomorrow's Another Day</span
+              ><span class="duration">3:09</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-artist="MxPx"
+              data-title="Sometimes You Have to Ask Yourself"
+              data-duration="156.6302"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="EXQz7QLYFQyPbcSou7KgxW"
+              data-album="At the Show"
+              data-name="MxPx - Sometimes You Have to Ask Yourself"
+              data-url="/api/stream/EXQz7QLYFQyPbcSou7KgxW/MxPx-Sometimes%20You%20Have%20to%20Ask%20Yourself.mp3"
+            >
+              <span class="title">Sometimes You Have to Ask Yourself</span
+              ><span class="duration">2:36</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Under Lock and Key"
+              data-artist="MxPx"
+              data-duration="142.49795"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="Vtewuv9jrPBBYDTCXhPu4T"
+              data-album="At the Show"
+              data-name="MxPx - Under Lock and Key"
+              data-url="/api/stream/Vtewuv9jrPBBYDTCXhPu4T/MxPx-Under%20Lock%20and%20Key.mp3"
+            >
+              <span class="title">Under Lock and Key</span
+              ><span class="duration">2:22</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Chick Magnet"
+              data-artist="MxPx"
+              data-duration="187.97715"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="7YcGBm9wwpAPitkXWy3PEF"
+              data-album="At the Show"
+              data-name="MxPx - Chick Magnet"
+              data-url="/api/stream/7YcGBm9wwpAPitkXWy3PEF/MxPx-Chick%20Magnet.mp3"
+            >
+              <span class="title">Chick Magnet</span
+              ><span class="duration">3:07</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="G.S.F."
+              data-artist="MxPx"
+              data-duration="156.81305"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="41FzFZmZSiPZHgVD9cVJCc"
+              data-album="At the Show"
+              data-name="MxPx - G.S.F."
+              data-url="/api/stream/41FzFZmZSiPZHgVD9cVJCc/MxPx-G.S.F..mp3"
+            >
+              <span class="title">G.S.F.</span
+              ><span class="duration">2:36</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Cold and All Alone"
+              data-artist="MxPx"
+              data-duration="120.2939"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="5gDJqDSDsEtCuQpUQBZ2bL"
+              data-album="At the Show"
+              data-name="MxPx - Cold and All Alone"
+              data-url="/api/stream/5gDJqDSDsEtCuQpUQBZ2bL/MxPx-Cold%20and%20All%20Alone.mp3"
+            >
+              <span class="title">Cold and All Alone</span
+              ><span class="duration">2:00</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Party, My House, Be There"
+              data-artist="MxPx"
+              data-duration="137.4302"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="RBJ4RbEjBXSvhCfyp6rAeh"
+              data-album="At the Show"
+              data-name="MxPx - Party, My House, Be There"
+              data-url="/api/stream/RBJ4RbEjBXSvhCfyp6rAeh/MxPx-Party%2C%20My%20House%2C%20Be%20There.mp3"
+            >
+              <span class="title">Party, My House, Be There</span
+              ><span class="duration">2:17</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-artist="MxPx"
+              data-title="The Downfall of Western Civilization"
+              data-duration="149.60325"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="L6415KRw9Veyi65jWWWLA3"
+              data-album="At the Show"
+              data-name="MxPx - The Downfall of Western Civilization"
+              data-url="/api/stream/L6415KRw9Veyi65jWWWLA3/MxPx-The%20Downfall%20of%20Western%20Civilization.mp3"
+            >
+              <span class="title">The Downfall of Western Civilization</span
+              ><span class="duration">2:29</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Time Brings Change"
+              data-artist="MxPx"
+              data-duration="128.96655"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="FZrEB9hpjXphLeDsFmxVzw"
+              data-album="At the Show"
+              data-name="MxPx - Time Brings Change"
+              data-url="/api/stream/FZrEB9hpjXphLeDsFmxVzw/MxPx-Time%20Brings%20Change.mp3"
+            >
+              <span class="title">Time Brings Change</span
+              ><span class="duration">2:08</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Fist vs. Tact"
+              data-artist="MxPx"
+              data-duration="69.51185"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="A3XfeSPw2EGf7NkEmsesB7"
+              data-album="At the Show"
+              data-name="MxPx - Fist vs. Tact"
+              data-url="/api/stream/A3XfeSPw2EGf7NkEmsesB7/MxPx-Fist%20vs.%20Tact.mp3"
+            >
+              <span class="title">Fist vs. Tact</span
+              ><span class="duration">1:09</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Small Town Minds"
+              data-artist="MxPx"
+              data-duration="65.6196"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="YQYW9Zg8iK8TJrshGtt73w"
+              data-album="At the Show"
+              data-name="MxPx - Small Town Minds"
+              data-url="/api/stream/YQYW9Zg8iK8TJrshGtt73w/MxPx-Small%20Town%20Minds.mp3"
+            >
+              <span class="title">Small Town Minds</span
+              ><span class="duration">1:05</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Walking Bye"
+              data-artist="MxPx"
+              data-duration="78.34125"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="Q7qUT36t1C1y6mdRzxaDYr"
+              data-album="At the Show"
+              data-name="MxPx - Walking Bye"
+              data-url="/api/stream/Q7qUT36t1C1y6mdRzxaDYr/MxPx-Walking%20Bye.mp3"
+            >
+              <span class="title">Walking Bye</span
+              ><span class="duration">1:18</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="KKK Took My Baby Away"
+              data-artist="MxPx"
+              data-duration="114.0245"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="FSS56MqNir4AneVyf2kNtv"
+              data-album="At the Show"
+              data-name="MxPx - KKK Took My Baby Away"
+              data-url="/api/stream/FSS56MqNir4AneVyf2kNtv/MxPx-KKK%20Took%20My%20Baby%20Away.mp3"
+            >
+              <span class="title">KKK Took My Baby Away</span
+              ><span class="duration">1:54</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Andrea"
+              data-artist="MxPx"
+              data-duration="107.0498"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="D342m3cG34Nof2Wj9LNYpY"
+              data-album="At the Show"
+              data-name="MxPx - Andrea"
+              data-url="/api/stream/D342m3cG34Nof2Wj9LNYpY/MxPx-Andrea.mp3"
+            >
+              <span class="title">Andrea</span
+              ><span class="duration">1:47</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Want Ad"
+              data-artist="MxPx"
+              data-duration="100.80655"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="QUFBx7QhziB95n57m2syBB"
+              data-album="At the Show"
+              data-name="MxPx - Want Ad"
+              data-url="/api/stream/QUFBx7QhziB95n57m2syBB/MxPx-Want%20Ad.mp3"
+            >
+              <span class="title">Want Ad</span
+              ><span class="duration">1:40</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Lifetime Enlightenment"
+              data-artist="MxPx"
+              data-duration="62.79835"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="A27nudtPu8nKXihqirZAWr"
+              data-album="At the Show"
+              data-name="MxPx - Lifetime Enlightenment"
+              data-url="/api/stream/A27nudtPu8nKXihqirZAWr/MxPx-Lifetime%20Enlightenment.mp3"
+            >
+              <span class="title">Lifetime Enlightenment</span
+              ><span class="duration">1:02</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Forgive and Forget"
+              data-artist="MxPx"
+              data-duration="29.1788"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="TxFqkMfK9Vu4pkQAvZjVh5"
+              data-album="At the Show"
+              data-name="MxPx - Forgive and Forget"
+              data-url="/api/stream/TxFqkMfK9Vu4pkQAvZjVh5/MxPx-Forgive%20and%20Forget.mp3"
+            >
+              <span class="title">Forgive and Forget</span
+              ><span class="duration">0:29</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Invitation to Understanding"
+              data-artist="MxPx"
+              data-duration="139.5461"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="F1qHQtrazd67EveafgC733"
+              data-album="At the Show"
+              data-name="MxPx - Invitation to Understanding"
+              data-url="/api/stream/F1qHQtrazd67EveafgC733/MxPx-Invitation%20to%20Understanding.mp3"
+            >
+              <span class="title">Invitation to Understanding</span
+              ><span class="duration">2:19</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Dolores"
+              data-artist="MxPx"
+              data-duration="70.8441"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="AAoBJ3CVmRn7KUgCVzRmaE"
+              data-album="At the Show"
+              data-name="MxPx - Dolores"
+              data-url="/api/stream/AAoBJ3CVmRn7KUgCVzRmaE/MxPx-Dolores.mp3"
+            >
+              <span class="title">Dolores</span
+              ><span class="duration">1:10</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Middlename"
+              data-artist="MxPx"
+              data-duration="193.46285"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="2aXP8bA5rV7VgxcGhhzGcS"
+              data-album="At the Show"
+              data-name="MxPx - Middlename"
+              data-url="/api/stream/2aXP8bA5rV7VgxcGhhzGcS/MxPx-Middlename.mp3"
+            >
+              <span class="title">Middlename</span
+              ><span class="duration">3:13</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="I'm OK, You're OK"
+              data-artist="MxPx"
+              data-duration="153.7045"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="WGRQpeiu8M7Wv68QiUU9kD"
+              data-album="At the Show"
+              data-name="MxPx - I'm OK, You're OK"
+              data-url="/api/stream/WGRQpeiu8M7Wv68QiUU9kD/MxPx-I%27m%20OK%2C%20You%27re%20OK.mp3"
+            >
+              <span class="title">I'm OK, You're OK</span
+              ><span class="duration">2:33</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="The Theme Fiasco"
+              data-artist="MxPx"
+              data-duration="140.2253"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="rLfe2fcRQ72yKhtH8GF5X"
+              data-album="At the Show"
+              data-name="MxPx - The Theme Fiasco"
+              data-url="/api/stream/rLfe2fcRQ72yKhtH8GF5X/MxPx-The%20Theme%20Fiasco.mp3"
+            >
+              <span class="title">The Theme Fiasco</span
+              ><span class="duration">2:20</span>
+            </span>
+          </li>
+          <li>
+            <span
+              data-title="Punk Rawk Show"
+              data-artist="MxPx"
+              data-duration="240.56165"
+              data-albumid="Y8SMsGBcTqbr1XLvUUgtyj"
+              data-artistid="7DXUSS6TLaxNdoHcVwZGVs"
+              data-id="M1uRLJfmHrXxAy5nc5JeXK"
+              data-album="At the Show"
+              data-name="MxPx - Punk Rawk Show"
+              data-url="/api/stream/M1uRLJfmHrXxAy5nc5JeXK/MxPx-Punk%20Rawk%20Show.mp3"
+            >
+              <span class="title">Punk Rawk Show</span
+              ><span class="duration">4:00</span>
+            </span>
+          </li>
+        </ol>
+      </div>
+      <div class="artist" id="artist-7DXUSS6TLaxNdoHcVwZGVs">
+        <img src="/img/artistart/7DXUSS6TLaxNdoHcVwZGVs.jpg" />
+        <h2 class="title">MxPx</h2>
+        <p class="description">
+          MxPx is an American punk rock band from Bremerton, Washington founded
+          in 1992 as Magnified Plaid. The band has skate punk leanings, with
+          connections to the pop punk scene. Current members include Mike
+          Herrera on lead vocals and bass guitar, Yuri Ruley on drums and
+          percussion, Tom Wisniewski on lead guitar and backing vocals and Chris
+          Adkins on rhythm guitar and backing vocals. The band's discography
+          includes nine studio albums, four EPs, four compilation albums, a live
+          album, a VHS tape, a DVD and 20 singles.<br />(source:<a
+            href="https://en.wikipedia.org/wiki/MxPx"
+            >Wikipedia.org</a
+          >)
+        </p>
+        <div class="album" id="album-R7UiwtimWuvizcgMM9yVoa">
+          <h2 class="title">Pokinatcha</h2>
+          <img src="/img/albumart/R7UiwtimWuvizcgMM9yVoa.jpg" />
+        </div>
+        <div class="album" id="album-AAst65rJvL79ms3CKWqJ8p">
+          <h2 class="title">Teenage Politics</h2>
+          <img src="/img/albumart/AAst65rJvL79ms3CKWqJ8p.jpg" />
+        </div>
+        <div class="album" id="album-94fynuGv4tUfeNhsonDede">
+          <h2 class="title">On The Cover</h2>
+          <img src="/img/albumart/94fynuGv4tUfeNhsonDede.jpg" />
+        </div>
+        <div class="album" id="album-BMi8BU1C8HAfRiHh7yksHN">
+          <h2 class="title">Life in General</h2>
+          <img src="/img/albumart/BMi8BU1C8HAfRiHh7yksHN.jpg" />
+        </div>
+        <div class="album" id="album-PR351r17WpAGTon3sDPNLh">
+          <h2 class="title">Slowly Going the Way of the Buffalo</h2>
+          <img src="/img/albumart/PR351r17WpAGTon3sDPNLh.jpg" />
+        </div>
+        <div class="album" id="album-Sr2H7RXNV3eZXmMhi2byY9">
+          <h2 class="title">Let It Happen</h2>
+          <img src="/img/albumart/Sr2H7RXNV3eZXmMhi2byY9.jpg" />
+        </div>
+        <div class="album" id="album-Y8SMsGBcTqbr1XLvUUgtyj">
+          <h2 class="title">At the Show</h2>
+          <img src="/img/albumart/Y8SMsGBcTqbr1XLvUUgtyj.jpg" />
+        </div>
+        <div class="album" id="album-J35hTMjtQxaWvQHs3VeYhf">
+          <h2 class="title">Punk Rawk Christmas</h2>
+          <img src="/img/albumart/J35hTMjtQxaWvQHs3VeYhf.jpg" />
+        </div>
+      </div>
+    </main>
+    <script>
+      const dom_main = document.querySelector("main");
+      const prependMain = (element) => {
+        dom_main.insertAdjacentElement("afterbegin", element);
+      };
+
+      const toggleRollup = (ev) => {
+        // ev.target
+        ev.target.parentNode.querySelector("ol")?.classList.toggle("rollup");
+      };
+      document
+        .querySelectorAll("main .artist .album > .title")
+        .forEach((el) => {
+          el.addEventListener("click", toggleRollup);
+        });
+      // TEST
+      // const dom_main_test = createElement("div");
+      // prependMain(dom_main_test);
+    </script>
     <div id="also-like-items">
       <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></button>
       <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
@@ -553,7 +1814,8 @@
             const item = ev.detail.item;
             // item.addEventListener("populated", (ev2) => {
             item.addEventListener("rendered", (ev2) => {
-              item.appendLogo();
+              // item.appendLogo();
+              item.insertAdjacentElement("beforeend", dom_button_resize);
             });
           });
           queue.addEventListener("rendered", logEvent);
@@ -573,35 +1835,6 @@
           const dom_queue = document.querySelector("#queue");
           const dom_ol_queue = document.querySelector("ol#queue");
 
-          const createElement = (tagName, values) => {
-            let newElement = document.createElement(tagName);
-            if (!!values.innerText) newElement.innerText = values.innerText;
-
-            if (!!values.classes) {
-              if (!Array.isArray(values.classes)) {
-                // treat it as a String if it has a length and then make an Array of size 1
-                if (values.classes?.length) values.classes = [values.classes];
-                else
-                  Object.entries(values.classes).forEach(([k, v]) => {
-                    newElement.classList.toggle(k, v || true);
-                  });
-              }
-              // re-check if it is an Array again in case we converted
-              if (Array.isArray(values.classes)) {
-                values.classes.forEach((k) => {
-                  newElement.classList.add(k);
-                });
-              }
-            }
-
-            if (!!values.attributes)
-              Object.entries(values.attributes).forEach(([k, v]) => {
-                newElement.setAttribute(k, v);
-              });
-
-            return newElement;
-          };
-
           let toggleQueue = createElement("button", {
             classes: {
               "material-symbols-outlined": true,
@@ -616,7 +1849,6 @@
           dom_controls.insertAdjacentElement("afterbegin", toggleQueue);
           toggleQueue.addEventListener("click", (ev) => {
             ev.preventDefault();
-
             // show or hide Queue and update toggleQueue's class to match
             toggleQueue.classList.toggle(
               "activated",
@@ -624,21 +1856,37 @@
             );
           });
 
-          // insert the whatsnew.controls DIV
-          // let dom_whatsnext = createElement("div", "controls");
+          const dom_button_resize = createElement("button", {
+            classes: ["icon", "material-symbols-outlined"],
+            attributes: {
+              id: "resize",
+              title: "Toggle fullscreen",
+            },
+            // innerText: "open_in_full",
+            innerText: "expand_content",
+          });
+          const toggleResize = () => {
+            // toggle body.fullscreen and save if it was added (true)
+            const isFullscreen = document.body.classList.toggle("fullscreen");
+            document.body.classList.add("queueMin"); // minimize Queue
+
+            // change the icon
+            dom_button_resize.innerText = isFullscreen
+              ? "vertical_align_top"
+              : "expand_content";
+            // ? "maximize"
+            //   : "open_in_full";
+          };
+          dom_button_resize.addEventListener("click", (ev) => {
+            ev.preventDefault();
+            toggleResize();
+          });
+
+          // insert the whatsnext.controls DIV
           let dom_whatsnext = createElement("div", {
             classes: "controls",
             attributes: { id: "whatsnext" },
           });
-          // let whatsnew = createElement(
-          //   "button",
-          //   "material-symbols-outlined",
-          //   {
-          //     id: "addNew",
-          //     title: "Add more to the Queue",
-          //   },
-          //   "playlist_add"
-          // );
           dom_queue.insertAdjacentElement("beforeend", dom_whatsnext);
           let dom_addnew = createElement("button", {
             classes: "material-symbols-outlined",
@@ -663,10 +1911,51 @@
             "beforeend",
             dom_controls.querySelector("button#share")
           );
-        });
 
-      const div_horiz = document.querySelector("div.horiz");
-      div_horiz.addEventListener("wheel", scrollHorizontal);
+          // let dom_search = dom_controls.querySelector("button#search");
+          document
+            .querySelector("#filters")
+            ?.insertAdjacentElement(
+              "afterbegin",
+              dom_controls.querySelector("button#search")
+            );
+          // ?.insertAdjacentElement("afterbegin", dom_search);
+          let dom_button_playlist = createElement("button", {
+            classes: "material-symbols-outlined",
+            attributes: {
+              id: "togglePlaylist",
+              title: "Show/Hide Playlists",
+            },
+            innerText: "format_list_numbered",
+          });
+          document
+            .querySelector("#filters")
+            ?.insertAdjacentElement("afterbegin", dom_button_playlist);
+
+          const div_horiz = document.querySelector("div.horiz");
+          div_horiz.addEventListener("wheel", scrollHorizontal);
+
+          const observer = new IntersectionObserver(
+            ([e]) => {
+              document.body.classList.toggle(
+                "fullscreen",
+                document.body.classList.contains("fullscreen") &&
+                  e.isIntersecting
+                // &&
+                // toggleResize();
+              );
+            },
+            {
+              // threshold: [0.75],
+              threshold: [0.5],
+              // threshold: [0.25],
+              // threshold: [0.1],
+            }
+          );
+          observer.observe(document.querySelector("#queue #playing"));
+          // observer.observe(document.querySelector("#queue .items"));
+          // observer.observe(preheader);
+        });
     </script>
   </body>
 </html>

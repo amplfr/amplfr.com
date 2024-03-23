@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- prettier-ignore -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <link href="/css/item.css" rel="stylesheet" />
+    <!-- <link href="/item.css" rel="stylesheet" /> -->
     <link href="/css/collection.css" rel="stylesheet" />
+    <!-- <script src="/js/amplfr.min.js"></script> -->
     <script src="/js/amplfr.js"></script>
     <script src="/js/collection.js"></script>
     <title>AmplfrCollection test</title>
@@ -16,16 +18,10 @@
   <body>
     <style>
       body {
-        font-size: 1em;
         display: contents;
       }
-      #container {
-        /* width: 25em; */
-        margin: 0 auto;
-        font-size: 2em;
-      }
     </style>
-    <div id="container"></div>
+    <!-- <div id="container"></div> -->
     <script>
       const title = ">Amplfr";
       const url = document.location.origin + "/api/queue";
@@ -36,12 +32,16 @@
 
           json.title = "Queue";
           json.url = url;
+          console.table(json);
 
-          let collection = new AmplfrCollection(json, false);
+          let collection = new AmplfrCollection(json);
+          // let collection = new AmplfrCollection(json, false);
           // collection = new AmplfrCollection("kREnNawsJqg7PFfX3LYqEy");
+          collection.push("album/ssJLoBpTnHbb4ojwjDLKYt");
           collection.loop = true;
 
-          document.querySelector("#container").appendChild(collection);
+          // document.querySelector("#container").appendChild(collection);
+          document.body.appendChild(collection);
 
           if (collection.clientWidth < collection.clientHeight)
             collection.querySelector("#playing .item").classList.add("square");

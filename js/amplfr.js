@@ -298,14 +298,8 @@ class AmplfrItem extends HTMLDivElement {
 
     if (!!source.album) this._data.album = source.album; // if album exists, save it
     // if (!!source.href) this._data.href = source.href; // if href exists, save it
-    // if (!!source.url) this._data.url = source.url; // if url exists, save it
-    if (!!source.src) this._data.src = source.src; // if src exists, save it
-    else {
-      let { fetchSrc } = await import('./parseAmplfr.js')
-      let { src } = await fetchSrc(source)
-      this._data.src = src
-    }
 
+    // if (!!source.url) this._data.url = source.url; // if url exists, save it
     // if URL exists, save it. fallback to src
     try {
       if (!!source.url || !!source.src)
@@ -315,6 +309,13 @@ class AmplfrItem extends HTMLDivElement {
         );
     } catch (err) {
       console.warn(err);
+    }
+
+    if (!!source.src) this._data.src = source.src; // if src exists, save it
+    else {
+      let { fetchSrc } = await import('./parseAmplfr.js')
+      let { src } = await fetchSrc(source)
+      this._data.src = src
     }
 
     this.title = this._data?.title; // save the title as the title of the element
@@ -367,7 +368,8 @@ class AmplfrItem extends HTMLDivElement {
     this._options.media.setAttribute('crossorigin', 'anonymous')
 
     if (!this._data.src || !Array.isArray(this._data.src)) {
-      this._options.media.src = this._data.src  // || this._data.url;
+      // this._options.media.src = this._data.src  // || this._data.url;
+      this._options.media.src = this._data.src || this._data.url;
       if (!!type) this._options.media.type = type;
     } else {
       this._data.src.forEach((f) => {
@@ -492,7 +494,8 @@ class AmplfrItem extends HTMLDivElement {
 
       // attempt a HEAD request for the media file to get its size
       // this is a best effort attempt, hence the .then()
-      fetch(this._options.media.currentSrc, { method: "HEAD" })
+      // fetch(this._options.media.currentSrc, { method: "HEAD" })
+      fetch(this.sourceURL, { method: "HEAD" })
         .then((res) => {
           if (res.ok) {
             // use either the Content-Range (total) or Content-Length header values
@@ -591,9 +594,9 @@ class AmplfrItem extends HTMLDivElement {
 
     return this._data?.sourceURL;
   }
-  get src() {
-    return this._data?.src
-  }
+  // get src() {
+  //   return this._data?.src
+  // }
   /**
    * Gets the domain from the source URL
    * @returns {string}
@@ -862,23 +865,23 @@ class AmplfrItem extends HTMLDivElement {
     this.appendArtwork();
     this.appendTitle();
     this.appendTimeline(); // after Title but before Artist(s), Collection, etc.
-    this.appendAdditional( // append additional (secondary) elements
-      this._options.root,
-      this.appendArtists,
-      this.appendAlbum,
-      this.appendTime,
-      this.appendControlsAdditional,
-      this.appendLogo
-    );
+    this.appendArtists()
+    this.appendAlbum()
+    // if (this._options?.logo != false) this.appendLogo()
+    this.appendLogo()
+    this.appendTime()
+    this.appendControlsAdditional()
 
     // if this._options.mediaType isn't deferred (NULL), call appendMedia(this._options.mediaType) now
     if (!!this._options.mediaType) this.appendMedia(this._options.mediaType);
 
     // finishing touches
     this._options.root.setAttribute("title", this._data.title);
+    this._options.root.dataset.id = this._data.id
     // this._makeDraggable(); // make it dragable
 
     // finish up the build
+    this.dispatchEvent(new Event('rendered'))
     if (!this._options?.useShadow || !!this.shadowRoot) return;
     const shadow = this.attachShadow({ mode: "open" }); // Create a shadow root
 
@@ -921,6 +924,7 @@ class AmplfrItem extends HTMLDivElement {
     if (this._options?.artwork == false) return;
 
     let artwork =
+      root.querySelector('.artwork') ||
       this._data?.artwork ||
       "/albumart/" + (this._data.album?.id || this._data.albumid || `item/${this._data.id}`) + ".jpg";
 
@@ -928,7 +932,7 @@ class AmplfrItem extends HTMLDivElement {
     artworkE.classList.add("artwork");
 
     if (!artwork || artwork.indexOf("undefined") > -1) {
-      artworkE.style.backgroundColor = "grey";
+      // artworkE.style.backgroundColor = "grey";
       // use a blank 1x1 PNG
       artworkE.src =
         "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=";
@@ -1067,7 +1071,8 @@ class AmplfrItem extends HTMLDivElement {
 
     // add the control button
     const e = document.createElement("button");
-    e.classList.add("material-icons");
+    e.classList.add("material-symbols-outlined");
+    e.classList.add("play");
 
     // if (
     //   this._options?.controls == false ||
@@ -1076,7 +1081,9 @@ class AmplfrItem extends HTMLDivElement {
     // )
     //   e.classList.add("hidden")
 
-    root.appendChild(e);
+    // root.appendChild(e);
+    // e.setAttribute('id', 'play')
+    root.insertBefore(e, root.firstChild);
 
     const _this = this;
     e.addEventListener("click", function (e) {
@@ -1112,6 +1119,12 @@ class AmplfrItem extends HTMLDivElement {
         },
         title: "Share this",
       },
+      {
+        conditional: !navigator.canShare,
+        text: "share",
+        href: _this.sourceURL,
+        title: "Share this",
+      },
     ];
     // add class 'icons' if root is a LI
     if (root.tagName == "LI") root.classList.add("icons");
@@ -1122,26 +1135,35 @@ class AmplfrItem extends HTMLDivElement {
       if (!ctrl?.conditional) return; // bail if the check doesn't pass
 
       // add the control button
-      const e = document.createElement("span");
-      e.classList.add("material-icons", "icon");
+      let e
+      if (!!ctrl.href) {
+        e = document.createElement("a");
+        e.setAttribute('href', ctrl.href)
+      }
+      else if (!!ctrl.fn) {
+        e = document.createElement("span");
+
+        e.addEventListener("click", function (e) {
+          e.preventDefault();
+          ctrl.fn(e);
+        });
+        e.addEventListener("touchend", function (e) {
+          e.preventDefault();
+          ctrl.fn(e);
+        });
+      }
+      e.classList.add("material-symbols-outlined", "icon");
       e.textContent = ctrl.text;
       e.setAttribute("title", ctrl.title);
       root.appendChild(e);
-
-      e.addEventListener("click", function (e) {
-        e.preventDefault();
-        ctrl.fn(e);
-      });
-      e.addEventListener("touchend", function (e) {
-        e.preventDefault();
-        ctrl.fn(e);
-      });
 
       // save this control for easy access later
       _this._options.controls[ctrl.text] = e;
     });
   }
   appendLogo(root = this._options.root) {
+    if (this._options?.logo == false) return
+    // if (this._options.controls?.logo == false) return
     const logoE = document.createElement("a");
 
     // SVG and Path elements need to use createElementNS() to include Namespace
@@ -1185,7 +1207,8 @@ class AmplfrItem extends HTMLDivElement {
   }
   appendTime(root = this._options.root) {
     // add the time element (to root)
-    const timeE = document.createElement("div");
+    // const timeE = document.createElement("div");
+    const timeE = document.createElement("span");
     timeE.classList.add("time");
     // this._options.root.appendChild(timeE);
     root.appendChild(timeE);
