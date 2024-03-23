@@ -20,5 +20,9 @@
         }
       ]
     }
+  ],
+  "rewrites": [
+    { "source": "/api/:id/:title", "destination": "/api/:id.json" },
+    { "source": "/api/:id/:title?:key", "destination": "/api/:id.json" }
   ]
 }
