@@ -22,418 +22,855 @@ Number.prototype.toHumanBytes = function () {
 };
 
 /**
- * Data fields that make up an AmplfrArtist
- * @typedef {object} AmplfrArtist
- * @property {string} name - Name of the artist.
- * @property {string|string[]} [links] - URLs related to this artist.
- * @property {number|Date} [started] - Start year/date for artist.
- * @property {number|Date} [ended] - End year/date for artist.
- * @property {string} [url] - Canonical URL for this artist.
- * @example {
- *  name: "Foo Fighters",
- *  started: 1994,
- *  links: [
- *    "https://www.instagram.com/foofighters/",
- *    "https://musicbrainz.org/artist/67f66c07-6e61-4026-ade5-7e782fad3a5d",
- *    "https://twitter.com/foofighters/"
- *  ]
- * }
- * @event AmplfrItem#abort Passes underlying HTMLMediaElement's abort event
- * @event AmplfrItem#canplay Passes underlying HTMLMediaElement's canplay event
- * @event AmplfrItem#canplaythrough Passes underlying HTMLMediaElement's canplaythrough event
- * @event AmplfrItem#durationchange Passes underlying HTMLMediaElement's durationchange event
- * @event AmplfrItem#emptied Passes underlying HTMLMediaElement's emptied event
- * @event AmplfrItem#ended Passes underlying HTMLMediaElement's ended event
- * @event AmplfrItem#error Passes underlying HTMLMediaElement's error event
- * @event AmplfrItem#loaded Fires when underlying HTMLMediaElement is completely loaded
- * @event AmplfrItem#loadeddata Passes underlying HTMLMediaElement's loadeddata event
- * @event AmplfrItem#loadedmetadata Passes underlying HTMLMediaElement's loadedmetadata event
- * @event AmplfrItem#loadstart Passes underlying HTMLMediaElement's loadstart event
- * @event AmplfrItem#pause Passes underlying HTMLMediaElement's pause event
- * @event AmplfrItem#play Passes underlying HTMLMediaElement's play event
- * @event AmplfrItem#playing Passes underlying HTMLMediaElement's playing event
- * @event AmplfrItem#progress Passes underlying HTMLMediaElement's progress event
- * @event AmplfrItem#ratechange Passes underlying HTMLMediaElement's ratechange event
- * @event AmplfrItem#resize Passes underlying HTMLMediaElement's resize event
- * @event AmplfrItem#seeked Passes underlying HTMLMediaElement's seeked event
- * @event AmplfrItem#seeking Passes underlying HTMLMediaElement's seeking event
- * @event AmplfrItem#stalled Passes underlying HTMLMediaElement's stalled event
- * @event AmplfrItem#suspend Passes underlying HTMLMediaElement's suspend event
- * @event AmplfrItem#timeupdate Passes underlying HTMLMediaElement's timeupdate event
- * @event AmplfrItem#volumechange Passes underlying HTMLMediaElement's volumechange event
- * @event AmplfrItem#waiting Passes underlying HTMLMediaElement's waiting event
+ * AmplfrItem
+ *  * loads Amplfr element(s)
+ *      * fetches data based on provided ID
+ *      * loads AmplfrAudio for single Audio element
+ *      * loads AmplfrCollection for multiple elements
+ *  * renders basic metadata elements
+ *      * title
+ *      * artist(s) (optionally)
+ *      * albums    (optionally)
+ *      * artwork   (optionally)
+ * 
+ * AmplfrAudio
+ *  * loads Audio element
+ *  * play()
+ *  * src
+ *  * adds .playing class when playing
+ *  * adds .ended class when played (and loop == false)
+ * 
+ * AmplfrCollection
+ *  * loads multiple AmplfrAudio elements and sets up interaction between them
+ *  * adds control elements
+ *  * adds .active class to element to play
  */
+
+
+const Elements = [
+  "amplfr-item",
+  "amplfr-collection",
+].join(", ")
 /**
- * Data fields needed to build an AmplfrItem
- * @typedef {object} ItemSourceData
- * @property {string} url - Canonical URL for the item.
- * @property {string} title - Title of the item.
- * @property {AmplfrArtist[]|AmplfrArtist|string|string[]} [artists] - Artist(s) that made the item.
- * @property {string} [artwork] - URL for artwork. If not specified, attempts to extract image from the media file the URL points at.
- * @property {string} [mime] - The MIME type of the media file. If not specified, attempts to extract the MIME type of the media file the URL points at.
- * @property {Number} [start=0.0] - Time (in seconds) to start playback.
- * @property {Number} [end=NULL] - Time (in seconds) to end playback.
+ * AmplfrItem
+ * 
+ * @TODO MAYBE add timer(seconds=0) that fires _seconds_ from the start or end of the playback
+ *  - timer pauses when media is paused
+ *  - when _seconds_ is <0, they're offset before the end
+ *  - when _seconds_ is >=0, they're offset after the start
  */
+class AmplfrItem extends HTMLElement {
+  #bytes;
+  #data
+  #dom = {};
+  #media
 
-const assignDataset = (datasetObj, obj, keys = null) => {
-  keys = keys || Object.keys(obj);
-  keys.forEach((k) => {
-    if (!!obj[k]) datasetObj[k] = obj[k];
-  });
-};
+  constructor(src) {
+    super();
 
-/**
- * Fetches the given URL, parses the received media file, and returns an object with the extracted metadata.
- * The return object can be used as input for _populate().
- * @param {string} [url] The URL endpoint/file to fetch and parse. Only works if the result is a media file with metadata.
- * @private
- * @returns {ItemSourceData}
- */
-const parseURL = async (url) => {
-  // TODO need to pull in https://github.com/Borewit/music-metadata-browser
-  // const mm = import(https://github.com/Borewit/music-metadata-browser)
-  let src = new URL(url, document.location);
-  src = src.toString();
-  const response = await fetch(src);
-  const bytes = parseInt(response.headers.get("Content-Length"), 10);
-  const mime = response.headers.get("Content-Type");
-  let obj = {
-    // default the title to the filename minus dashes, etc.
-    title: url.split("/").pop().split(".")[0].replace(/[-_]/g, " "),
-    src: [
-      {
-        mime,
-        bytes,
-        url: src.toString(),
-      },
-    ],
-    url,
-  };
-
-  // if JSMediaTags is available, then use it to extract the needed ID3v2 tags
-  if (!!window.jsmediatags) {
-    // call jsmediatags as a Promise
-    const jsmediatagsPromise = async (src) =>
-      await new Promise((resolve, reject) => {
-        new window.jsmediatags.Reader(src)
-          .setTagsToRead(["album", "artist", "picture", "title", "year"])
-          .read({
-            onSuccess: (tag) => resolve(tag),
-            onError: (err) => reject(err),
-          });
-      });
-
-    // await for jsmediatagsPromise() to finish
-    try {
-      let { tags } = await jsmediatagsPromise(src);
-
-      if (!!tags.title) obj.title = tags.title;
-      if (!!tags.artist) obj.artist = tags.artist;
-      if (!!tags.album) obj.album = tags.album;
-      if (!!tags.year) obj.year = tags.year;
-      if (!!tags.picture) {
-        // convert the picture to a Data URL for the obj.artwork
-        const { data, format } = tags.picture;
-        let base64String = "";
-        for (let i = 0; i < data.length; i++)
-          base64String += String.fromCharCode(data[i]); // convert each UTF-16 byte to ASCII character
-        obj.artwork = `data:${format};base64,${window.btoa(base64String)}`;
+    if (!!src)
+      // if (src.toString() != "")
+      if (!!src.id && AmplfrItem.isValidID(src.id)) {
+        // src is an object for an AmplfrItem
+        this.#data = src
+        this.#extract()
       }
-    } catch (err) {
-      console.warn(err);
-    }
-  }
+      else if (typeof src == "string")
+        this.setAttribute("src", src)
 
-  return obj;
-};
+    // TODO check for src being a URL direct to a media file (e.g., an MP3 file) and handle appropriately
+    // TODO check for src being a YouTube URL and handle appropriately
+    // TODO check for src being a Spotify URL and handle appropriately
 
-/**
- * @typedef AmplfrItemOptions
- * @property {boolean} [controls=true] Whether to display play/pause control
- * @property {logo} [logo=true] Whether to display the logo
- */
-
-/**
- * AmplfrItem is an HTML element created from a URL or {@link ItemSourceData}, comprised of the related Title, Artist(s), and other metadata.
- * @name AmplfrItem
- * @class
- * @extends {HTMLDivElement}
- */
-class AmplfrItem extends HTMLDivElement {
-  _data; // holds internal data object
-  _options; // holds options and internal parameters
-
-  /**
-   * @constructor
-   * @param {ItemSourceData|string|null} data ItemSourceData object or URL to populate the element. Using a null value will use the element's dataset or src attributes.
-   * @param {AmplfrItemOptions|boolean|null} [mediaType] "Audio" or "video" to indicate the type to be used for the child HTMLMediaElement created as part of creating this when added to the DOM.
-   * If non-null value is given, then the child HTMLMediaElement will be created once added to the DOM - e.g., document.body.appendChild(AmplfrItem).
-   * If null (default) value is used, then the child HTMLMediaElement will not be created until appendMedia() is called.
-   * @param {Object} [options=false]
-   * @param {boolean} [options.controls=false]
-   * @param {boolean} [options.controls.logo=true] Whether to display the logo
-   * @param {HTMLElement} [options.playing] Existing HTML element to populate with playing item
-   */
-  constructor(data, options = false) {
-    super(); // Always call super first in constructor
-
-    if (!(this instanceof AmplfrItem) || data === false) return
-
-    this._data = {};
-    this._options = {
-      useShadow: false, // toggle if resulting elements should go in shadow DOM instead
-      controls: {}, // use an object instead of boolean for easy access to controls later
-      standalone: true, // set to false if this is part of an AmplfrCollection
-      // mediaType: options?.media || options, // defaults to null
-      childTags: ["title", "collection"],
-      class: 'amplfr-item',
-    };
-    if (options.controls != null) this._options.controls = options?.controls;
-    if (options.logo != null) this._options.logo = options?.logo;
-    if (options.standalone != null)
-      this._options.standalone = options?.standalone;
-    if (options.mediaType != null || typeof options == "boolean")
-      this._options.mediaType = options?.media || options;
-
-    if (typeof data !== "string") {
-      this._populate(data);
-      return
-    }
-
-    if (data.indexOf('{') > -1) {
-      let obj
-      try {
-        obj = JSON.parse(decodeURI(data))
-        this._populate(obj)
-        return
-      } catch (err) {
-        console.warn(err)
-      }
-    }
-
-    this._data = AmplfrItem.parse(data); // fetch the URL, saving the promise
   }
 
   static isValidID(text) {
     return typeof text == "string" && /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{22}$/.test(text)
   }
-  /**
-   * Fetches the given URL, parses the received media file, and returns an object with the extracted metadata.
-   * The return object can be used as input for _populate().
-   * @param {string} [url] The URL endpoint/file to fetch and parse.
-   * @returns {ItemSourceData}
-   */
-  static async parse(url) {
-    if (!url && !!this.src) url = this.src; // use src
+
+  get title() {
+    return this.#data.title || this.#data.name
+  }
+  get id() {
+    return this.#data?.id
+  }
+  #calculateID(src) {
+    // from https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0?permalink_comment_id=4261728#gistcomment-4261728
+    // const hash = (text) =>
+    //     // (text || '')
+    //     (text)
+    //         .split("")
+    //         .reduce((s, c) => (Math.imul(31, s) + c.charCodeAt(0)) | 0, 0);
+
+    let url = src
+    try {
+      url = new URL(src, document.location.origin)
+
+      // src = `${url.hostname}-${hash(src)}`
+      src = src.split("")
+        .reduce((s, c) => (Math.imul(31, s) + c.charCodeAt(0)) | 0, 0);
+      src = `${url.hostname}-${src}`
+    } catch (error) {
+      console.error(error.message || error)
+    }
+
+    return src
+  }
+  get dataURL() {
+    // return `/api/${this.id}.json`;
+    let url = this.getAttribute("src")
 
     let domain, id;
     let urlObj;
     // try to slice up the URL and save the domain part
     try {
-      urlObj = new URL(url);
+      urlObj = new URL(url, document.location.origin);
       domain = urlObj.hostname.replace(/www\.|m\./, "");
     } catch (err) {
       domain = url; // in case url wasn't a real URL
-    } finally {
-      [domain, id] = domain.split('/')
+      // } finally {
     }
+
+    let paths = urlObj.pathname.split('/')
+    let index
+    id = paths.find((string, i) => {
+      index = i
+      return AmplfrItem.isValidID(string)
+    })
+
+    // this.#data.id = id || this.#calculateID(url)
+    if (!!id) {
+      if (index > 1)
+        id = `${paths[index - 1]}/${id}`
+      this.#data.id = id
+      url = `/api/${id}.json`
+    } else
+      this.#data.id = this.#calculateID(url)
 
     // check if domain is just an AmplfrID
-    if (AmplfrItem.isValidID(url)) {
-      domain = 'amplfr'
-      url = document.location.origin + `/api/${url}.json`
+    // if (AmplfrItem.isValidID(url)) {
+    // if (AmplfrItem.isValidID(id)) {
+    //     domain = 'amplfr'
+    //     id = document.location.origin + `/api/${id}.json`
+    // }
+
+    // switch (domain) {
+    //     case "localhost":
+    //     case "amplfr":
+    //     case "amplfr.com":
+    //         this.#data.id = id
+    //         break;
+    //     default:
+    //         this.#data.id = this.#calculateID(url)
+    //         // obj = this.#parseBlob(url);
+    //         break;
+    // }
+    // this.#data.domain = domain
+
+    // return urlObj.toString()
+    return url
+  }
+  // get items() {
+  //     return this.#data.items
+  // }
+  #href(obj) {
+    let href
+    if (!!obj.id && (!!obj.title || !!obj.name))
+      href = `/${obj.id}/${encodeURI(obj?.title || obj?.name).replaceAll("%20", "+",)}`;
+    else if (typeof href == "string")
+      href = encodeURI(obj).replaceAll("%20", "+",)
+
+    return href
+  }
+  get href() {
+    // return this.#href(this)
+    return this.#data.href
+  }
+  get url() {
+    // return this.#href(this)
+    return this.#data.url
+  }
+  get sourceURL() {
+    return this.#data.url.replace(/^\/api|\.json$/, "");
+  }
+  toString() {
+    let string = ""
+
+    // first append the Artist(s)' name(s)
+    if (this.#data?.artists && this.#data?.artists.length > 0)
+      string += `${this.#data?.artists.map(artist => artist.name).join(", ")} - `
+
+    string += this.title
+
+    return string
+  }
+  get readyState() { return this.#media?.readyState || 0; }
+  get loaded() {
+    // save the values here to keep get calls to a minimum
+    const buffered = this.#media.buffered;
+    const duration = this.#media.duration;
+    let loaded = 0;
+
+    // use a for-loop in case there are multiple disjoint buffered sections
+    for (let r = 0; r < buffered.length; r++)
+      loaded += buffered.end(r) - buffered.start(r); // add up the durations that are buffered
+
+    return loaded / duration; // get the percent loaded
+  }
+  get items() {
+    if (!this.#data.items)
+      return
+
+    return this.#data?.items.map(item => item.id)
+  }
+  #collection(wholeDocument = false) {
+    // return this.parentNode.querySelectorAll(this.nodeName.toLowerCase())
+    let elements
+
+    if (!!wholeDocument)
+      // parent = document.querySelector('amplfr-item')
+      elements = document.querySelectorAll(Elements)
+    else
+      // parent = this.parentNode.closest('amplfr-item')
+      // parent = this.parentNode.closest(Elements)
+      elements = this.parentNode.querySelectorAll('amplfr-item')
+
+    // return parent.querySelectorAll('amplfr-item')
+    return elements
+  }
+  previous() {
+    // return previousElementSibling if it's also of the same class as this
+    // if known, just return it
+    if (!!this.#dom?.previousE)
+      return this.#dom.previousE
+
+    // loop back from this until we run out of elements or find another like this
+    let element = this.previousElementSibling
+    while (element != null) {
+      if (!!element && element instanceof this.constructor) {
+        this.#dom.previousE = element    // save previous for easy lookup later
+        return this.#dom.previousE
+      }
+
+      element = element.previousElementSibling
     }
 
-    let obj;
-    switch (domain) {
-      case "localhost":
-      case "amplfr":
-      case "amplfr.com":
-        // let { default: parseAmplfr } = await import('./parseAmplfr.js')
-        let { parseAmplfr } = await import('./parseAmplfr.js')
-        // if (!parseAmplfr) ({ parseAmplfr } = await import('./parseAmplfr.js'))
-        obj = parseAmplfr(url);
-        break;
-      default:
-        obj = parseURL(url);
-        break;
+    // return this.#dom.previousE
+    return null
+  }
+  next() {
+    // return nextElementSibling if it's also of the same class as this
+    // return (!!this.nextElementSibling && this.nextElementSibling instanceof this.constructor) ? this.nextElementSibling : null
+    // if known, just return ir
+    if (!!this.#dom?.nextE)
+      return this.#dom.nextE
+
+    // loop back from this until we run out of elements or find another like this
+    let element = this.nextElementSibling
+    while (element != null) {
+      if (!!element && element instanceof this.constructor) {
+        this.#dom.nextE = element    // save next for easy lookup later
+        return this.#dom.nextE
+      }
+
+      element = element.nextElementSibling
     }
 
-    return obj;
+    // return this.#dom.nextE
+    return null
   }
 
   /**
-   *
+   * Parse data-* and src attributes
+   * TODO refactor out JSON parsing to its own function, returning Object
    */
-  async _populate(source) {
-    if (!!this._data) {
-      // was this._parse(URL) called in the constructor?
-      if (this._data.then) {
-        source = await this._data; // await for the Promise to resolve
-        this._data = {}; // reset _data object
-      }
-    }
+  async #fetch() {
+    // if this.#data is already parsed, nothing else to do here
+    if (!!this.#data) return
+    // if (!this.id) return
 
-    // check if there's enough data already provided
-    const dataset = Array.from(this.dataset);
-    if (!source) {
-      if (dataset.length > 0) source = dataset; // use dataset
-      else if (typeof this.src == "string" && this.src != "")
-        source = await AmplfrItem.parse(this.src); // use src
-      else return; // nothing else to do here
-    }
+    this.#data = {}     // initialize this.#data since we've got this far
 
-    // pull out all of the "string" keys from obj, saving to this.dataset
-    const keys = ["id", "src", "url", "href", "title", "artwork", "album", "albumid", "start", "end"];
-    keys.forEach((k) => {
-      if (!!source[k] && typeof source[k] == "string")
-        this._data[k] = source[k];
-    });
-
-    // add the obj.artists (or obj.artist) to a flattened array
-    let artists = [];
-    if (!!source.artists) artists.push(...source.artists);
-    if (!!source.artist) artists.push(source.artist);
-    if (artists.length > 0) this._data.artists = artists.flat();
-
-    if (!!source.album) this._data.album = source.album; // if album exists, save it
-    // if (!!source.href) this._data.href = source.href; // if href exists, save it
-
-    // if (!!source.url) this._data.url = source.url; // if url exists, save it
-    // if URL exists, save it. fallback to src
+    // build the API URL and fetch() its contents
+    let url = new URL(this.dataURL, document.location.origin);
+    const id = this.id  // save to assign later (needed if this is a collection (i.e., "album/..."))
+    let contentType
+    let success = false
     try {
-      if (!!source.url || !!source.src)
-        this._data.url = new URL(
-          source.url || source.src,
-          document.location.origin
-        );
-    } catch (err) {
-      console.warn(err);
+      const response = await fetch(url);
+      if (!response.ok)
+        throw new Error(`${response.status} ${response.statusText}: ${url}`);
+
+      contentType = response.headers.get("content-type")
+      if (contentType == "application/json") {
+        this.#data = await response.json();
+
+        if (!this.#data.id || !this.#data.title)
+          throw new Error("Invalid data returned.")
+
+        this.#data.id = id  // re-save precomputed id
+        // this.#data.href = this.#href(this.#data)
+        url = this.#href(this.#data)
+        this.#data.href = url
+        // this.#data.src = `/api/${id}.json` // in case .files isn't set/available
+
+        // fetch/parse the media files (if there isn't a list of items)
+        if (!this.#data.files && !this.#data.items)
+          this.#fetchSrc()
+
+        success = true
+      }
+      else if (contentType.startsWith("audio/")) {
+        const blob = await response.blob()
+        const metadata = await this.#extractBlob(blob)
+
+        if (!!metadata) {
+          this.#data = metadata
+          this.#data.href = url
+          this.#data.src = url
+          success = true
+        }
+      }
+
+      if (!success && !!this.dataset) {
+        const metadata = this.#extractJSON(this.dataset)
+
+        this.#data = metadata
+        this.#data.href = url
+        this.#data.src = url
+      }
+
+      // this.#data.url = this.dataURL
+      this.#data.url = url
+    } catch (error) {
+      console.warn(error);
     }
 
-    if (!!source.src) this._data.src = source.src; // if src exists, save it
-    else {
-      let { fetchSrc } = await import('./parseAmplfr.js')
-      let { src } = await fetchSrc(source)
-      this._data.src = src
-    }
-
-    this.title = this._data?.title; // save the title as the title of the element
-    this.dispatchEvent(new Event('populated'))
+    await this.#extract()
   }
+  async #fetchSrc() {
+    const id = this.#data.id;
+    let response;
+    let files = this.#data.files || this.#data.src;
 
-  _makeDraggable() {
-    // modify "this" and not "this._options.root" since the whole element should be draggable and not the shadowRoot
-    this.setAttribute("draggable", true);
-    this.addEventListener("dragstart", (e) => {
-      e.dataTransfer.setData("application/json", JSON.stringify(this._data));
-      e.dataTransfer.setData("text/uri-list", this.sourceURL());
-      e.dataTransfer.setData("text/plain", this.sourceURL());
-    });
+    // if files isn't provided, fetch() it
+    if (!files) {
+      try {
+        response = await fetch(`/api/${id}.files`)
+        if (response.ok && !!response.body)
+          this.#data.files = await response.json();
+      } catch (error) {
+        console.warn(error.message || error)
+      }
+    }
+  };
+
+  #extract() {
+    // set the definitive src and title attributes
+    this.setAttribute("src", this.url)
+    if (!!this.id)
+      this.setAttribute("id", this.id)
+    if (!!this.title)
+      this.setAttribute("title", this.title)
+
+    // fetch/parse the media files (if there isn't a list of items)
+    // if (!this.#data.files && !this.#data.items)
+    //     this.#fetchSrc()
+
+    // 
+    // if (!!this.items && this.items?.length > 0) {
+    //     this.items.forEach((data, n) => {
+    if (!!this.#data?.items && this.#data.items?.length > 0) {
+      this.#data.items.forEach((data, n) => {
+        // create new object, passing in already received data object
+        let item = new AmplfrItem(data)
+        item.partOf = this.url  // 
+
+        this.parentElement.appendChild(item)
+      }, this)
+
+      // if artwork isn't already defined, default it
+      if (!this.#data.artwork)
+        this.#data.artwork = `/img/${this.id}.jpg`
+
+      // this.remove()
+      this.classList.add("collection")
+    }
+  }
+  #extractJSON(json) {
+    const metadata = {}
+
+    if (!!json.title)
+      metadata.title = json.title
+    if (!!json.artist)
+      metadata.artists = [json.artist]
+    if (!!json.album)
+      metadata.album = json.album
+    if (!!json.artwork || !!json.picture || !!json.image)
+      metadata.artwork = json.artwork || json.picture || json.image
+
+    // extract the embedded image if metadata.artwork is an object (not a string)
+    if (!!metadata.artwork && typeof metadata.artwork != "string") {
+      const { data, format } = metadata.artwork;
+      let base64String = "";
+      for (let i = 0; i < data.length; i++)
+        base64String += String.fromCharCode(data[i]);
+
+      metadata.artwork = `data:${format};base64,${window.btoa(base64String)}`;
+    }
+
+    return metadata
+  }
+  async #extractBlob(blob) {
+    // DEBUG - not working append jsmediatags to Head
+    const attributes = {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js",
+      integrity: "sha512-YsR46MmyChktsyMMou+Bs74oCa/CDdwft7rJ5wlnmDzMj1mzqncsfJamEEf99Nk7IB0JpTMo5hS8rxB49FUktQ==",
+      crossorigin: "anonymous",
+      referrerpolicy: "no-referrer",
+    }
+
+    let jsmediatags = window.jsmediatags || document.querySelector(`script[src='${attributes.src}']`)
+    if (!jsmediatags) {
+      const element = document.createElement("script");
+      Object.keys(attributes).forEach(k => {
+        element.setAttribute(k, attributes[k])
+      })
+
+      document.head.appendChild(element)
+      // jsmediatags = window.jsmediatags
+      // import jsmediatags from "jsmediatags"
+    }
+
+    let metadata // = {}
+    await new Promise((resolve, reject) => {
+      jsmediatags.read(blob, {
+        onSuccess: (rv) => {
+          resolve(rv)
+        },
+        onError: (error) => {
+          reject(error)
+        }
+      })
+    })
+      .then(rv => {
+        const { tags } = rv
+        metadata = this.#extractJSON(tags)
+      })
+      .catch(error => {
+        // console.warn(error.info || error)
+      })
+
+    return metadata
   }
 
   /**
-   * Appends child HTMLMediaElement.
-   * This will have already been run if the constructor() was called with (mediaType != null).
-   * If mediaType was not set, then appendMedia() must be called before the child HTMLMediaElement is loaded and before any of the media functions parameters will work.
-   * @param {boolean|string|null} [type=true] If set to NULL or TRUE, then
-   * @public
+   * connectedCallback() is called when this element is (re-)added to the DOM
    */
-  appendMedia(type) {
-    if (!!this._options.media && !!this._options.media.id) return; // don't re-run if already done
-    if (!this._options.isBuilt) {
-      // if this hasn't been processed yet
-      // save the given type, so appendMedia() *will* be run once processed
-      this._options.mediaType = type || true;
-      return; // quit for now
+  async connectedCallback() {
+    await this.#fetch();
+
+    this.#render(); // render the basic elements - title, artwork, etc.
+
+    if (!this.items) {
+      // if there's another like this, be polite
+      const prev = this.previous()    // save it since we're going to use it a few times here
+      if (!!prev) {
+        const me = this
+        // prev.addEventListener("canplaythrough", (e) => { me.load() })
+        prev.addEventListener("loadedmetadata", (e) => { me.load() })
+        prev.addEventListener("ended", (e) => {
+          prev.classList.remove("active") // dosen't work with e.target, so need prev
+          me.classList.add("active")
+          me.play()
+        })
+      }
+      else {
+        // this is the only or first
+        this.load(); // attempt to setup and download the related media
+        this.classList.add("active")
+      }
     }
 
-    if (type === true) type = undefined; // can't leave type === true
-    type ??= this._data.mime || "audio"; // TODO is there a better fallback?
-    let tag = type.split("/")[0];
-    switch (tag) {
-      case "audio":
-      case "video":
-        break;
-      case "iframe":
-      default:
-        type = null;
-        break;
+    // TODO maybe (??) setup some this.#collection stuff here
+    // if (this.#collection.length > 1)
+    //     console.this.#log(this.#collection.length)
+  }
+
+  #render() {
+    // this.shadow = this.attachShadow({ mode: "closed" });
+
+    // add the following resource elements only if each isn't already present
+    let resources = {
+      "/css/item.css": "link",
+      "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0": "link",
+      "https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js": "script",
+    }
+    const Head = document.head
+    Object.entries(resources).forEach(([href, elementType]) => {
+      let element
+      if (elementType == "link") {
+        if (document.querySelectorAll(`${elementType}[href='${href}']`).length == 0) {
+          element = document.createElement("link");
+          element.setAttribute("rel", "stylesheet");
+          element.setAttribute("href", href);
+        }
+      } else if (elementType == "script") {
+        if (document.querySelectorAll(`${elementType}[src='${href}']`).length == 0) {
+          element = document.createElement("script");
+          element.setAttribute("src", href);
+        }
+      }
+
+      // append element to Head if it isn't null
+      if (!!element)
+        Head.appendChild(element);
+    })
+
+    this.#dom = this
+    // this.shadow.appendChild(this.#dom);
+    // this.appendChild(this.#dom);
+    this.#dom.classList.add("item");
+
+    // if this is a collection
+    if (!!this.#data?.items && this.#data.items?.length > 0) {
+      // order(probably ?) does matter
+      // this.#renderArtwork();
+      // this.#renderTitle();
+      // this.#renderArtists();
+
+      // remove this empty element
+      // this.parentNode.removeChild(this)
+      return
     }
 
-    this._options.media = document.createElement(tag);
-    this._options.media.autoplay = false; // wait to play
-    this._options.media.controls = false; // no native controls
-    this._options.media.preload = "metadata";
-    this._options.media.setAttribute('crossorigin', 'anonymous')
+    // order (probably?) does matter
+    this.#renderArtwork();
+    this.#renderTitle();
+    this.#renderTimeline();
+    this.#renderArtists();
+    this.#renderAlbum()
+    this.#renderTime();
+  }
+  #renderAlbum() {
+    const album = this.#data.album
+    if (!this.#dom || !album) return;
+    if (!!this.#dom.querySelector(`.album-${album?.id}`)) return;
 
-    if (!this._data.src || !Array.isArray(this._data.src)) {
-      // this._options.media.src = this._data.src  // || this._data.url;
-      this._options.media.src = this._data.src || this._data.url;
-      if (!!type) this._options.media.type = type;
+
+    let albumE;
+    let href = album.href || album.url || album.src || this.#href(album);
+    if (!!href) {
+      href = href.replaceAll(/^\/api|\.json$/g, "")
+      albumE = document.createElement("a");
+      // albumE.setAttribute("href", href.replaceAll(/^\/api|\.json$/g, ""));
+      albumE.setAttribute("href", href);
+      // albumE.setAttribute("href", this.#href(href));
+    } else albumE = document.createElement("span");
+    albumE.classList.add("album");
+
+    albumE.textContent = album.title || album;
+    albumE.title = album.title || album;
+
+    // create a child element for each Artist, populate it, and append it to e
+    // const attributes = ["id", "year"];
+    if (typeof album != "string") {
+      // assignDataset(albumE.dataset, album, attributes); // assign albumE's dataset from this album's attributes
+
+      let dateObj;
+      let dateText;
+      if (!!album.id)
+        albumE.dataset.id = `album/${album.id}`;
+      if (!!album.date) {
+        dateObj = new Date(Date.parse(album.date)); // convert to a Date()
+        dateText = dateObj.toISOString(); // save date as an ISOString
+        // prettier-ignore
+        dateText = dateText.substring(0, dateText.indexOf("T", 8));
+        albumE.dataset.date = dateText || album.date;
+      }
+      if (!!albumE?.dataset.year)
+        albumE.title += ` (${albumE.dataset.year || dateObj?.getFullUTCYear()})`;
+    }
+
+    this.#dom.appendChild(albumE);
+  }
+  #renderArtists() {
+    // create a child element for each Artist, populate it, and append it to e
+    if (this.#data.artists && Array.isArray(this.#data.artists) && this.#data.artists.length > 0)
+      this.#data.artists.forEach(artist => this.#renderArtist(artist))
+  }
+  #renderArtist(artist) {
+    // const artists = this.#data.artists;
+    // const artists = Array.from(this.#data.artists);
+    if (!this.#dom || !artist) return;
+    if (!!this.#dom.querySelector(`.artist-${artist?.id}`)) return;
+
+    let artistE;
+    let href = artist.href || artist.url || artist.src || this.#href(artist)
+    if (!!href) {
+      href = href.replaceAll(/^\/api|\.json$/g, "")
+      artistE = document.createElement("a");
+      // artistE.setAttribute("href", href);
+      artistE.setAttribute("href", href);
+    } else artistE = document.createElement("span");
+    artistE.classList.add("artist");
+
+    if (!!artist.id)
+      artistE.dataset.id = `artist/${artist.id}`;
+    artistE.textContent = artist.name || artist;
+    artistE.title = artist.name || artist;
+
+    this.#dom.appendChild(artistE);
+  }
+  #renderArtwork() {
+    // skip the rest if artwork isn't wanted, or this has already been run
+    // if (!!this.#dom.querySelector('.artwork')) return;
+    if (!!this.#dom.querySelector('.artwork') || this.#data.artwork == false)
+      return;
+
+    // let artwork = "/albumart/"
+    let artwork = this.#data?.artwork
+    if (!artwork) {
+      artwork = "/albumart/"
+      artwork += (this.#data?.album?.id || `item/${this.#data.id}`) + ".jpg";
+    }
+
+    let artworkE = new Image();
+    artworkE.classList.add("artwork");
+
+    if (!artwork || artwork.indexOf("undefined") > -1) {
+      // artworkE.style.backgroundColor = "grey";
+      // use a blank 1x1 PNG
+      artworkE.src =
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=";
     } else {
-      this._data.src.forEach((f) => {
-        // append a source element for each URL/MIME-type
-        const source = document.createElement("source");
-        source.src = f.src || f.url;
-        source.type = f.mime;
-        this._options.media.appendChild(source); // append to the media element
-      });
+      artworkE.src = artwork;
+      artworkE.alt = this.#data.title;
+
+      decorateWithImageColor(artworkE);
     }
 
-    // if there's a start time, then seek to it
-    if (this._data?.start > 0) this.seekTo(this._data.start);
-    this._options.media.id = `play-${this.id}`;
+    // add artworkE, but make sure its the first child of this.#dom
+    return this.#dom.insertAdjacentElement('afterbegin', artworkE);
+  }
+  #renderButton() {
+    // skip if this already exists
+    if (!!this.#dom.querySelector('button')) return;
 
-    this._options.root.appendChild(this._options.media);
+    // add the control button
+    const buttonE = document.createElement("button");
+    buttonE.classList.add("material-symbols-outlined");
+    buttonE.classList.add("play");
 
-    this.appendControls();
+    const that = this
+    buttonE.addEventListener("click", function (e) {
+      e.preventDefault();
+      that.#dom.play();
+    });
+    buttonE.addEventListener("touchend", function (e) {
+      e.preventDefault();
+      that.#dom.play();
+    });
 
-    const _this = this;
-    const updateControl = (control, text, title) => {
-      if (!!_this._options?.controls[control]) {
-        _this._options.controls[control].innerHTML = text;
-        _this._options.controls[control].title = title;
-      }
-    };
-    const log = (msg) =>
-      console.log(`${_this._options.media.currentSrc} - ${msg}`);
-    const logprogress = (msg) => {
-      let bytes = _this.bytes;
-      let loaded = 0;
-      let played = 0;
-      // from https://stackoverflow.com/a/27466608
-      if (!!_this.buffered.length) {
-        loaded = (100 * _this.buffered.end(0)) / _this.duration;
-        played = (100 * _this.currentTime) / _this.duration;
-      }
+    // TODO add additional (hidable) buttons here
 
-      if (bytes > 0) msg += ` ${bytes.toHumanBytes()}\n`;
-      if (bytes > 0) msg += ` ${((loaded / 100) * bytes).toHumanBytes()}`;
-      msg += ` ${loaded.toFixed(0)}% loaded\n`;
-      if (bytes > 0) msg += ` ${((played / 100) * bytes).toHumanBytes()}`;
-      msg += ` ${played.toFixed(0)}% played`;
+    // save the controls for easy access later
+    // this.#dom.controls = {
+    //     button: e,
+    // };
+    this.#dom.button = buttonE
 
-      log(msg);
-    };
-    const warn = (msg) => {
-      console.warn(`${_this._options.media.currentSrc} - ${msg}`);
-      // console.warn(msg);
+    // this.#dom.appendChild(e);
+    // e.setAttribute('id', 'play')
+    // this.#dom.insertBefore(e, this.#dom.firstChild);
+    // add element, but make sure its the first child of this.#dom
+    this.#dom.insertAdjacentElement('afterbegin', buttonE);
+  }
+  #renderTime() {
+    if (!!this.#dom.querySelector('.time')) return;
+    const timeE = document.createElement("span");
+    timeE.classList.add("time");
 
-      //
-      updateControl("button", "report", `Warning: ${msg}`);
-    };
+    if (this.duration > 0)
+      timeE.innerText = Number(this.duration).toMMSS()
+    this.#dom.appendChild(timeE);
 
-    this._options.media.addEventListener("abort", (e) => warn("abort"));
-    this._options.media.addEventListener("error", async (e) => {
+    this.#dom.time = timeE; // save timeE for easy access later
+
+    // const that = this;
+    // timeE.addEventListener("click", (e) => {
+    //     e.preventDefault()
+    //     e.currentTarget.classList.toggle("remaining");
+    //     that.#updateTime();
+    // });
+    // timeE.addEventListener("touchend", (e) => {
+    //     e.preventDefault()
+    //     e.currentTarget.classList.toggle("remaining");
+    //     that.#updateTime();
+    // });
+
+    // add class 'icons' if this.#dom is a LI
+    // if (this.#dom.tagName == "LI") this.#dom.classList.add("time");
+  }
+  #renderTimeline() {
+    if (!!this.#dom.progress) return;
+
+    // add the timeline container element (to this.#dom)
+    const timelineContainerE = document.createElement("div");
+    timelineContainerE.classList.add("timeline-container");
+    // this._dom.progress = timelineContainerE; // save timelineContainerE for easy access later
+    this.#dom.progress = timelineContainerE; // save timelineContainerE for easy access later
+
+    // add the timeline element (to timeline container element)
+    const timelineE = document.createElement("div");
+    timelineE.classList.add("timeline");
+    timelineContainerE.appendChild(timelineE);
+
+    // add the thumb-indicator element (to timeline element)
+    const thumb = document.createElement("div");
+    thumb.classList.add("thumb-indicator");
+    timelineE.appendChild(thumb);
+
+    // append to (what should be) the end of the this.#dom element
+    this.#dom.insertAdjacentElement('beforeend', timelineContainerE);
+  }
+  #renderTitle() {
+    if (!this.#dom || !this.title) return;
+    if (!!this.#dom.querySelector('.title')) return;
+
+    let titleE;
+    // const href = `/${this.#data.id}/${title}`;
+
+    if (!!this.href) {
+      titleE = document.createElement("a");
+      titleE.setAttribute("href", this.href);
+    } else titleE = document.createElement("span");
+    titleE.classList.add("title");
+
+    titleE.textContent = this.title;
+    titleE.title = this.title;
+
+    this.#dom.appendChild(titleE);
+  }
+
+  #updateButton(text, title) {
+    if (!this.button) return
+
+    this.button.innerHTML = text;
+    this.button.title = title;
+  };
+  #updateTime(seconds = this.currentTime) {
+    if (!this || !this.#media) return; // no media, nothing else to do here
+
+    const duration = this.duration || 0
+    const percent = seconds / duration;
+
+    // set the current time
+    this.time.innerText = `${seconds.toMMSS()} / ${duration.toMMSS()}`;    // set the current time
+
+    // set the timeline position
+    if (!!this.progress)
+      this.progress.style.setProperty("--progress-position", percent);
+  }
+
+  #log(msg) {
+    console.log(`${this.#media?.currentSrc || this.url} - ${msg}`);
+  }
+  #logprogress(msg) {
+    let bytes = this.#bytes;
+    let loaded = 0;
+    let played = 0;
+    // from https://stackoverflow.com/a/27466608
+    if (!!that.buffered.length) {
+      loaded = (100 * that.buffered.end(0)) / that.duration;
+      played = (100 * that.currentTime) / that.duration;
+    }
+
+    if (bytes > 0) msg += ` ${bytes.toHumanBytes()}\n`;
+    if (bytes > 0) msg += ` ${((loaded / 100) * bytes).toHumanBytes()}`;
+    msg += ` ${loaded.toFixed(0)}% loaded`;
+    if (bytes > 0) msg += ` ${((played / 100) * bytes).toHumanBytes()}`;
+    msg += ` ${played.toFixed(0)}% played`;
+
+    this.#log(msg);
+  }
+  #warn(msg) {
+    console.warn(`${media.currentSrc} - ${msg}`);
+    that.#updateButton("report", `Warning: ${msg}`);
+  }
+  #progressUpdate(e) {
+    // this.#log(`${e.type} ${this.#bufferedTime}s ${Number.parseFloat(this.#bufferedTime / this.duration * 100).toFixed(4)}%`);
+    // this.#logprogress(`${e.type} ${this.#bufferedTime}s ${Number.parseFloat(this.#bufferedTime / this.duration * 100).toFixed(4)}%`);
+  }
+
+  async load() {
+    // if this.#media is already setup
+    if (!!this.#media) {
+      this.#log("(re)load")
+      this.#media.load()  // re-load()
+      return
+    }
+    this.#log("load")
+
+    // fetch/parse the media files
+    if (!this.#data.files)
+      await this.#fetchSrc()
+
+    const id = this.#data.id
+    const mediaURLPrefix = '/api'   // DEBUG
+    const media = new AmplfrAudio()   //(mediaURL)
+
+    media.autoplay = false; // wait to play
+    media.controls = false; // no native controls
+    media.preload = "metadata";
+    media.setAttribute('crossorigin', 'anonymous')
+
+    if (!!this.#data.files && Array.isArray(this.#data.files)) {
+      const map = {
+        probably: 1,
+        maybe: 2,
+        "": 3, // no chance
+      };
+      // return the list media that client might be able to play
+      this.#data.files
+        .filter(file => media.canPlayType(file.mime || file) !== "") // skip anything client can't play
+        .map(file => {
+          // set the correct src
+          file.src = `${mediaURLPrefix}/${file.filename}`
+          return file;
+        })
+        .sort((a, b) => {
+          // prefer media files that are playable by client
+          if (map[a] < map[b]) return -1; // a < b
+          else if (map[a] > map[b]) return 1; // a > b
+          else return 0; // a = b
+        })
+        .forEach(file => {
+          // append a source element for each URL/MIME-type
+          const source = document.createElement("source");
+          source.src = file.src || file.url || file;
+          if (!!file.mime) source.type = file.mime;
+
+          media.appendChild(source); // append to the media element
+        })
+    }
+    else media.src = this.#data.src || `/api/${id}.mp3`   // DEBUG
+
+    const that = this;
+    this.#media = media
+
+    this.#renderButton()
+
+    this.#media.addEventListener("abort", (e) => this.#warn(e.type));
+    this.#media.addEventListener("error", async (e) => {
       const media = e.currentTarget;
-      // warn("error")
-      // warn(
+      // this.#warn("error")
+      // this.#warn(
       //   `ERROR code ${media.error.code} - ${media.error.message}`
       // );
 
       if (media.networkState === media.NETWORK_NO_SOURCE)
-        return warn(
+        return this.#warn(
           `\nCannot load the resource as given. \Please double check the URL and try again`
         );
 
@@ -449,92 +886,64 @@ class AmplfrItem extends HTMLDivElement {
         res = await fetch(URL, { method: "HEAD" });
       } catch (err) { }
       if (!res.ok)
-        warn(
+        this.#warn(
           `Cannot load "${URL}" (HTTP${res.status}: ${res.statusText}).\n` +
           `Please double check the URL and try again.`
         );
     });
-    this._options.media.addEventListener("stalled", (e) => warn("stalled"));
-    this._options.media.addEventListener("waiting", (e) => {
-      warn("waiting")
-      updateControl("button", "downloading", "Waiting");
+    // this.#media.addEventListener("stalled", (e) => this.#warn(e.type));
+    this.#media.addEventListener("waiting", (e) => {
+      this.#warn(e.type)
+      that.#updateButton("downloading", "Waiting");
     });
 
-    // 1. loadstart       starting to load
-    //    - does this mean HTTP 2xx result?
+    // 1. loadstart       starting to download
     // 2. durationchange  once enough is downloaded that the duration is known
     // 3. loadedmetadata  once enough is downloaded that the duration, dimensions (video only) and text tracks are known
+    //    - should mean HTTP 2xx result?
     // 4. loadeddata      when data for the current frame is loaded, but not enough data to play next frame
     // 5. progress        downloading
     // 6. canplay         when the browser can start playing the specified audio/video (when it has buffered enough to begin)
     // 7. canplaythrough  when the browser estimates it can play through the specified audio/video without having to stop for buffering
-    this._options.media.addEventListener("canplay", (e) => {
-      // log("canplay");
-      updateControl("button", "play_arrow", `Play "${_this.title}"`);
+    this.#media.addEventListener("loadstart", (e) => {
+      if (e.currentTarget != media) return;
+      that.#updateButton("downloading", `Downloading "${that.title}"`);
     });
-    // prettier-ignore
-    this._options.media.addEventListener("canplaythrough", (e) => {
+    this.#media.addEventListener("durationchange", (e) => {
+      this.#progressUpdate(e)
+      that.#updateTime();
     });
-    this._options.media.addEventListener("durationchange", (e) => {
-      _this.#updateTime();
-    });
-    // this._options.media.addEventListener("emptied", (e) => log("emptied"));
-    this._options.media.addEventListener("ended", (e) => {
-      log("ended");
-      if (!!_this._options?.standalone)
-        updateControl("button", "replay", `Replay "${_this.title}"`);
-    });
-    // this._options.media.addEventListener("loadeddata", (e) => {});
-    this._options.media.addEventListener("loadedmetadata", (e) => {
-      _this.#updateTime();
-    });
-    this._options.media.addEventListener("loadstart", (e) => {
-      if (e.currentTarget != _this._options.media) return;
-      updateControl("button", "downloading", `Downloading "${_this.title}"`);
+    this.#media.addEventListener("loadedmetadata", (e) => {
+      this.#log(e.type)
+      that.#updateTime();
 
       // attempt a HEAD request for the media file to get its size
+      // since some of media.currentSrc has been downloaded to get here, this fetch() shouldn't have issues
       // this is a best effort attempt, hence the .then()
-      // fetch(this._options.media.currentSrc, { method: "HEAD" })
-      fetch(this.sourceURL, { method: "HEAD" })
+      fetch(media.currentSrc, { method: "HEAD" })
         .then((res) => {
           if (res.ok) {
             // use either the Content-Range (total) or Content-Length header values
             let ContentRange = res.headers.get("Content-Range")?.split("/")[1]
             let ContentLength = res.headers.get("Content-Length")
-            this._options.mediaBytes = parseInt(ContentRange ?? ContentLength)
+            that.#bytes = parseInt(ContentRange ?? ContentLength)
           }
         })
-        .catch((err) => console.warn(err.message || err));
     });
-    this._options.media.addEventListener("pause", (e) => {
-      if (e.currentTarget != _this._options.media) return;
-      updateControl("button", "play_arrow", `Play "${_this.title}"`);
+    this.#media.addEventListener("loadeddata", (e) => {
+      this.#progressUpdate(e)
     });
-    this._options.media.addEventListener("play", (e) => {
-      if (e.currentTarget != _this._options.media) return;
-      updateControl("button", "pause", `Pause "${_this.title}"`);
-    });
-    // this._options.media.addEventListener("playing", (e) => {});
-    this._options.media.addEventListener("progress", (e) => {
+    this.#media.addEventListener("progress", (e) => {
       // update what percentage (of time) has been downloaded thus far
-      if (!!_this.buffered.length && _this._options.loaded !== true) {
-        // save the values here to keep get calls to a minimum
-        const buffered = _this.buffered;
-        const duration = _this.duration;
-        let loaded = 0;
-        // use a for-loop in case there are multiple disjoint buffered sections
-        for (let r = 0; r < buffered.length; r++)
-          loaded += buffered.end(r) - buffered.start(r); // add up the durations that are buffered
-        _this._options.loaded = loaded / duration; // get the percent loaded
-
+      if (!!that.#media.buffered.length && that.#media.loaded !== true) {
         // is this completely loaded?
-        if (_this._options.loaded >= 1) {
+        if (that.loaded >= 1) {
           // dispatch a "loaded" event
-          this._options.media.dispatchEvent(
+          media.dispatchEvent(
             new Event("loaded", {
               bubbles: true,
               detail: {
-                currentTime: _this.currentTime,
+                currentTime: that.#data.currentTime,
                 duration,
               },
             })
@@ -542,251 +951,92 @@ class AmplfrItem extends HTMLDivElement {
         }
       }
     });
-    // this._options.media.addEventListener("ratechange", (e) => log("ratechange"));
-    // this._options.media.addEventListener("resize", (e) => log("resize"));
-    this._options.media.addEventListener("seeked", (e) => {
-      _this.#updateTime(); // one-off to update the time
+    this.#media.addEventListener("canplay", (e) => {
+      // this.#log(e.type);
+      that.#updateButton("play_arrow", `Play "${that.title}"`);
+      this.#progressUpdate(e)
     });
-    // this._options.media.addEventListener("seeking", (e) => log("seeking"));
-    // this._options.media.addEventListener("suspend", (e) => log("suspend"));
-    this._options.media.addEventListener("timeupdate", (e) => {
-      _this.#updateTime();
+    this.#media.addEventListener("canplaythrough", (e) => {
+      this.#progressUpdate(e)
+      // this.#log(e.type)
     });
-    // this._options.media.addEventListener("volumechange", (e) => log("volumechange"));
+    // this.#media.addEventListener("ratechange", (e) => this.#log(e.type));
+    // this.#media.addEventListener("resize", (e) => this.#log(e.type));
+    this.#media.addEventListener("play", (e) => {
+      if (e.currentTarget != media) return;
+      that.#updateButton("pause", `Pause "${that.title}"`);
+    });
+    this.#media.addEventListener("playing", (e) => {
+      this.#log(e.type)
 
-    // setup any event listeners already User submitted
-    if (!!this._options.listeners) {
-      Object.entries(this._options.listeners).forEach(
+      that.#updateButton("pause", `Pause "${that.title}"`);
+      this.classList.add("playing")
+      this.setAttribute("playing", true)
+    });
+    this.#media.addEventListener("pause", (e) => {
+      if (e.currentTarget != media) return;
+      that.#updateButton("play_arrow", `Play "${that.title}"`);
+      this.classList.remove("playing")
+      this.removeAttribute("playing")
+    });
+    this.#media.addEventListener("seeked", (e) => {
+      this.#log(`${e.type} - ${e.target.currentTime} to ${Number(media.currentTime).toMMSS()} (${media.currentTime})`)
+      that.#updateTime(); // one-off to update the time
+    });
+    // this.#media.addEventListener("seeking", (e) => this.#log(e.type));
+    // this.#media.addEventListener("suspend", (e) => this.#log(e.type));
+    this.#media.addEventListener("timeupdate", (e) => {
+      that.#updateTime();
+    });
+    this.#media.addEventListener("ended", (e) => {
+      this.#log("ended");
+
+      that.classList.remove("playing")
+      this.removeAttribute("playing")
+
+      that.classList.add("played")
+
+      if (!that.#collection()) {
+        that.#updateButton("replay", `Replay "${that.title}"`);
+
+        // "shift" this.next() as being active by adding "active" to next() and removing it from this
+        that.next().classList.toggle("active", that.classList.toggle("active", false))
+      }
+    });
+    // this.#media.addEventListener("emptied", (e) => this.#log(e.type));
+    // this.#media.addEventListener("volumechange", (e) => this.#log(e.type));
+
+    // setup any event listeners User already submitted
+    if (!!this.listeners) {
+      Object.entries(this.listeners).forEach(
         ([event, { listener, options }]) =>
-          this.addEventListener(event, listener, options)
+          this.#media.addEventListener(event, listener, options)
       );
-    }
-  }
 
-  /**
-   * Gets the ID
-   * @returns {string}
-   * @readonly
-   * @override
-   */
-  get id() {
-    if (!this._data?.id) {
-      // from https://gist.github.com/hyamamoto/fd435505d29ebfa3d9716fd2be8d42f0?permalink_comment_id=4261728#gistcomment-4261728
-      const hash = (text) =>
-        (text || '')
-          .split("")
-          .reduce((s, c) => (Math.imul(31, s) + c.charCodeAt(0)) | 0, 0);
-
-      // use the domain plus hash() of the sourceURL
-      this._data.id =
-        this.domain + "-" + (hash(this.sourceURL) + "").replace(/^-/, "");
+      delete this.listeners   // no further need
     }
 
-    return this._data.id;
-  }
-  /** Gets the source URL
-   * @returns {string}
-   * @example "https://amplfr.com/"
-   */
-  get sourceURL() {
-    if (!this._data?.sourceURL)
-      this._data.sourceURL = this._data?.url?.toString();
+    // map all of media's methods to this
+    const skipList = [
+      'constructor',  // don't want media's constructor
+      'addEventListener',
+    ]
+    const descriptors = Object.getOwnPropertyDescriptors(media.constructor.prototype);
+    for (const [key, descriptor] of Object.entries(descriptors)) {
+      if (!skipList.includes(key)) {
+        let functions = {}
+        if (descriptor?.get)
+          Object.assign(functions, { get() { return media[key] } })
+        if (descriptor?.set)
+          Object.assign(functions, { set(v) { media[key] = v } })
+        if (typeof descriptor?.value == "function")
+          that[key] = () => { media[key]() }
 
-    return this._data?.sourceURL;
-  }
-  // get src() {
-  //   return this._data?.src
-  // }
-  /**
-   * Gets the domain from the source URL
-   * @returns {string}
-   * @example "amplfr"
-   */
-  get domain() {
-    if (!this._data.domain)
-      try {
-        this._data.domain = this._data?.url?.hostname;
-      } catch (error) { }
-
-    return this._data.domain;
-  }
-  /**
-   * @see artists
-   */
-  get artist() {
-    return this.artists;
-  }
-  /**
-   * Gets the artists
-   * @returns {string[]|null}
-   */
-  get artists() {
-    return this._data?.artists || null;
-  }
-
-  // media controls
-  /**
-   * Plays the media.
-   * @see {@link appendMedia} for loading the media
-   */
-  play() {
-    // pause if not already
-    if (!this.paused && this._options.media) {
-      this._options.media.pause();
-      return;
-    }
-    if (!!this.ended) this.fastSeek(0); // restart from the beginning if ended
-
-    // play (so long as there are no errors)
-    if (!this._options.media.error) this._options.media.play();
-  }
-  /**
-   * Pauses the media.
-   * @see {@link appendMedia} for loading the media
-   */
-  // prettier-ignore
-  pause() { this._options.media?.pause() }
-  /**
-   * Stops the media.
-   * Equivilent to {@link AmplfrItem#pause|pause()} and {@link AmplfrItem#seekTo|seekTo(0)}
-   * @see {@link AmplfrItem#appendMedia} for loading the media
-   */
-  stop() {
-    this._options.media?.pause();
-    this.fastSeek(this.startTime); // reset the time back to beginning
-  }
-  /**
-   * Fast seeks to the specified time.
-   * @param {number} s The time to seek to in seconds (float or integer).
-   * @see {@link seekTo}
-   * @see {@link appendMedia} for loading the media
-   */
-  // prettier-ignore
-  fastSeek(s) { this.seekTo(s, false) }
-  /**
-   * Seeks to the specified time.
-   * @param {number} s The time to seek to in seconds (float or integer).
-   * If less than 0, will seek to start time or 0. If greater than the duration, will seek to end time or (duration).
-   * @param {boolean} [precise=FALSE] If true uses the more precise currentTime, otherwise use fastSeek
-   * @see {@link appendMedia} for loading the media
-   */
-  seekTo(s, precise = false) {
-    if (!this._options.media) return;
-
-    let startTime = this._data.start || 0;
-    let endTime = this._data.end || this.duration || 0;
-    s = Math.max(startTime, Math.min(s, endTime)); // keep s within known range
-
-    if (!precise && this._options.media.fastSeek)
-      this._options.media.fastSeek(s); // faster (??)
-    else this._options.media.currentTime = s; // more precise
-  }
-
-  // media property set'ers
-  /**
-   * Seeks to the specified time.
-   * @param {number} v The time to seek to in seconds (float or integer).
-   * @see {@link seekTo}
-   * @see {@link appendMedia} for loading the media
-   */
-  // prettier-ignore
-  set currentTime(v) { this.seekTo(v, true); }
-  /**
-   * Fast seeks to the specified time.
-   * @param {number|boolean} [v=!loop] The number of times to loop through all of the items, true to loop indefinitely, or false to not loop again.
-   * @see {@link appendMedia} for loading the media
-   */
-  set loopAll(v = !this.loopAll) {
-    if (!this._options.media) return;
-
-    this._options.media.loop = !!v;
-    if (typeof v == "number") {
-      this._options.loopCounter = Math.min(1, v); // save the number of times to loop (>=0)
-      this._options.media?.addEventListener("ended", this.#decrementLoops);
-      if (v <= 0) this.#decrementLoops();
+        if (Object.keys(functions).length > 0)
+          Object.defineProperty(this, key, functions)
+      }
     }
   }
-  #decrementLoops = (e) => {
-    --this._options.loopCounter; // one less time to loop
-
-    // no more looping
-    if (this._options.loopCounter <= 0) {
-      this._options.loopCounter = 0;
-      this._options.media.loop = false;
-      this._options.media.removeEventListener("ended", this.#decrementLoops);
-    }
-  };
-  // prettier-ignore
-  set muted(v = !this.muted) { if (!!this._options.media) this._options.media.muted = (!!v) }
-  // prettier-ignore
-  set playbackRate(v = 1) { if (!!this._options.media) this._options.media.playbackRate = v }
-  // prettier-ignore
-  set volume(v = 1) { if (!!this._options.media) this._options.media.volume = v }
-
-  // media property get'ers - each returns null if this._options.media is null
-  get startTime() {
-    // try to extract start and end times if url is actually a URL
-    let startTime = this._data.startTime;
-    let searchParams = {};
-    if (!startTime) {
-      try {
-        searchParams = this.sourceURL.searchParams;
-      } catch (error) { }
-
-      startTime = searchParams["s"] || !!searchParams["start"] || 0;
-      this._data.startTime = startTime;
-    }
-    return startTime;
-  }
-  get endTime() {
-    // try to extract start and end times if url is actually a URL
-    let endTime = this._data.endTime;
-    let searchParams = {};
-    if (!endTime) {
-      try {
-        searchParams = this.sourceURL.searchParams;
-      } catch (error) { }
-
-      endTime = searchParams["e"] || !!searchParams["end"] || this.duration;
-      this._data.endTime = endTime;
-    }
-    return endTime;
-  }
-  // prettier-ignore
-  get bytes() { return this._options?.mediaBytes || 0; }
-  // prettier-ignore
-  get loaded() { return this._options?.loaded || 0.0 }
-  // prettier-ignore
-  get buffered() { return this._options.media?.buffered || 0 }
-  // prettier-ignore
-  get currentTime() { return this._options.media?.currentTime }
-  // prettier-ignore
-  get duration() { return this._options.media?.duration }
-  // prettier-ignore
-  get durationMMSS() { return (!!this.duration) ? Number(this.duration).toMMSS() : null }
-  // prettier-ignore
-  get ended() { return this._options.media?.ended }
-  // prettier-ignore
-  get loop() { return this._options.media?.loop }
-  // prettier-ignore
-  get muted() { return this._options.media?.muted }
-  // prettier-ignore
-  get networkState() { return this._options.media?.networkState }
-  // prettier-ignore
-  get paused() { return this._options.media?.paused }
-  get playing() {
-    return this.paused === false ? true : false; // ==false means its playing, but null means nothing
-  }
-  // prettier-ignore
-  get playbackRate() { return this._options.media?.playbackRate }
-  // prettier-ignore
-  get readyState() { return this._options.media?.readyState }
-  // prettier-ignore
-  get seekable() { return this._options.media?.seekable }
-  // prettier-ignore
-  get volume() { return this._options.media?.volume }
-  // prettier-ignore
-  get artwork() { return this._options?.artwork }
 
   addEventListener(type, listener, options) {
     const mediaListeners = [
@@ -818,547 +1068,519 @@ class AmplfrItem extends HTMLDivElement {
 
     if (mediaListeners.includes(type)) {
       // if media isn't setup yet, save this event listener for once it is
-      if (!this._options.media) {
-        this._options.listeners = this._options.listeners || {};
-        this._options.listeners[type] = { listener, options };
+      if (!this.#media) {
+        this.listeners = this.listeners || {};
+        this.listeners[type] = { listener, options };
         return;
       }
 
-      this._options.media.addEventListener(type, listener, options);
+      this.#media.addEventListener(type, listener, options);
     }
     // anything not known, send it onwards to the parent class
     else super.addEventListener(type, listener, options)
+  }
+}
+
+
+const decorateWithImageColor = async (img, palettes) => {
+  // if ColorThief exists
+  if (!ColorThief) return;
+
+  // TODO run ColorThief async
+  if (!palettes) {
+    const colorThief = new ColorThief();
+    if (img.complete) {
+      palettes = await colorThief.getPalette(img, 5);
+      // return this.#decorateWithImageColor(img, palettes);
+      return decorateWithImageColor(img, palettes);
+    } else {
+      const that = this;
+      img.addEventListener("load", async function () {
+        palettes = await colorThief.getPalette(img, 5);
+        // return that.#decorateWithImageColor(img, palettes);
+        return decorateWithImageColor(img, palettes);
+      });
+      return;
+    }
+  }
+
+  // from https://alienryderflex.com/hsp.html
+  const hsp = (rgb) => {
+    const [r, g, b] = rgb;
+
+    return Math.sqrt(
+      0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b)
+    );
+  };
+  // from https://lokeshdhakar.com/projects/color-thief/#faq
+  const rgbToHex = (r, g, b) =>
+    "#" +
+    [r, g, b]
+      .map((x) => {
+        const hex = x.toString(16);
+        return hex.length === 1 ? "0" + hex : hex;
+      })
+      .join("");
+
+  let color, colorAccent;
+  palettes.map((palette) => {
+    if (!!color && !!colorAccent) return; // done
+    let lightness = hsp(palette) / 255;
+
+    if (lightness > 0.1 && !color) color = palette; // not too dark
+    else if (lightness < 0.75 && !colorAccent) colorAccent = palette; // not too bright
+  }, this);
+
+  // this.style.setProperty("--color", rgbToHex(...color));
+  // this.style.setProperty("--colorAccent", rgbToHex(...colorAccent));
+  img.parentElement.style.setProperty("--color", rgbToHex(...color));
+  img.parentElement.style.setProperty("--colorAccent", rgbToHex(...colorAccent));
+}
+
+
+class AmplfrAudio extends Audio {
+  #loopCounter
+  #listening
+
+  constructor(src) {
+    super() // call super() beccause you have to, but don't pass src to start downloading
+    this.className = 'AmplfrAudio'
+  }
+
+  /**
+   * Plays the media.
+   */
+  play() {
+    // pause if not already
+    if (!this.paused) {
+      this.pause();
+      return;
+    }
+    if (!!this.ended) this.fastSeek(0); // restart from the beginning if ended
+
+    // stop any others that are already playing
+    // "There can only be one"
+    document.querySelectorAll('amplfr-item').forEach(item => {
+      // console.this.#log(`${item.title} - is ${item.playing ? "" : "NOT"} playing`)
+      if (item.playing) item.stop()
+    })
+
+    // play (so long as there are no errors)
+    if (!super.error) super.play();
+  }
+  /**
+   * Pauses the media.
+   */
+  // prettier-ignore
+  pause() { super.pause() }
+  /**
+   * Stops the media.
+   * Equivilent to {@link AmplfrItem#pause|pause()} and {@link AmplfrItem#seekTo|seekTo(0)}
+   */
+  stop() {
+    this.pause();
+    this.fastSeek(this?.startTime || 0); // reset the time back to beginning
+  }
+  /**
+   * Fast seeks to the specified time.
+   * @param {number} s The time to seek to in seconds (float or integer).
+   * @see {@link seekTo}
+   */
+  // prettier-ignore
+  fastSeek(s) { this.seekTo(s, false) }
+  /**
+   * Seeks to the specified time.
+   * @param {number} s The time to seek to in seconds (float or integer).
+   * If less than 0, will seek to start time or 0. If greater than the duration, will seek to end time or (duration).
+   * @param {boolean} [precise=FALSE] If true uses the more precise currentTime, otherwise use fastSeek
+   */
+  seekTo(s, precise = false) {
+    // if (!this) return;
+    // let startTime = this._data.start || 0;
+    // let endTime = this._data.end || this.duration || 0;
+    // s = Math.max(startTime, Math.min(s, endTime)); // keep s within known range
+
+    if (!precise && super.fastSeek)
+      super.fastSeek(s); // faster (??)
+    else super.currentTime = s; // more precise
+  }
+
+  // media property get'ers - each returns null if this is null
+  // get startTime() {
+  // try to extract start and end times if url is actually a URL
+  // let startTime = this.#data.startTime;
+  // let searchParams = {};
+  // if (!startTime) {
+  //     try {
+  //         searchParams = this.sourceURL.searchParams;
+  //     } catch (error) { }
+
+  //     startTime = searchParams["s"] || !!searchParams["start"] || 0;
+  //     this.#data.startTime = startTime;
+  // }
+  // return startTime;
+  // }
+  // get endTime() {
+  // try to extract start and end times if url is actually a URL
+  // let endTime = this.#data.endTime;
+  // let searchParams = {};
+  // if (!endTime) {
+  //     try {
+  //         searchParams = this.sourceURL.searchParams;
+  //     } catch (error) { }
+
+  //     endTime = searchParams["e"] || !!searchParams["end"] || this.duration;
+  //     this.#data.endTime = endTime;
+  // }
+  // return endTime;
+  // }
+  // prettier-ignore
+  // get loaded() { return this?.loaded || 0.0 }
+  // prettier-ignore
+  get buffered() { return super.buffered }
+  // prettier-ignore
+  get currentTime() { return super.currentTime }
+  // prettier-ignore
+  get duration() { return super.duration }
+  // prettier-ignore
+  get durationMMSS() { return (!!this.duration) ? Number(this.duration).toMMSS() : null }
+  // prettier-ignore
+  get ended() { return super.ended }
+  // prettier-ignore
+  get error() { return super.error }
+  // prettier-ignore
+  get loop() { return (!!this.#loopCounter && this.#loopCounter > 0) || super.loop }
+  // prettier-ignore
+  get muted() { return super.muted }
+  // prettier-ignore
+  get networkState() { return super.networkState }
+  // prettier-ignore
+  get paused() { return super.paused }
+  get playing() {
+    // ==false means its playing, but null means nothing
+    return this.paused === false ? true : false;
+  }
+  // // prettier-ignore
+  get playbackRate() { return super.playbackRate }
+  // // prettier-ignore
+  get readyState() { return super.readyState }
+  // // prettier-ignore
+  get seekable() { return super.seekable }
+  // // prettier-ignore
+  get volume() { return super.volume }
+
+  // media property set'ers
+  /**
+   * Seeks to the specified time.
+   * @param {number} v The time to seek to in seconds (float or integer).
+   * @see {@link seekTo}
+   */
+  // prettier-ignore
+  set currentTime(v) { this.seekTo(v, true); }
+  /**
+   * Fast seeks to the specified time.
+   * @param {number|boolean} [v=!loop] The number of times to loop through all of the items, true to loop indefinitely, or false to not loop again.
+   */
+  // set loopAll(v = !this.loopAll) {
+  set loop(v = !this.loop) {
+    // if (!this) return;
+    super.loop = !!v;
+    if (typeof v == "number") {
+      this.#loopCounter = Math.max(1, v); // save the number of times to loop (>=0)
+
+      this.addEventListener("seeked", (e) => { this.#decrementLoops() });
+
+      if (v <= 0) this.#decrementLoops();
+    }
+  }
+  #decrementLoops = () => {
+    --this.#loopCounter; // one less time to loop
+
+    // no more looping
+    if (this.#loopCounter <= 0) {
+      this.#loopCounter = 0;
+      super.loop = false;
+      this.removeEventListener("seeked", (e) => { this.#decrementLoops() });
+    }
+  };
+  // prettier-ignore
+  set muted(v = !super.muted) { super.muted = (!!v) }
+  // prettier-ignore
+  set playbackRate(v = 1) { super.playbackRate = v }
+  // prettier-ignore
+  set volume(v = 1) { this.volume = v }
+
+
+  addEventListener(type, listener, options) {
+    const mediaListeners = [
+      "abort",
+      "canplay",
+      "canplaythrough",
+      "durationchange",
+      "emptied",
+      "ended",
+      "error",
+      "loaded",   // added
+      "loadeddata",
+      "loadedmetadata",
+      "loadstart",
+      "pause",
+      "play",
+      "playing",
+      "progress",
+      "ratechange",
+      "resize",
+      "seeked",
+      "seeking",
+      "stalled",
+      "suspend",
+      "timeupdate",
+      "volumechange",
+      "waiting",
+    ];
+    this.#listening = this.#listening || []
+    const t = `${type},${listener.toString()},${options}`
+
+    if (mediaListeners.includes(type) && !this.#listening.includes(t)) {
+      this.#listening.push(t)  // remember to avoid overflow of repeats
+
+      this.addEventListener(type, listener, options);
+    }
+    // anything not known, send it onwards to the parent class
+    else super.addEventListener(type, listener, options)
+  }
+}
+
+
+/**
+ * 
+ * 
+ * TODO implement [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators#iterators)
+ * TODO implement this.loop
+ * TODO drop the this.#media object from an AmplfrItem that has been played and !this.loop
+ */
+class AmplfrCollection extends AmplfrItem {
+  #dom = {}
+  #loop = false
+
+  constructor(src) {
+    super(src)
+  }
+
+  #renderControls() {
+    if (!!this.#dom.controls || this.#dom.controls == false) return
+    // add the control button
+    // const e = document.createElement("button");
+    const e = document.createElement("div");
+    e.setAttribute('id', 'controls')
+    e.classList.add("controls");
+
+    if (this.items.length == 1) e.classList.add('hidden')
+
+    // this.#dom.appendChild(e);
+    // this.#dom.insertAdjacentElement("afterbegin", e)    // before first child
+    this.insertAdjacentElement("afterbegin", e)    // before first child
+
+    this.#dom.controls = this.#dom.controls || {};  // e; // save for easy access later
+
+    const that = this;
+    const controls = [
+      {
+        id: 'toggleQueue',
+        title: "show or hide Queue",
+        text: 'playlist_play',
+        that,
+        updateStatus: (e) => {
+          e.classList.toggle('activated', that.classList.contains('minimized'))
+        },
+        fn: () => { that.classList.toggle('minimized') }
+      },
+      {
+        id: 'previous',
+        title: "Previous",
+        text: 'skip_previous',
+        that,
+        updateStatus: (e) => {
+          // if (!that.loop && (that.item <= 1 || !that.item)) e.classList.add('disabled')
+          // else e.classList.remove('disabled')
+          e.classList.toggle('disabled', !that.loop && (that.item <= 1 || !that.item))
+        },
+        fn: that.previous
+      },
+      {
+        id: 'loop',
+        title: "Repeat",
+        text: 'repeat',
+        that,
+        updateStatus: (e) => {
+          // if (that.loop) e.classList.add('activated')
+          // else e.classList.remove('activated')
+          e.classList.toggle('activated', that.loop)
+        },
+        fn: () => { that.loop = (!that.loop) }
+      },
+      {
+        id: 'share',
+        title: "Share",
+        text: 'share',
+        that,
+        fn: that.share
+      },
+      {
+        id: 'shuffle',
+        title: "Shuffle",
+        text: 'shuffle',
+        that,
+        fn: that.shuffle
+      },
+      // {
+      //   id: "upload",
+      //   title: "Upload",
+      //   that,
+      //   text: "cloud_upload",
+      //   fn: () => { }
+      // },
+      {
+        id: 'next',
+        title: "Next",
+        text: 'skip_next',
+        that,
+        updateStatus: (e) => {
+          // if (that.length > 0 && that.item >= that.length && !that.loop) e.classList.add('disabled')
+          // else e.classList.remove('disabled')
+          let next = that.next()
+          // e.classList.add('disabled', that.items.length > 0 && that.item >= that.items.length && !that.loop)
+          // e.classList.add('disabled', that.items.length > 0 && !that.loop && !next.done)
+          e.classList.add('disabled', that.items.length > 0 && !that.loop && !that.active.nextElementSibling)
+        },
+        // fn: that.next
+        fn: that.active.next()
+      },
+      {
+        id: "search",
+        title: "Search",
+        that,
+        text: "search",
+        fn: () => { }
+      },
+    ]
+    this.#dom.controlsToUpdate = this.#dom.controlsToUpdate || {}
+    controls.forEach(ctrl => {
+      // const ce = document.createElement("div");
+      const ce = document.createElement("button");
+      ce.setAttribute('id', ctrl.id)
+      ce.setAttribute('title', ctrl.title)
+      // ce.classList.add("material-icons");
+      // ce.classList.add("md-light");
+      ce.classList.add("material-symbols-outlined");
+      if (ctrl.class) ctrl.class.split(/\s/).forEach((cls) => ce.classList.add(cls))
+      if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') {
+        ctrl.updateStatus(ce)
+
+        this.#dom.controlsToUpdate[ctrl.id] = ctrl.updateStatus
+      }
+      ce.innerText = ctrl.text
+      e.appendChild(ce);
+      this.#dom.controls[ctrl.id] = ce
+
+
+      function action(ev) {
+        ev.preventDefault();
+        if (ev.target.classList.contains('disabled')) return // don't do anything if target is disabled
+        ctrl.fn.bind(that)(ev);
+        // if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') ctrl.updateStatus(ev.target)
+
+        // run through all of the controls that may be affected by an outside change
+        Object.entries(that.#dom.controlsToUpdate).forEach(([id, fn]) => {
+          fn(that.#dom.controls[id])
+        })
+      }
+      ce.addEventListener("click", (ev) => action(ev));
+      ce.addEventListener("touchend", (ev) => action(ev));
+      // ce.addEventListener("touchend", function (ev) {
+      //   ev.preventDefault();
+      //   if (ev.target.classList.contains('disabled')) return // don't do anything if target is disabled
+      //   ctrl.fn.bind(that)(ev);
+      //   if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') ctrl.updateStatus(ev.target)
+      // });
+    })
+  }
+
+  #observer(mutationList) {
+    for (const mutation of mutationList) {
+      if (mutation.type === "childList") {
+        // console.this.#log("A child node has been added or removed.");
+        if (!!mutation.addedNodes && mutation.target.items.length > 1) {
+          // add controls
+          mutation.target.#renderControls.apply(mutation.target)
+        }
+        if (!!mutation.removedNodes && mutation.target.items.length > 1) {
+          // remove controls
+          mutation.target.#renderControls.apply(mutation.target)
+        }
+      }
+    }
   }
 
   /**
    * connectedCallback() is called when this element is (re-)added to the DOM
    */
   async connectedCallback() {
-    this.render()
-  }
-
-  async render() {
-    if (!!this._options.isBuilt) return; // no need to build again if already done
-    this._options.isBuilt = 'building'
-
-    // start the build
-    if (this._options?.useShadow)
-      this._options.root = document.createElement("div");
-    else this._options.root = this;
-
-    // if (!this._data?.src) await this._populate();
-    if (!this._data || !!this._data.then) await this._populate();
-
-    this._options.isBuilt = true; // get here, and there's no need to run again
-    this._options.root.setAttribute("is", this._options.class);
-
-    this._options.root.classList.add("item");
-    // TODO need to append appropriate additional controls
-    //  - probably in appendAdditionalControls()
-    //  - play/pause already taken care of
-    //  - share - should always be visible
-    //  - rate (like/dislike)
-
-    // TODO ensure that Title, Artist(s), Album are links (when available)
-
-    // append primary elements (order matters)
-    this.appendArtwork();
-    this.appendTitle();
-    this.appendTimeline(); // after Title but before Artist(s), Collection, etc.
-    this.appendArtists()
-    this.appendAlbum()
-    // if (this._options?.logo != false) this.appendLogo()
-    this.appendLogo()
-    this.appendTime()
-    this.appendControlsAdditional()
-
-    // if this._options.mediaType isn't deferred (NULL), call appendMedia(this._options.mediaType) now
-    if (!!this._options.mediaType) this.appendMedia(this._options.mediaType);
-
-    // finishing touches
-    this._options.root.setAttribute("title", this._data.title);
-    this._options.root.dataset.id = this._data.id
-    // this._makeDraggable(); // make it dragable
-
-    // finish up the build
-    this.dispatchEvent(new Event('rendered'))
-    if (!this._options?.useShadow || !!this.shadowRoot) return;
-    const shadow = this.attachShadow({ mode: "open" }); // Create a shadow root
-
-    // Apply external styles to the shadow dom
-    const linkElem = document.createElement("link");
-    linkElem.setAttribute("rel", "stylesheet");
-    linkElem.setAttribute("href", `/css/item.css`);
-
-    // Attach the created elements to the shadow dom
-    shadow.appendChild(linkElem);
-    shadow.appendChild(this._options.root);
-  }
-
-  disconnectedCallback() { }
-
-  adoptedCallback() { }
-
-  attributeChangedCallback(name, oldValue, newValue) { }
-
-  appendAdditional(root, ...Fns) {
-    // make the containing UL
-    const additional = document.createElement("ul");
-    const _this = this;
-
-    // run each function f
-    Fns.forEach((fn) => {
-      let li = document.createElement("li"); // containing LI
-
-      // call fn(li) with _this bound
-      fn.bind(_this)(li);
-
-      // don't append if there was no output
-      if (li.innerHTML != "") additional.appendChild(li);
-    });
-    root.appendChild(additional);
-  }
-
-  appendArtwork(root = this._options.root) {
-    // skip the rest if artwork isn't wanted, or this has already been run
-    if (this._options?.artwork == false) return;
-
-    let artwork =
-      root.querySelector('.artwork') ||
-      this._data?.artwork ||
-      "/albumart/" + (this._data.album?.id || this._data.albumid || `item/${this._data.id}`) + ".jpg";
-
-    let artworkE = new Image();
-    artworkE.classList.add("artwork");
-
-    if (!artwork || artwork.indexOf("undefined") > -1) {
-      // artworkE.style.backgroundColor = "grey";
-      // use a blank 1x1 PNG
-      artworkE.src =
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=";
-    } else {
-      artworkE.src = artwork;
-      artworkE.alt = this.title || this._data.title;
-      this.#decorateWithImageColor(artworkE);
-    }
-
-    return root.appendChild(artworkE);
-  }
-  appendArtists(root = this._options.root) {
-    const artists = this._data.artists;
-    if (!root || !artists || !Array.isArray(artists) || artists?.length < 1)
-      return;
-
-    // create a child element for each Artist, populate it, and append it to e
-    const attributes = ["name", "area", "started", "ended", "id"];
-    artists.forEach((artist, i) => {
-      let artistE;
-      if (!!artist.href || !!artist.url || !!artist.src) {
-        artistE = document.createElement("a");
-        artistE.setAttribute("href", artist.href || artist.url || artist.src);
-        delete artist?.href;
-        delete artist?.url;
-        delete artist?.src;
-      } else artistE = document.createElement("span");
-      artistE.classList.add("artist");
-
-      if (typeof artist != "string")
-        assignDataset(artistE.dataset, artist, attributes); // assign child's dataset from this artist's attributes
-
-      if (!!artist.id) artistE.dataset.id = `artist-${artist.id}`;
-      artistE.textContent = artist.name || artist;
-      artistE.title = artist.name || artist;
-
-      root.appendChild(artistE);
-    });
-
-    // add class 'metadata' if root is a LI
-    if (root.tagName == "LI") root.classList.add("metadata");
-  }
-  appendAlbum(root = this._options.root) {
-    const album = this._data.album;
-    if (!root || !album) return;
-
-    let albumE;
-    if (!!album.href || !!album.url || !!album.src) {
-      albumE = document.createElement("a");
-      albumE.setAttribute("href", album.href || album.url || album.src);
-      delete album?.href;
-      delete album?.url;
-      delete album?.src;
-    } else albumE = document.createElement("span");
-    albumE.classList.add("album");
-
-    albumE.textContent = album.title || album;
-    albumE.title = album.title || album;
-
-    // create a child element for each Artist, populate it, and append it to e
-    const attributes = ["id", "year"];
-    if (typeof album != "string") {
-      assignDataset(albumE.dataset, album, attributes); // assign albumE's dataset from this album's attributes
-
-      let dateObj;
-      let dateText;
-      if (!!album.id) albumE.dataset.id = `album-${album.id}`;
-      if (!!album.date) {
-        dateObj = new Date(Date.parse(album.date)); // convert to a Date()
-        dateText = dateObj.toISOString(); // save date as an ISOString
-        // prettier-ignore
-        dateText = dateText.substring(0, dateText.indexOf("T", 8));
-        albumE.dataset.date = dateText || album.date;
-      }
-      if (!!albumE?.dataset.year) {
-        albumE.title += ` (${albumE.dataset.year || dateObj?.getFullUTCYear()
-          })`;
-      }
-    }
-
-    root.appendChild(albumE);
-
-    // add class 'metadata' if root is a LI
-    if (root.tagName == "LI") root.classList.add("metadata");
-  }
-  appendChildTags(
-    root = this._options.root,
-    data = this._data,
-    childTags = this._options.childTags
-  ) {
-    if (!root || !childTags || !data || Object.keys(data).length < 1) return;
-
-    // list of additional child tags to populate
-    childTags.forEach((tag) => {
-      if (!!data[tag]) {
-        const e = document.createElement("div");
-        const text = data[tag];
-
-        // Take attribute content and save it to root's dataset, and inside the childElement div
-        root.dataset[tag] = text;
-        e.textContent = text;
-        e.classList.add(tag);
-
-        // return root.appendChild(e);
-        root.appendChild(e);
-      }
-    });
-  }
-  appendTitle(root = this._options.root) {
-    const title = this._data.title;
-    if (!root || !title) return;
-    const data = this._data;
-
-    let titleE;
-    // look at data (object) instead of title (string) for link
-    if (!!data.href || !!data.url) {
-      titleE = document.createElement("a");
-      titleE.setAttribute("href", data.href || data.url);
-    } else titleE = document.createElement("span");
-    titleE.classList.add("title");
-
-    titleE.textContent = title;
-    titleE.title = title;
-
-    root.appendChild(titleE);
-  }
-  appendControls(root = this._options.root) {
-    // skip the rest if controls aren't wanted, or this has already been run
-    if (
-      this._options?.controls == false
-      // ||
-      //   !this._options.standalone ||
-      //   !!this._options?.controls?.button
-    )
-      return;
-
-    // add the control button
-    const e = document.createElement("button");
-    e.classList.add("material-symbols-outlined");
-    e.classList.add("play");
-
-    // if (
-    //   this._options?.controls == false ||
-    //   !this._options.standalone ||
-    //   !!this._options?.controls?.button
-    // )
-    //   e.classList.add("hidden")
-
-    // root.appendChild(e);
-    // e.setAttribute('id', 'play')
-    root.insertBefore(e, root.firstChild);
-
-    const _this = this;
-    e.addEventListener("click", function (e) {
-      e.preventDefault();
-      _this.play();
-    });
-    e.addEventListener("touchend", function (e) {
-      e.preventDefault();
-      _this.play();
-    });
-
-    // TODO add additional (hidable) buttons here
-
-    // save the controls for easy access later
-    this._options.controls = {
-      button: e,
-    };
-  }
-  appendControlsAdditional(root = this._options.root) {
-    const _this = this;
-    const additionalControls = [
-      {
-        conditional: navigator.canShare,
-        text: "share",
-        fn: async () => {
-          let url = new URL(_this.sourceURL, 'https://amplfr.com/')
-          url = url.toString()
-          if (navigator.canShare) navigator.share({
-            title: `Amplfr.com - ${_this.title}`,
-            text: `Play "${_this.title}"`,
-            url,
-          })
-        },
-        title: "Share this",
-      },
-      {
-        conditional: !navigator.canShare,
-        text: "share",
-        href: _this.sourceURL,
-        title: "Share this",
-      },
-    ];
-    // add class 'icons' if root is a LI
-    if (root.tagName == "LI") root.classList.add("icons");
-
-    additionalControls.forEach((ctrl) => {
-      // skip this control if already added
-      if (!!_this._options.controls[ctrl.text]) return;
-      if (!ctrl?.conditional) return; // bail if the check doesn't pass
-
-      // add the control button
-      let e
-      if (!!ctrl.href) {
-        e = document.createElement("a");
-        e.setAttribute('href', ctrl.href)
-      }
-      else if (!!ctrl.fn) {
-        e = document.createElement("span");
-
-        e.addEventListener("click", function (e) {
-          e.preventDefault();
-          ctrl.fn(e);
-        });
-        e.addEventListener("touchend", function (e) {
-          e.preventDefault();
-          ctrl.fn(e);
-        });
-      }
-      e.classList.add("material-symbols-outlined", "icon");
-      e.textContent = ctrl.text;
-      e.setAttribute("title", ctrl.title);
-      root.appendChild(e);
-
-      // save this control for easy access later
-      _this._options.controls[ctrl.text] = e;
-    });
-  }
-  appendLogo(root = this._options.root) {
-    if (this._options?.logo == false) return
-    // if (this._options.controls?.logo == false) return
-    const logoE = document.createElement("a");
-
-    // SVG and Path elements need to use createElementNS() to include Namespace
-    // see https://stackoverflow.com/a/10546700
-    const NS = "http://www.w3.org/2000/svg";
-    const logoSVG = document.createElementNS(NS, "svg");
-    const logoPath = document.createElementNS(NS, "path");
-
-    logoPath.setAttribute(
-      "d",
-      "M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z"
-    );
-    logoSVG.appendChild(logoPath);
-
-    logoSVG.setAttribute("viewBox", "0 0 173 187");
-    logoE.appendChild(logoSVG);
-
-    if (this._options?.logomplfr != false) {
-      const logoWideSVG = document.createElementNS(NS, "svg");
-      const logoWidePath = document.createElementNS(NS, "path");
-
-      logoWidePath.setAttribute(
-        "d",
-        "M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"
-      );
-      logoWideSVG.appendChild(logoWidePath);
-
-      // logoWideSVG.classList.add("logoWide");
-      logoWideSVG.setAttribute("viewBox", "0 0 567 243");
-      logoWideSVG.classList.add("logomplfr");
-      logoE.appendChild(logoWideSVG);
-    }
-
-    logoE.classList.add("logo");
-    logoE.setAttribute("href", "//amplfr.com");
-    logoE.setAttribute("title", "Amplfr.com");
-    root.appendChild(logoE);
-
-    // add class 'icons' if root is a LI
-    if (root.tagName == "LI") root.classList.add("logo");
-  }
-  appendTime(root = this._options.root) {
-    // add the time element (to root)
-    // const timeE = document.createElement("div");
-    const timeE = document.createElement("span");
-    timeE.classList.add("time");
-    // this._options.root.appendChild(timeE);
-    root.appendChild(timeE);
-
-    this._options.time = timeE; // save timeE for easy access later
-
-    const _this = this;
-    timeE.addEventListener("click", (e) => {
-      e.preventDefault()
-      e.currentTarget.classList.toggle("remaining");
-      _this.#updateTime();
-    });
-    timeE.addEventListener("touchend", (e) => {
-      e.preventDefault()
-      e.currentTarget.classList.toggle("remaining");
-      _this.#updateTime();
-    });
-
-    // add class 'icons' if root is a LI
-    if (root.tagName == "LI") root.classList.add("time");
-  }
-  appendTimeline() {
-    if (!!this._options.progress) return
-
-    // add the timeline container element (to root)
-    const timelineContainerE = document.createElement("div");
-    timelineContainerE.classList.add("timeline-container");
-    this._options.progress = timelineContainerE; // save timelineContainerE for easy access later
-
-    // add the timeline element (to timeline container element)
-    const timelineE = document.createElement("div");
-    timelineE.classList.add("timeline");
-    timelineContainerE.appendChild(timelineE);
-
-    // add the thumb-indicator element (to timeline element)
-    const thumb = document.createElement("div");
-    thumb.classList.add("thumb-indicator");
-    timelineE.appendChild(thumb);
-
-    // append to (what should be) the end of the root element
-    this._options.root.appendChild(timelineContainerE);
-
-    // Timeline - use PointerEvents instead of MouseEvents
-    timelineContainerE.addEventListener("pointermove", handleTimelineUpdate)
-    timelineContainerE.addEventListener("pointerdown", toggleScrubbing)
-    document.addEventListener("pointerup", e => {
-      if (isScrubbing) toggleScrubbing(e)
+    // watch this for any added/removed child nodes
+    this.#dom.observer = new MutationObserver(this.#observer)
+    this.#dom.observer.observe(this, {
+      childList: true,
     })
-    document.addEventListener("pointermove", e => {
-      if (isScrubbing) handleTimelineUpdate(e)
-    })
-
-    let isScrubbing = false
-    let wasPaused
-    const _this = this
-    function toggleScrubbing(e) {
-      const rect = timelineContainerE.getBoundingClientRect()
-      const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
-      isScrubbing = (e.buttons & 1) === 1
-      if (isScrubbing) {
-        wasPaused = _this.paused
-        _this.pause()
-      } else {
-        _this.currentTime = percent * _this.duration
-        if (!wasPaused) _this.play()
-      }
-
-      handleTimelineUpdate(e)
-    }
-
-    function handleTimelineUpdate(e) {
-      const rect = timelineContainerE.getBoundingClientRect()
-      const percent = Math.min(Math.max(0, e.x - rect.x), rect.width) / rect.width
-
-      if (isScrubbing) {
-        e.preventDefault()
-        timelineContainerE.style.setProperty("--progress-position", percent)
-        _this.#updateTime(percent * _this.duration)
-      }
-    }
-  }
-  #updateTime(seconds = this.currentTime) {
-    if (!this || !this._options.media) return; // no media, nothing else to do here
-
-    const duration = this.duration || 0 // this._options.media.duration;
-    const percent = seconds / duration;
-
-    // set the current time
-    if (!!this._options.time) {
-      if (this._options.time.classList.contains("remaining")) {
-        this._options.time.innerText = `-${(duration - seconds).toMMSS()}`;
-        this._options.time.title = "Time remaining";
-      } else {
-        this._options.time.innerText = seconds.toMMSS();
-        this._options.time.title = "Time elapsed";
-      }
-    }
-
-    // set the timeline position
-    if (!!this._options.progress)
-      this._options.progress.style.setProperty("--progress-position", percent);
   }
 
-  async #decorateWithImageColor(img, palettes) {
-    // if ColorThief exists
-    if (!ColorThief) return;
+  get active() {
+    // get what the current .active item is, or the first amplfr-item element
+    return this.querySelectorAll("amplfr-item.active")[0] || this.items[0]
+  }
+  get items() {
+    return this.querySelectorAll("amplfr-item")
+  }
+  get loop() {
+    return !!this.#loop && (this.#loop > 0 || this.#loop == true)
+  }
+  get peek() {
 
-    // TODO run ColorThief async
-    if (!palettes) {
-      const colorThief = new ColorThief();
-      if (img.complete) {
-        palettes = await colorThief.getPalette(img, 5);
-        return this.#decorateWithImageColor(img, palettes);
-      } else {
-        const _this = this;
-        img.addEventListener("load", async function () {
-          palettes = await colorThief.getPalette(img, 5);
-          return _this.#decorateWithImageColor(img, palettes);
-        });
-        return;
-      }
-    }
+  }
 
-    // from https://alienryderflex.com/hsp.html
-    const hsp = (rgb) => {
-      const [r, g, b] = rgb;
+  set loop(v = !this.loop) {
+    this.#loop = !!v;
 
-      return Math.sqrt(0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b));
-    };
-    // from https://lokeshdhakar.com/projects/color-thief/#faq
-    const rgbToHex = (r, g, b) =>
-      "#" +
-      [r, g, b]
-        .map((x) => {
-          const hex = x.toString(16);
-          return hex.length === 1 ? "0" + hex : hex;
-        })
-        .join("");
+    if (!!this.#dom.controls && this.#dom.controls['loop'] != null)
+      // if (this.loop)
+      //     this.#dom.controls['loop'].classList.add('activated')
+      // else
+      //     this.#dom.controls['loop'].classList.remove('activated')
+      if (this.#dom?.controls['loop'])
+        this.#dom.controls['loop'].classList.toggle('activated', this.loop)
+  }
 
-    let color, colorAccent;
-    palettes.map((palette) => {
-      if (!!color && !!colorAccent) return; // done
-      let lightness = hsp(palette) / 255;
+  previous() {
+    this.active.previous()
+  }
+  next() {
+    this.active.next()
+    // TODO implement this.next() as [iterator protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol)
+    // const value = this.active
 
-      if (lightness > 0.1 && !color) color = palette; // not too dark
-      else if (lightness < 0.75 && !colorAccent) colorAccent = palette; // not too bright
-    }, this);
+    // return { value, done: (!!!value) }
+  }
+  // [Symbol.iterator]() {
+  //     return this;
+  // }
 
-    this.style.setProperty("--color", rgbToHex(...color));
-    this.style.setProperty("--colorAccent", rgbToHex(...colorAccent));
+  play() {
+    this.active.play()
   }
 }
-customElements.define("amplfr-item", AmplfrItem, { extends: "div" });
+
+
+customElements.define("amplfr-item", AmplfrItem);
+// customElements.define("amplfr-audio", AmplfrAudio, { extends: "audio" });
+customElements.define("amplfr-audio", AmplfrAudio, { extends: "audio" });
+customElements.define("amplfr-collection", AmplfrCollection);
+// customElements.define("amplfr-audio", AmplfrAudio);

@@ -1,14 +1,18 @@
 .item {
+  display: block;
   margin: 0 auto;
-  width: calc(100% - 4em);
-  /* height: 4em; */
-  position: relative;
-  padding-left: 4em;
+  /* width: calc(100% - 4em); */
+  height: 4em;
+  /* height: 100%; */
+  /* position: relative; */
+  /* padding-left: 4em; */
   /* background: var(--colorAccent); */
   color: var(--color);
   overflow: hidden;
-  font-size: 16px;
   font-family: "Noto Sans", sans-serif;
+  /* font-size: 16px; */
+  font-size: 1em;
+  z-index: 1;
 }
 .item * {
   white-space: nowrap;
@@ -17,14 +21,49 @@
   fill: var(--color);
   vertical-align: middle;
   position: inherit;
-  /* text-shadow: 1px 1px var(--colorAccent); */
+  z-index: 1;
+  /* text-shadow: 2px 2px 2px darkgray; */
+  text-shadow: 1px 1px 2px darkgray;
 }
+amplfr-collection {
+  counter-reset: item;
+}
+amplfr-collection > amplfr-item {
+  counter-increment: item;
+}
+amplfr-collection > amplfr-item:before {
+  content: counter(item);
+  color: whitesmoke;
+  font-size: 4em;
+  position: absolute;
+  text-shadow: 0 0px 8px var(--colorAccent);
+  filter: opacity(0.75);
+  z-index: 128;
+  cursor: pointer;
+  width: 1em;
+  margin: 0px auto;
+  height: 1em;
+  text-align: center;
+  /* margin-top: -0.25em; */
+  overflow: hidden;
+  line-height: 1;
+}
+amplfr-collection > amplfr-item.active:before {
+  display: none;
+}
+amplfr-collection > amplfr-item.collection {
+  counter-increment: none;
+  /* height: 100%; */
+  height: 0px;
+}
+amplfr-collection > amplfr-item.collection:before {
+  content: none;
+}
+
 .item button.play {
   color: whitesmoke;
   font-size: 4em;
   position: absolute;
-  left: 0px;
-  top: 0px;
   text-shadow: 0 0px 8px var(--colorAccent);
   filter: opacity(0.75);
   z-index: 128;
@@ -33,28 +72,39 @@
   padding: 0px;
   margin: 0px;
   cursor: pointer;
+  width: 1em;
+}
+amplfr-collection > amplfr-item.item.active button.play {
+  display: initial;
+}
+amplfr-collection > amplfr-item.item:not(.active) button.play {
+  display: none;
 }
 .item .artwork {
   background-position: center;
   background-size: cover;
-  height: 4em;
-  width: 4em;
+  /* height: 4em; */
+  height: 100%;
+  /* width: 4em; */
   z-index: 0 !important;
   color: whitesmoke;
   aspect-ratio: 1 / 1;
   user-select: none;
-  position: absolute;
-  left: 0px;
-  top: 0px;
+  /* position: absolute; */
+  /* left: 0px; */
+  /* top: 0px; */
   margin: 0px;
+  float: left;
+  box-shadow: 4px 0px 4px darkgray;
 }
 .item .title {
-  float: left;
   font-size: 1.75em;
   /* font-size: 2em; */
-  margin-right: 100%;
   text-decoration: none;
+  margin: 0px;
   margin-top: auto;
+  display: flex;
+  padding-left: 3px;
 }
 .item .album {
   font-style: italic;
@@ -101,7 +151,7 @@
   touch-action: none;
   /* position: absolute; */
   /* width: calc(100% - 4em); */
-  width: 100%;
+  /* width: 100%; */
   /* bottom: 0px; */
   margin: 0px;
 }
@@ -146,13 +196,15 @@
 
 .item.cover {
   font-size: 2em;
-  /* padding: calc(100% - 4em) 0px 0px 0px; */
   padding: 0px;
+  height: 100%;
   width: 100%;
-  width: 100vmin;
   aspect-ratio: 1 / 1;
-  display: inline-flex;
-  flex-direction: column;
+  /* display: inline-flex; */
+  /* flex-direction: column; */
+  position: relative;
+  max-height: 100vmin;
+  max-width: 100vmin;
 }
 .item.cover * {
   text-shadow: 1px 1px var(--colorAccent);
@@ -160,23 +212,40 @@
 .item.cover .artwork {
   width: 100%;
   height: 100%;
+  position: absolute;
+  filter: opacity(0.75);
 }
 .item.cover button.play {
-  margin: calc(50% - 0.5em);
+  /* margin: calc(50% - 0.5em); */
+  margin-left: calc(50% - 0.5em);
+  margin-top: calc(50% - 0.5em);
 }
-/* .item.cover .title {
-  margin-top: calc(100% - 3.3em);
-} */
+.item.cover .title {
+  /* margin-top: calc(100% - 3.3em); */
+  margin-top: calc(100% - 2.25em);
+}
 .item.cover .time,
 .item.cover .icon {
-  position: absolute;
-  margin: 0px;
-  right: 5.5em;
+  /* position: absolute; */
+  /* margin: 0px; */
+  /* right: 5.5em; */
+  /* right: 4.5em; */
   bottom: 0px;
 }
 .item.cover a.logo {
-  position: absolute;
+  /* position: absolute; */
   right: 0px;
   z-index: unset;
   filter: drop-shadow(1px 1px var(--colorAccent));
+  font-size: 0.8em;
+}
+
+.collection > .controls {
+  background-color: #7a7a7a;
+  height: 2em;
+  width: inherit;
+  z-index: 16;
+  overflow: hidden;
+  /* color: #7a7a7a; */
+  display: flex;
 }
