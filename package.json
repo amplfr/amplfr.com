@@ -28,6 +28,7 @@
     "workbox-cli": "^6.5.4"
   },
   "dependencies": {
+    "music-metadata-browser": "^2.5.10",
     "workbox-window": "^6.5.4"
   }
 }
