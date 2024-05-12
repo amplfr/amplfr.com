@@ -20,6 +20,12 @@
     <style>
       body {
         font-size: 1em;
+        margin: 0px 8px;
+      }
+
+      amplfr-item,
+      .item {
+        height: 4em;
       }
     </style>
     <script>
@@ -46,6 +52,7 @@
       //   true
       // );
       document.body.appendChild(item);
+      document.querySelector(".item").classList.add("cover");
 
       const log = (msg) => console.log(`${item.sourceURL} - ${msg}`);
       const logprogress = (msg) => {

@@ -6,16 +6,12 @@ button {
   font-size: 16px;
   font-family: "Noto Sans", sans-serif;
 }
-.collection * {
-  /* display: block !important; */
-  transition: 250ms linear width;
-}
 .collection .artwork {
   /* background-position: center; */
   /* background-size: cover; */
   /* float: left; */
   /* margin-right: 4px; */
-  /* height: 2em; */
+  height: 4em;
   /* width: 2em; */
   /* margin-left: 0px !important; */
 }
@@ -128,9 +124,6 @@ button {
   /* margin-right: 0px; */
   /* height: 4em; */
   /* margin-left: -4em; */
-}
-.collection ol.items li .item .timeline-container {
-  width: calc(100% - 0em) !important;
 }
 .collection ol.items.played {
   filter: grayscale(1);
