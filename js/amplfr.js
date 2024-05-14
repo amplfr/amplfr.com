@@ -1,3 +1,4 @@
+const blankImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
 Number.prototype.toMMSS = function () {
   if (Number.isNaN(this.valueOf())) return "";
   let neg = this < 0 ? "-" : "";
@@ -69,7 +70,6 @@ class AmplfrItem extends HTMLElement {
     super();
 
     if (!!src)
-      // if (src.toString() != "")
       if (!!src.id && AmplfrItem.isValidID(src.id)) {
         // src is an object for an AmplfrItem
         this.#data = src
@@ -239,11 +239,6 @@ class AmplfrItem extends HTMLElement {
     return elements
   }
   previous() {
-    // return previousElementSibling if it's also of the same class as this
-    // if known, just return it
-    if (!!this.#dom?.previousE)
-      return this.#dom.previousE
-
     // loop back from this until we run out of elements or find another like this
     let element = this.previousElementSibling
     while (element != null) {
@@ -255,16 +250,9 @@ class AmplfrItem extends HTMLElement {
       element = element.previousElementSibling
     }
 
-    // return this.#dom.previousE
     return null
   }
   next() {
-    // return nextElementSibling if it's also of the same class as this
-    // return (!!this.nextElementSibling && this.nextElementSibling instanceof this.constructor) ? this.nextElementSibling : null
-    // if known, just return ir
-    if (!!this.#dom?.nextE)
-      return this.#dom.nextE
-
     // loop back from this until we run out of elements or find another like this
     let element = this.nextElementSibling
     while (element != null) {
@@ -276,7 +264,6 @@ class AmplfrItem extends HTMLElement {
       element = element.nextElementSibling
     }
 
-    // return this.#dom.nextE
     return null
   }
 
@@ -534,13 +521,7 @@ class AmplfrItem extends HTMLElement {
 
     // if this is a collection
     if (!!this.#data?.items && this.#data.items?.length > 0) {
-      // order(probably ?) does matter
-      // this.#renderArtwork();
-      // this.#renderTitle();
-      // this.#renderArtists();
-
-      // remove this empty element
-      // this.parentNode.removeChild(this)
+      this.parentNode.removeChild(this) // remove this empty element
       return
     }
 
@@ -1016,7 +997,7 @@ class AmplfrItem extends HTMLElement {
       delete this.listeners   // no further need
     }
 
-    // map all of media's methods to this
+    // map all of this.media's methods to this
     const skipList = [
       'constructor',  // don't want media's constructor
       'addEventListener',
@@ -1091,15 +1072,12 @@ const decorateWithImageColor = async (img, palettes) => {
     const colorThief = new ColorThief();
     if (img.complete) {
       palettes = await colorThief.getPalette(img, 5);
-      // return this.#decorateWithImageColor(img, palettes);
       return decorateWithImageColor(img, palettes);
     } else {
-      const that = this;
       img.addEventListener("load", async function () {
         palettes = await colorThief.getPalette(img, 5);
-        // return that.#decorateWithImageColor(img, palettes);
         return decorateWithImageColor(img, palettes);
-      });
+      }, { once: true });
       return;
     }
   }
@@ -1293,7 +1271,7 @@ class AmplfrAudio extends Audio {
       if (v <= 0) this.#decrementLoops();
     }
   }
-  #decrementLoops = () => {
+  #decrementLoops() {
     --this.#loopCounter; // one less time to loop
 
     // no more looping
@@ -1362,6 +1340,62 @@ class AmplfrAudio extends Audio {
 class AmplfrCollection extends AmplfrItem {
   #dom = {}
   #loop = false
+  #controls = [
+    {
+      id: 'toggleQueue',
+      title: "show or hide Queue",
+      text: 'playlist_play',
+      updateStatus: (e) => {
+        e.classList.toggle('activated', this.classList.contains('minimized'))
+      },
+      fn: () => { this.classList.toggle('minimized') }
+    },
+    {
+      id: 'previous',
+      title: "Previous",
+      text: 'skip_previous',
+      updateStatus: (e) => {
+        e.classList.toggle('disabled', !this.previous(false))
+      },
+      fn: this.previous
+    },
+    {
+      id: 'loop',
+      title: "Repeat",
+      text: 'repeat',
+      updateStatus: (e) => {
+        e.classList.toggle('activated', this.loop)
+      },
+      fn: () => { this.loop = (!this.loop) }
+    },
+    {
+      id: 'share',
+      title: "Share",
+      text: 'share',
+      fn: this.share
+    },
+    {
+      id: 'shuffle',
+      title: "Shuffle",
+      text: 'shuffle',
+      fn: this.shuffle
+    },
+    {
+      id: 'next',
+      title: "Next",
+      text: 'skip_next',
+      updateStatus: (e) => {
+        e.classList.toggle('disabled', !this.next(false))
+      },
+      fn: this.next
+    },
+    {
+      id: "search",
+      title: "Search",
+      text: "search",
+      fn: () => { }
+    },
+  ]
 
   constructor(src) {
     super(src)
@@ -1369,111 +1403,29 @@ class AmplfrCollection extends AmplfrItem {
 
   #renderControls() {
     if (!!this.#dom.controls || this.#dom.controls == false) return
-    // add the control button
-    // const e = document.createElement("button");
     const e = document.createElement("div");
     e.setAttribute('id', 'controls')
     e.classList.add("controls");
 
-    if (this.items.length == 1) e.classList.add('hidden')
+    if (this.items.length == 1)
+      e.classList.add('hidden')
 
-    // this.#dom.appendChild(e);
-    // this.#dom.insertAdjacentElement("afterbegin", e)    // before first child
     this.insertAdjacentElement("afterbegin", e)    // before first child
 
     this.#dom.controls = this.#dom.controls || {};  // e; // save for easy access later
+    this.#dom.controlsToUpdate = this.#dom.controlsToUpdate || {}
 
     const that = this;
-    const controls = [
-      {
-        id: 'toggleQueue',
-        title: "show or hide Queue",
-        text: 'playlist_play',
-        that,
-        updateStatus: (e) => {
-          e.classList.toggle('activated', that.classList.contains('minimized'))
-        },
-        fn: () => { that.classList.toggle('minimized') }
-      },
-      {
-        id: 'previous',
-        title: "Previous",
-        text: 'skip_previous',
-        that,
-        updateStatus: (e) => {
-          // if (!that.loop && (that.item <= 1 || !that.item)) e.classList.add('disabled')
-          // else e.classList.remove('disabled')
-          e.classList.toggle('disabled', !that.loop && (that.item <= 1 || !that.item))
-        },
-        fn: that.previous
-      },
-      {
-        id: 'loop',
-        title: "Repeat",
-        text: 'repeat',
-        that,
-        updateStatus: (e) => {
-          // if (that.loop) e.classList.add('activated')
-          // else e.classList.remove('activated')
-          e.classList.toggle('activated', that.loop)
-        },
-        fn: () => { that.loop = (!that.loop) }
-      },
-      {
-        id: 'share',
-        title: "Share",
-        text: 'share',
-        that,
-        fn: that.share
-      },
-      {
-        id: 'shuffle',
-        title: "Shuffle",
-        text: 'shuffle',
-        that,
-        fn: that.shuffle
-      },
-      // {
-      //   id: "upload",
-      //   title: "Upload",
-      //   that,
-      //   text: "cloud_upload",
-      //   fn: () => { }
-      // },
-      {
-        id: 'next',
-        title: "Next",
-        text: 'skip_next',
-        that,
-        updateStatus: (e) => {
-          // if (that.length > 0 && that.item >= that.length && !that.loop) e.classList.add('disabled')
-          // else e.classList.remove('disabled')
-          let next = that.next()
-          // e.classList.add('disabled', that.items.length > 0 && that.item >= that.items.length && !that.loop)
-          // e.classList.add('disabled', that.items.length > 0 && !that.loop && !next.done)
-          e.classList.add('disabled', that.items.length > 0 && !that.loop && !that.active.nextElementSibling)
-        },
-        // fn: that.next
-        fn: that.active.next()
-      },
-      {
-        id: "search",
-        title: "Search",
-        that,
-        text: "search",
-        fn: () => { }
-      },
-    ]
-    this.#dom.controlsToUpdate = this.#dom.controlsToUpdate || {}
-    controls.forEach(ctrl => {
-      // const ce = document.createElement("div");
+    this.#controls.forEach(ctrl => {
+      if (!ctrl.fn) return  // skip if ctrl.fn doesn't exist
+
       const ce = document.createElement("button");
       ce.setAttribute('id', ctrl.id)
       ce.setAttribute('title', ctrl.title)
-      // ce.classList.add("material-icons");
-      // ce.classList.add("md-light");
       ce.classList.add("material-symbols-outlined");
-      if (ctrl.class) ctrl.class.split(/\s/).forEach((cls) => ce.classList.add(cls))
+
+      if (ctrl.class)
+        ce.classList.add(...ctrl.class)
       if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') {
         ctrl.updateStatus(ce)
 
@@ -1558,26 +1510,7 @@ class AmplfrCollection extends AmplfrItem {
       if (this.#dom?.controls['loop'])
         this.#dom.controls['loop'].classList.toggle('activated', this.loop)
   }
-
-  previous() {
-    this.active.previous()
-  }
-  next() {
-    this.active.next()
-    // TODO implement this.next() as [iterator protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol)
-    // const value = this.active
-
-    // return { value, done: (!!!value) }
-  }
-  // [Symbol.iterator]() {
-  //     return this;
-  // }
-
-  play() {
-    this.active.play()
-  }
 }
-
 
 customElements.define("amplfr-item", AmplfrItem);
 // customElements.define("amplfr-audio", AmplfrAudio, { extends: "audio" });
