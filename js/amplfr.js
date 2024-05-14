@@ -1,4 +1,4 @@
-const blankImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII="
+const blankImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" // a blank 1x1 PNG
 Number.prototype.toMMSS = function () {
   if (Number.isNaN(this.valueOf())) return "";
   let neg = this < 0 ? "-" : "";
@@ -170,9 +170,6 @@ class AmplfrItem extends HTMLElement {
     // return urlObj.toString()
     return url
   }
-  // get items() {
-  //     return this.#data.items
-  // }
   #href(obj) {
     let href
     if (!!obj.id && (!!obj.title || !!obj.name))
@@ -183,11 +180,9 @@ class AmplfrItem extends HTMLElement {
     return href
   }
   get href() {
-    // return this.#href(this)
     return this.#data.href
   }
   get url() {
-    // return this.#href(this)
     return this.#data.url
   }
   get sourceURL() {
@@ -224,18 +219,13 @@ class AmplfrItem extends HTMLElement {
     return this.#data?.items.map(item => item.id)
   }
   #collection(wholeDocument = false) {
-    // return this.parentNode.querySelectorAll(this.nodeName.toLowerCase())
     let elements
 
     if (!!wholeDocument)
-      // parent = document.querySelector('amplfr-item')
       elements = document.querySelectorAll(Elements)
     else
-      // parent = this.parentNode.closest('amplfr-item')
-      // parent = this.parentNode.closest(Elements)
       elements = this.parentNode.querySelectorAll('amplfr-item')
 
-    // return parent.querySelectorAll('amplfr-item')
     return elements
   }
   previous() {
@@ -601,7 +591,6 @@ class AmplfrItem extends HTMLElement {
   }
   #renderArtwork() {
     // skip the rest if artwork isn't wanted, or this has already been run
-    // if (!!this.#dom.querySelector('.artwork')) return;
     if (!!this.#dom.querySelector('.artwork') || this.#data.artwork == false)
       return;
 
@@ -616,16 +605,20 @@ class AmplfrItem extends HTMLElement {
     artworkE.classList.add("artwork");
 
     if (!artwork || artwork.indexOf("undefined") > -1) {
-      // artworkE.style.backgroundColor = "grey";
-      // use a blank 1x1 PNG
-      artworkE.src =
-        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=";
+      artworkE.src = blankImage
     } else {
       artworkE.src = artwork;
-      artworkE.alt = this.#data.title;
 
-      decorateWithImageColor(artworkE);
+      // if the artworkE has an error (probably got an HTTP404), use blankImage
+      artworkE.addEventListener("error", (x) => {
+        x.currentTarget.src = blankImage
+      }, { once: true })
+      artworkE.addEventListener("load", (x) => {
+        if (!x.target.src.startsWith("data:"))
+          decorateWithImageColor(artworkE);
+      }, { once: true })
     }
+    artworkE.alt = this.#data.title;
 
     // add artworkE, but make sure its the first child of this.#dom
     return this.#dom.insertAdjacentElement('afterbegin', artworkE);
@@ -716,7 +709,6 @@ class AmplfrItem extends HTMLElement {
     if (!!this.#dom.querySelector('.title')) return;
 
     let titleE;
-    // const href = `/${this.#data.id}/${title}`;
 
     if (!!this.href) {
       titleE = document.createElement("a");
@@ -947,8 +939,10 @@ class AmplfrItem extends HTMLElement {
       this.#log(e.type)
 
       that.#updateButton("pause", `Pause "${that.title}"`);
-      this.classList.add("playing")
-      this.setAttribute("playing", true)
+      that.classList.add("playing")
+      that.setAttribute("playing", true)
+
+      that.classList.remove("played")
     });
     this.#media.addEventListener("pause", (e) => {
       if (e.currentTarget != media) return;
@@ -975,9 +969,6 @@ class AmplfrItem extends HTMLElement {
 
       if (!that.#collection()) {
         that.#updateButton("replay", `Replay "${that.title}"`);
-
-        // "shift" this.next() as being active by adding "active" to next() and removing it from this
-        that.next().classList.toggle("active", that.classList.toggle("active", false))
       }
     });
     // this.#media.addEventListener("emptied", (e) => this.#log(e.type));
@@ -1431,12 +1422,10 @@ class AmplfrCollection extends AmplfrItem {
       e.appendChild(ce);
       this.#dom.controls[ctrl.id] = ce
 
-
       function action(ev) {
         ev.preventDefault();
         if (ev.target.classList.contains('disabled')) return // don't do anything if target is disabled
         ctrl.fn.bind(that)(ev);
-        // if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') ctrl.updateStatus(ev.target)
 
         // run through all of the controls that may be affected by an outside change
         Object.entries(that.#dom.controlsToUpdate).forEach(([id, fn]) => {
@@ -1445,13 +1434,14 @@ class AmplfrCollection extends AmplfrItem {
       }
       ce.addEventListener("click", (ev) => action(ev));
       ce.addEventListener("touchend", (ev) => action(ev));
-      // ce.addEventListener("touchend", function (ev) {
-      //   ev.preventDefault();
-      //   if (ev.target.classList.contains('disabled')) return // don't do anything if target is disabled
-      //   ctrl.fn.bind(that)(ev);
-      //   if (ctrl.updateStatus && typeof ctrl.updateStatus == 'function') ctrl.updateStatus(ev.target)
-      // });
     })
+  }
+
+  #activate(item) {
+    item.classList.add("active")
+  }
+  #deactivateOthers() {
+    this.querySelectorAll("amplfr-item.active").forEach(item => item.classList.remove("active"))
   }
 
   #observer(mutationList) {
@@ -1486,15 +1476,132 @@ class AmplfrCollection extends AmplfrItem {
     return this.querySelectorAll("amplfr-item.active")[0] || this.items[0]
   }
   get items() {
-    return this.querySelectorAll("amplfr-item")
+    return Array.from(this.children).filter(element => element instanceof AmplfrItem)
   }
+  item(i) {
+    return this.items[i]
+  }
+  /**
+   * 
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection/namedItem}
+   * @param {*} key The ID, Title, or Name of the element to return
+   * @returns ({@link AmplfrItem}|null)
+   */
+  itemName(key) {
+    return this.querySelector(`#${key},[title="${key}"],[name="${key}"]`)
+  }
+  get length() { return this.items.length }
+
+  previous(changeActive = true) {
+    // loop back from this until we run out of elements or find another like this
+    let element = this.active.previousElementSibling
+
+    if (!!changeActive)
+      // clear out any active items since element is the starting point
+      this.#deactivateOthers()
+
+    while (element != null) {
+      if (element instanceof AmplfrItem) break
+
+      element = element.previousElementSibling
+    }
+
+    // if element is still null and loop is enabled
+    if (!element && !!this.#loop)
+      element = this.querySelector("amplfr-item") // set the first AmplfrItem (or will still be null)
+    if (!!changeActive && !!element)
+      this.#activate(element)
+
+    return element
+  }
+  next(changeActive = true) {
+    // loop back from this until we run out of elements or find another like this
+    let element = this.active.nextElementSibling
+
+    if (!!changeActive)
+      // clear out any active items since element is the starting point
+      this.#deactivateOthers()
+
+    while (element != null) {
+      if (element instanceof AmplfrItem) break
+
+      element = element.nextElementSibling
+    }
+
+    // if element is still null and loop is enabled
+    if (!element && !!this.#loop)
+      element = this.querySelector("amplfr-item") // set the first AmplfrItem
+    if (!!changeActive && !!element)
+      this.#activate(element)
+
+    return element
+  }
+  [Symbol.iterator]() {
+    // Use a new index for each iterator. This makes multiple
+    // iterations over the iterable safe for non-trivial cases,
+    // such as use of break or nested looping over the same iterable.
+    let index = 0;
+
+    return {
+      // Note: using an arrow function allows `this` to point to the
+      // one of `[@@iterator]()` instead of `next()`
+      next: () => {
+        if (index < this.items.length) {
+          return { value: this.items[index++], done: false };
+        } else {
+          return { done: true };
+        }
+      },
+    };
+  }
+
   get loop() {
     return !!this.#loop && (this.#loop > 0 || this.#loop == true)
   }
-  get peek() {
+  get ended() { return this.active.ended }
 
+  // functions, setters and getters that interact with this.active
+  /**
+   * 
+   * @param {null|Number|String} (item) Null to play active AmplfrItem, or index (as number) or ID/Title (as string) of AmplfrItem to play.
+   */
+  play(item = null) {
+    let active = this.active
+
+    if (typeof item == "number") {
+      active = this.items.item(item)
+
+      this.#deactivateOthers()
+      this.#activate(active)
+    }
+    else if (typeof item == "string") {
+      active = this.items.namedItem(item)
+
+      this.#deactivateOthers()
+      this.#activate(active)
+    }
+
+    this.active.play()
   }
+  pause() { this.active.pause() }
+  stop() { this.active.stop() }
+  fastSeek(s) { this.active.fastSeek(s) }
+  seekTo(s, precise) { this.active.seekTo(s, precise) }
+  get buffered() { return this.active.buffered }
+  get currentTime() { return this.active.currentTime }
+  get duration() { return this.active.duration }
+  get durationMMSS() { return this.active.durationMMSS }
+  get error() { return this.active.error }
+  get muted() { return this.active.muted }
+  get networkState() { return this.active.networkState }
+  get paused() { return this.active.paused }
+  get playing() { return this.active.playing }
+  get playbackRate() { return this.active.playbackRate }
+  get readyState() { return this.active.readyState }
+  get seekable() { return this.active.seekable }
+  get volume() { return this.active.volume }
 
+  set currentTime(v) { return this.active.currentTime(v) }
   set loop(v = !this.loop) {
     this.#loop = !!v;
 

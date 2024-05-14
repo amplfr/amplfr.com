@@ -10,9 +10,11 @@
  * Displayed the same as AmplfrItem if only one Item is listed, but as a list otherwise
  */
 class AmplfrQueue extends AmplfrCollection {
-  constructor(data, options = true) {
-    if (!data) data = '/api/queue'
-    super(data, options); // Always call super first in constructor
+  constructor(src) {
+    if (!src)
+      src = '/api/queue'
+
+    super(src); // Always call super first in constructor
   }
 
   /**
@@ -22,59 +24,42 @@ class AmplfrQueue extends AmplfrCollection {
    * @param {Number} deleteCount 
    * @param  {...any} items One or more {@link AmplfrItem}s
    */
-  async splice(start = -1, deleteCount = 0, ...items) {
-    // create a child element for each item, populate it, and append it to e
+  splice(start = -1, deleteCount = 0, ...items) {
+    // based on https://gist.github.com/Daniel-Hug/05bfef7b276bbd5c492e
+    const childNodes = this.childNodes
+    const removedNodes = []
+
+    // if `start` is negative, begin that many nodes from the end
+    start = start < 0 ? childNodes.length + start : start
+
+    // remove the element at index `start` `deleteCount` times
+    const stop = typeof deleteCount === 'number' ? start + deleteCount : childNodes.length;
+    for (let i = start; i < stop && childNodes[start]; i++)
+      removedNodes.push(this.removeChild(childNodes[start]));
+
+    // add items at index `start`
     items = items.flat()  // need to use flat() and then map(), so flatMap() doesn't work here
-    const promises = items.map(async obj => {
-      // if item is already an AmplfrItem
-      if (obj instanceof AmplfrItem) return obj;
 
-      // check if domain is just an AmplfrID or AmplfrCollectionID
-      if (AmplfrItem.isValidID(obj) || AmplfrCollection.isValidID(obj)) {
-        // obj = document.location.origin + `/api/${obj}.json`
-        // obj = await AmplfrCollection.parse(obj)
-        obj = await AmplfrCollection.parse(document.location.origin + `/api/${obj}.json`)
-      }
+    // stick nodes in a document fragment
+    let docFrag = document.createDocumentFragment();
+    items.forEach(item => {
+      // if item isn't an AmplfrItem, make it so
+      if (!(item instanceof AmplfrItem))
+        item = new AmplfrItem(item)
 
-      if (obj?.items && obj.items.length > 0)
-        // upgrade each item to be an AmplfrItem
-        return obj.items.map(item => new AmplfrItem(item, this._options.media))
+      docFrag.appendChild(item);
+    });
 
-      return new AmplfrItem(obj, this._options.media); // upgrade item to be an AmplfrItem
-    })
+    this.insertBefore(docFrag, childNodes[start]);  // place in `this` at index `start`
 
-    Promise.allSettled(promises)
-      .then(newItems => {
-        newItems = newItems.map(e => e.value) || newItems
-        newItems = newItems.flat()
-        // splice in the new items 
-        this._data.items.splice(start, deleteCount, newItems);
-
-        const queue = this._options.items
-        const items = this._options.items.childNodes
-        const length = items.length
-        if (start < 0) start = length + start + 1  // count from the end
-
-        if (start < length) {
-          newItems.forEach((newItem, i) => {
-            const li = this._appendItem(newItem)
-            queue.insertBefore(li, items.item(start + i))
-          })
-        }
-        else {
-          newItems.forEach(newItem => {
-            const li = this._appendItem(newItem)
-            queue.appendChild(li)
-          })
-        }
-      })
+    return removedNodes;
   }
   /**
-   * Add one or more {@link AmplfrItem}s to the end of the Queue
-   * @param  {...any} items One or more {@link AmplfrItem}s
-   * {@link AmplfrItem}
-   * @returns Length of the Queue after the additional {@link AmplfrItem}s have been added
-   */
+     * Add one or more {@link AmplfrItem}s to the end of the Queue
+     * @param  {...any} items One or more {@link AmplfrItem}s
+     * {@link AmplfrItem}
+     * @returns Length of the Queue after the additional {@link AmplfrItem}s have been added
+     */
   async push(...items) {
     await this.splice(-1, 0, items)
     return this.length
@@ -90,35 +75,40 @@ class AmplfrQueue extends AmplfrCollection {
     return this.length
   }
 
-
+  /**
+   * shuffles the current this.items
+   */
   shuffle() {
-    let i, m = this.length;
-    const items = this._data.items;
-    const list = this._options.items
-    const childNodes = this._options.items.childNodes; // need the childNodes of items
+    let i, m = this.items.length;
+    const items = this.items;   // uses only existing AmplfrItems
+    const childNodes = this.childNodes; // need the childNodes of items
 
     const wasLooped = this.loop
     const isPlaying = this.playing
-    if (isPlaying === true) this.pause();
+    if (isPlaying === true)
+      this.pause();
+
     this.loop = false
     this.item = false;  // unload anything that might be playing first
 
-    // mark the items in order
-    items.forEach((item, n) => { item.setAttribute('num', n) })
+    // mark the items in order so it can be undone by this.sort()
+    items.forEach((item, n) => {
+      item.setAttribute('num', n + 1)
+    })
 
     // Fisher-Yates (aka Knuth) shuffle
     //  based on https://bost.ocks.org/mike/shuffle/
     while (m) {
-      // pick a random item from 0..m
-      i = Math.floor(Math.random() * m--);
+      i = Math.floor(Math.random() * m);  // pick a random item from 0..m
 
       // ...and swap it with the current element.
-      list.insertBefore(childNodes[m], childNodes[i]);
+      this.insertBefore(childNodes[m--], childNodes[i]);
     }
 
     this.loop = wasLooped  // restore previous loop status
     this.item = 1   // load the new first item
-    if (isPlaying) this.play()  // start playing again if were already doing so
+    if (isPlaying)
+      this.play()  // start playing again if were already doing so
   }
   sort(compareFn) {
     compareFn = compareFn || ((a, b) => {
@@ -127,6 +117,14 @@ class AmplfrQueue extends AmplfrCollection {
 
     return this._options.items.sort(compareFn);
   }
+
+  /**
+   * Called when this element is (re-)added to the DOM. 
+   * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements|MDN Using custom elements}
+   */
+  async connectedCallback() {
+    super.connectedCallback()
+  }
 }
 // prettier-ignore
-customElements.define("amplfr-queue", AmplfrQueue, { extends: "div" });
+customElements.define("amplfr-queue", AmplfrQueue);
