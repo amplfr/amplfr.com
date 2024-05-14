@@ -536,8 +536,7 @@ class AmplfrItem extends HTMLElement {
   #renderAlbum() {
     const album = this.#data.album
     if (!this.#dom || !album) return;
-    if (!!this.#dom.querySelector(`.album-${album?.id}`)) return;
-
+    if (!!this.#dom.querySelector(`.album[data-id="album/${album?.id}"]`)) return;
 
     let albumE;
     let href = album.href || album.url || album.src || this.#href(album);
@@ -581,17 +580,14 @@ class AmplfrItem extends HTMLElement {
       this.#data.artists.forEach(artist => this.#renderArtist(artist))
   }
   #renderArtist(artist) {
-    // const artists = this.#data.artists;
-    // const artists = Array.from(this.#data.artists);
     if (!this.#dom || !artist) return;
-    if (!!this.#dom.querySelector(`.artist-${artist?.id}`)) return;
+    if (!!this.#dom.querySelector(`.artist[data-id="artist/${artist?.id}"]`)) return;
 
     let artistE;
     let href = artist.href || artist.url || artist.src || this.#href(artist)
     if (!!href) {
       href = href.replaceAll(/^\/api|\.json$/g, "")
       artistE = document.createElement("a");
-      // artistE.setAttribute("href", href);
       artistE.setAttribute("href", href);
     } else artistE = document.createElement("span");
     artistE.classList.add("artist");
