@@ -9,18 +9,6 @@ Number.prototype.toMMSS = function () {
   if (m >= 60) m = `${m / 60}:${(m % 60).toString().padStart(2, "0")}`;
   return `${neg}${m}:${s.toString().padStart(2, "0")}`;
 };
-Number.prototype.toHumanBytes = function () {
-  if (Number.isNaN(this.valueOf())) return "";
-
-  // based on https://gist.github.com/zentala/1e6f72438796d74531803cc3833c039c
-  if (this == 0) return "0B";
-  const k = 1024;
-  const dm = 2;
-  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-  const i = Math.floor(Math.log(this) / Math.log(k));
-
-  return parseFloat((this / Math.pow(k, i)).toFixed(dm)) + sizes[i];
-};
 
 /**
  * AmplfrItem
@@ -317,7 +305,6 @@ class AmplfrItem extends HTMLElement {
         this.#data.src = url
       }
 
-      // this.#data.url = this.dataURL
       this.#data.url = url
     } catch (error) {
       console.warn(error);
@@ -755,6 +742,19 @@ class AmplfrItem extends HTMLElement {
       played = (100 * that.currentTime) / that.duration;
     }
 
+    Number.prototype.toHumanBytes = function () {
+      if (Number.isNaN(this.valueOf())) return "";
+
+      // based on https://gist.github.com/zentala/1e6f72438796d74531803cc3833c039c
+      if (this == 0) return "0B";
+      const k = 1024;
+      const dm = 2;
+      const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+      const i = Math.floor(Math.log(this) / Math.log(k));
+
+      return parseFloat((this / Math.pow(k, i)).toFixed(dm)) + sizes[i];
+    };
+
     if (bytes > 0) msg += ` ${bytes.toHumanBytes()}\n`;
     if (bytes > 0) msg += ` ${((loaded / 100) * bytes).toHumanBytes()}`;
     msg += ` ${loaded.toFixed(0)}% loaded`;
@@ -833,11 +833,6 @@ class AmplfrItem extends HTMLElement {
     this.#media.addEventListener("abort", (e) => this.#warn(e.type));
     this.#media.addEventListener("error", async (e) => {
       const media = e.currentTarget;
-      // this.#warn("error")
-      // this.#warn(
-      //   `ERROR code ${media.error.code} - ${media.error.message}`
-      // );
-
       if (media.networkState === media.NETWORK_NO_SOURCE)
         return this.#warn(
           `\nCannot load the resource as given. \Please double check the URL and try again`
@@ -879,7 +874,7 @@ class AmplfrItem extends HTMLElement {
       that.#updateButton("downloading", `Downloading "${that.title}"`);
     });
     this.#media.addEventListener("durationchange", (e) => {
-      this.#progressUpdate(e)
+      that.#progressUpdate(e)
       that.#updateTime();
     });
     this.#media.addEventListener("loadedmetadata", (e) => {
@@ -923,10 +918,10 @@ class AmplfrItem extends HTMLElement {
     this.#media.addEventListener("canplay", (e) => {
       // this.#log(e.type);
       that.#updateButton("play_arrow", `Play "${that.title}"`);
-      this.#progressUpdate(e)
+      that.#progressUpdate(e)
     });
     this.#media.addEventListener("canplaythrough", (e) => {
-      this.#progressUpdate(e)
+      that.#progressUpdate(e)
       // this.#log(e.type)
     });
     // this.#media.addEventListener("ratechange", (e) => this.#log(e.type));
