@@ -252,13 +252,26 @@ class AmplfrItem extends HTMLElement {
   async #fetch() {
     // if this.#data is already parsed, nothing else to do here
     if (!!this.#data) return
-    // if (!this.id) return
 
     this.#data = {}     // initialize this.#data since we've got this far
 
     // build the API URL and fetch() its contents
     let url = new URL(this.dataURL, document.location.origin);
     const id = this.id  // save to assign later (needed if this is a collection (i.e., "album/..."))
+
+    // needed to avoid CORS requests
+    // TODO need to figure out CORS proxy, etc.
+    if (url.origin != document.location.origin) {
+      Object.entries(this.dataset).forEach(([k, v]) => {
+        this.#data[k] = v
+        delete this.dataset[k]  // not needed any longer
+      })
+
+      this.#data.href = url // so this.#renderTitle() makes title a link to this
+      this.#data.src = url  // so this.load() points to the correct media
+      return
+    }
+
     let contentType
     let success = false
     try {
@@ -337,28 +350,20 @@ class AmplfrItem extends HTMLElement {
     if (!!this.title)
       this.setAttribute("title", this.title)
 
-    // fetch/parse the media files (if there isn't a list of items)
-    // if (!this.#data.files && !this.#data.items)
-    //     this.#fetchSrc()
-
-    // 
-    // if (!!this.items && this.items?.length > 0) {
-    //     this.items.forEach((data, n) => {
     if (!!this.#data?.items && this.#data.items?.length > 0) {
+      let elementToInsertAfter = this
       this.#data.items.forEach((data, n) => {
         // create new object, passing in already received data object
         let item = new AmplfrItem(data)
         item.partOf = this.url  // 
 
-        this.parentElement.appendChild(item)
+        // do this instead of this this.parentNode.applend(this) to add items deterministically
+        // otherwise items and collections could be added outof order
+        elementToInsertAfter.insertAdjacentElement("afterend", item) // insert item after previous item
+        elementToInsertAfter = item  // so the next item is appended after this one
       }, this)
 
-      // if artwork isn't already defined, default it
-      if (!this.#data.artwork)
-        this.#data.artwork = `/img/${this.id}.jpg`
-
-      // this.remove()
-      this.classList.add("collection")
+      this.parentNode.removeChild(this) // remove this empty element
     }
   }
   #extractJSON(json) {
@@ -386,25 +391,7 @@ class AmplfrItem extends HTMLElement {
     return metadata
   }
   async #extractBlob(blob) {
-    // DEBUG - not working append jsmediatags to Head
-    const attributes = {
-      src: "https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js",
-      integrity: "sha512-YsR46MmyChktsyMMou+Bs74oCa/CDdwft7rJ5wlnmDzMj1mzqncsfJamEEf99Nk7IB0JpTMo5hS8rxB49FUktQ==",
-      crossorigin: "anonymous",
-      referrerpolicy: "no-referrer",
-    }
-
-    let jsmediatags = window.jsmediatags || document.querySelector(`script[src='${attributes.src}']`)
-    if (!jsmediatags) {
-      const element = document.createElement("script");
-      Object.keys(attributes).forEach(k => {
-        element.setAttribute(k, attributes[k])
-      })
-
-      document.head.appendChild(element)
-      // jsmediatags = window.jsmediatags
-      // import jsmediatags from "jsmediatags"
-    }
+    let jsmediatags = window.jsmediatags  // || document.querySelector(`script[src='${attributes.src}']`);
 
     let metadata // = {}
     await new Promise((resolve, reject) => {
@@ -428,51 +415,81 @@ class AmplfrItem extends HTMLElement {
     return metadata
   }
 
+  #renderResourceMetadata() {
+    const attributes = {
+      src: "https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js",
+      integrity: "sha512-YsR46MmyChktsyMMou+Bs74oCa/CDdwft7rJ5wlnmDzMj1mzqncsfJamEEf99Nk7IB0JpTMo5hS8rxB49FUktQ==",
+      crossorigin: "anonymous",
+      referrerpolicy: "no-referrer",
+    };
+
+    let jsmediatags = document.querySelector(`script[src='${attributes.src}']`);
+    if (!jsmediatags) {
+      const element = document.createElement("script");
+      Object.keys(attributes).forEach(k => {
+        element.setAttribute(k, attributes[k]);
+      });
+
+      document.head.appendChild(element);
+    }
+  }
+
   /**
    * connectedCallback() is called when this element is (re-)added to the DOM
    */
   async connectedCallback() {
     await this.#fetch();
 
-    this.#render(); // render the basic elements - title, artwork, etc.
+    // this.#render(); // render the basic elements - title, artwork, etc.
+    this.#renderResources();
+    this.#renderResourceMetadata()
 
-    if (!this.items) {
-      // if there's another like this, be polite
-      const prev = this.previous()    // save it since we're going to use it a few times here
-      if (!!prev) {
-        const me = this
-        // prev.addEventListener("canplaythrough", (e) => { me.load() })
-        prev.addEventListener("loadedmetadata", (e) => { me.load() })
-        prev.addEventListener("ended", (e) => {
-          prev.classList.remove("active") // dosen't work with e.target, so need prev
-          me.classList.add("active")
-          me.play()
-        })
-      }
-      else {
-        // this is the only or first
-        this.load(); // attempt to setup and download the related media
-        this.classList.add("active")
-      }
+    this.#dom = this
+    // this.shadow.appendChild(this.#dom);
+    // this.appendChild(this.#dom);
+    this.#dom.classList.add("item");
+
+    // if this is a collection
+    if (!!this.#data?.items && this.#data.items?.length > 0)
+      return
+
+    // order (probably?) does matter
+    this.#renderArtwork();
+    this.#renderTitle();
+    this.#renderTimeline();
+    this.#renderArtists();
+    this.#renderAlbum()
+    this.#renderTime();
+
+    // if there's another like this, be polite
+    const prev = this.previous()    // save it since we're going to use it a few times here
+    if (!!prev) {
+      const me = this
+      // prev.addEventListener("canplaythrough", (e) => { me.load() })
+      prev.addEventListener("loadedmetadata", (e) => { me.load() })
+      prev.addEventListener("ended", (e) => {
+        prev.classList.remove("active") // dosen't work with e.target, so need prev
+        me.classList.add("active")
+        me.play()
+      })
     }
-
-    // TODO maybe (??) setup some this.#collection stuff here
-    // if (this.#collection.length > 1)
-    //     console.this.#log(this.#collection.length)
+    else {
+      // this is the only or first
+      this.load(); // attempt to setup and download the related media
+      this.classList.add("active")
+    }
   }
 
-  #render() {
-    // this.shadow = this.attachShadow({ mode: "closed" });
-
+  #renderResources() {
     // add the following resource elements only if each isn't already present
     let resources = {
       "/css/item.css": "link",
       "https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0": "link",
       "https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js": "script",
     }
-    const Head = document.head
+    let element
     Object.entries(resources).forEach(([href, elementType]) => {
-      let element
+      element = null
       if (elementType == "link") {
         if (document.querySelectorAll(`${elementType}[href='${href}']`).length == 0) {
           element = document.createElement("link");
@@ -486,29 +503,10 @@ class AmplfrItem extends HTMLElement {
         }
       }
 
-      // append element to Head if it isn't null
+      // append element to document's Head if it isn't null
       if (!!element)
-        Head.appendChild(element);
+        document.head.appendChild(element);
     })
-
-    this.#dom = this
-    // this.shadow.appendChild(this.#dom);
-    // this.appendChild(this.#dom);
-    this.#dom.classList.add("item");
-
-    // if this is a collection
-    if (!!this.#data?.items && this.#data.items?.length > 0) {
-      this.parentNode.removeChild(this) // remove this empty element
-      return
-    }
-
-    // order (probably?) does matter
-    this.#renderArtwork();
-    this.#renderTitle();
-    this.#renderTimeline();
-    this.#renderArtists();
-    this.#renderAlbum()
-    this.#renderTime();
   }
   #renderAlbum() {
     const album = this.#data.album
@@ -555,6 +553,8 @@ class AmplfrItem extends HTMLElement {
     // create a child element for each Artist, populate it, and append it to e
     if (this.#data.artists && Array.isArray(this.#data.artists) && this.#data.artists.length > 0)
       this.#data.artists.forEach(artist => this.#renderArtist(artist))
+    else if (!!this.#data.artist)
+      this.#renderArtist(this.#data.artist)
   }
   #renderArtist(artist) {
     if (!this.#dom || !artist) return;
@@ -715,14 +715,20 @@ class AmplfrItem extends HTMLElement {
     this.button.innerHTML = text;
     this.button.title = title;
   };
-  #updateTime(seconds = this.currentTime) {
+  #updateTime(justDuration = true) {
     if (!this || !this.#media) return; // no media, nothing else to do here
 
-    const duration = this.duration || 0
+    const seconds = this.currentTime;
+    let duration = this.duration || 0;
     const percent = seconds / duration;
 
+    duration = duration.toMMSS()
+
     // set the current time
-    this.time.innerText = `${seconds.toMMSS()} / ${duration.toMMSS()}`;    // set the current time
+    if (justDuration)
+      this.time.innerText = duration;    // set the current time
+    else
+      this.time.innerText = `${seconds.toMMSS()} / ${duration}`;    // set the current time
 
     // set the timeline position
     if (!!this.progress)
@@ -764,7 +770,7 @@ class AmplfrItem extends HTMLElement {
     this.#log(msg);
   }
   #warn(msg) {
-    console.warn(`${media.currentSrc} - ${msg}`);
+    console.warn(`${this.media.currentSrc} - ${msg}`);
     that.#updateButton("report", `Warning: ${msg}`);
   }
   #progressUpdate(e) {
@@ -895,7 +901,7 @@ class AmplfrItem extends HTMLElement {
         })
     });
     this.#media.addEventListener("loadeddata", (e) => {
-      this.#progressUpdate(e)
+      that.#progressUpdate(e)
     });
     this.#media.addEventListener("progress", (e) => {
       // update what percentage (of time) has been downloaded thus far
@@ -903,7 +909,7 @@ class AmplfrItem extends HTMLElement {
         // is this completely loaded?
         if (that.loaded >= 1) {
           // dispatch a "loaded" event
-          media.dispatchEvent(
+          that.dispatchEvent(
             new Event("loaded", {
               bubbles: true,
               detail: {
@@ -947,12 +953,12 @@ class AmplfrItem extends HTMLElement {
     });
     this.#media.addEventListener("seeked", (e) => {
       this.#log(`${e.type} - ${e.target.currentTime} to ${Number(media.currentTime).toMMSS()} (${media.currentTime})`)
-      that.#updateTime(); // one-off to update the time
+      that.#updateTime(false); // one-off to update the time
     });
     // this.#media.addEventListener("seeking", (e) => this.#log(e.type));
     // this.#media.addEventListener("suspend", (e) => this.#log(e.type));
     this.#media.addEventListener("timeupdate", (e) => {
-      that.#updateTime();
+      that.#updateTime(false);
     });
     this.#media.addEventListener("ended", (e) => {
       this.#log("ended");
@@ -1053,12 +1059,18 @@ const decorateWithImageColor = async (img, palettes) => {
   if (!palettes) {
     const colorThief = new ColorThief();
     if (img.complete) {
-      palettes = await colorThief.getPalette(img, 5);
-      return decorateWithImageColor(img, palettes);
-    } else {
-      img.addEventListener("load", async function () {
+      try {
         palettes = await colorThief.getPalette(img, 5);
         return decorateWithImageColor(img, palettes);
+      } catch (error) {
+        // probably cannot access img data, maybe due to CORS
+        // console.warn(error.message || error)
+        return
+      }
+    } else {
+      img.addEventListener("load", async function () {
+        // palettes = await colorThief.getPalette(img, 5);
+        return decorateWithImageColor(img);
       }, { once: true });
       return;
     }
