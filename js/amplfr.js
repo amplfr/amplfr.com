@@ -343,13 +343,6 @@ class AmplfrItem extends HTMLElement {
   };
 
   #extract() {
-    // set the definitive src and title attributes
-    this.setAttribute("src", this.url)
-    if (!!this.id)
-      this.setAttribute("id", this.id)
-    if (!!this.title)
-      this.setAttribute("title", this.title)
-
     if (!!this.#data?.items && this.#data.items?.length > 0) {
       let elementToInsertAfter = this
       this.#data.items.forEach((data, n) => {
@@ -365,6 +358,13 @@ class AmplfrItem extends HTMLElement {
 
       this.parentNode.removeChild(this) // remove this empty element
     }
+
+    // set the definitive src and title attributes
+    this.setAttribute("src", this.url)
+    if (!!this.id)
+      this.setAttribute("id", this.id)
+    if (!!this.title)
+      this.setAttribute("title", this.title)
   }
   #extractJSON(json) {
     const metadata = {}
