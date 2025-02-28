@@ -1,14 +1,4 @@
 const blankImage = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=" // a blank 1x1 PNG
-Number.prototype.toMMSS = function () {
-  if (Number.isNaN(this.valueOf())) return "";
-  let neg = this < 0 ? "-" : "";
-  let t = Math.abs(this);
-  let s = Math.round(t % 60);
-  let m = Math.floor(t / 60);
-
-  if (m >= 60) m = `${m / 60}:${(m % 60).toString().padStart(2, "0")}`;
-  return `${neg}${m}:${s.toString().padStart(2, "0")}`;
-};
 
 /**
  * AmplfrItem
@@ -39,7 +29,9 @@ Number.prototype.toMMSS = function () {
 const Elements = [
   "amplfr-item",
   "amplfr-collection",
-].join(", ")
+]
+// ].join(",")
+const ElementStr = Elements.join(",")
 /**
  * AmplfrItem
  * 
@@ -162,8 +154,8 @@ class AmplfrItem extends HTMLElement {
     let href
     if (!!obj.id && (!!obj.title || !!obj.name))
       href = `/${obj.id}/${encodeURI(obj?.title || obj?.name).replaceAll("%20", "+",)}`;
-    else if (typeof href == "string")
-      href = encodeURI(obj).replaceAll("%20", "+",)
+    // else if (typeof href == "string")
+    //   href = encodeURI(obj).replaceAll("%20", "+",)
 
     return href
   }
@@ -174,7 +166,7 @@ class AmplfrItem extends HTMLElement {
     return this.#data.url
   }
   get sourceURL() {
-    return this.#data.url.replace(/^\/api|\.json$/, "");
+    return this.#data.url?.replace(/^\/api|\.json$/, "");
   }
   toString() {
     let string = ""
@@ -210,7 +202,7 @@ class AmplfrItem extends HTMLElement {
     let elements
 
     if (!!wholeDocument)
-      elements = document.querySelectorAll(Elements)
+      elements = document.querySelectorAll(ElementStr)
     else
       elements = this.parentNode.querySelectorAll('amplfr-item')
 
@@ -283,14 +275,27 @@ class AmplfrItem extends HTMLElement {
       if (contentType == "application/json") {
         this.#data = await response.json();
 
-        if (!this.#data.id || !this.#data.title)
+        if (Array.isArray(this.#data))
+          this.#data = {
+            // id: true,
+            items: this.#data,
+            // title: true,
+            // url: url.href,
+            url: url.pathname,
+          }
+        // if (!this.#data.id || !this.#data.title)
+        if (!this.#data.id && !this.#data.title && !this.#data.items)
           throw new Error("Invalid data returned.")
 
         this.#data.id = id  // re-save precomputed id
         // this.#data.href = this.#href(this.#data)
-        url = this.#href(this.#data)
-        this.#data.href = url
-        // this.#data.src = `/api/${id}.json` // in case .files isn't set/available
+        // url = this.#href(this.#data)
+        // this.#data.href = url
+        let href = this.#href(this.#data)
+        // url = this.#href(this.#data) || url.href
+        url = href || url.href
+        // url = url.href
+        url = url.replaceAll(/\/api|\.json/gi, "")
 
         // fetch/parse the media files (if there isn't a list of items)
         if (!this.#data.files && !this.#data.items)
@@ -348,7 +353,9 @@ class AmplfrItem extends HTMLElement {
       this.#data.items.forEach((data, n) => {
         // create new object, passing in already received data object
         let item = new AmplfrItem(data)
-        item.partOf = this.url  // 
+        // item.partOf = this.url  // 
+        item.dataset.collectionUrl = this.url
+        item.dataset.collectionNumber = n + 1
 
         // do this instead of this this.parentNode.applend(this) to add items deterministically
         // otherwise items and collections could be added outof order
@@ -356,7 +363,10 @@ class AmplfrItem extends HTMLElement {
         elementToInsertAfter = item  // so the next item is appended after this one
       }, this)
 
+      // if (this.parentElement.constructor.name.includes(Elements)) {
       this.parentNode.removeChild(this) // remove this empty element
+      return  // anything else done to this will be for nothing
+      // }
     }
 
     // set the definitive src and title attributes
@@ -368,11 +378,13 @@ class AmplfrItem extends HTMLElement {
   }
   #extractJSON(json) {
     const metadata = {}
+    const artists = []
 
     if (!!json.title)
       metadata.title = json.title
     if (!!json.artist)
-      metadata.artists = [json.artist]
+      // metadata.artists = [json.artist]
+      metadata.artists.push(json.artist)
     if (!!json.album)
       metadata.album = json.album
     if (!!json.artwork || !!json.picture || !!json.image)
@@ -390,8 +402,26 @@ class AmplfrItem extends HTMLElement {
 
     return metadata
   }
+  /**
+   * Uses {@link https://github.com/aadsm/jsmediatags|aadsm/jsmediatags} to extract ID3, MP4, FLAC media tags and then call {@link #extractJSON} to map to required fields.
+   * Supported tags provided by jsmediatags: 
+   *  title
+   *  artist
+   *  album
+   *  year
+   *  comment
+   *  track
+   *  genre
+   *  picture
+   *  lyrics
+   * @param {*} blob 
+   * @see extractJSON
+   * @returns {Object|null} metadata containing populated fields
+   */
   async #extractBlob(blob) {
-    let jsmediatags = window.jsmediatags  // || document.querySelector(`script[src='${attributes.src}']`);
+    // relies on [aadsm/jsmediatags: Media Tags Reader (ID3, MP4, FLAC)](https://github.com/aadsm/jsmediatags)
+    // assumes that 
+    let jsmediatags = window.jsmediatags
 
     let metadata // = {}
     await new Promise((resolve, reject) => {
@@ -405,8 +435,7 @@ class AmplfrItem extends HTMLElement {
       })
     })
       .then(rv => {
-        const { tags } = rv
-        metadata = this.#extractJSON(tags)
+        metadata = this.#extractJSON(rv.tags)
       })
       .catch(error => {
         // console.warn(error.info || error)
@@ -473,11 +502,11 @@ class AmplfrItem extends HTMLElement {
         me.play()
       })
     }
-    else {
-      // this is the only or first
-      this.load(); // attempt to setup and download the related media
-      this.classList.add("active")
-    }
+    // else {
+    //   // this is the only or first
+    //   this.load(); // attempt to setup and download the related media
+    //   this.classList.add("active")
+    // }
   }
 
   #renderResources() {
@@ -770,8 +799,8 @@ class AmplfrItem extends HTMLElement {
     this.#log(msg);
   }
   #warn(msg) {
-    console.warn(`${this.media.currentSrc} - ${msg}`);
-    that.#updateButton("report", `Warning: ${msg}`);
+    console.warn(`${this?.media?.currentSrc || this.sourceURL} - ${msg}`);
+    this.#updateButton("report", `Warning: ${msg}`);
   }
   #progressUpdate(e) {
     // this.#log(`${e.type} ${this.#bufferedTime}s ${Number.parseFloat(this.#bufferedTime / this.duration * 100).toFixed(4)}%`);
@@ -785,7 +814,7 @@ class AmplfrItem extends HTMLElement {
       this.#media.load()  // re-load()
       return
     }
-    this.#log("load")
+    // this.#log("load")
 
     // fetch/parse the media files
     if (!this.#data.files)
@@ -836,12 +865,12 @@ class AmplfrItem extends HTMLElement {
 
     this.#renderButton()
 
-    this.#media.addEventListener("abort", (e) => this.#warn(e.type));
-    this.#media.addEventListener("error", async (e) => {
+    media.addEventListener("abort", (e) => this.#warn(e.type));
+    media.addEventListener("error", async (e) => {
       const media = e.currentTarget;
       if (media.networkState === media.NETWORK_NO_SOURCE)
         return this.#warn(
-          `\nCannot load the resource as given. \Please double check the URL and try again`
+          `Cannot load the resource as given. \Please double check the URL and try again`
         );
 
       // MEDIA_ERR_ABORTED - User aborted
@@ -861,8 +890,8 @@ class AmplfrItem extends HTMLElement {
           `Please double check the URL and try again.`
         );
     });
-    // this.#media.addEventListener("stalled", (e) => this.#warn(e.type));
-    this.#media.addEventListener("waiting", (e) => {
+    // media.addEventListener("stalled", (e) => this.#warn(e.type));
+    media.addEventListener("waiting", (e) => {
       this.#warn(e.type)
       that.#updateButton("downloading", "Waiting");
     });
@@ -875,15 +904,15 @@ class AmplfrItem extends HTMLElement {
     // 5. progress        downloading
     // 6. canplay         when the browser can start playing the specified audio/video (when it has buffered enough to begin)
     // 7. canplaythrough  when the browser estimates it can play through the specified audio/video without having to stop for buffering
-    this.#media.addEventListener("loadstart", (e) => {
+    media.addEventListener("loadstart", (e) => {
       if (e.currentTarget != media) return;
       that.#updateButton("downloading", `Downloading "${that.title}"`);
     });
-    this.#media.addEventListener("durationchange", (e) => {
+    media.addEventListener("durationchange", (e) => {
       that.#progressUpdate(e)
       that.#updateTime();
     });
-    this.#media.addEventListener("loadedmetadata", (e) => {
+    media.addEventListener("loadedmetadata", (e) => {
       this.#log(e.type)
       that.#updateTime();
 
@@ -900,10 +929,10 @@ class AmplfrItem extends HTMLElement {
           }
         })
     });
-    this.#media.addEventListener("loadeddata", (e) => {
+    media.addEventListener("loadeddata", (e) => {
       that.#progressUpdate(e)
     });
-    this.#media.addEventListener("progress", (e) => {
+    media.addEventListener("progress", (e) => {
       // update what percentage (of time) has been downloaded thus far
       if (!!that.#media.buffered.length && that.#media.loaded !== true) {
         // is this completely loaded?
@@ -921,22 +950,22 @@ class AmplfrItem extends HTMLElement {
         }
       }
     });
-    this.#media.addEventListener("canplay", (e) => {
+    media.addEventListener("canplay", (e) => {
       // this.#log(e.type);
       that.#updateButton("play_arrow", `Play "${that.title}"`);
       that.#progressUpdate(e)
     });
-    this.#media.addEventListener("canplaythrough", (e) => {
+    media.addEventListener("canplaythrough", (e) => {
       that.#progressUpdate(e)
       // this.#log(e.type)
     });
-    // this.#media.addEventListener("ratechange", (e) => this.#log(e.type));
-    // this.#media.addEventListener("resize", (e) => this.#log(e.type));
-    this.#media.addEventListener("play", (e) => {
+    // media.addEventListener("ratechange", (e) => this.#log(e.type));
+    // media.addEventListener("resize", (e) => this.#log(e.type));
+    media.addEventListener("play", (e) => {
       if (e.currentTarget != media) return;
       that.#updateButton("pause", `Pause "${that.title}"`);
     });
-    this.#media.addEventListener("playing", (e) => {
+    media.addEventListener("playing", (e) => {
       this.#log(e.type)
 
       that.#updateButton("pause", `Pause "${that.title}"`);
@@ -945,22 +974,22 @@ class AmplfrItem extends HTMLElement {
 
       that.classList.remove("played")
     });
-    this.#media.addEventListener("pause", (e) => {
+    media.addEventListener("pause", (e) => {
       if (e.currentTarget != media) return;
       that.#updateButton("play_arrow", `Play "${that.title}"`);
       this.classList.remove("playing")
       this.removeAttribute("playing")
     });
-    this.#media.addEventListener("seeked", (e) => {
+    media.addEventListener("seeked", (e) => {
       this.#log(`${e.type} - ${e.target.currentTime} to ${Number(media.currentTime).toMMSS()} (${media.currentTime})`)
       that.#updateTime(false); // one-off to update the time
     });
-    // this.#media.addEventListener("seeking", (e) => this.#log(e.type));
-    // this.#media.addEventListener("suspend", (e) => this.#log(e.type));
-    this.#media.addEventListener("timeupdate", (e) => {
+    // media.addEventListener("seeking", (e) => this.#log(e.type));
+    // media.addEventListener("suspend", (e) => this.#log(e.type));
+    media.addEventListener("timeupdate", (e) => {
       that.#updateTime(false);
     });
-    this.#media.addEventListener("ended", (e) => {
+    media.addEventListener("ended", (e) => {
       this.#log("ended");
 
       that.classList.remove("playing")
@@ -972,14 +1001,14 @@ class AmplfrItem extends HTMLElement {
         that.#updateButton("replay", `Replay "${that.title}"`);
       }
     });
-    // this.#media.addEventListener("emptied", (e) => this.#log(e.type));
-    // this.#media.addEventListener("volumechange", (e) => this.#log(e.type));
+    // media.addEventListener("emptied", (e) => this.#log(e.type));
+    // media.addEventListener("volumechange", (e) => this.#log(e.type));
 
     // setup any event listeners User already submitted
     if (!!this.listeners) {
       Object.entries(this.listeners).forEach(
         ([event, { listener, options }]) =>
-          this.#media.addEventListener(event, listener, options)
+          media.addEventListener(event, listener, options)
       );
 
       delete this.listeners   // no further need
@@ -1005,6 +1034,22 @@ class AmplfrItem extends HTMLElement {
           Object.defineProperty(this, key, functions)
       }
     }
+  }
+  /**
+   * Unloads the associated media. Need to run {@link} load() to re-load the media.
+   * @see {@link load}
+   * @emits unloaded
+   */
+  unload() {
+    this.#media = null
+    this.#log("unload")
+
+    // dispatch an "unloaded" event
+    that.dispatchEvent(
+      new Event("unloaded", {
+        bubbles: true,
+      })
+    );
   }
 
   addEventListener(type, listener, options) {
@@ -1132,10 +1177,12 @@ class AmplfrAudio extends Audio {
 
     // stop any others that are already playing
     // "There can only be one"
-    document.querySelectorAll('amplfr-item').forEach(item => {
-      // console.this.#log(`${item.title} - is ${item.playing ? "" : "NOT"} playing`)
-      if (item.playing) item.stop()
-    })
+    // document.querySelectorAll('amplfr-item').forEach(item => {
+    //   // console.this.#log(`${item.title} - is ${item.playing ? "" : "NOT"} playing`)
+    //   if (item.playing) item.stop()
+    //   item.classList.remove("active")
+    // })
+    // this.classList.add("active")
 
     // play (so long as there are no errors)
     if (!super.error) super.play();
@@ -1326,7 +1373,6 @@ class AmplfrAudio extends Audio {
 
 /**
  * 
- * 
  * TODO implement [iterator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators#iterators)
  * TODO implement this.loop
  * TODO drop the this.#media object from an AmplfrItem that has been played and !this.loop
@@ -1383,19 +1429,30 @@ class AmplfrCollection extends AmplfrItem {
       },
       fn: this.next
     },
-    {
-      id: "search",
-      title: "Search",
-      text: "search",
-      fn: () => { }
-    },
+    // {
+    //   id: "search",
+    //   title: "Search",
+    //   text: "search",
+    //   fn: () => { }
+    // },
   ]
 
   constructor(src) {
     super(src)
+
+    if (!!src)
+      // if (!!src.id && AmplfrItem.isValidID(src.id)) {
+      //   // src is an object for an AmplfrItem
+      //   this.#data = src
+      //   this.#extract()
+      // }
+      // else 
+      if (typeof src == "string")
+        this.setAttribute("src", src)
   }
 
-  #renderControls() {
+
+  #render() {
     if (!!this.#dom.controls || this.#dom.controls == false) return
     const e = document.createElement("div");
     e.setAttribute('id', 'controls')
@@ -1406,7 +1463,8 @@ class AmplfrCollection extends AmplfrItem {
 
     this.insertAdjacentElement("afterbegin", e)    // before first child
 
-    this.#dom.controls = this.#dom.controls || {};  // e; // save for easy access later
+    // this.#dom.controls = this.#dom.controls || {};  // e; // save for easy access later
+    this.#dom.controls = e; // save for easy access later
     this.#dom.controlsToUpdate = this.#dom.controlsToUpdate || {}
 
     const that = this;
@@ -1427,25 +1485,58 @@ class AmplfrCollection extends AmplfrItem {
       }
       ce.innerText = ctrl.text
       e.appendChild(ce);
-      this.#dom.controls[ctrl.id] = ce
+      // this.#dom.controls[ctrl.id] = ce
 
       function action(ev) {
         ev.preventDefault();
         if (ev.target.classList.contains('disabled')) return // don't do anything if target is disabled
         ctrl.fn.bind(that)(ev);
+        // ctrl.fn.bind(this)(ev);
 
-        // run through all of the controls that may be affected by an outside change
-        Object.entries(that.#dom.controlsToUpdate).forEach(([id, fn]) => {
-          fn(that.#dom.controls[id])
-        })
+        that.#updateControls()
       }
       ce.addEventListener("click", (ev) => action(ev));
       ce.addEventListener("touchend", (ev) => action(ev));
-    })
+      // })
+    }, this)
+
+    this.#renderSearch()
+  }
+  #renderSearch() {
+    if (!this.#dom.controls || !!this.#dom.controls?.search) return
+
+    const e = document.createElement("input");
+    e.type = "search"
+    e.id = "search"
+    e.placeholder = "Search songs, artists, lyrics, albums, and more"
+
+    this.#dom.controls.appendChild(e)
+  }
+  #updateControls() {
+    // run through all of the controls that may be affected by an outside change
+    Object.entries(this.#dom.controlsToUpdate).forEach(([id, fn]) => {
+      // fn(this.#dom.controls[id])
+      fn(this.#dom.controls.children.namedItem(id))
+    }, this)
   }
 
   #activate(item) {
+    const wasActive = this.active
+    const detail = {}
+
+    this.#deactivateOthers()
     item.classList.add("active")
+
+    if (!!wasActive)
+      detail.wasActive = wasActive
+    detail.nowActive = this.active
+
+    this.dispatchEvent(
+      new Event("change", {
+        bubbles: true,
+        detail,
+      })
+    );
   }
   #deactivateOthers() {
     this.querySelectorAll("amplfr-item.active").forEach(item => item.classList.remove("active"))
@@ -1457,25 +1548,33 @@ class AmplfrCollection extends AmplfrItem {
         // console.this.#log("A child node has been added or removed.");
         if (!!mutation.addedNodes && mutation.target.items.length > 1) {
           // add controls
-          mutation.target.#renderControls.apply(mutation.target)
+          mutation.target.#render.apply(mutation.target)
+          mutation.target.#updateControls.apply(mutation.target)
         }
         if (!!mutation.removedNodes && mutation.target.items.length > 1) {
           // remove controls
-          mutation.target.#renderControls.apply(mutation.target)
+          mutation.target.#render.apply(mutation.target)
+          mutation.target.#updateControls.apply(mutation.target)
         }
       }
     }
   }
+  #fetch() { }
 
   /**
    * connectedCallback() is called when this element is (re-)added to the DOM
    */
-  async connectedCallback() {
-    // watch this for any added/removed child nodes
-    this.#dom.observer = new MutationObserver(this.#observer)
-    this.#dom.observer.observe(this, {
-      childList: true,
-    })
+  connectedCallback() {
+    // if (!!this.#observer) {
+    //   // watch this for any added/removed child nodes
+    //   this.#dom.observer = new MutationObserver(this.#observer)
+    //   this.#dom.observer.observe(this, {
+    //     childList: true,
+    //   })
+    // }
+    // super.connectedCallback()
+
+    this.#render(); // render the basic elements - title, artwork, etc.
   }
 
   get active() {
@@ -1501,11 +1600,13 @@ class AmplfrCollection extends AmplfrItem {
 
   previous(changeActive = true) {
     // loop back from this until we run out of elements or find another like this
-    let element = this.active.previousElementSibling
+    // let element = this.active?.previousElementSibling // need this.active.? in case its null
+    let element = this.active
+    element = element?.previousElementSibling || element // need this.active.? in case its null
 
-    if (!!changeActive)
-      // clear out any active items since element is the starting point
-      this.#deactivateOthers()
+    // if (!!changeActive)
+    //   // clear out any active items since element is the starting point
+    //   this.#deactivateOthers()
 
     while (element != null) {
       if (element instanceof AmplfrItem) break
@@ -1523,11 +1624,13 @@ class AmplfrCollection extends AmplfrItem {
   }
   next(changeActive = true) {
     // loop back from this until we run out of elements or find another like this
-    let element = this.active.nextElementSibling
+    // let element = this.active?.nextElementSibling || this.active   // need this.active.? in case its null
+    let element = this.active
+    element = element?.nextElementSibling || element   // need this.active.? in case its null
 
-    if (!!changeActive)
-      // clear out any active items since element is the starting point
-      this.#deactivateOthers()
+    // if (!!changeActive)
+    //   // clear out any active items since element is the starting point
+    //   this.#deactivateOthers()
 
     while (element != null) {
       if (element instanceof AmplfrItem) break
@@ -1623,7 +1726,18 @@ class AmplfrCollection extends AmplfrItem {
 }
 
 customElements.define("amplfr-item", AmplfrItem);
+customElements.define("amplfr-audio", AmplfrAudio);
 // customElements.define("amplfr-audio", AmplfrAudio, { extends: "audio" });
-customElements.define("amplfr-audio", AmplfrAudio, { extends: "audio" });
+// customElements.define("amplfr-audio", AmplfrAudio, { extends: "audio" });
 customElements.define("amplfr-collection", AmplfrCollection);
-// customElements.define("amplfr-audio", AmplfrAudio);
+
+Number.prototype.toMMSS = function () {
+  if (Number.isNaN(this.valueOf())) return "";
+  let neg = this < 0 ? "-" : "";
+  let t = Math.abs(this);
+  let s = Math.round(t % 60);
+  let m = Math.floor(t / 60);
+
+  if (m >= 60) m = `${m / 60}:${(m % 60).toString().padStart(2, "0")}`;
+  return `${neg}${m}:${s.toString().padStart(2, "0")}`;
+};

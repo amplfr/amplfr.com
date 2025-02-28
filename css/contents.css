@@ -1,0 +1,73 @@
+.contents:target,
+.contents.visible {
+  box-shadow: 0px 8px 8px 8px #030303;
+  line-height: normal;
+  z-index: 0;
+  margin-bottom: 60px;
+  position: absolute;
+  /* position: fixed; */
+  top: 128px;
+  backdrop-filter: blur(15px) contrast(0.25);
+}
+.contents ol.items li.item {
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  /* grid-template-rows: 50px; */
+  grid-template-areas:
+    "a b d"
+    "a c d"
+    "a e d";
+  cursor: pointer;
+}
+.contents ol.items li.item .title {
+  font-size: 22px;
+}
+
+.contents ol.items li.item {
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+  /* grid-template-rows: 50px; */
+  grid-template-areas:
+    "a b d"
+    "a c d"
+    "a e d";
+  cursor: pointer;
+}
+.contents ol.items li.item .num {
+  /* cursor: grab; */
+  text-align: center;
+  grid-area: a;
+  margin: auto 2px;
+}
+.contents ol.items li.item {
+  /* from https://codepen.io/paulobrien/pen/YzZZgqB */
+  counter-increment: doc;
+  cursor: ns-resize;
+  text-align: center;
+  grid-area: a;
+  margin: auto 2px;
+}
+.contents ol.items li.item:before {
+  /* content: counter(doc) ". "; */
+}
+.contents ol.items li.item .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto 2px;
+  /* font-weight: bold; */
+  grid-area: b;
+}
+.contents ol.items li.item .artists {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: auto 2px;
+  display: block; /* causes linebreak */
+  grid-area: c;
+}
+.contents ol.items li.item .duration {
+  margin: auto 8px auto 8px;
+  grid-area: d;
+  float: right;
+}

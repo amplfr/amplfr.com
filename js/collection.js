@@ -186,7 +186,6 @@ class AmplfrCollection extends AmplfrItem {
       if (line.test(/^\s*$/))
         continue; // skip any "blank" lines
 
-
       // based on https://en.wikipedia.org/wiki/M3U#File_format
       if (line.test(/^#EXTINF:/i)) {
         // individual item
@@ -196,7 +195,6 @@ class AmplfrCollection extends AmplfrItem {
         const seconds = line.substring(9, comma >= 0 ? comma : undefined);
         const title = line.substring(comma >= 0 ? comma : 0);
         let location = lines[++n]; // shift to (and 'consume') the next line for the location
-
 
         // ensure location is an absolute URL
         if (!location.indexOf("://"))

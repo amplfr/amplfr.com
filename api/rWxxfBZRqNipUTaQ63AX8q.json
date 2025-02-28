@@ -1,0 +1,28 @@
+{
+  "id": "rWxxfBZRqNipUTaQ63AX8q",
+  "title": "Don’t Look Back in Anger",
+  "artists": [
+    {
+      "id": "uzcAqPjm82SStWr7UAaP2G",
+      "name": "Oasis",
+      "area": "Manchester, GB",
+      "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+    }
+  ],
+  "duration": 288,
+  "status": "pending",
+  "isrc": ["GBAAW9500190", "GBQCP1400110"],
+  "mbid": "15b32a80-3965-4061-80c4-894e13d99735",
+  "links": [
+    "https://musicbrainz.org/recording/15b32a80-3965-4061-80c4-894e13d99735",
+    "https://www.youtube.com/watch?v=YZG7z4FOn0g"
+  ],
+  "url": "/api/rWxxfBZRqNipUTaQ63AX8q/Don%E2%80%99t+Look+Back+in+Anger",
+  "visibility": "public",
+  "album": {
+    "id": "ssJLoBpTnHbb4ojwjDLKYt",
+    "title": "(What's the Story) Morning Glory?",
+    "date": 2013,
+    "url": "/api/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+  }
+}

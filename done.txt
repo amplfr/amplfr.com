@@ -1,0 +1,14 @@
+x +Player +Style implement theater mode (hide all elements except Player background and controls)
+x +QueuePanel async load queue list (from /api/queue.json) and populate
+x +QueuePanel has own JS and CSS files to populate/draw and style respectively
+x +QueuePanel slides in/out
+x +QueuePanel async load history list (from /api/history.json) and populate
+x +QueuePanel +dragdrop handle individual (on page) Item dropped onto QueuePanel, and add it to the queue (possibly at the position it was dropped)
+x +QueuePanel +dragdrop handle (on page) Album being dropped onto Queue, and adding all of its Items to the queue (possibly starting at the position it was dropped)
+x +SearchPanel handles searches
+x +SearchPanel separate Artist/Album/Item queries
+x +SearchPanel slides in/out
+x +Style implement Song tile
+x +Style implement Album tile
+x +Player implement basic Player
+x +Player has own JS and CSS files to populate/draw and style respectively

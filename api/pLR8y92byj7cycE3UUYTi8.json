@@ -1,0 +1,27 @@
+{
+  "id": "pLR8y92byj7cycE3UUYTi8",
+  "title": "Hello",
+  "album": {
+    "id": "ssJLoBpTnHbb4ojwjDLKYt",
+    "title": "(What's the Story) Morning Glory?",
+    "released": "2013-12-31T00:00:00.000Z",
+    "countries": ["GB"]
+  },
+  "artists": [
+    {
+      "id": "uzcAqPjm82SStWr7UAaP2G",
+      "name": "Oasis",
+      "area": "Manchester, GB",
+      "url": "/api/artist/uzcAqPjm82SStWr7UAaP2G/Oasis"
+    }
+  ],
+  "duration": 202,
+  "status": "pending",
+  "isrc": ["GBBQY9502012", "GBQCP1400107"],
+  "mbid": "96d67d9c-0be7-40df-a5fa-d82e4bd410d2",
+  "links": [
+    "https://musicbrainz.org/recording/96d67d9c-0be7-40df-a5fa-d82e4bd410d2"
+  ],
+  "url": "/api/album/pLR8y92byj7cycE3UUYTi8/Hello",
+  "visibility": "public"
+}

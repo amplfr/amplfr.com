@@ -1,0 +1,107 @@
+:root {
+  --ff: "Montserrat", sans-serif;
+  --p: 18px/22px var(--ff);
+  --p1: 24px/30px var(--ff);
+  --colorbody: #fff;
+  --colora: #537fe7;
+  --colora2: #ffe537;
+  --colorp: #1e1e1e;
+  --colors: #f2f2f2;
+  --shadow: #00000030 0px 0px 10px 0px;
+  --transition: 0.3s ease-in-out;
+}
+body {
+  font: var(--p);
+  background-color: var(--colorbody);
+  color: var(--colors);
+  text-align: center;
+  margin: auto;
+}
+
+p,
+.p1 {
+  margin: 0;
+}
+.p1 {
+  font: var(--p1);
+}
+
+.card,
+.card1,
+.card2,
+.card3 {
+  background-color: var(--colorp);
+  border-radius: 12px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.card3:hover,
+.card2:hover,
+.card1:hover,
+.card:hover {
+  scale: 1.02;
+  box-shadow: var(--shadow);
+}
+
+.icons {
+  height: 40px;
+}
+.icons2 {
+  height: 32px;
+}
+.icons1 {
+  height: 60px;
+}
+.logo-icon {
+  width: 100px;
+}
+
+.flex-cards {
+  width: 90%;
+  max-width: 1080px;
+  margin: 100px auto;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.flex-cards > div {
+  flex: 1;
+}
+.card {
+  /* min-width: 160px; */
+  min-width: 40%;
+  /* height: 165px; */
+  aspect-ratio: 1 / 1;
+}
+.card1 {
+  min-width: 330px;
+  height: 340px;
+}
+.card2 {
+  /* min-width: 330px; */
+  min-width: 100%;
+  /* height: 80px; */
+  flex-direction: row;
+  aspect-ratio: 5 / 1;
+}
+.card3 {
+  min-width: 330px;
+  /* height: 165px; */
+  aspect-ratio: 2 / 1;
+}
+
+.c1,
+.c2,
+.c3 {
+  display: flex;
+  gap: 10px;
+  min-width: 330px;
+  flex-wrap: wrap;
+}

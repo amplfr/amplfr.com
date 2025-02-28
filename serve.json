@@ -12,6 +12,15 @@
       ]
     },
     {
+      "source": "**/*.@(files)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        }
+      ]
+    },
+    {
       "source": "/api/queue",
       "headers": [
         {

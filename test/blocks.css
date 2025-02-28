@@ -1,0 +1,171 @@
+.block {
+  width: var(--minSide);
+  padding: 8px;
+  box-sizing: border-box;
+  height: fit-content;
+  float: left;
+  position: relative;
+  overflow: hidden;
+}
+.block * {
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+}
+.block .block-inner > * {
+  /* width: 100% !important; */
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}
+
+/* @media screen and (min-width: calc(var(--width)*2 + var(--gap)*3 + var(--padding))) { */
+@media (min-width: 560px) {
+  .block {
+    /* width: 50%; */
+    /* --minSide: calc(100dvw / 2); */
+    --columns: 2;
+    --minSide: calc(100% / var(--columns));
+  }
+}
+/* @media screen and (min-width: calc(var(--width)*3 + var(--gap)*4 + var(--padding))) { */
+@media (min-width: 650px) {
+  .block {
+    /* width: 33.3%; */
+    /* --minSide: calc(100dvw / 3 - 16px); */
+    --columns: 3;
+    --minSide: calc(100% / var(--columns) - 16px);
+  }
+}
+@media (max-width: 816px) {
+  .block.block4x1 {
+    width: calc(3 * var(--minSide)) !important;
+    height: var(--minSide) !important;
+  }
+  .block.block4x1 .block-inner {
+    aspect-ratio: 3/2;
+  }
+  .block.block.block4x1 .block-inner img {
+    aspect-ratio: 3/2;
+  }
+}
+@media (max-width: 650px) {
+  .block.block4x1 {
+    width: calc(2 * var(--minSide)) !important;
+    height: var(--minSide) !important;
+  }
+  /* .block.block4x1 .block-inner {
+          aspect-ratio: 3/2;
+        }
+        .block.block.block4x1 .block-inner img {
+          aspect-ratio: 3/2;
+        } */
+}
+/* @media screen and (min-width: calc(var(--width)*3 + var(--gap)*4 + var(--padding))) { */
+@media (min-width: 816px) {
+  .block {
+    /* width: 33.3%; */
+    /* --minSide: calc(100dvw / 4 - 12px); */
+    --columns: 4;
+    --minSide: calc(100% / var(--columns) - 12px);
+  }
+}
+/* @media screen and (min-width: calc(var(--width)*4 + var(--gap)*5 + var(--padding))) { */
+@media (min-width: 1072px) {
+  .block {
+    /* width: 25%; */
+    /* --minSide: calc(100dvw / 6 - 8px); */
+    --columns: 6;
+    --minSide: calc(100% / var(--columns) - 8px);
+  }
+}
+/* @media screen and (min-width: calc(var(--width)*4 + var(--gap)*5 + var(--padding))) { */
+@media (min-width: 1280px) {
+  .block {
+    /* width: 25%; */
+    --columns: 9;
+    --minSide: calc(100% / var(--columns) - 8px);
+  }
+}
+/* @media screen and (min-width: calc(var(--width)*5 + var(--gap)*6 + var(--padding))) { */
+/* @media screen and (min-width: calc(240*5 + 16*6 + 32)) { */
+@media (min-width: 1328px) {
+  .block {
+    /* --minSide: calc(100dvw / 12 - 4px); */
+    --columns: 12;
+    --minSide: calc(100% / var(--columns) - 4px);
+  }
+}
+
+.block-inner {
+  background-color: #fff;
+  min-height: 10px;
+  border-radius: 2px;
+  /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); */
+  box-shadow: 4px 4px 4px darkgray;
+  transition: box-shadow 0.2s;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  display: flow;
+}
+.block:hover .block-inner {
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+}
+.block.block1x2 {
+  height: calc(1 * var(--minSide) + (2 * var(--gap)));
+}
+.block.block1x2 .block-inner {
+  aspect-ratio: 1 / 2;
+  height: calc(100% + (2 * var(--gap)));
+  padding-bottom: var(--gap);
+  aspect-ratio: 1 / 2;
+  padding: calc(1 * var(--gap) / 2) 0px;
+}
+.block.block1x2 .block-inner img {
+  aspect-ratio: 1 / 2 !important;
+}
+.block.block2x1 {
+  /* width: calc(2 * var(--minSide)); */
+  aspect-ratio: 2 / 1;
+  /* max-height: var(--minSide); */
+  /* max-width: calc(2 * var(--minSide)); */
+}
+.block.block2x1 .block-inner {
+  aspect-ratio: unset;
+  height: 100%;
+}
+.block.block2x1 > img {
+  height: calc(2 * var(--minSide));
+  width: calc(0 + (var(--minSide) / 2));
+  aspect-ratio: 2 / 1;
+}
+.block.block2x2 {
+  /* width: calc(2 * var(--minSide)); */
+  width: calc(2 * var(--minSide) + (var(--gap) / 2));
+  /* padding-bottom: 0px; */
+}
+.block.block4x1 {
+  width: calc(4 * var(--minSide));
+  height: var(--minSide);
+  aspect-ratio: 4 / 1;
+}
+.block.block4x1 .block-inner {
+  /* aspect-ratio: 4/1; */
+  aspect-ratio: unset;
+  height: calc(var(--minSide) - var(--gap));
+  height: 100%;
+}
+.block .block-inner img {
+  aspect-ratio: 1 / 1;
+  width: 100%;
+}
+.block.block.block2x1 .block-inner img {
+  width: unset;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}
+.block.block.block4x1 .block-inner img {
+  width: unset;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+}

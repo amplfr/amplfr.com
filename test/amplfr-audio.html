@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>amplfr-audio element</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <!-- prettier-ignore -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet"/>
+    <!-- prettier-ignore -->
+    <!-- <script src="/js/amplfr.min.js"></script> -->
+    <!-- <script src="/js/amplfr.js"></script> -->
+    <script src="/js/amplfr-item.js"></script>
+    <script src="/js/queue.js"></script>
+  </head>
+  <body>
+    <style>
+      .logo {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        display: flex !important;
+        margin: 0px auto;
+        z-index: 8;
+        /* height: 4.75em; */
+        height: 4.65em;
+        color: white;
+        fill: white;
+        filter: drop-shadow(2px 2px 2px darkgray);
+      }
+      .logo a svg {
+        height: 1em;
+        font-size: 2em !important;
+      }
+      .logo .wide-only {
+        display: initial;
+      }
+      @media (max-width: 1024px) {
+        .logo {
+          font-size: 0.5em;
+        }
+      }
+      @media (max-width: 550px) {
+        .logo .wide-only {
+          display: none;
+        }
+      }
+    </style>
+    <!-- prettier-ignore -->
+    <a href="/" class="logo">
+      <!-- prettier-ignore -->
+      <svg style="font-size: 2em" xmlns="//www.w3.org/2000/svg" viewBox="0 0 173 187">
+        <!-- prettier-ignore -->
+        <path id="logoA" d="M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z"></path>
+      <!-- prettier-ignore -->
+      </svg><svg style="font-size: 2em" class="wide-only" xmlns="//www.w3.org/2000/svg" viewBox="0 0 567 243">
+      <!-- prettier-ignore -->
+      <path id="logomplfr" d="M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"></path>
+    </svg></a>
+    <style>
+      body {
+        display: grid;
+        margin: 0px;
+        margin-top: 4em;
+        transition: margin-top 200ms linear;
+      }
+
+      amplfr-collection,
+      amplfr-queue {
+        display: inline-block;
+        min-width: 25em;
+        width: 100%;
+        max-width: 100dvw;
+      }
+
+      .item.active {
+        position: sticky;
+        top: 0px;
+        z-index: 4;
+        background-color: white;
+
+        /* fixed at the top of the page */
+        position: fixed;
+        width: 100%;
+        /* width: calc(100% - 248px); */
+        height: 4em;
+        left: 0px;
+        transition: 150ms linear;
+      }
+      @media (max-width: 1024px) {
+        body {
+          /* margin-top: 4em; */
+          margin-top: 8em;
+        }
+        .item.active {
+          font-size: 1em;
+          width: 100%;
+        }
+      }
+      @media (min-width: 1024px) {
+        body {
+          margin-top: 8em;
+        }
+        .item.active {
+          font-size: 2em;
+          width: 100%;
+        }
+      }
+      .item.active * {
+        position: relative;
+      }
+      .item.active .timeline-container .timeline {
+        z-index: 12;
+      }
+      /* .item.active {
+              font-size: 2em;
+              padding: 0px;
+              height: 100%;
+              width: 100%;
+              aspect-ratio: 1 / 1;
+              position: relative;
+              max-height: 100vmin;
+              max-width: 100vmin;
+              position: sticky;
+              top: 0px;
+              z-index: 256;
+              background-color: white;
+            } */
+      /* .item.active * {
+              text-shadow: 1px 1px var(--colorAccent);
+            } */
+      /* .item.active .artwork {
+              width: 100%;
+              height: 100%;
+              position: absolute;
+              filter: opacity(0.75);
+            } */
+      /* .item.active button.play {
+              margin-left: calc(50% - 0.5em);
+              margin-top: calc(50% - 0.5em);
+            } */
+      /* .item.active .title {
+              margin-top: calc(100% - 2.25em);
+            } */
+      /* .item.active .time,
+            .item.active .icon {
+              bottom: 0px;
+            } */
+      /* .item.active a.logo {
+              right: 0px;
+              z-index: unset;
+              filter: drop-shadow(1px 1px var(--colorAccent));
+              font-size: 0.8em;
+            } */
+    </style>
+    <style>
+      body.cover {
+        margin-top: 100vmin;
+      }
+      body.cover .item.active {
+        font-size: 2em;
+        padding: 0px;
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        /* display: inline-flex; */
+        /* flex-direction: column; */
+        /* position: relative; */
+        position: fixed;
+        max-height: 100vmin;
+        max-width: 100vmin;
+      }
+      body.cover .item.active * {
+        text-shadow: 1px 1px var(--colorAccent);
+      }
+      body.cover .item.active .artwork {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        filter: opacity(0.75);
+      }
+      body.cover .item.active button.play {
+        /* margin: calc(50% - 0.5em); */
+        margin-left: calc(50% - 0.5em);
+        margin-top: calc(50% - 0.5em);
+      }
+      body.cover .item.active .title {
+        /* margin-top: calc(100% - 3.3em); */
+        margin-top: calc(100% - 2.25em);
+      }
+      body.cover .item.active .time,
+      body.cover .item.active .icon {
+        /* position: absolute; */
+        /* margin: 0px; */
+        /* right: 5.5em; */
+        /* right: 4.5em; */
+        bottom: 0px;
+      }
+      body.cover .item.active a.logo {
+        /* position: absolute; */
+        right: 0px;
+        z-index: unset;
+        filter: drop-shadow(1px 1px var(--colorAccent));
+        font-size: 0.8em;
+        background-color: unset;
+      }
+
+      body.cover amplfr-collection .controls,
+      body.cover amplfr-queue .controls {
+        position: fixed;
+        /* calc(100vmin - 2em); */
+        /* top: 65vmin; */
+        top: 2em;
+        max-width: 100vmin;
+        background-color: unset;
+      }
+      body.cover amplfr-collection .controls button,
+      body.cover amplfr-collection .controls input,
+      body.cover amplfr-queue .controls button,
+      body.cover amplfr-queue .controls input {
+        background-color: unset;
+        color: white;
+        fill: white;
+        text-shadow: 2px 2px darkgray;
+      }
+    </style>
+    <style>
+      amplfr-collection,
+      amplfr-queue {
+        transition: min-width linear 150ms, width linear 150ms;
+      }
+      amplfr-collection.minimized,
+      amplfr-queue.minimized {
+        width: 4em;
+        min-width: 4em;
+        box-shadow: 4px 0px 4px darkgray;
+      }
+      /* amplfr-collection .controls,
+      amplfr-queue .controls {
+        font-size: 2em;
+        z-index: 257;
+        height: 2em;
+        color: #7a7a7a;
+        width: 100%;
+        display: flex;
+        position: fixed;
+        top: 4em;
+      } */
+      /* amplfr-collection .controls,
+      amplfr-queue .controls {
+        position: fixed;
+        display: flex;
+        font-size: 1.5em;
+        z-index: 257;
+        height: 2em;
+        color: #7a7a7a;
+        width: 50%;
+        top: 3.4em;
+        background-color: white;
+        right: 10em;
+        transition: width 250ms;
+      } */
+      .controls {
+        position: fixed;
+        display: flex;
+        font-size: 1.5em;
+        z-index: 257;
+        height: 2em;
+        color: #7a7a7a;
+        width: 50%;
+        top: 3.4em;
+        /* background-color: white; */
+        right: 10em;
+        transition: width 250ms;
+      }
+      amplfr-collection > .controls .disabled,
+      amplfr-queue > .controls .disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      amplfr-collection.minimized .controls,
+      amplfr-queue.minimized .controls {
+        width: 2em;
+        overflow: hidden;
+      }
+
+      amplfr-collection > .controls button,
+      amplfr-queue > .controls button {
+        cursor: pointer;
+      }
+      amplfr-collection .controls button:first-of-type,
+      amplfr-queue .controls button:first-of-type {
+        margin-left: 0px;
+      }
+      /* amplfr-collection .controls button:last-of-type,
+      amplfr-queue .controls button:last-of-type {
+        margin-right: 0px;
+      } */
+
+      amplfr-collection > .controls .activated,
+      amplfr-queue > .controls .activated {
+        background-color: #7a7a7a;
+        color: white;
+      }
+      amplfr-collection > .controls *,
+      amplfr-queue > .controls * {
+        margin: 0px auto;
+        font-size: 2em !important;
+        color: #7a7a7a;
+        background-color: white;
+        padding: 0px;
+        margin: 0px auto;
+        height: 100%;
+        border: none;
+      }
+      amplfr-collection > .controls input[type="search"],
+      amplfr-queue > .controls input[type="search"] {
+        font-size: 1em !important;
+        height: 1.5em;
+        height: 2em;
+        width: 2em;
+        margin: auto;
+        margin-right: 0px;
+        padding-left: 2em;
+        transition: width 200ms linear;
+        background: no-repeat 0px center / 2em 2em url(/img/icons/search.png)
+          white;
+        cursor: pointer;
+        overflow-y: visible;
+        max-width: 50%;
+        max-width: max(50vw, 700px);
+
+        /* position: fixed;
+        right: 0px; */
+      }
+      input[type="search"]:active,
+      input[type="search"]:focus,
+      input[type="search"]:focus-visible,
+      input[type="search"]:focus-within,
+      input[type="search"]:target {
+        border-bottom: 1px solid darkgray;
+        width: 100% !important;
+        width: calc(100% - 2em) !important;
+        outline: none;
+        margin-right: 1em !important;
+        z-index: 16;
+      }
+
+      amplfr-collection button {
+        color: #000;
+        font-family: "Noto Sans", sans-serif;
+        font-weight: 400;
+        margin: 0px;
+      }
+
+      body.cover amplfr-collection,
+      body.cover amplfr-queue {
+        max-width: 100vmin;
+      }
+    </style>
+
+    <amplfr-collection is="queue" controls="false">
+      <!-- <amplfr-queue> -->
+      <!-- <amplfr-item src="/api/queue"></amplfr-item> -->
+      <!-- <amplfr-item src="/kREnNawsJqg7PFfX3LYqEy" 
+        ><a href="/kREnNawsJqg7PFfX3LYqEy/Just" class="title" title="Just"
+          >Just</a
+        ></amplfr-item
+      > -->
+      <!-- <amplfr-item src="/kREnNawsJqg7PFfX3LYqEy" render="artwork title">
+      </amplfr-item> -->
+      <amplfr-item
+        src="/kREnNawsJqg7PFfX3LYqEy#artwork,title"
+        render="artwork title"
+      >
+      </amplfr-item>
+      <!-- <amplfr-item
+        src="//upload.wikimedia.org/wikipedia/commons/c/cd/US_Marine_Band_Rhapsody_in_Blue.oga"
+        data-title="Rhapsody in Blue"
+        data-artist="George Gershwin"
+        data-artwork="//upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Rhapsody_in_Blue_cover.jpg/220px-Rhapsody_in_Blue_cover.jpg"
+      ></amplfr-item> -->
+      <!-- <amplfr-item src="/wWXnqZ4ieknmWq2wUWb8oP"></amplfr-item> -->
+      <!-- <amplfr-item src="/eDu4Y113AnxWJCdqpnCrHv"></amplfr-item> -->
+      <!-- <amplfr-item
+        src="/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      ></amplfr-item> -->
+      <!-- <amplfr-item src="/6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like%20Teen%20Spirit"></amplfr-item> -->
+      <!-- <amplfr-item src="/api/6HrUVPVYS3PNDJJ4zmQrJw@128.mp3"></amplfr-item> -->
+      <!-- <amplfr-item
+        src="/playlist/UTKtg53PKSDe3h5XMrx64x/matt to kim"
+      ></amplfr-item> -->
+    </amplfr-collection>
+    <!-- </amplfr-queue> -->
+    <!-- <amplfr-collection
+      src="/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+    ></amplfr-collection> -->
+    <script>
+      const amplfr = document.querySelector("amplfr-collection, amplfr-queue");
+
+      // const logoE = document.querySelector(".logo");
+      // const changeLogoColor = (color = "#ffffff") => {
+      //   logoE.style.fill = color;
+      // };
+
+      // changeLogoColor(amplfr.active?.style.getPropertyValue("--color"));
+
+      // amplfr.addEventListener("change", (e) => {
+      //   const active = e.target.active;
+      //   changeLogoColor(active?.style.getPropertyValue("--color"));
+      // });
+
+      amplfr.next();
+
+      window.onscroll = function () {
+        // scrollFunction();
+      };
+
+      function scrollFunction() {
+        document.body.classList.toggle(
+          "cover",
+          !(
+            document.body.scrollTop > 2 ||
+            document.documentElement.scrollTop > 2
+          )
+        );
+      }
+      // scrollFunction();
+    </script>
+  </body>
+</html>

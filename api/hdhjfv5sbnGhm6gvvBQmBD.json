@@ -1,0 +1,20 @@
+{
+  "id": "hdhjfv5sbnGhm6gvvBQmBD",
+  "title": "My Annie",
+  "artists": [
+    {
+      "id": "oAf7C1VHUL8qy2UujSgnsw",
+      "name": "Craig's Brother",
+      "area": "US",
+      "url": "/api/artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+    }
+  ],
+  "duration": 184,
+  "status": "pending",
+  "mbid": "6ef1d268-ca3d-4e48-aafa-f5e733fb64e1",
+  "links": [
+    "https://musicbrainz.org/recording/6ef1d268-ca3d-4e48-aafa-f5e733fb64e1"
+  ],
+  "url": "/api/hdhjfv5sbnGhm6gvvBQmBD/My+Annie",
+  "visibility": "public"
+}

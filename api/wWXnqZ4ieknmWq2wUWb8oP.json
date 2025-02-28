@@ -1,0 +1,20 @@
+{
+  "id": "wWXnqZ4ieknmWq2wUWb8oP",
+  "title": "Monkey Wrench",
+  "artists": [
+    {
+      "id": "mTKCx7T69sv7EkfSHaDtPb",
+      "name": "Foo Fighters",
+      "area": "Seattle, US",
+      "url": "http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+    }
+  ],
+  "duration": 231,
+  "status": "pending",
+  "mbid": "26502c24-e08c-45a0-a7b6-44f7471d7054",
+  "links": [
+    "https://musicbrainz.org/recording/26502c24-e08c-45a0-a7b6-44f7471d7054"
+  ],
+  "url": "http://mt5577:3000/api/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench",
+  "visibility": "public"
+}

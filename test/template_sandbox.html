@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>template sandbox</title>
+  </head>
+  <body>
+    <template id="amplfr-item">
+      <!-- prettier-ignore -->
+      <amplfr-item id="amplfr-${id}" src="//amplfr.com/${id}" title="${title}" length="${duration}">
+          <title>${title}</title>
+          <album data-id="${album.id}" date="${album.date}">${album.title}</album>
+        </amplfr-item>
+    </template>
+    <template id="amplfr-artist">
+      <!-- prettier-ignore -->
+      <artist id="artist-${id}" src="//amplfr.com/artist/${id}/${encodeURIComponent(name)}" title="${name}">${name}</artist>
+    </template>
+    <script>
+      const json = {
+        id: "kREnNawsJqg7PFfX3LYqEy",
+        title: "Just",
+        duration: "234",
+        artists: [
+          {
+            id: "dKsQCazuEHnvVqJUuiVBPV",
+            name: "Radiohead",
+            url: "/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead",
+          },
+          {
+            id: "uzcAqPjm82SStWr7UAaP2G",
+            name: "Oasis",
+            area: "Manchester, GB",
+            url: "/artist/uzcAqPjm82SStWr7UAaP2G/Oasis",
+          },
+        ],
+        album: {
+          id: "bHkibgUEnX1EXb26YpKfw3",
+          title: "The Bends",
+          date: 1995,
+          url: "/api/album/bHkibgUEnX1EXb26YpKfw3/The+Bends",
+        },
+      };
+    </script>
+    <!-- <script>
+const template = document.querySelector("template#amplfr-item");
+const content = template.content;
+const clone = template.content.cloneNode(true);
+
+document.body.appendChild(clone);
+const node = document.querySelector(
+  `${content.firstElementChild.nodeName}#unset`
+);
+
+String.prototype.interpolate = function (params) {
+  const names = Object.keys(params);
+  const vals = Object.values(params);
+  return new Function(...names, `return \`${this}\`;`)(...vals);
+};
+      //   const template = "Example text: ${text}";
+      //   const result = template.interpolate({
+      //     text: "Foo Boo",
+      //   });
+      //   console.log(content.textContent);
+      //   const result = node.innerHTML.interpolate(json);
+      //   console.log(result);
+    //   node.outerHTML = node.outerHTML.interpolate(json);
+    //   node.setAttribute("id", `amplfr-${json.id}`);
+    </script> -->
+    <style>
+      amplfr-item {
+        title {
+          display: inline;
+        }
+        artists::before {
+          content: " (";
+        }
+        artists::after {
+          content: ")";
+        }
+      }
+    </style>
+    <script>
+      //   String.prototype.interpolate = function (params) {
+      //     const names = Object.keys(params);
+      //     const vals = Object.values(params);
+      //     return new Function(...names, `return \`${this}\`;`)(...vals);
+      //   };
+      Number.prototype.toMMSS = function () {
+        if (Number.isNaN(this.valueOf())) return "";
+        let neg = this < 0 ? "-" : "";
+        let t = Math.abs(this);
+        let s = Math.round(t % 60);
+        let m = Math.floor(t / 60);
+
+        if (m >= 60) m = `${m / 60}:${(m % 60).toString().padStart(2, "0")}`;
+        return `${neg}${m}:${s.toString().padStart(2, "0")}`;
+      };
+
+      const createElement = (tagName, value) => {
+        const element = document.createElement(tagName);
+
+        if (!!value) {
+          if (typeof value == "string") element.innerText = value;
+          else {
+            if (!!value.attributes) {
+              Object.entries(value.attributes).forEach(([k, v]) => {
+                if (!!v) element.setAttribute(k, v);
+              });
+              delete value.attributes;
+            }
+            if (!!value.dataset)
+              Object.entries(value.dataset).forEach(([k, v]) => {
+                if (!!v) element.setAttribute(`data-${k}`, v);
+              });
+            if (!!value.innerText) element.innerText = value.innerText;
+          }
+        }
+
+        return element;
+      };
+
+      // class AmplfrItem extends HTMLElement {
+      //   #data;
+      //   #domain;
+      //   constructor(dataOrUrl) {
+      //     super(dataOrUrl);
+
+      //     if (typeof dataOrUrl == "string" && dataOrUrl.length > 0) {
+      //       const urlObj = this.parseURL(dataOrUrl);
+      //       if (!!urlObj) {
+      //         this.url = dataOrUrl;
+      //         dataOrUrl = urlObj;
+      //       }
+
+      //       if (!this.url) {
+      //         try {
+      //           dataOrUrl = JSON.parse(dataOrUrl);
+      //         } catch (error) {
+      //           return;
+      //         }
+      //       }
+      //     }
+
+      //     this.#data = dataOrUrl;
+      //   }
+
+      // parseURL = (url) => {
+      const parseURL = (url) => {
+        let urlObj = null;
+
+        try {
+          urlObj = new URL(url, document.location.origin);
+        } catch (error) {
+          console.warn(error.message || error);
+        }
+
+        return urlObj;
+      };
+      // #createElementThis = () => {
+      // connectedCallback = () => {
+      const createAmplfrItemElement = (json) => {
+        // const { id, title, duration } = this.#data;
+        const { id, title, duration } = json;
+        const url = parseURL(
+          // this.#data.url || this.#data.src || `//amplfr.com/${id}`
+          json.url || json.src || `//amplfr.com/${id}`
+        );
+        const hostname = url.hostname;
+        const domain = url.hostname
+          .toLowerCase()
+          .replace(/^www\.|^m\.|\.com/g, "");
+
+        let src = `//${hostname}/${id}`;
+        if (!!title && hostname == "amplfr.com")
+          src += `/${encodeURIComponent(title)}`;
+
+        const values = {
+          attributes: {
+            id: `${domain}-${id}`,
+            src,
+            title,
+          },
+          dataset: {
+            duration,
+            time: Number(duration || 0).toMMSS(),
+          },
+          innerText: title,
+        };
+
+        // let artists = this.#data.artists || [];
+        let artists = json.artists || [];
+        // if (!!this.#data.artist) artists.unshift(this.#data.artist);
+        if (!!json.artist) artists.unshift(json.artist);
+        if (artists.length >= 4)
+          // this.#data.artists = artists = [...artists.slice(0, 5), "..."];
+          json.artists = artists = [...artists.slice(0, 5), "..."];
+        values.dataset.artists =
+          artists.map((artist) => artist.name).join(", ") || artist?.name;
+        values.dataset.artistids = artists.map(
+          (artist) => `artist-${artist.id}`
+        );
+
+        // let albums = this.#data.albums || [];
+        let albums = json.albums || [];
+        // if (!!this.#data.album) albums.unshift(this.#data.album);
+        if (!!json.album) albums.unshift(json.album);
+        if (albums.length >= 4)
+          // this.#data.albums = albums = [...albums.slice(0, 5), "..."];
+          json.albums = albums = [...albums.slice(0, 5), "..."];
+        values.dataset.albums = albums
+          .map((album) => album?.name || album?.title || album)
+          .join(", ");
+        values.dataset.albumids = albums.map((album) => `album-${album.id}`);
+
+        const element = createElement("amplfr-item", values);
+
+        return element;
+      };
+      // }
+      // const node = createAmplfrItemElement(json);
+
+      // document.body.appendChild(node);
+    </script>
+  </body>
+</html>

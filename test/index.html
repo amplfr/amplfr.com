@@ -9,9 +9,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
     <link href="/css/item.css" rel="stylesheet" />
     <link href="/css/collection.css" rel="stylesheet" />
+    <link href="./blocks.css" rel="stylesheet" />
     <!-- <script src="/js/amplfr.min.js"></script> -->
-    <script src="/js/amplfr.js"></script>
-    <script src="/js/collection.js"></script>
+    <!-- <script src="/js/amplfr.js"></script> -->
+    <script src="/js/amplfr-item.js"></script>
+    <!-- <script src="/js/collection.js"></script> -->
     <script src="/js/queue.js"></script>
     <script src="/js/index.js"></script>
     <title>Amplfr.com</title>
@@ -45,9 +47,18 @@
         margin-left: var(--queueGutter);
         overflow-x: hidden;
       }
+      body {
+        /* background-color: #e8e8e8; */
+        /* padding: 16px; */
+        --gap: 16px;
+        --padding: 32px;
+        --columns: 2;
+        --minSide: calc(100% / var(--columns));
+      }
       body.queueMin {
-        margin-left: 64px;
-        width: calc(100vw - 64px);
+        /* margin-left: 84px; */
+        /* width: calc(100vw - 64px); */
+        --queueGutter: 64px;
       }
       h1,
       h2,
@@ -58,7 +69,8 @@
       button,
       span,
       a,
-      p {
+      p,
+      ::marker {
         color: #000;
         font-family: "Noto Sans", sans-serif;
         font-weight: 400;
@@ -67,12 +79,24 @@
 
       #queue {
         z-index: 1;
-        position: fixed;
+        /* position: fixed; */
+        position: absolute;
         left: 0px;
+        margin-top: 4em;
         /* background-color: #aaa; */
         /* width: 100%; */
+        width: var(--queueGutter);
       }
-      #queue.collection #playing {
+      #queue.collection #active {
+        position: fixed;
+        width: 100dvw;
+        top: 0px;
+        left: 0px;
+        z-index: 24;
+        box-shadow: 4px 4px 4px 0 darkgray;
+      }
+      /* #queue .items li #playing { */
+      #queue #active {
         position: fixed;
         width: 100dvw;
         top: 0px;
@@ -82,7 +106,7 @@
       /* #queue.collection .controls,
       #queue.collection > ol.items {
         transition: width 250ms; */
-      #queue.collection .controls,
+      /* #queue.collection .controls, */
       #queue.collection ol.items,
       #queue.collection ol.items li {
         transition: width 250ms;
@@ -95,7 +119,7 @@
       }
       body.queueMin #queue .controls,
       body.queueMin #queue > ol.items {
-        overflow-y: hidden;
+        overflow-y: clip;
         width: 64px;
       }
       body.queueMin #queue > ol.items {
@@ -103,10 +127,16 @@
       }
       @media (hover: hover) {
         /* https://benborgers.com/posts/media-hover */
-        body.queueMin #queue .controls:hover,
+        /* body.queueMin #queue .controls:hover,
         body.queueMin #queue.collection ol.items li:hover {
           overflow-x: visible;
           width: var(--queueGutter) !important;
+        } */
+        body.queueMin #queue:hover ol.items li,
+        body.queueMin #queue:hover .controls {
+          overflow-x: visible;
+          width: var(--queueGutter) !important;
+          box-shadow: 4px 4px 4px 0 darkgray;
         }
       }
       #queue .items .logo {
@@ -124,6 +154,8 @@
       #queue .controls {
         font-size: 2em;
         z-index: 20;
+        width: var(--queueGutter);
+        top: 4em;
       }
       #queue .controls button:first-of-type {
         margin-left: 0px;
@@ -135,6 +167,7 @@
       #queue #whatsnext.controls {
         position: fixed;
         bottom: 0px;
+        box-shadow: 0px -2px 2px darkgray;
       }
       #queue #playing.square,
       #queue #playing.square .item {
@@ -182,6 +215,78 @@
           position: sticky;
           height: 64px;
         }
+      }
+    </style>
+    <style>
+      amplfr-collection .controls,
+      amplfr-queue .controls {
+        font-size: 2em;
+        z-index: 257;
+        height: 2em;
+        color: #7a7a7a;
+        width: 100%;
+        display: flex;
+        position: fixed;
+        /* position: sticky; */
+        /* top: 4em; */
+        background-color: white;
+        overflow: clip;
+        transition: 150ms linear;
+      }
+      amplfr-collection .controls button:first-of-type,
+      amplfr-queue .controls button:first-of-type {
+        margin-left: 0px;
+      }
+      amplfr-collection > .controls button,
+      amplfr-queue > .controls button {
+        cursor: pointer;
+      }
+      amplfr-collection > .controls *,
+      amplfr-queue > .controls * {
+        margin: 0px auto;
+        font-size: 2em !important;
+        color: #7a7a7a;
+        /* background-color: white; */
+        padding: 0px;
+        margin: 0px auto;
+        height: 100%;
+        border: none;
+      }
+      amplfr-collection > .controls input[type="search"],
+      amplfr-queue > .controls input[type="search"] {
+        font-size: 1em !important;
+        height: 1.5em;
+        height: 2em;
+        width: 2em;
+        margin: auto;
+        margin-right: 0px;
+        padding-left: 2em;
+        transition: width 200ms linear;
+        background: no-repeat 0px center / 2em 2em url(/img/icons/search.png)
+          white;
+        cursor: pointer;
+        overflow-y: visible;
+        max-width: 50%;
+        max-width: max(50vw, 700px);
+      }
+
+      amplfr-item.active {
+        top: 0px;
+        z-index: 4;
+        background-color: white;
+        position: fixed;
+        width: 100%;
+        /* width: calc(100% - 248px); */
+        height: 4em;
+        left: 0px;
+        transition: 150ms linear;
+        font-size: 2em;
+      }
+      amplfr-item.active * {
+        position: relative;
+      }
+      amplfr-item.active .time {
+        margin-right: 8px;
       }
     </style>
     <style>
@@ -352,21 +457,598 @@
       }
     </style>
     <style>
+      main {
+        width: 100%;
+        width: calc(100dvw - var(--queueGutter));
+        /* margin-top: 72px; */
+        display: inline-flex;
+        position: relative;
+        /* z-index: -1; */
+        flex-direction: column;
+      }
+      .container {
+        display: flex;
+        flex-flow: wrap;
+        display: inline-block;
+        margin: 0 auto;
+      }
+
+      body.queueMin main {
+        width: 100%;
+      }
+      .block img {
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        box-shadow: 4px 4px 4px darkgray;
+      }
+      .block:hover img {
+        box-shadow: 6px 6px 6px darkgray;
+      }
+      main > * {
+        display: block;
+      }
+      main > * {
+        margin: 8px;
+        display: grid;
+        grid: auto-flow dense / repeat(auto-fill, minmax(250px, max-content));
+        grid-gap: 8px;
+        height: 10%; /* tighten up vertically */
+        /* max-width: 65%; */
+      }
+      /* main .album ol {
+        box-shadow: none;
+      } */
+      main .album ol .title {
+        color: initial;
+        overflow-x: clip;
+        position: initial;
+        width: 100%;
+      }
+      main > .artist > * {
+        box-shadow: 4px 4px 4px 0 darkgray;
+      }
+      main .artist > img {
+        grid-area: span 2 / span 2;
+      }
+
+      main .artwork {
+        /* width: 50%; */
+        /* max-width: 50%; */
+        float: left;
+        margin-left: 0px;
+        /* width: 814px; */
+        width: 50%;
+        position: sticky;
+        top: 222px;
+      }
+      main .artwork a {
+        height: 200px;
+        width: 200px;
+        aspect-ratio: 1;
+        display: inline-block;
+      }
+      main .artwork a img {
+        /* width: 100%; */
+        height: 100%;
+        aspect-ratio: 1/1;
+      }
+      main .artwork .artistart {
+        height: 400px;
+        width: 400px;
+        float: left;
+        margin-right: 8px;
+      }
+      /* main > * > .title { */
+      main * .title {
+        position: absolute;
+        cursor: pointer;
+        color: white;
+        box-shadow: none;
+        /* text-shadow: 2px 2px black; */
+        /* max-width: 250px; */
+      }
+      main .artist .album .title {
+        position: absolute;
+        width: 256px;
+        text-shadow: 2px 2px black;
+      }
+      /* main * .title,
+      main * .duration,
+      main * ol li::marker {
+        text-shadow: 2px 2px darkgray;
+      } */
+      main > .album {
+        display: grid;
+        /* grid-gap: 8px; */
+        /* grid: auto-flow dense / repeat(auto-fill, minmax(49%, max-content)); */
+        width: 50%;
+        height: 50%;
+        min-width: 200px;
+        box-shadow: 4px 4px 4px 0 darkgray;
+      }
+      main > .artist > .album {
+        max-width: 450px;
+      }
+      main > .artist > .album ol {
+        max-width: 450px;
+      }
+      main > .artist > .album > .title:after {
+        content: " +";
+      }
+      main .duration {
+        float: right;
+        margin-right: 4px;
+      }
+      main > * > .title {
+        margin-left: 6px;
+        text-shadow: 2px 2px black;
+      }
+      main * > p.description {
+        grid-column: span 2;
+        padding: 0px 8px 8px 0px;
+        aspect-ratio: 2 / 1;
+      }
+      /* main ol li span { */
+      main > * > ol li > span {
+        display: flex;
+      }
+      main > * > ol li > span:hover {
+        background-color: darkgray;
+      }
+
+      @media (max-width: 900px) {
+        main .artwork > * {
+          height: 49% !important;
+          width: 49% !important;
+          margin: 0px !important;
+          float: unset !important;
+        }
+      }
+      @media (max-width: 640px) {
+        main .artwork {
+          width: 25%;
+        }
+        main .artwork > * {
+          height: 100% !important;
+          width: 100% !important;
+        }
+        main > * > * {
+          /* margin-left: 814px; */
+          margin-left: 25%;
+        }
+        main .artist .title {
+          top: 128px;
+        }
+      }
+    </style>
+    <style>
+      .logo {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        display: flex !important;
+        margin: 0px auto;
+        z-index: 8;
+        /* height: 4.75em; */
+        height: 4.65em;
+        color: white;
+        fill: white;
+        filter: drop-shadow(2px 2px 2px darkgray);
+      }
+      .logo a svg {
+        height: 1em;
+        font-size: 2em !important;
+      }
+      .logo .wide-only {
+        display: initial;
+      }
+      @media (max-width: 1024px) {
+        .logo {
+          font-size: 0.5em;
+        }
+      }
+      @media (max-width: 550px) {
+        .logo .wide-only {
+          display: none;
+        }
+      }
+    </style>
+    <!-- prettier-ignore -->
+    <a href="/" class="logo">
+      <!-- prettier-ignore -->
+      <svg style="font-size: 2em" xmlns="//www.w3.org/2000/svg" viewBox="0 0 173 187">
+        <!-- prettier-ignore -->
+        <path id="logoA" d="M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z"></path>
+      <!-- prettier-ignore -->
+      </svg><svg style="font-size: 2em" class="wide-only" xmlns="//www.w3.org/2000/svg" viewBox="0 0 567 243">
+      <!-- prettier-ignore -->
+      <path id="logomplfr" d="M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"></path>
+    </svg></a>
+    <style>
+      div#header {
+        position: fixed;
+        right: 16px;
+        margin-top: 0px;
+        top: 83px;
+        font-size: 3em;
+        height: 1em;
+        height: calc(1em - 3px);
+        display: flex;
+        max-width: calc(100% - 4em);
+        z-index: 2;
+      }
+      div#header * {
+        font-size: 1em !important;
+        text-decoration: none;
+        /* color: #7a7a7a; */
+        /* border-radius: 0.25rem; */
+        border: none;
+        color: white;
+        /* font-size: 1em; */
+        /* font-weight: 500; */
+        /* padding: 0.75rem; */
+        /* background-color: rgb(0 0 0 / 25%); */
+        /* box-shadow: 2px 2px 2px 0 #7a7a7a; */
+        filter: drop-shadow(2px 2px 2px darkgray);
+      }
+
+      /* input[type="search"],
+      input[type="search"] {
+        font-size: 1em !important;
+        height: 1.5em;
+        height: 2em;
+        width: 2em;
+        margin: auto;
+        margin-right: 0px;
+        padding-left: 2em;
+        transition: width 200ms linear;
+        background: no-repeat 0px center / 2em 2em url(/img/icons/search.png)
+          white;
+        cursor: pointer;
+        overflow-y: visible;
+        max-width: 50%;
+        max-width: max(50vw, 700px);
+
+        /* position: fixed;
+        right: 0px; * /
+      }
+      input[type="search"]:active,
+      input[type="search"]:focus,
+      input[type="search"]:focus-visible,
+      input[type="search"]:focus-within,
+      input[type="search"]:target {
+        border-bottom: 1px solid darkgray;
+        width: 100% !important;
+        width: calc(100% - 2em) !important;
+        outline: none;
+        margin-right: 1em !important;
+        z-index: 16;
+        } */
+      input#searchtext {
+        font-size: 0.75em !important;
+        padding: 0px;
+        vertical-align: text-top;
+        filter: none !important;
+        text-shadow: 2px 2px 2px darkgray;
+        background-color: transparent;
+        /* width: 100%; */
+        /* width: 50vw; */
+        width: 0px;
+      }
+      input#searchtext::placeholder {
+        /* fill: white; */
+        color: white;
+        text-shadow: 2px 2px 2px darkgray;
+      }
+      input[type="search"]#searchtext:active,
+      input[type="search"]#searchtext:focus,
+      input[type="search"]#searchtext:focus-visible,
+      input[type="search"]#searchtext:focus-within,
+      input[type="search"]#searchtext:target {
+        border-bottom: 1px solid darkgray;
+        width: 100% !important;
+        width: calc(100% - 2em) !important;
+        outline: none;
+        margin-right: 1em !important;
+        z-index: 16;
+      }
+      button#search {
+        margin-left: auto;
+      }
+    </style>
+    <div id="header">
+      <!-- <a id="search" href="/upload" title="Search" class="material-symbols-outlined">search</a> -->
+      <!-- prettier-ignore -->
+      <button id="search" title="Search" class="material-symbols-outlined">search</button>
+      <!-- prettier-ignore -->
+      <input type="search" id="searchtext" placeholder="Search songs, artists, lyrics, albums, and more">
+      <!-- prettier-ignore -->
+      <a id="upload" href="/upload" title="Upload" class="material-symbols-outlined">cloud_upload</a>
+    </div>
+    <!-- <style>
+      body {
+        background-color: #e8e8e8;
+        /* padding: 16px; */
+        --gap: 16px;
+        --padding: 32px;
+        --columns: 2;
+        --minSide: calc(100% / var(--columns));
+      }
+      .container {
+        display: flex;
+        flex-flow: wrap;
+        display: inline-block;
+        margin: 0 auto;
+      }
+      .block {
+        width: var(--minSide);
+        padding: 8px;
+        box-sizing: border-box;
+        height: fit-content;
+        float: left;
+        position: relative;
+        overflow: hidden;
+      }
+      .block .block-inner > * {
+        width: 100% !important;
+        height: 100% !important;
+        max-width: 100% !important;
+        max-height: 100% !important;
+      }
+
+      /* @media screen and (min-width: calc(var(--width)*2 + var(--gap)*3 + var(--padding))) { */
+      @media (min-width: 560px) {
+        .block {
+          /* width: 50%; */
+          /* --minSide: calc(100dvw / 2); */
+          --columns: 2;
+          --minSide: calc(100% / var(--columns));
+        }
+      }
+      /* @media screen and (min-width: calc(var(--width)*3 + var(--gap)*4 + var(--padding))) { */
+      @media (min-width: 650px) {
+        .block {
+          /* width: 33.3%; */
+          /* --minSide: calc(100dvw / 3 - 16px); */
+          --columns: 3;
+          --minSide: calc(100% / var(--columns) - 16px);
+        }
+      }
+      @media (max-width: 816px) {
+        .block.block4x1 {
+          width: calc(3 * var(--minSide)) !important;
+          height: var(--minSide) !important;
+        }
+        .block.block4x1 .block-inner {
+          aspect-ratio: 3/2;
+        }
+        .container .block.block.block4x1 .block-inner img {
+          aspect-ratio: 3/2;
+        }
+      }
+      @media (max-width: 650px) {
+        .block.block4x1 {
+          width: calc(2 * var(--minSide)) !important;
+          height: var(--minSide) !important;
+        }
+        /* .block.block4x1 .block-inner {
+          aspect-ratio: 3/2;
+        }
+        .container .block.block.block4x1 .block-inner img {
+          aspect-ratio: 3/2;
+        } */
+      }
+      /* @media screen and (min-width: calc(var(--width)*3 + var(--gap)*4 + var(--padding))) { */
+      @media (min-width: 816px) {
+        .block {
+          /* width: 33.3%; */
+          /* --minSide: calc(100dvw / 4 - 12px); */
+          --columns: 4;
+          --minSide: calc(100% / var(--columns) - 12px);
+        }
+      }
+      /* @media screen and (min-width: calc(var(--width)*4 + var(--gap)*5 + var(--padding))) { */
+      @media (min-width: 1072px) {
+        .block {
+          /* width: 25%; */
+          /* --minSide: calc(100dvw / 6 - 8px); */
+          --columns: 6;
+          --minSide: calc(100% / var(--columns) - 8px);
+        }
+      }
+      /* @media screen and (min-width: calc(var(--width)*4 + var(--gap)*5 + var(--padding))) { */
+      @media (min-width: 1280px) {
+        .block {
+          /* width: 25%; */
+          --columns: 9;
+          --minSide: calc(100% / var(--columns) - 8px);
+        }
+      }
+      /* @media screen and (min-width: calc(var(--width)*5 + var(--gap)*6 + var(--padding))) { */
+      /* @media screen and (min-width: calc(240*5 + 16*6 + 32)) { */
+      @media (min-width: 1328px) {
+        .block {
+          /* --minSide: calc(100dvw / 12 - 4px); */
+          --columns: 12;
+          --minSide: calc(100% / var(--columns) - 4px);
+        }
+      }
+
+      .block-inner {
+        background-color: #fff;
+        min-height: 10px;
+        border-radius: 2px;
+        /* box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12); */
+        box-shadow: 4px 4px 4px darkgray;
+        transition: box-shadow 0.2s;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+        display: flow;
+      }
+      .block:hover .block-inner {
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+      }
+      .block.block1x2 {
+        height: calc(1 * var(--minSide) + (2 * var(--gap)));
+      }
+      .block.block1x2 .block-inner {
+        aspect-ratio: 1 / 2;
+        height: calc(100% + (2 * var(--gap)));
+        padding-bottom: var(--gap);
+        aspect-ratio: 1 / 2;
+        padding: calc(1 * var(--gap) / 2) 0px;
+      }
+      .block.block1x2 .block-inner img {
+        aspect-ratio: 1 / 2 !important;
+      }
+      .block.block2x1 {
+        width: calc(2 * var(--minSide));
+        aspect-ratio: 2 / 1;
+      }
+      .block.block2x1 .block-inner {
+        aspect-ratio: unset;
+        height: 100%;
+      }
+      .block.block2x1 > img {
+        height: calc(2 * var(--minSide));
+        width: calc(0 + (var(--minSide) / 2));
+        aspect-ratio: 2 / 1;
+      }
+      .block.block2x2 {
+        width: calc(2 * var(--minSide));
+        padding-bottom: 0px;
+      }
+      .block.block4x1 {
+        width: calc(4 * var(--minSide));
+        height: var(--minSide);
+        aspect-ratio: 4 / 1;
+      }
+      .block.block4x1 .block-inner {
+        /* aspect-ratio: 4/1; */
+        aspect-ratio: unset;
+        height: calc(var(--minSide) - var(--gap));
+        height: 100%;
+      }
+      .container .block .block-inner img {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+      }
+      .container .block.block.block2x1 .block-inner img {
+        width: unset;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+      }
+      .container .block.block.block4x1 .block-inner img {
+        width: unset;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+      }
+    </style> -->
+    <!-- <amplfr-collection> -->
+    <amplfr-queue id="queue" class="queue">
+      <div id="controls" class="controls">
+        <!-- prettier-ignore -->
+        <button id="toggleQueue" title="show or hide Queue" class="material-symbols-outlined">playlist_play</button>
+        <!-- prettier-ignore -->
+        <button id="previous" title="Previous" class="material-symbols-outlined">skip_previous</button>
+        <!-- prettier-ignore -->
+        <button id="loop" title="Repeat" class="material-symbols-outlined">repeat</button>
+        <!-- prettier-ignore -->
+        <button id="share" title="Share" class="material-symbols-outlined">share</button>
+        <!-- prettier-ignore -->
+        <button id="shuffle" title="Shuffle" class="material-symbols-outlined">shuffle</button>
+        <!-- prettier-ignore -->
+        <button id="next" title="Next" class="material-symbols-outlined">skip_next</button>
+      </div>
+      <amplfr-item src="/kREnNawsJqg7PFfX3LYqEy"
+        ><a href="/kREnNawsJqg7PFfX3LYqEy/Just" class="title" title="Just"
+          >Just</a
+        ></amplfr-item
+      >
+      <amplfr-item
+        src="//upload.wikimedia.org/wikipedia/commons/c/cd/US_Marine_Band_Rhapsody_in_Blue.oga"
+        data-title="Rhapsody in Blue"
+        data-artist="George Gershwin"
+        data-artwork="//upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Rhapsody_in_Blue_cover.jpg/220px-Rhapsody_in_Blue_cover.jpg"
+      ></amplfr-item>
+      <!-- <amplfr-item src="/wWXnqZ4ieknmWq2wUWb8oP"></amplfr-item> -->
+      <amplfr-item src="/eDu4Y113AnxWJCdqpnCrHv"></amplfr-item>
+      <amplfr-item
+        src="/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"
+      ></amplfr-item>
+      <amplfr-item
+        src="/6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like%20Teen%20Spirit"
+      ></amplfr-item>
+      <amplfr-item src="/api/6HrUVPVYS3PNDJJ4zmQrJw@128.mp3"></amplfr-item>
+      <amplfr-item
+        src="/playlist/UTKtg53PKSDe3h5XMrx64x/matt to kim"
+      ></amplfr-item>
+      <!-- <amplfr-audio data-id="kREnNawsJqg7PFfX3LYqEy"></amplfr-audio> -->
+      <!-- <amplfr-audio
+          src="/api/kREnNawsJqg7PFfX3LYqEy/Just"
+          data-id="kREnNawsJqg7PFfX3LYqEy"
+          title="Just"
+          data-artists="dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+          data-album="bHkibgUEnX1EXb26YpKfw3/The+Bends"
+          ></amplfr-audio> -->
+      <!-- <amplfr-audio data-id="rWxxfBZRqNipUTaQ63AX8q"></amplfr-audio> -->
+      <!-- <amplfr-item data-id="wWXnqZ4ieknmWq2wUWb8oP"></amplfr-item> -->
+      <!-- <amplfr-item src="/kREnNawsJqg7PFfX3LYqEy">
+        <a href="/kREnNawsJqg7PFfX3LYqEy/Just" class="title" title="Just">Just</a>
+      </amplfr-item> -->
+      <!-- <amplfr-item
+        src="/test/US_Marine_Band_Rhapsody_in_Blue.oga"
+        data-title="Rhapsody in Blue"
+        data-artist="George Gershwin"
+        data-artwork="/test/Rhapsody_in_Blue_cover.jpg"
+      ></amplfr-item> -->
+      <!-- <amplfr-item src="/wWXnqZ4ieknmWq2wUWb8oP"></amplfr-item> -->
+      <!-- <amplfr-item data-id="kREnNawsJqg7PFfX3LYqEy">
+          <a href="/kREnNawsJqg7PFfX3LYqEy/Just" class="title" title="Just">Just</a>
+        </amplfr-item> -->
+      <!-- <amplfr-item src="/eDu4Y113AnxWJCdqpnCrHv"></amplfr-item> -->
+      <!-- <audio is="amplfr-audio" src="/eDu4Y113AnxWJCdqpnCrHv"></audio> -->
+      <!-- prettier-ignore -->
+      <!-- <amplfr-item src="/6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like%20Teen%20Spirit"></amplfr-item> -->
+      <!-- <amplfr-item src="/api/6HrUVPVYS3PNDJJ4zmQrJw@128.mp3"></amplfr-item> -->
+      <!-- <amplfr-item src="playlist/UTKtg53PKSDe3h5XMrx64x/matt to kim"></amplfr-item> -->
+      <!-- <amplfr-item src="/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"></amplfr-item> -->
+      <!-- <audio is="amplfr-audio" data-id="rWxxfBZRqNipUTaQ63AX8q"></audio> -->
+      <!-- <amplfr-collection src="/api/queue"></amplfr-collection> -->
+      <!-- </amplfr-collection> -->
+    </amplfr-queue>
+    <style>
       #filters {
         display: flex;
         gap: 0.25rem;
         overflow: auto;
         /* padding: 9px 0.5rem; */
         padding: 8px 0.5rem;
+        margin-top: 0px;
+        margin-left: 0px;
         /* margin-left: 64px; */
         background: linear-gradient(90deg, #7a7a7a, transparent);
-        position: fixed;
-        z-index: 2;
+        position: sticky;
+        /* left: 64px; */
+        /* z-index: 2; */
+        /* width: calc(100% - var(--queueGutter) - 16px); */
+        /* width: calc(100dvw - var(--queueGutter) - 16px); */
+        max-width: calc(100% - var(--queueGutter) - 6em);
+        max-width: calc(100dvw - var(--queueGutter) - 6em);
+      }
+      body.queueMin #filters {
+        /* width: calc(100% - 4em - 16px); */
+        /* width: calc(100dvw - 4em - 16px); */
+        max-width: calc(100% - 10em);
+        max-width: calc(100dvw - 10em);
       }
       body.columns #filters {
         margin-left: 0px;
       }
-      #filters button {
+      #filters button,
+      #filters a {
         flex-shrink: 0;
         background-color: rgb(0 0 0 / 25%);
         padding: 0.5rem 0.75rem;
@@ -376,12 +1058,18 @@
         font-size: 1em;
         font-weight: 500;
         padding: 0.75rem;
+        /* box-shadow: 4px 4px 4px 0 darkgray; */
+        box-shadow: 2px 2px 2px 0 #7a7a7a;
       }
       #filters button#search,
       #filters button#togglePlaylist {
         /* font-size: 1.5em; */
         /* padding: 0.7rem; */
         font-size: 48px;
+        padding-top: unset;
+        padding-bottom: unset;
+      }
+      #filters button#togglePlaylist {
         padding-top: unset;
         padding-bottom: unset;
         border-radius: unset;
@@ -405,6 +1093,7 @@
       #also-like-items > button {
         display: flex;
         aspect-ratio: 1;
+        box-shadow: 4px 4px 4px darkgray;
       }
       #also-like-items > button > img {
         height: 100%;
@@ -499,8 +1188,8 @@
         width: 100%;
       }
       /* body.narrow .horiz {
-        margin-left: -64px;
-      } */
+          margin-left: -64px;
+        } */
       div.horiz img {
         /* thank you [Clippy — CSS clip-path maker](https://bennettfeely.com/clippy/) */
         -webkit-clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
@@ -533,142 +1222,181 @@
         white-space: nowrap;
       }
     </style>
-    <!-- <div id="container"></div> -->
-    <div id="filters" class="no-scrollbar">
-      <button type="button">MxPx</button>
-      <button type="button">latest</button>
-      <button type="button">trending</button>
-      <button type="button">live</button>
-      <button type="button">minutes&colon;0-5</button>
-      <button type="button">minutes&colon;5-30</button>
-      <button type="button">genre&colon;pop</button>
-      <button type="button">genre&colon;classical</button>
-    </div>
     <style>
-      main {
-        width: 100%;
-        margin-top: 72px;
+      .container {
+        grid-template-columns: repeat(auto-fill, calc(50vw - 32px));
+        margin: 0px auto;
+        display: inline;
+        grid-auto-flow: row dense;
+        overflow: hidden;
       }
-      main img {
-        height: 100%;
-        width: 100%;
-        aspect-ratio: 1 / 1;
-      }
-      main > * {
-        display: block;
-      }
-      main > * {
-        margin: 8px;
-        display: grid;
-        grid: auto-flow dense / repeat(auto-fill, minmax(250px, max-content));
-        grid-gap: 8px;
-      }
-      main > * > * {
-        box-shadow: 4px 4px 4px 0 darkgray;
-      }
-      main .album ol {
-        box-shadow: none;
-      }
-      main .album ol .title {
-        color: initial;
-      }
-      main .artist > img {
-        grid-area: span 2 / span 2;
-      }
-
-      main .artwork {
-        /* width: 50%; */
-        /* max-width: 50%; */
-        float: left;
-        margin-left: 0px;
-        /* width: 814px; */
-        width: 50%;
-        position: sticky;
-        top: 222px;
-      }
-      main .artwork a {
-        height: 200px;
+      /* .container a, */
+      .block {
+        padding: 6px;
+        margin: 0px;
+        position: static;
+        top: 0px;
+        color: rgba(255, 255, 255, 0.5);
+        text-shadow: 2px 2px 0px rgb(0 0 0);
+        background-position: center;
+        background-size: cover;
+        overflow: hidden;
+        font-size: 2em;
+        /* transition: 0.25s ease; */
+        /* box-shadow: 4px 4px 4px darkgray; */
+        transition: box-shadow 0.2s;
         width: 200px;
-        aspect-ratio: 1;
-        display: inline-block;
+        height: 200px;
       }
-      main .artwork a img {
-        /* width: 100%; */
-        height: 100%;
-        aspect-ratio: 1/1;
+      .block:hover {
+        scale: 1.02;
       }
-      main .artwork .artistart {
+      .block3x2 {
+        width: 600px;
         height: 400px;
-        width: 400px;
-        float: left;
-        margin-right: 8px;
+        grid-row-end: span 2;
+        grid-column-end: span 3;
       }
-      /* main > * > .title { */
-      main * .title {
-        position: absolute;
-        cursor: pointer;
-        color: white;
-        box-shadow: none;
-        text-shadow: 2px 2px darkgray;
-        /* max-width: 250px; */
-      }
-      main * .title,
-      main * .duration,
-      main * ol li::marker {
-        text-shadow: 2px 2px darkgray;
-      }
-      main > .album {
-        display: grid;
-        /* grid-gap: 8px; */
-        grid: auto-flow dense / repeat(auto-fill, minmax(49%, max-content));
-      }
-      main > .artist > .album {
-        max-width: 450px;
-      }
-      main > .artist > .album ol {
-        max-width: 450px;
-      }
-      main > .artist > .album > .title:after {
-        content: " +";
-      }
-      main .duration {
-        float: right;
-      }
-      main > * > .title {
-        margin-left: 0px;
-      }
-      main * > p.description {
+      .block2x1 {
+        width: 400px !important;
+        height: 200px !important;
         grid-column: span 2;
-        padding: 0px 8px 8px 0px;
+      }
+      .block2x2 {
+        width: 400px !important;
+        height: 400px !important;
+        grid-row: span 2;
+        grid-column: span 2;
+      }
+      .block1x2 {
+        grid-row: span 2;
+        /* width: calc(50vw - 32px); */
+        /* height: calc(100vw - 64px); */
+        width: 200px !important;
+        height: 400px !important;
+      }
+      .block3x1 {
+        width: 600px !important;
+        height: 200px !important;
+        grid-column: span 3;
+      }
+      .block4x1 {
+        width: 800px !important;
+        height: 200px !important;
+        grid-column: span 4;
+      }
+      .block.block2x2 .twitter-tweet {
+        flex-wrap: wrap;
+        height: 100%;
+        align-content: center;
       }
 
-      @media (max-width: 900px) {
-        main .artwork > * {
-          height: 49% !important;
-          width: 49% !important;
-          margin: 0px !important;
-          float: unset !important;
+      @media (min-width: 464px) {
+        .container {
+          grid-template-columns: repeat(auto-fill, 200px);
         }
-      }
-      @media (max-width: 640px) {
-        main .artwork {
-          width: 25%;
+        /* .container a,
+        .block {
+          width: 200px;
+          height: 200px;
         }
-        main .artwork > * {
-          height: 100% !important;
-          width: 100% !important;
-        }
-        main > * > * {
-          /* margin-left: 814px; */
-          margin-left: 25%;
-        }
-        main .artist .title {
-          top: 128px;
-        }
+        .block.block1x2,
+        .block.block1x2 div,
+        .block1x2 {
+          width: 200px;
+          height: 400px;
+        } */
       }
     </style>
     <main>
-      <div class="album" id="album-Sr2H7RXNV3eZXmMhi2byY9">
+      <div id="filters" class="no-scrollbar">
+        <button type="button">MxPx</button>
+        <button type="button">latest</button>
+        <button type="button">trending</button>
+        <button type="button">live</button>
+        <button type="button">minutes&colon;0-5</button>
+        <button type="button">minutes&colon;5-30</button>
+        <button type="button">genre&colon;pop</button>
+        <button type="button">genre&colon;classical</button>
+      </div>
+      <!-- prettier-ignore -->
+      <div class="container">
+        <!-- prettier-ignore -->
+        <div class="block block2x2"><img src="/albumart/12XkFAJdUHxFBjorvhpgKw.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block block1x2"><img src="/albumart/14mBwCSAqyibxKhHCNHPij.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/174qJNfqKzgxiq8KJejpg8.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/22V3C5Y8gEZSNRyiWAJ7AN.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/242dZfLEKzsxKaRNXDKWSM.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/25a8LN9NXb52JeqW1drtXa.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/2jgiNm6kn2vhRgswokxkyG.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/2VKmHaMfsnDYvrL8FfpdwL.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/2VrnohpGSo86EjPAeK2gM8.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/2xsMsQVecdXeksb8BypRc6.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/2xWBDeK2eDCSv9gc2BizTv.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/333geSwRHGfDCyUHBQFXLa.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3AjoTMX8u16JyaZQ2VbWCz.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3dh3NcqDpdceXa2VxvEvRj.jpg" /></div>
+        <!-- prettier-ignore -->
+        <!-- <div class="block block2x1"><img src="/albumart/379TuPZL2pQxgAdibfjepw.jpg" /></div></div> -->
+        <div class="block block2x2">
+          <blockquote class="twitter-tweet">
+            <p lang="en" dir="ltr">
+              The Yankees catchers cant throw anyone out.
+            </p>
+            &mdash; Jomboy (@Jomboy_)
+            <a
+              href="https://twitter.com/Jomboy_/status/1782138667739324525?ref_src=twsrc%5Etfw"
+              >April 21, 2024</a
+            >
+          </blockquote>
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+        </div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3Fg5wFLxUktZuk5EJnVWsm.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3gHASdnym64pGcrwUKJYnn.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3jwFMNethqPR912LRRZBSL.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3KN9carDaWHD5zZeWtUQRv.jpg" /></div>
+        <!-- prettier-ignore --><!-- <div class="block block4x1"><img src="/albumart/3NLhHcY8QdziyEPjJiaXBE.jpg" /></div> -->
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3QvRBzyzndeATJ1nfbF4hj.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3snT4fEVwfarRjFDWA8N4v.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3Umi6gWd7pm6zwatgUVnZ8.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/3yxKVn3EfRXtxcCvHbuczL.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block block3x1"><amplfr-item class="block-inner" src="/wWXnqZ4ieknmWq2wUWb8oP"></amplfr-item></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/43bVzFhmfH3ezYvabEn3Ba.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/45esWPA7isAwnWo5FK48LC.jpg" /></div>
+        <!-- prettier-ignore -->
+        <div class="block"><img src="/albumart/48XhHUTwMESnjWwbV8HzZK.jpg" /></div>
+        <!-- prettier-ignore -->
+        <!-- <div class="block"><img src="/albumart/4d5KGaRxKPLbzMaQquZYh9.jpg" /></div> -->
+      </div>
+      <!-- <div class="album" id="album-Sr2H7RXNV3eZXmMhi2byY9">
         <h2 class="title">Let It Happen</h2>
         <img src="/img/albumart/Sr2H7RXNV3eZXmMhi2byY9.jpg" />
         <ol>
@@ -1233,8 +1961,8 @@
             </span>
           </li>
         </ol>
-      </div>
-      <div class="album" id="album-Y8SMsGBcTqbr1XLvUUgtyj">
+      </div> -->
+      <!-- <div class="album" id="album-Y8SMsGBcTqbr1XLvUUgtyj">
         <h2 class="title">At the Show</h2>
         <img src="/img/albumart/Y8SMsGBcTqbr1XLvUUgtyj.jpg" />
         <ol>
@@ -1607,8 +2335,8 @@
             </span>
           </li>
         </ol>
-      </div>
-      <div class="artist" id="artist-7DXUSS6TLaxNdoHcVwZGVs">
+      </div> -->
+      <!-- <div class="artist" id="artist-7DXUSS6TLaxNdoHcVwZGVs">
         <img src="/img/artistart/7DXUSS6TLaxNdoHcVwZGVs.jpg" />
         <h2 class="title">MxPx</h2>
         <p class="description">
@@ -1656,7 +2384,7 @@
           <h2 class="title">Punk Rawk Christmas</h2>
           <img src="/img/albumart/J35hTMjtQxaWvQHs3VeYhf.jpg" />
         </div>
-      </div>
+      </div> -->
     </main>
     <script>
       const dom_main = document.querySelector("main");
@@ -1677,44 +2405,94 @@
       // const dom_main_test = createElement("div");
       // prependMain(dom_main_test);
     </script>
-    <div id="also-like-items">
-      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
-      <!-- prettier-ignore --><button type="button"><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"></button>
+    <!-- <div id="also-like-items">
+      <!- - prettier-ignore - -><button type="button"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60"></button>
+      <!- - prettier-ignore - -><button type="button"><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"></button>
+    </div> -->
+    <div class="container">
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"></div>
+      <!-- prettier-ignore -->
+      <div class="block"><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"></div>
     </div>
     <div class="horiz">
       <!-- prettier-ignore --><img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
       <!-- prettier-ignore --><img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
-      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+      <!-- prettier-ignore --><img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
       <!-- prettier-ignore --><img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk">
     </div>
     <div id="apps-container">
@@ -1783,12 +2561,15 @@
       <a href="//amplfr.github.io/">API/developer resources</a>
       <a href="//twitter.com/amplfr">@Amplfr</a>
     </div>
+
     <script>
       const title = ">Amplfr";
       const url = document.location.origin + "/api/queue";
       fetch(url)
         .then((response) => response.json())
         .then((json) => {
+          return;
+
           if (Array.isArray(json)) json = json.map((x) => x.id || x);
 
           json.title = "Queue";
@@ -1899,26 +2680,29 @@
           dom_whatsnext.insertAdjacentElement("beforeend", dom_addnew);
 
           // move some buttons from #controls to #whatsnext
-          dom_whatsnext.insertAdjacentElement(
-            "beforeend",
-            dom_controls.querySelector("button#loop")
-          );
-          dom_whatsnext.insertAdjacentElement(
-            "beforeend",
-            dom_controls.querySelector("button#shuffle")
-          );
-          dom_whatsnext.insertAdjacentElement(
-            "beforeend",
-            dom_controls.querySelector("button#share")
-          );
+          // dom_whatsnext.insertAdjacentElement(
+          //   "beforeend",
+          //   dom_controls.querySelector("button#loop")
+          // );
+          // dom_whatsnext.insertAdjacentElement(
+          //   "beforeend",
+          //   dom_controls.querySelector("button#shuffle")
+          // );
+          // dom_whatsnext.insertAdjacentElement(
+          //   "beforeend",
+          //   dom_controls.querySelector("button#share")
+          // );
 
-          // let dom_search = dom_controls.querySelector("button#search");
-          document
-            .querySelector("#filters")
-            ?.insertAdjacentElement(
-              "afterbegin",
-              dom_controls.querySelector("button#search")
-            );
+          const dom_filters = document.querySelector("#filters");
+          // move button#search
+          // dom_filters?.insertAdjacentElement(
+          //   "beforeend",
+          //   dom_controls.querySelector("button#search")
+          // );
+          dom_filters?.insertAdjacentElement(
+            "afterbegin",
+            dom_controls.querySelector("button#search")
+          );
           // ?.insertAdjacentElement("afterbegin", dom_search);
           let dom_button_playlist = createElement("button", {
             classes: "material-symbols-outlined",
@@ -1928,9 +2712,10 @@
             },
             innerText: "format_list_numbered",
           });
-          document
-            .querySelector("#filters")
-            ?.insertAdjacentElement("afterbegin", dom_button_playlist);
+          // document
+          //   .querySelector("#filters")
+          //   ?.insertAdjacentElement("afterbegin", dom_button_playlist);
+          dom_filters?.insertAdjacentElement("afterbegin", dom_button_playlist);
 
           const div_horiz = document.querySelector("div.horiz");
           div_horiz.addEventListener("wheel", scrollHorizontal);
@@ -1957,5 +2742,21 @@
           // observer.observe(preheader);
         });
     </script>
+    <script>
+      const dom_queue = document.querySelector("#queue");
+      // const dom_controls = document.querySelector("#controls");
+      const dom_toggleQueue = document.querySelector("#toggleQueue");
+
+      const toggleQ = () => {
+        document.body.classList.toggle(
+          "queueMin"
+          // ,
+          // dom_queue.classList.contains("minimized")
+        );
+      };
+      dom_toggleQueue.addEventListener("click", toggleQ);
+      dom_toggleQueue.addEventListener("touchend", toggleQ);
+    </script>
+    <!-- <script src="./amplfr-audio.js"></script> -->
   </body>
 </html>

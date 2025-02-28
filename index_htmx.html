@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+  <!-- prettier-ignore -->
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplfr.com HTMX</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+    <!-- <script src="https://unpkg.com/htmx.org@2.0.1" integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/" crossorigin="anonymous"></script> -->
+    <script src="/js/htmx.min.js"></script>
+    <script src="/js/amplfr-item.js"></script>
+    <script src="/js/queue.js"></script>
+    <!-- <link rel="stylesheet" href="/css/item.css" /> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"
+      integrity="sha512-YsR46MmyChktsyMMou+Bs74oCa/CDdwft7rJ5wlnmDzMj1mzqncsfJamEEf99Nk7IB0JpTMo5hS8rxB49FUktQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <style>
+      body {
+        --body-color: white;
+        --text-color: black;
+        --shadow-color: darkgray;
+        --queue-height: 4rem;
+        /* --main-left: 8rem; */
+        --main-left: 4rem;
+        --logo-width: 210px;
+        display: flex;
+        font-family: "Noto Sans", sans-serif;
+        font-weight: 400;
+        /* margin: 0px; */
+        margin: 12px;
+        /* margin-left: 8rem; */
+        flex-direction: column;
+        height: 100vh;
+        /* overflow-x: hidden; */
+      }
+      :root {
+        scroll-behavior: smooth;
+      }
+      *::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        border: 3px solid var(--shadow-color);
+      }
+      *::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      button {
+        all: unset;
+        cursor: pointer;
+      }
+      nav {
+        position: fixed;
+        top: 0px;
+        /* left: 4rem; */
+        /* padding-left: 4rem; */
+        display: flex;
+        flex-direction: column;
+        /* margin-top: 4em; */
+        width: 4rem;
+        height: 90%;
+        height: calc(100dvh - 4rem);
+        height: 100dvh;
+        z-index: 100;
+        backdrop-filter: blur(0.5rem);
+
+        .icon {
+          font-size: 4rem;
+          text-decoration: none;
+          margin: auto;
+
+          background-color: transparent;
+          color: var(--text-color);
+          color: var(--body-color);
+          fill: var(--body-color);
+          filter: drop-shadow(2px 2px 2px darkgray);
+        }
+        .icon[href="#search"],
+        /* .icon#playing, */
+        .icon[href="#playing"],
+        .icon[href="#queue"],
+        .icon[href="/upload"],
+        .icon[href="/account"] {
+          margin: 0px;
+        }
+        .icon[href="#queue"] {
+          position: sticky;
+          bottom: 0px;
+        }
+      }
+
+      main {
+        display: block;
+        margin: 0px;
+        width: 100%;
+
+        amplfr-queue,
+        section {
+          display: inline-block;
+          min-height: 80dvh;
+          scroll-margin-top: 8rem;
+          margin-left: var(--main-left);
+          width: calc(100dvw - var(--main-left));
+        }
+        amplfr-queue {
+          min-height: unset;
+        }
+
+        section#search {
+          margin-top: 0px;
+          /* height: 8rem; */
+          height: 4rem;
+          min-height: unset;
+          transition: 250ms ease-in-out;
+          color: darkgray;
+        }
+        section#search:target,
+        section#search:focus-within {
+          margin-top: 50dvh;
+          margin-bottom: 50dvh;
+          height: 100dvh;
+          min-height: unset;
+          position: relative;
+        }
+
+        section#search button#closeSearch {
+          font-size: 0;
+          text-decoration: none;
+          margin: auto;
+          position: absolute;
+          top: 0px;
+          margin-right: var(--logo-width);
+
+        }
+        section#search:focus-within button#closeSearch {
+          font-size: 4rem;
+        }
+
+        section.horiz {
+          display: flex;
+          height: 500px;
+          max-height: 500px;
+          padding-left: 8rem;
+          overflow: auto hidden;
+          margin: 8px 0px;
+          width: initial;
+        }
+      }
+
+      header {
+        display: flex;
+        flex-direction: row;
+        /* position: absolute; */
+        /* position: fixed; */
+        margin-left: var(--main-left);
+        width: 100%;
+        /* width: calc(100dvw - 8rem); */
+        width: calc(100dvw - var(--main-left));
+        z-index: 10;
+        transition: 200ms height;
+
+        .logo {
+          /* position: sticky; */
+          position: fixed;
+          /* right: 4rem; */
+          right: 0;
+          display: flex;
+          z-index: 100;
+          font-size: 4rem;
+          height: 1em;
+          color: var(--body-color);
+          fill: var(--body-color);
+          filter: drop-shadow(2px 2px 2px darkgray);
+        }
+      }
+      input[type="search"] {
+        /* font-size: 4em; */
+        /* height: 1em; */
+        font-size: 3.5rem;
+        height: 4rem;
+        width: 100%;
+        width: calc(100dvw - var(--logo-width));
+        /* width: calc(100dvw - 12rem - var(--logo-width)); */
+        /* margin-right: 1rem; */
+        padding: 0px;
+        border: 0px;
+        outline: none;
+        text-decoration: underline 2px solid darkgray;
+        z-index: -10;
+        background-color: transparent;
+
+        /* width: calc(100dvw - 12rem); */
+        /* width: calc(100dvw - 16rem); */
+        display: inline-block;
+      }
+      button#closeSearch {
+        font-size: 4rem;
+        text-decoration: none;
+        margin: auto;
+      }
+
+      footer {
+        /* display: inline; */
+        gap: 0.25rem;
+        /* margin: 1rem 0px; */
+        overflow: auto;
+        padding: 1em 0px;
+        margin-left: var(--main-left, 8rem);
+      }
+      footer > a {
+        background-color: rgb(0 0 0 / 5%);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem rem;
+        border: 0px;
+        white-space: nowrap;
+      }
+    </style>
+    <style>
+        /* nav button.icon#playing,  */
+        /* nav .icon[href="#playing"], 
+        section#playing amplfr-item, */
+        /* .active.item { */
+        #playing {
+          /* background-color: #E76F51; */
+          /* position: sticky; */
+          position: fixed;
+          /* top: 4rem; */
+          top: 0;
+          /* width: calc(100dvw - 8rem); */
+          width: calc(100dvw - var(--main-left));
+          backdrop-filter: blur(8px);
+          /* box-shadow: 4px 4px 4px darkgray; */
+          /* left: 0rem;
+          padding-left: 8em; */
+        }
+        #playing:target {
+          position: sticky;
+          height: 100dvh;
+          top: 0px;
+          margin-left: -8rem !important;
+          padding-left: 8rem;
+          display: flex;
+          flex-direction: column;
+          z-index: 100;
+        }
+        #playing:target .artwork {
+          /* float:left; */
+          position: fixed;
+          /* margin-left: 0; */
+          padding-left: 8rem;
+          height: 100vmin;
+          width: 100vmin;
+        }
+        #playing:target * {
+          margin-left: 100vmin;
+          /* padding-left: 8rem; */
+        }
+        #playing:target .title {
+          margin-top: auto;
+        }
+        amplfr-queue::before {
+          content: "";
+          display: block;
+          height: 4rem;
+          width: calc(100dvw - 8rem);
+          margin: 4px !important;
+        }
+        amplfr-queue {
+          /* position: sticky; */
+          top: 4rem;
+          /* margin-left: -4rem; */
+          /* height: 4rem; */
+          /* width: 85%;
+          width: calc(100dvw - 8rem); */
+          /* width: calc(100dvw - 5rem); */
+          /* margin-top: 4rem; */
+          max-height: 90%;
+          max-height: calc(100dvh - 8rem);
+          z-index: 10;
+        }
+        amplfr-collection > amplfr-item:before, 
+        amplfr-queue > amplfr-item:before, 
+        amplfr-collection > amplfr-audio:before, 
+        amplfr-queue > amplfr-audio:before {
+          z-index: initial !important;
+        }
+
+        .item {
+          /* margin: 0px !important; */
+          /* background-color: var(--color); */
+          /* background: linear-gradient(90deg, var(--color) 64%, var(--body-color)); */
+          margin: 4px !important;
+          border: solid var(--color) 2px;
+        }
+        amplfr-queue amplfr-audio#playing {
+          --color: black;
+          --colorAccent: var(--body-color);
+          /* display: block; */
+          display: inline-flex;
+          margin: 0px;
+          /* height: 4rem; */
+          color: var(--color);
+          overflow: hidden;
+          font-size: 1rem;
+          z-index: 10;
+          box-shadow: 2px 2px 2px var(--colorAccent, darkgray);
+          width: 100%;
+          /* background-color: var(--colorAccent); */
+          /* background-color: var(--color);
+          background: linear-gradient(90deg, var(--color) 64%, var(--body-color)); */
+          /* position: absolute; */
+          /* margin: 0px var(--gap); */
+          /* top: 0px; */
+          /* left: 0px; */
+          /* width: 100dvw; */
+          /* width: calc(100vw -(2* var(--gap))); */
+        }
+
+        amplfr-queue amplfr-audio {
+          display: block;
+          height: 4rem;
+          /* width: 100%; */
+          width: 32rem;
+          z-index: 10;
+        }
+        /* amplfr-queue amplfr-audio.active { */
+          /* display: inline-flex; */
+          /* top: 4rem;
+          left: 8rem;
+          height: 4rem;
+          width: 85%;
+          width: calc(100dvw - 11rem); */
+          /* margin-left: 4rem; */
+        /* } */
+
+        /* amplfr-collection > amplfr-item#playing:before,
+        amplfr-collection > amplfr-audio#playing:before, */
+        amplfr-queue > amplfr-item#playing:before,
+        amplfr-queue > amplfr-audio#playing:before {
+          display: none;
+        }
+        amplfr-queue amplfr-audio#playing .title {
+          /* font-size: 3rem; */
+          text-decoration: none;
+          font-weight: bold;
+          margin: 0px;
+          /* margin-top: auto; */
+          display: inline;
+          padding-left: 4px;
+        }
+
+        amplfr-queue > #playing * {
+          white-space: nowrap;
+          margin: 0px 4px;
+          color: var(--colorAccent);
+          fill: var(--colorAccent);
+          vertical-align: middle;
+          z-index: 12;
+          position: inherit;
+          position: relative;
+          font-size: 3.75rem;
+          top: -14px;
+        }
+        amplfr-queue > #playing .title {
+          display: inline;
+        }
+        amplfr-queue > #playing .time, 
+        amplfr-queue > #playing .icon {
+          cursor: pointer;
+          margin-left: auto;
+        }
+        amplfr-queue > #playing .artwork,
+        amplfr-queue > #playing button {
+          top: 0px !important;
+          left: 0px;
+          margin: 0px;
+        }
+        amplfr-queue > #playing .timeline-container {
+          position: absolute;
+          top: 4rem;
+          margin-left: 4rem;
+          width: calc(100% - 4rem);
+        }
+
+        .item:last-child {
+          box-shadow: 4px 4px 4px darkgray;
+        }
+
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <!-- <input
+        id="search"
+        type="search"
+        name="Search"
+        hx-get="/search"
+        hx-trigger="keyup changed delay:500ms"
+        hx-target="#search"
+        hx-swap="afterend"
+        placeholder="Search songs, artists, lyrics, albums, and more"
+      /> -->
+      <!-- prettier-ignore -->
+      <a href="/" class="logo">
+        <svg style="font-size: 1em" xmlns="//www.w3.org/2000/svg" viewBox="0 0 173 187">
+          <path id="logoA" d="M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z"></path>
+        </svg><svg style="font-size: 1em" class="wide-only" xmlns="//www.w3.org/2000/svg" viewBox="0 0 567 243">
+          <path id="logomplfr" d="M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"></path>
+        </svg></a>
+    </header>
+    <!-- prettier-ignore -->
+    <nav>
+      <!-- mostly icon button's, a's go here with queue, playing and search sections -->
+      <button href="#playing" class="icon material-symbols-outlined">play_arrow</button>
+      <a href="#queue" class="icon material-symbols-outlined">playlist_play</a>
+      <a href="#search" class="icon material-symbols-outlined">search</a>
+      <a href="#" class="icon material-symbols-outlined">home</a>
+
+      <a href="#new" class="icon material-symbols-outlined" title="New">event</a>
+      <a href="#popular" class="icon material-symbols-outlined" title="Popular">trending_up</a>
+      <a href="#local" class="icon material-symbols-outlined" title="Local">near_me</a>
+      <a href="#playlists" class="icon material-symbols-outlined" title="Playlists">queue_music</a>
+      <a href="#favorites" class="icon material-symbols-outlined" title="Favorites">favorite</a>
+      <a href="#people" class="icon material-symbols-outlined" title="People">groups</a>
+      <a href="#history" class="icon material-symbols-outlined" title="History">history</a>
+
+      <a href="/upload" class="icon material-symbols-outlined">cloud_upload</a>
+      <a href="/account" class="icon material-symbols-outlined" >manage_accounts</a>
+    </nav>
+    <main>
+      <amplfr-queue id="queue" controls="false">
+        <!-- <amplfr-audio class="active">&nbsp;</amplfr-audio> -->
+        <!-- <amplfr-audio
+          class="active item"
+          src="//upload.wikimedia.org/wikipedia/commons/c/cd/US_Marine_Band_Rhapsody_in_Blue.oga"
+          data-title="Rhapsody in Blue"
+          data-artist="George Gershwin"
+          data-artwork="//upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Rhapsody_in_Blue_cover.jpg/220px-Rhapsody_in_Blue_cover.jpg"
+          ></amplfr-audio> -->
+      </amplfr-queue>
+      <!-- <section id="playing"><amplfr-item class="active"></amplfr-item></section> -->
+      <!-- <section id="search"></section> -->
+      <section id="search">
+        <input
+          id="search"
+          type="search"
+          name="Search"
+          hx-get="/search"
+          hx-trigger="keyup changed delay:500ms"
+          hx-target="#search"
+          hx-swap="afterend"
+          placeholder="Search songs, artists, lyrics, albums, and more"
+        />
+        <!-- prettier-ignore -->
+        <button class="icon material-symbols-outlined" id="closeSearch">close</button>
+      </section>
+      <style>
+        .container {
+          --side: 15rem;
+          /* grid-template-columns: repeat(auto-fill, calc(50vw - 32px)); */
+          /* margin: 0px auto; */
+          /* display: inline; */
+          grid-auto-flow: row dense;
+          overflow: hidden;
+          height: initial;
+        }
+
+        .block {
+          padding: 6px;
+          margin: 0px;
+          position: static;
+          position: relative;
+          top: 0px;
+          color: rgba(255, 255, 255, 0.5);
+          text-shadow: 2px 2px 0px rgb(0 0 0);
+          background-position: center;
+          background-size: cover;
+          /* overflow: hidden; */
+          font-size: 2em;
+          /* transition: 0.25s ease; */
+          /* box-shadow: 4px 4px 4px darkgray; */
+          transition: box-shadow 200ms;
+          width: var(--side);
+          height: var(--side);
+          float: left;
+          z-index: 0;
+        }
+        .block:hover {
+          scale: 1.02;
+        }
+        .block img {
+          height: 100%;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          box-shadow: 4px 4px 4px darkgray;
+        }
+        .block * {
+          margin-top: 0px !important;
+          margin-bottom: 0px !important;
+        }
+        .block.block2x2 {
+          /* width: calc(2* var(--minSide)); */
+          width: calc(2 * var(--minSide) + (var(--gap) / 2));
+          /* padding-bottom: 0px; */
+        }
+        .block2x2 {
+          /* width: 400px !important; */
+          /* height: 400px !important; */
+          /* width: calc(2 * var(--side)); */
+          width: calc((2 * var(--side)) + 12px);
+          height: calc((2 * var(--side)) + 12px);
+          grid-row: span 2;
+          grid-column: span 2;
+        }
+        .block1x2 {
+          grid-row: span 2;
+          height: calc((2 * var(--side)) + 12px);
+        }
+      </style>
+      <!-- prettier-ignore -->
+      <section id="#" class="container">
+        <!-- <div class="container"> -->
+        <div class="block block2x2"><img src="/albumart/ssJLoBpTnHbb4ojwjDLKYt.jpg"></div>
+        <div class="block block1x2"><img src="/img/tiles/STANDIN-tiles-Tool_poster.jpg"></div>
+        <div class="block"><img src="/albumart/174qJNfqKzgxiq8KJejpg8.jpg"></div>
+        <div class="block"><img src="/albumart/22V3C5Y8gEZSNRyiWAJ7AN.jpg"></div>
+        <div class="block"><img src="/albumart/242dZfLEKzsxKaRNXDKWSM.jpg"></div>
+        <div class="block"><img src="/albumart/25a8LN9NXb52JeqW1drtXa.jpg"></div>
+        <div class="block"><img src="/albumart/2jgiNm6kn2vhRgswokxkyG.jpg"></div>
+        <div class="block"><img src="/albumart/2VKmHaMfsnDYvrL8FfpdwL.jpg"></div>
+        <div class="block"><img src="/albumart/2VrnohpGSo86EjPAeK2gM8.jpg"></div>
+        <div class="block"><img src="/albumart/2xWBDeK2eDCSv9gc2BizTv.jpg"></div>
+        <div class="block"><img src="/albumart/333geSwRHGfDCyUHBQFXLa.jpg"></div>
+        <div class="block"><img src="/albumart/3AjoTMX8u16JyaZQ2VbWCz.jpg"></div>
+        <div class="block"><img src="/albumart/3dh3NcqDpdceXa2VxvEvRj.jpg"></div>
+        <!-- <div class="block block2x1"><img src="/albumart/379TuPZL2pQxgAdibfjepw.jpg" /></div></div> -->
+        <div class="block"><img src="/albumart/3Fg5wFLxUktZuk5EJnVWsm.jpg"></div>
+        <div class="block"><img src="/albumart/3gHASdnym64pGcrwUKJYnn.jpg"></div>
+        <div class="block"><img src="/albumart/3jwFMNethqPR912LRRZBSL.jpg"></div>
+        <div class="block"><img src="/albumart/3KN9carDaWHD5zZeWtUQRv.jpg"></div>
+        <!-- prettier-ignore --><!-- <div class="block block4x1"><img src="/albumart/3NLhHcY8QdziyEPjJiaXBE.jpg" /></div> -->
+        <div class="block"><img src="/albumart/3QvRBzyzndeATJ1nfbF4hj.jpg"></div>
+        <div class="block"><img src="/albumart/3Umi6gWd7pm6zwatgUVnZ8.jpg"></div>
+        <!-- <div class="block"><img src="/albumart/3yxKVn3EfRXtxcCvHbuczL.jpg"></div> -->
+        <div class="block"><img src="/albumart/12XkFAJdUHxFBjorvhpgKw.jpg"></div>
+        <div class="block"><img src="/albumart/item/wWXnqZ4ieknmWq2wUWb8oP.jpg"></div>
+        <!-- <div class="block block3x1"><amplfr-item class="block-inner item" src="/wWXnqZ4ieknmWq2wUWb8oP" style="--color: #252c60; --colorAccent: #d7a0ad;"><img class="artwork" crossorigin="Anonymous" src="/albumart/item/wWXnqZ4ieknmWq2wUWb8oP.jpg" alt="Monkey Wrench"><span class="title" title="Monkey Wrench">Monkey Wrench</span><div class="timeline-container"><div class="timeline"><div class="thumb-indicator"></div></div></div><a href="http://mt5577:3000/api/artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters" class="artist" data-id="artist/mTKCx7T69sv7EkfSHaDtPb" title="Foo Fighters">Foo Fighters</a></amplfr-item></div> -->
+        <div class="block"><img src="/albumart/43bVzFhmfH3ezYvabEn3Ba.jpg"></div>
+        <div class="block"><img src="/albumart/45esWPA7isAwnWo5FK48LC.jpg"></div>
+        <div class="block"><img src="/albumart/48XhHUTwMESnjWwbV8HzZK.jpg"></div>
+        <!-- <div class="block"><img src="/albumart/4d5KGaRxKPLbzMaQquZYh9.jpg" /></div> -->
+        <!-- </div> -->
+      </section>
+      <!-- prettier-ignore -->
+      <section id="new" class="horiz">
+        <style>
+          #new {
+            min-height: unset;
+            width: calc(100dvw - var(--main-left));
+            padding: 6px 6px 6px 8rem;
+
+            img {
+              aspect-ratio: 1/1;
+              /* clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%); */
+              /* margin-left: -3%; */
+              --side: 99%;
+              /* --side: 100%; */
+              box-shadow: 4px 4px 4px darkgray;
+              margin: 6px;
+              padding: 0px;
+            }
+          }
+        </style>
+        <!-- <div class="horiz"> -->
+        <!-- <img src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0">
+        <img src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+        <img src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+        <img src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+        <img src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+        <img src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60">
+        <img src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+        <img src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60">
+        <img src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"> -->
+        <img class="block" src="/img/albumart/WwKpDuMk2da22gtudcJVz1.jpg">
+        <img class="block" src="/img/albumart/X1XeoX9NNbc3febZE5iy1p.jpg">
+        <img class="block" src="/img/albumart/x8Hfa8UGUAu3c4C39Q5bvw.jpg">
+        <img class="block" src="/img/albumart/x8SsPW3udad2TyL1RMvYUZ.jpg">
+        <img class="block" src="/img/albumart/XA715KVXJichK9Zzkvjp9m.jpg">
+        <img class="block" src="/img/albumart/xaTTH8sVtuXBdhrqsW5LbL.jpg">
+        <img class="block" src="/img/albumart/XDnci4Q3pX59BUsRm4pfFz.jpg">
+        <img class="block" src="/img/albumart/Xea7CPLsNPj1TQCtzmcyQo.jpg">
+        <img class="block" src="/img/albumart/XKBjmrgZ2oxRRtnQMXvQe5.jpg">
+        <!-- </div> -->
+      </section>
+      <!-- <section id="popular">&nbsp;</section> -->
+      <section id="album-ssJLoBpTnHbb4ojwjDLKYt" class="album collection">
+        <!-- <img src="/img/albumart/ssJLoBpTnHbb4ojwjDLKYt.jpg" alt="" class="artwork">
+        <span class="title">(What's the Story) Morning Glory?</span>
+        <span class="artist">Oasis</span>
+        <ol class="items"></ol> -->
+        <amplfr-collection
+          src="/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory?"
+          class="collection"
+        ></amplfr-collection>
+      </section>
+      <section id="local">&nbsp;</section>
+      <style>
+        section amplfr-album {
+          display: block;
+          width: 100%;
+          height: 4rem;
+        }
+      </style>
+      <script>
+        // class AmplfrAlbum {
+        //   connectedCallback() {
+        //     let url = this.getAttribute("src")
+        //   }
+        // }
+
+        // customElements.define("amplfr-album", AmplfrCollection);
+      </script>
+      <!-- prettier-ignore -->
+      <section id="playlists">
+        <amplfr-collection controls="false" src="/album/3Fg5wFLxUktZuk5EJnVWsm"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/4d5KGaRxKPLbzMaQquZYh9"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/4iwBqSjbTb5GFXES5fBZXw"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/5hdPru2sTJ6Ndx1nvEuzXp"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/5XnyK1P9vcXJfnQ2ptVnyf"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/6DvKQBDKRnjQhkaXtqhCbY"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/7k7Ww57ZXTzZvCE3HUSu8F"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/7kqxiJoCHZpPpZ7xgf1H2M"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/7nCiC3bnf15RUmTkfGUJPh"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/9XadfFbRfF4TrAbF8cPGjt"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/45esWPA7isAwnWo5FK48LC"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/83JodxrcAtn8PEpoWX1can"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/bHkibgUEnX1EXb26YpKfw3"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/dmvZVME7sF3FrqgPdy56zb"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/dSDTk7xQvyP3hCYTRqwXMq"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/fFw9uZPXLd5E9coJizjcfV"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/gikor5c6vJMx3UTVG7WDwL"></amplfr-collection>
+        <amplfr-collection controls="false" src="/album/haRRX7cK82P9UY2covJzDf"></amplfr-collection>
+      </section>
+      <section id="favorites">&nbsp;</section>
+      <section id="people">&nbsp;</section>
+      <section id="history">&nbsp;</section>
+      <footer id="legal">
+        <a href="/">© Amplfr.com</a>
+        <a href="/terms">Terms of Use</a>
+        <a href="/privacy">Privacy Policy</a>
+        <a href="/legal">Legal Requests</a>
+        <a href="//amplfr.github.io/">API/developer resources</a>
+        <a href="//twitter.com/amplfr">@Amplfr</a>
+      </footer>
+    </main>
+
+    <script>
+      /**
+       *
+       * @param {*} e
+       */
+      const scrollHorizontal = (e) => {
+        const element = e.currentTarget,
+          left = element.scrollLeft,
+          y = e.deltaY;
+        if (
+          (y > 0 && left + element.clientWidth < element.scrollWidth) ||
+          (y < 0 && left > 0)
+        ) {
+          element.scrollLeft += y;
+          e.preventDefault();
+        }
+      };
+
+      // make sure all of the elements with .horiz class can scroll horizontally
+      document.querySelectorAll(".horiz").forEach((el) => {
+        // use {passive: false} option so UA doesn't show warning
+        el.addEventListener("wheel", scrollHorizontal, { passive: false });
+      });
+
+      const sectionSearch = document.querySelector("button#closeSearch");
+      const buttonCloseSearch = document.querySelector("button#closeSearch");
+      if (!!buttonCloseSearch) {
+        buttonCloseSearch.addEventListener("click", (ev) =>
+          sectionSearch.blur()
+        );
+        buttonCloseSearch.addEventListener("mouseover", (ev) =>
+          sectionSearch.blur()
+        );
+      }
+
+      // promote the first amplfr-audio.item in amplfr-queue
+      // TODO ensure this is an amplfr-audio and not amplfr-item
+      window.addEventListener("load", (ev) => {
+        document
+          .querySelectorAll("amplfr-queue .item")[0]
+          .setAttribute("id", "playing");
+      });
+    </script>
+  </body>
+</html>

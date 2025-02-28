@@ -12,9 +12,13 @@
 class AmplfrQueue extends AmplfrCollection {
   constructor(src) {
     if (!src)
-      src = '/api/queue'
+      src = '/queue' // '/api/queue'
 
-    super(src); // Always call super first in constructor
+    //   super(src); // Always call super first in constructor
+    // }
+    // constructor(src) {
+    // super();
+    super(src);
   }
 
   /**
@@ -80,6 +84,7 @@ class AmplfrQueue extends AmplfrCollection {
    */
   shuffle() {
     let i, m = this.items.length;
+    let timesToLoop = Math.min(1, Math.round(Math.log2(m)))
     const items = this.items;   // uses only existing AmplfrItems
     const childNodes = this.childNodes; // need the childNodes of items
 
@@ -89,7 +94,7 @@ class AmplfrQueue extends AmplfrCollection {
       this.pause();
 
     this.loop = false
-    this.item = false;  // unload anything that might be playing first
+    // this.item = false;  // unload anything that might be playing first
 
     // mark the items in order so it can be undone by this.sort()
     items.forEach((item, n) => {
@@ -98,15 +103,18 @@ class AmplfrQueue extends AmplfrCollection {
 
     // Fisher-Yates (aka Knuth) shuffle
     //  based on https://bost.ocks.org/mike/shuffle/
-    while (m) {
-      i = Math.floor(Math.random() * m);  // pick a random item from 0..m
+    while (timesToLoop) {
+      while (m) {
+        i = Math.floor(Math.random() * m);  // pick a random item from 0..m
 
-      // ...and swap it with the current element.
-      this.insertBefore(childNodes[m--], childNodes[i]);
+        // ...and swap it with the current element.
+        this.insertBefore(childNodes[m--], childNodes[i]);
+      }
+      timesToLoop--
     }
 
     this.loop = wasLooped  // restore previous loop status
-    this.item = 1   // load the new first item
+    // this.item = 1   // load the new first item
     if (isPlaying)
       this.play()  // start playing again if were already doing so
   }
@@ -115,7 +123,35 @@ class AmplfrQueue extends AmplfrCollection {
       return a.getAttribute('num') - b.getAttribute('num')
     })
 
-    return this._options.items.sort(compareFn);
+    return this.items.sort(compareFn);
+  }
+
+  get active() {
+    // get what the current .active item is, or the first amplfr-item element
+    return this.querySelectorAll("amplfr-item.active")[0] || this.items[0]
+  }
+
+  /**
+   * Flatten the Item elements of any Collections within this Collection. 
+   * Does not change the underlying Collection
+   */
+  flatten() {
+    const subCollections = this.querySelectorAll(".collection")
+
+    const outerCollection = this
+    subCollections.forEach(subCollection => {
+      const children = Array.from(subCollection.children)
+
+      children.forEach(child => {
+        // move child to in front of subCollection's position
+        outerCollection.insertBefore(child, subCollection)
+
+        child.classList.remove("active")
+        child.dataset["collection"] = child.dataset["collection"] || subCollection?.id || subCollection?.url
+      })
+
+      outerCollection.removeChild(subCollection)  // remove the subCollection
+    })
   }
 
   /**
@@ -123,7 +159,19 @@ class AmplfrQueue extends AmplfrCollection {
    * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_custom_elements|MDN Using custom elements}
    */
   async connectedCallback() {
-    super.connectedCallback()
+    // if (!!this.#observer) {
+    //   // watch this for any added/removed child nodes
+    //   this.#dom.observer = new MutationObserver(this.#observer)
+    //   this.#dom.observer.observe(this, {
+    //     childList: true,
+    //   })
+    // }
+    this.addEventListener("populated", () => this.flatten(), { once: true })
+    this.addEventListener("changed", () => this.flatten())
+
+    await super.connectedCallback()
+
+    // this.flatten()
   }
 }
 // prettier-ignore

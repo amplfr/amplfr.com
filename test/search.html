@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amplfr.com Search</title>
+    <!-- prettier-ignore -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+  </head>
+
+  <body>
+    <style>
+      section {
+      }
+      section#search {
+        input[type="search"] {
+          /* font-size: 4em; */
+          /* height: 1em; */
+          font-size: 3.5rem;
+          height: 4rem;
+          width: 100%;
+          /* width: calc(100dvw - 9rem); */
+          /* margin-right: 1rem; */
+          padding: 0px;
+          border: 0px;
+          outline: none;
+          text-decoration: underline 2px solid darkgray;
+          z-index: -10;
+          background-color: transparent;
+        }
+      }
+    </style>
+    <section id="search">
+      <input
+        id="search"
+        type="search"
+        name="Search"
+        hx-get="/search"
+        hx-trigger="keyup changed delay:500ms"
+        hx-target="#search"
+        hx-swap="afterend"
+        placeholder="Search songs, artists, lyrics, albums, and more"
+      />
+    </section>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "id": "aUrL68afopDCZH7m32qnrE",
+  "title": "Fix You",
+  "artists": [
+    {
+      "id": "wSv42DNe1JPrei75iEqub7",
+      "name": "Coldplay",
+      "area": "London, GB",
+      "url": "http://mt5577:3000/api/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+    }
+  ],
+  "duration": 295,
+  "status": "pending",
+  "isrc": ["GBAYE0500605", "GBAYE1600179"],
+  "mbid": "20919a48-4ad5-409c-b639-8db7ca9f9e7a",
+  "links": [
+    "https://musicbrainz.org/recording/20919a48-4ad5-409c-b639-8db7ca9f9e7a",
+    "https://open.spotify.com/track/7LVHVU3tWfcxj5aiPFEW4Q",
+    "https://www.deezer.com/track/3106505",
+    "https://www.youtube.com/watch?v=k4V3Mo61fJM",
+    "https://www.youtube.com/watch?v=Oncu0bgdcXU"
+  ],
+  "url": "http://mt5577:3000/api/aUrL68afopDCZH7m32qnrE/Fix+You",
+  "visibility": "public"
+}

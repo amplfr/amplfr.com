@@ -1,0 +1,22 @@
+{
+  "id": "6HrUVPVYS3PNDJJ4zmQrJw",
+  "title": "Smells Like Teen Spirit",
+  "artists": [
+    {
+      "id": "mEa7ryXmexWF4qGBrUDf7g",
+      "name": "Nirvana",
+      "area": "Aberdeen, US",
+      "url": "http://mt5577:3000/api/artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+    }
+  ],
+  "duration": 301,
+  "status": "pending",
+  "mbid": "5fb524f1-8cc8-4c04-a921-e34c0a911ea7",
+  "links": [
+    "https://musicbrainz.org/recording/5fb524f1-8cc8-4c04-a921-e34c0a911ea7",
+    "https://open.spotify.com/track/1f3yAtsJtY87CTmM8RLnxf",
+    "https://www.youtube.com/watch?v=hTWKbfoikeg"
+  ],
+  "url": "http://mt5577:3000/api/6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like+Teen+Spirit",
+  "visibility": "public"
+}

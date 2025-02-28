@@ -1,0 +1,569 @@
+<html lang="en" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Amplfr sections</title>
+    <!-- prettier-ignore -->
+    <meta name="robots" content="noindex" />
+    <link
+      rel="canonical"
+      href="https://codepen.io/hexagoncircle/pen/JjRYaZw?editors=1100"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    /> -->
+    <style id="INLINE_PEN_STYLESHEET_ID">
+      @import url("https://fonts.googleapis.com/css2?family=Lato&family=Playfair+Display:wght@700&display=swap");
+
+      :root {
+        --scale: 0.1;
+        --space: 8vmin;
+        --space: 2vmin;
+        --offset: 50vh;
+        --neg-offset: calc(-1 * var(--offset));
+        --font-primary: "Lato", sans-serif;
+        --font-heading: "Playfair Display", serif;
+      }
+
+      @media (prefers-reduced-motion) {
+        :root {
+          --scale: 0;
+        }
+      }
+
+      html,
+      body,
+      div,
+      span,
+      applet,
+      object,
+      iframe,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      blockquote,
+      pre,
+      a,
+      abbr,
+      acronym,
+      address,
+      big,
+      cite,
+      code,
+      del,
+      dfn,
+      em,
+      img,
+      ins,
+      kbd,
+      q,
+      s,
+      samp,
+      small,
+      strike,
+      strong,
+      sub,
+      sup,
+      tt,
+      var,
+      b,
+      u,
+      i,
+      center,
+      dl,
+      dt,
+      dd,
+      ol,
+      ul,
+      li,
+      fieldset,
+      form,
+      label,
+      legend,
+      table,
+      caption,
+      tbody,
+      tfoot,
+      thead,
+      tr,
+      th,
+      td,
+      article,
+      aside,
+      canvas,
+      details,
+      embed,
+      figure,
+      figcaption,
+      footer,
+      header,
+      hgroup,
+      menu,
+      nav,
+      output,
+      ruby,
+      section,
+      summary,
+      time,
+      mark,
+      audio,
+      video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        color: hsl(0, 0%, 95%);
+        /* background-color: hsl(5, 15%, 5%); */
+        font-size: clamp(1.2rem, 5vw, 1.5rem);
+        font-family: var(--font-primary);
+        line-height: 1.6;
+        width: 100%;
+        overflow-x: hidden;
+      }
+
+      a {
+        color: hsl(65, 80%, 60%);
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus {
+        text-decoration: underline;
+      }
+
+      .page-title {
+        text-align: center;
+      }
+
+      .page-title::after {
+        content: "↓";
+        display: block;
+        font-size: 2em;
+        opacity: 0;
+        /*   transform: translateY(-24px); */
+        transform: translateY(-95vmin);
+        /* -webkit-animation: fadein 800ms 500ms cubic-bezier(0.34, 1.56, 0.64, 1)
+          forwards; */
+        /* animation: fadein 800ms 500ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards; */
+      }
+
+      .header,
+      .footer {
+        display: grid;
+        place-items: center;
+        height: 90vh;
+      }
+
+      .section {
+        transform-origin: center top;
+        transform: scaleY(calc(1 - var(--scale)));
+        box-shadow: 0px -3px 4px 1px darkgray;
+        /* height: 95vmax; */
+        width: 95vmax;
+        margin: 0 auto;
+      }
+      /* main .section {
+        margin-top: -50vh;
+      } */
+
+      .section > * {
+        transform-origin: center top;
+        transform: scaleY(calc(1 / (1 - var(--scale))));
+      }
+
+      .section-title {
+        font-family: var(--font-heading);
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: bold;
+        line-height: 1.125;
+        position: sticky;
+        /* top: 2rem; */
+        top: 8rem;
+        /* top: 55vh; */
+        /* top: calc(50vh + 3rem); */
+        /* top: calc(var(--offset) + 3rem); */
+        /* background: hsla(5, 15%, 5%, 1); */
+        background: hsla(5, 15%, 5%, 0.75);
+        /* width: 100dvw; */
+        /* translate: -25vw; */
+        width: 95dvw;
+        translate: -23.3vw;
+        text-align: center;
+      }
+
+      .byline {
+        display: block;
+        font-size: 0.6em;
+        margin: calc(var(--space) / 1.35) 0;
+        position: sticky;
+        top: 13rem;
+        background: hsla(5, 15%, 5%, 0.75);
+      }
+
+      .content {
+        position: relative;
+        /* margin: -50vh auto 0; */
+        margin: var(--neg-offset) auto 0;
+        padding: var(--space);
+        max-width: 55ch;
+        max-width: 100vmin;
+        width: calc(100% - var(--space));
+        background: hsla(5, 15%, 5%, 0.75);
+      }
+
+      .content > * + * {
+        margin-top: 2rem;
+      }
+
+      .image-container {
+        position: sticky;
+        top: 0;
+        /* width: 100vw; */
+        /* height: 100vh; */
+        height: 95vmax;
+        width: 95vmax;
+        margin: 0 auto;
+        z-index: -2;
+      }
+
+      .image-container img {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+      }
+
+      .image-container::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 50%;
+        background: linear-gradient(
+          to bottom,
+          hsla(5, 15%, 5%, 0) 0%,
+          hsla(5, 15%, 5%, 0.013) 8.1%,
+          hsla(5, 15%, 5%, 0.049) 15.5%,
+          hsla(5, 15%, 5%, 0.104) 22.5%,
+          hsla(5, 15%, 5%, 0.175) 29%,
+          hsla(5, 15%, 5%, 0.259) 35.3%,
+          hsla(5, 15%, 5%, 0.352) 41.2%,
+          hsla(5, 15%, 5%, 0.45) 47.1%,
+          hsla(5, 15%, 5%, 0.55) 52.9%,
+          hsla(5, 15%, 5%, 0.648) 58.8%,
+          hsla(5, 15%, 5%, 0.741) 64.7%,
+          hsla(5, 15%, 5%, 0.825) 71%,
+          hsla(5, 15%, 5%, 0.896) 77.5%,
+          hsla(5, 15%, 5%, 0.951) 84.5%,
+          hsla(5, 15%, 5%, 0.987) 91.9%,
+          hsl(5, 15%, 5%) 100%
+        );
+      }
+
+      @-webkit-keyframes fadein {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadein {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 800px) {
+        .content {
+          max-width: 98vw;
+        }
+      }
+    </style>
+
+    <!-- <script src="https://cpwebassets.codepen.io/assets/common/stopExecutionOnTimeout-2c7831bb44f98c1391d6a4ffda0e1fd302503391ca806e7fcc7b9b87197aec26.js"></script> -->
+    <!-- <script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeConsoleRunner-6d8bf8b4b479137260842506acbb12717dace0823c023e08b96360e60b0840d9.js"></script> -->
+    <!-- <script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRefreshCSS-44fe83e49b63affec96918c9af88c0d80b209a862cf87ac46bc933074b8c557d.js"></script> -->
+    <!-- <script src="https://cpwebassets.codepen.io/assets/editor/iframe/iframeRuntimeErrors-4f205f2c14e769b448bcf477de2938c681660d5038bc464e3700256713ebe261.js"></script> -->
+  </head>
+
+  <body>
+    <!-- 
+    <header class="header">
+      <h1 class="page-title">CSS position sticky parallax effect</h1>
+    </header>
+     -->
+    <main class="main">
+      <section class="section">
+        <!-- prettier-ignore -->
+        <figure class="image-container">
+          <!-- <img src="https://images.unsplash.com/photo-1597487389339-5591e52de66f?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1200" alt=""/> -->
+          <img src="https://ia800203.us.archive.org/20/items/mbid-0820f6fe-ef05-38a8-aa44-c7ec4782669a/mbid-0820f6fe-ef05-38a8-aa44-c7ec4782669a-3331716188.jpg" alt=""/>
+        </figure>
+        <article class="content">
+          <h2 class="section-title">(What's the Story) Morning Glory?</h2>
+          <span class="byline"
+            >Content provided by
+            <a href="https://www.lipsum.com/" target="_blank" rel="noreferrer"
+              >Lorem Ipsum</a
+            ></span
+          >
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
+            consectetur in risus vel condimentum. Maecenas eu sollicitudin
+            purus, varius varius turpis. Donec vel laoreet dui. Nunc commodo ut
+            lorem ac malesuada. Nam ac congue ante. Vestibulum at facilisis
+            eros. Sed hendrerit, neque vitae vulputate aliquet, ligula nulla
+            lacinia massa, eu ultrices magna velit id justo. Etiam iaculis enim
+            id leo pellentesque, in efficitur orci sagittis. Integer porttitor
+            nec tellus et blandit. Interdum et malesuada fames ac ante ipsum
+            primis in faucibus. Quisque ac justo quis tortor condimentum
+            iaculis. Curabitur finibus, erat at tincidunt egestas, metus velit
+            tempus mauris, ut rhoncus leo justo sed purus.
+          </p>
+          <p>
+            Quisque lacinia feugiat mattis. Maecenas eleifend dui dolor, et
+            vulputate nunc dapibus dictum. Interdum et malesuada fames ac ante
+            ipsum primis in faucibus. Morbi lorem ipsum, eleifend ut lacus eget,
+            elementum facilisis sem. Vestibulum malesuada pellentesque leo, et
+            lobortis quam laoreet sit amet. Donec consectetur felis ligula, a
+            condimentum libero bibendum sit amet. Ut cursus et augue finibus
+            rhoncus. Phasellus turpis lectus, elementum id facilisis et,
+            pellentesque et diam. Sed ut massa quis elit varius vestibulum non
+            nec nulla. Donec velit justo, fringilla non consequat ac, viverra
+            eget tellus. Praesent quis lacus in dolor pharetra placerat vel
+            dapibus orci. Praesent auctor facilisis mattis.
+          </p>
+          <p>
+            Curabitur ac ligula quis libero ullamcorper maximus sed nec velit.
+            Pellentesque ut tincidunt arcu. Nam a lectus fermentum, rutrum leo
+            et, hendrerit lacus. Aenean et ornare magna. Suspendisse sodales,
+            dui ut blandit sodales, neque metus dignissim elit, condimentum
+            viverra lectus dui a est. Fusce scelerisque, tellus eget egestas
+            suscipit, mi sem dapibus justo, sit amet ultricies quam justo
+            efficitur eros. Integer viverra laoreet leo vel suscipit. Aenean id
+            tellus lectus. Donec ipsum nibh, sagittis at eros vitae, ullamcorper
+            molestie nisi.
+          </p>
+          <p>
+            Ut in odio a justo pretium luctus. Quisque in fermentum magna. Nulla
+            faucibus ultrices lorem. Pellentesque ut viverra enim. Vestibulum
+            ante ipsum primis in faucibus orci luctus et ultrices posuere
+            cubilia curae; Donec in laoreet nibh. Cras ac leo ante. Sed auctor
+            odio vitae nisi aliquam luctus. Nullam iaculis dignissim nibh, ut
+            molestie libero faucibus vitae. In luctus sapien turpis, sit amet
+            sagittis ipsum blandit eu. Sed sed arcu vel justo tincidunt
+            venenatis a euismod purus. Vivamus congue ante vitae odio hendrerit,
+            ut malesuada urna euismod. Donec dictum, ligula eget consectetur
+            hendrerit, justo arcu pellentesque nibh, a dapibus ex tellus nec
+            erat. Vivamus sed purus quis nunc fermentum dictum. Fusce urna eros,
+            vehicula a sem quis, euismod ornare eros. Nam luctus ante dolor, a
+            cursus enim sagittis nec.
+          </p>
+          <p>
+            Donec ultrices, metus quis sagittis dictum, justo arcu placerat mi,
+            eget pellentesque tortor odio a eros. Vivamus quis feugiat sem, ac
+            mattis libero. Sed venenatis consequat justo, at tincidunt eros
+            lobortis et. Ut dapibus lacinia massa, at malesuada dolor blandit
+            et. Nulla vitae justo et lacus lacinia malesuada id eget mauris.
+            Proin auctor, eros a auctor dignissim, est urna maximus odio, eu
+            dapibus velit dolor sit amet sapien. Nulla et est vulputate, cursus
+            arcu ac, pharetra velit. Proin interdum eros felis, vel ornare erat
+            bibendum ac. Quisque euismod laoreet enim quis bibendum. Nulla in
+            sem facilisis, dignissim dolor faucibus, volutpat libero. Praesent
+            id nulla eleifend, auctor est nec, facilisis enim. Donec sit amet
+            purus posuere, ullamcorper dui a, pulvinar arcu. Pellentesque vitae
+            convallis neque.
+          </p>
+          <p>
+            Nam imperdiet pulvinar maximus. Sed scelerisque euismod feugiat.
+            Nunc tincidunt, erat id varius tempus, augue sapien varius nisl,
+            quis ultricies tortor eros a metus. Donec dignissim vel risus vitae
+            sodales. Proin volutpat mauris sed urna finibus, quis faucibus quam
+            sodales. Nam dolor velit, rutrum in turpis sit amet, lacinia
+            facilisis nulla. Suspendisse sed diam pretium, auctor purus non,
+            imperdiet nulla. In fringilla leo gravida, tempus leo vitae,
+            tristique ex. Aliquam erat volutpat. Cras dictum justo sit amet sem
+            laoreet, vitae vestibulum nunc feugiat. Curabitur sit amet maximus
+            lorem, at varius sapien. Sed posuere, tellus sed commodo dignissim,
+            lectus augue ultrices lorem, vitae sollicitudin mi nibh eget quam.
+          </p>
+        </article>
+      </section>
+      <section class="section">
+        <figure class="image-container">
+          <img
+            src="https://images.unsplash.com/photo-1597201424013-0e06a7018fbd?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1200"
+            alt=""
+          />
+        </figure>
+        <article class="content">
+          <h2 class="section-title">Some Stuff I Need to Get Off My Chest</h2>
+          <span class="byline"
+            >Content provided by
+            <a
+              href="https://laurenhallden.com/datingipsum/"
+              target="_blank"
+              rel="noreferrer"
+              >the online dating ipsum generator →</a
+            ></span
+          >
+          <p>
+            If I make fun of you it's because I like you someone to provide for
+            you documentary filmmaker everything destructive that I do. But I
+            only smoke when drinking Think about it! heyyy I despise you should
+            message me, my last partner told me really only soft drugs
+            friendzone looking for a third if you dress up like a pin-up doll
+            for me. Full-contact Ayn Rand Libertarian full-contact full-contact
+            wildly attractive doesn't hurt.
+          </p>
+          <p>
+            P90X you should be clean and intelligent but I only smoke when
+            drinking that means I am wonderful. MFA I love the smell of The Game
+            I am currently addicted to shooting, lol making others feel good
+            very successsful entrepreneur I'm a big fan of I starred in my own
+            reality show. Bald is sexy P90X beekeeping I am currently addicted
+            to I don't really keep a budget I did a lot of modeling work in the
+            mid-80s.
+          </p>
+          <p>
+            No robots posing as real people P90X you need a real man working on
+            my screenplay. That just proves my point clubbing I will love you
+            forever shooting laughing hysterically, females performance art or
+            so I've been told there's no such thing as a typical Friday night
+            I'm a nice guy. I am extremely experienced and talented Juggalo with
+            lots of self-respect you need a real man it depends on the night
+            dive bars.
+          </p>
+          <p>
+            That's what she said heyyy everything destructive that I do my
+            lizard tongue. Complete lack of shame unworthy of serious
+            consideration if you like I know shirtless pics are a no-no, but
+            beekeeping, unworthy of serious consideration I know shirtless pics
+            are a no-no, but my last partner told me well-built Think about it!.
+            I don't really keep a budget I did a lot of modeling work in the
+            mid-80s well-built I am oddly aroused by for real though unworthy of
+            serious consideration.
+          </p>
+          <p>
+            There's no such thing as a typical Friday night I starred in my own
+            reality show I enjoy I'm a big fan of. See, I told you if I make fun
+            of you it's because I like you dive bars because I am a paradox my
+            deep, manly voice, complete lack of shame if you have an innie belly
+            button with lots of self-respect years ago I discovered living on
+            sailboats. Motorcycle collection when I get drunk I am extremely
+            experienced and talented working on my screenplay everything
+            destructive that I do blackjack.
+          </p>
+          <p>
+            If that paragraph above turned you off I did a lot of modeling work
+            in the mid-80s it's huge females. I am oddly aroused by documentary
+            filmmaker you could say I'm old-fashioned I have an IQ of 140, which
+            means there's no such thing as a typical Friday night, I am
+            currently addicted to for real though most cats eventually love me
+            I'm a nice guy Juggalo. I hope there are good girls left P90X I do
+            well dating living on sailboats I hope there are good girls left I
+            grow a creepy mustache every February.
+          </p>
+        </article>
+      </section>
+      <section class="section">
+        <figure class="image-container">
+          <img
+            src="https://images.unsplash.com/photo-1543408458-baf63378be13?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=MXwxNDU4OXwwfDF8cmFuZG9tfHx8fHx8fHw&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1200"
+            alt=""
+          />
+        </figure>
+        <article class="content">
+          <h2 class="section-title">Call Me, Maybe</h2>
+          <span class="byline"
+            >Content provided by
+            <a
+              href="https://laurenhallden.com/datingipsum/"
+              target="_blank"
+              rel="noreferrer"
+              >the online dating ipsum generator →</a
+            ></span
+          >
+          <p>
+            If I make fun of you it's because I like you someone to provide for
+            you documentary filmmaker everything destructive that I do. But I
+            only smoke when drinking Think about it! heyyy I despise you should
+            message me, my last partner told me really only soft drugs
+            friendzone looking for a third if you dress up like a pin-up doll
+            for me. Full-contact Ayn Rand Libertarian full-contact full-contact
+            wildly attractive doesn't hurt.
+          </p>
+          <p>
+            P90X you should be clean and intelligent but I only smoke when
+            drinking that means I am wonderful. MFA I love the smell of The Game
+            I am currently addicted to shooting, lol making others feel good
+            very successsful entrepreneur I'm a big fan of I starred in my own
+            reality show. Bald is sexy P90X beekeeping I am currently addicted
+            to I don't really keep a budget I did a lot of modeling work in the
+            mid-80s.
+          </p>
+          <p>
+            No robots posing as real people P90X you need a real man working on
+            my screenplay. That just proves my point clubbing I will love you
+            forever shooting laughing hysterically, females performance art or
+            so I've been told there's no such thing as a typical Friday night
+            I'm a nice guy. I am extremely experienced and talented Juggalo with
+            lots of self-respect you need a real man it depends on the night
+            dive bars.
+          </p>
+          <p>
+            That's what she said heyyy everything destructive that I do my
+            lizard tongue. Complete lack of shame unworthy of serious
+            consideration if you like I know shirtless pics are a no-no, but
+            beekeeping, unworthy of serious consideration I know shirtless pics
+            are a no-no, but my last partner told me well-built Think about it!.
+            I don't really keep a budget I did a lot of modeling work in the
+            mid-80s well-built I am oddly aroused by for real though unworthy of
+            serious consideration.
+          </p>
+          <p>
+            There's no such thing as a typical Friday night I starred in my own
+            reality show I enjoy I'm a big fan of. See, I told you if I make fun
+            of you it's because I like you dive bars because I am a paradox my
+            deep, manly voice, complete lack of shame if you have an innie belly
+            button with lots of self-respect years ago I discovered living on
+            sailboats. Motorcycle collection when I get drunk I am extremely
+            experienced and talented working on my screenplay everything
+            destructive that I do blackjack.
+          </p>
+          <p>
+            If that paragraph above turned you off I did a lot of modeling work
+            in the mid-80s it's huge females. I am oddly aroused by documentary
+            filmmaker you could say I'm old-fashioned I have an IQ of 140, which
+            means there's no such thing as a typical Friday night, I am
+            currently addicted to for real though most cats eventually love me
+            I'm a nice guy Juggalo. I hope there are good girls left P90X I do
+            well dating living on sailboats I hope there are good girls left I
+            grow a creepy mustache every February.
+          </p>
+        </article>
+      </section>
+    </main>
+    <!-- <footer class="footer">Fin.</footer> -->
+  </body>
+</html>

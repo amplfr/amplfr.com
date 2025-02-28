@@ -92,7 +92,7 @@ const scrollHorizontal = (e) => {
  * 
  * @param {String} tagName String of what element to create.
  * @param {Object} values Object
- * @returns 
+ * @returns HTMLElement
  */
 const createElement = (tagName, values) => {
     let newElement = document.createElement(tagName);

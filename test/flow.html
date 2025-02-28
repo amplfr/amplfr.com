@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flow test</title>
+    <link href="./blocks.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- <style>
+      body {
+        background-color: #e8e8e8;
+        padding: 16px;
+        --gap: 16px;
+        --padding: 32px;
+        --columns: 2;
+        --minSide: calc(100% / var(--columns));
+      }
+      .container {
+        display: flex;
+        flex-flow: wrap;
+        display: inline-block;
+        /* max-width: calc(var(--width)*4 + var(--gap)*5 + var(--padding)); */
+        /* max-width: 1072px; */
+        margin: 0 auto;
+        /* margin-left: 80px; */
+      }
+      .block {
+        /* width: 100%; */
+        /* width: calc(100% / 6); */
+        /* width: 250px; */
+        width: var(--minSide);
+        /* min-height: var(--minSide); */
+        padding: 8px;
+        box-sizing: border-box;
+        height: fit-content;
+        float: left;
+        position: relative;
+        overflow: hidden;
+      }
+      .block.current {
+        background-color: aqua;
+      }
+
+      /* @media screen and (min-width: calc(var(--width)*2 + var(--gap)*3 + var(--padding))) { */
+      @media (min-width: 560px) {
+        .block {
+          /* width: 50%; */
+          /* --minSide: calc(100dvw / 2); */
+          --columns: 2;
+          --minSide: calc(100% / var(--columns));
+        }
+      }
+      /* @media screen and (min-width: calc(var(--width)*3 + var(--gap)*4 + var(--padding))) { */
+      @media (min-width: 650px) {
+        .block {
+          /* width: 33.3%; */
+          /* --minSide: calc(100dvw / 3 - 16px); */
+          --columns: 3;
+          --minSide: calc(100% / var(--columns) - 16px);
+        }
+      }
+      @media (max-width: 816px) {
+        .block.block4x1 {
+          width: calc(3 * var(--minSide)) !important;
+          height: var(--minSide) !important;
+        }
+        .block.block4x1 .block-inner {
+          aspect-ratio: 3/2;
+        }
+        .container .block.block.block4x1 .block-inner img {
+          aspect-ratio: 3/2;
+        }
+      }
+      @media (max-width: 650px) {
+        .block.block4x1 {
+          width: calc(2 * var(--minSide)) !important;
+          height: var(--minSide) !important;
+        }
+        /* .block.block4x1 .block-inner {
+          aspect-ratio: 3/2;
+        }
+        .container .block.block.block4x1 .block-inner img {
+          aspect-ratio: 3/2;
+        } */
+      }
+      /* @media screen and (min-width: calc(var(--width)*3 + var(--gap)*4 + var(--padding))) { */
+      @media (min-width: 816px) {
+        .block {
+          /* width: 33.3%; */
+          /* --minSide: calc(100dvw / 4 - 12px); */
+          --columns: 4;
+          --minSide: calc(100% / var(--columns) - 12px);
+        }
+      }
+      /* @media screen and (min-width: calc(var(--width)*4 + var(--gap)*5 + var(--padding))) { */
+      @media (min-width: 1072px) {
+        .block {
+          /* width: 25%; */
+          /* --minSide: calc(100dvw / 6 - 8px); */
+          --columns: 6;
+          --minSide: calc(100% / var(--columns) - 8px);
+        }
+      }
+      /* @media screen and (min-width: calc(var(--width)*4 + var(--gap)*5 + var(--padding))) { */
+      @media (min-width: 1280px) {
+        .block {
+          /* width: 25%; */
+          --columns: 9;
+          --minSide: calc(100% / var(--columns) - 8px);
+        }
+      }
+      /* @media screen and (min-width: calc(var(--width)*5 + var(--gap)*6 + var(--padding))) { */
+      /* @media screen and (min-width: calc(240*5 + 16*6 + 32)) { */
+      @media (min-width: 1328px) {
+        .block {
+          /* --minSide: calc(100dvw / 12 - 4px); */
+          --columns: 12;
+          --minSide: calc(100% / var(--columns) - 4px);
+        }
+      }
+
+      .block-inner {
+        background-color: #fff;
+        min-height: 10px;
+        border-radius: 2px;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+          0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        transition: box-shadow 0.2s;
+        aspect-ratio: 1 / 1;
+        overflow: hidden;
+      }
+      .block:hover .block-inner {
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+      }
+      .block.block1x2 {
+        height: calc(1 * var(--minSide) + (2 * var(--gap)));
+      }
+      .block.block1x2 .block-inner {
+        aspect-ratio: 1 / 2;
+        height: calc(100% + (2 * var(--gap)));
+        padding-bottom: var(--gap);
+        aspect-ratio: 1 / 2;
+        padding: calc(1 * var(--gap) / 2) 0px;
+      }
+      .block.block1x2 .block-inner img {
+        aspect-ratio: 1 / 2 !important;
+      }
+      .block.block2x1 {
+        width: calc(2 * var(--minSide));
+        aspect-ratio: 2 / 1;
+      }
+      .block.block2x1 .block-inner {
+        aspect-ratio: unset;
+        height: 100%;
+      }
+      .block.block2x1 > img {
+        height: calc(2 * var(--minSide));
+        width: calc(0 + (var(--minSide) / 2));
+        aspect-ratio: 2 / 1;
+      }
+      .block.block2x2 {
+        width: calc(2 * var(--minSide));
+        padding-bottom: 0px;
+      }
+      .block.block4x1 {
+        width: calc(4 * var(--minSide));
+        height: var(--minSide);
+        aspect-ratio: 4 / 1;
+      }
+      .block.block4x1 .block-inner {
+        /* aspect-ratio: 4/1; */
+        aspect-ratio: unset;
+        height: calc(var(--minSide) - var(--gap));
+        height: 100%;
+      }
+      .container .block .block-inner img {
+        aspect-ratio: 1 / 1;
+        width: 100%;
+      }
+      .container .block.block.block2x1 .block-inner img {
+        width: unset;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+      }
+      .container .block.block.block4x1 .block-inner img {
+        width: unset;
+        height: 100%;
+        aspect-ratio: 1 / 1;
+      }
+    </style> -->
+    <div class="container"></div>
+    <script>
+      const resize = (container = resizeContainer) => {
+        const top = container.offsetTop;
+        const nodes = container.childNodes;
+        let columns = 0;
+        let heights = [];
+        let lastRowStart = nodes.length;
+        let offsetTop;
+
+        nodes.forEach((child, i) => {
+          child.classList.toggle("current"); // DEBUG
+
+          //   if child is at the top or if child is to the right of its previousSibling
+          child.style.top = ""; // reset
+          if (child.offsetTop == top) {
+            heights[columns] = child.offsetHeight;
+            columns++;
+            // lastRowStart--;
+            lastRowStart -= 2;
+          } else {
+            // once only columns of nodes remain, swap the lastNodes so that the tallest fills in the shortest column
+            if (i == lastRowStart) {
+              // console.log(`last row: ${i} ${lastRowStart} ${columns}`);
+              // (reverse) sort the last row of nodes by height, maintaining each's index
+              let lastNodes = [...nodes].slice(lastRowStart);
+              lastNodes = new Map(lastNodes.entries());
+              lastNodes = Array.from(lastNodes.entries());
+              lastNodes.sort((a, b) => b[1].offsetHeight - a[1].offsetHeight); // reverse sort by offsetHeight
+              lastNodes = Array.from(lastNodes.entries().map(([k, v]) => v[1]));
+
+              // sort columns by height (shortest first)
+              let columnHeights = new Map(heights.entries());
+              columnHeights = Array.from(columnHeights.entries());
+              columnHeights.sort((a, b) => a[1] - b[1]);
+              columnHeights = Array.from(
+                columnHeights.entries().map(([k, v]) => v[0])
+              );
+
+              // swap each of the lastNodes so that the tallest child is lined up with the shortet column
+              for (let j = 0, offset; j < columns; j++) {
+                offset = lastRowStart + columnHeights[j];
+
+                // console.log(`#${j} ${offset}`); // DEBUG
+
+                // insertAdjacentElement() will swap the lastNode to the new column
+                nodes[offset].insertAdjacentElement("afterend", lastNodes[j]);
+              }
+
+              child.classList.toggle("current"); // DEBUG
+              child = nodes[lastRowStart]; // reassign child to the first of the last row of children
+              child.classList.toggle("current"); // DEBUG
+            }
+
+            const childAbove = child.parentElement.childNodes[i - columns];
+            const childAboveOffset =
+              childAbove.offsetTop + childAbove.offsetHeight;
+
+            // set top of child to be just below childAbove
+            child.style.top = -1 * (child.offsetTop - childAboveOffset) + "px";
+
+            // keep track of the height of each column
+            heights[i % columns] += child.offsetHeight;
+          }
+          child.classList.toggle("current"); // DEBUG
+        });
+
+        // figure out the tallest column and set the container's maxHeight
+        let maxHeight = 0;
+        for (let j = 0; j < columns; j++)
+          maxHeight = Math.max(maxHeight, heights[j]);
+        container.style.maxHeight = `${maxHeight}px`;
+      };
+    </script>
+    <script>
+      //   const container = document.querySelector("div.container");
+      const container = document.querySelector("div.container");
+      const images = [
+        "albumart/12XkFAJdUHxFBjorvhpgKw.jpg",
+        // "img/tiles/STANDIN-tiles-Tool_poster.jpg",
+        "albumart/14mBwCSAqyibxKhHCNHPij.jpg",
+        "albumart/174qJNfqKzgxiq8KJejpg8.jpg",
+        "albumart/22V3C5Y8gEZSNRyiWAJ7AN.jpg",
+        "albumart/242dZfLEKzsxKaRNXDKWSM.jpg",
+        "albumart/25a8LN9NXb52JeqW1drtXa.jpg",
+        "albumart/2jgiNm6kn2vhRgswokxkyG.jpg",
+        "albumart/2VKmHaMfsnDYvrL8FfpdwL.jpg",
+        "albumart/2VrnohpGSo86EjPAeK2gM8.jpg",
+        "albumart/2xsMsQVecdXeksb8BypRc6.jpg",
+        "albumart/2xWBDeK2eDCSv9gc2BizTv.jpg",
+        "albumart/333geSwRHGfDCyUHBQFXLa.jpg",
+        "albumart/379TuPZL2pQxgAdibfjepw.jpg",
+        "albumart/3AjoTMX8u16JyaZQ2VbWCz.jpg",
+        "albumart/3dh3NcqDpdceXa2VxvEvRj.jpg",
+        "albumart/3Fg5wFLxUktZuk5EJnVWsm.jpg",
+        "albumart/3gHASdnym64pGcrwUKJYnn.jpg",
+        "albumart/3jwFMNethqPR912LRRZBSL.jpg",
+        "albumart/3KN9carDaWHD5zZeWtUQRv.jpg",
+        "albumart/3NLhHcY8QdziyEPjJiaXBE.jpg",
+        "albumart/3QvRBzyzndeATJ1nfbF4hj.jpg",
+        "albumart/3snT4fEVwfarRjFDWA8N4v.jpg",
+        "albumart/3Umi6gWd7pm6zwatgUVnZ8.jpg",
+        "albumart/3yxKVn3EfRXtxcCvHbuczL.jpg",
+        "albumart/43bVzFhmfH3ezYvabEn3Ba.jpg",
+        "albumart/45esWPA7isAwnWo5FK48LC.jpg",
+        "albumart/48XhHUTwMESnjWwbV8HzZK.jpg",
+        "albumart/4d5KGaRxKPLbzMaQquZYh9.jpg",
+        "albumart/4iwBqSjbTb5GFXES5fBZXw.jpg",
+        "albumart/4KKpwv7yTGojPGwZJesAXL.jpg",
+        "albumart/4nzK2PtppoZdbpYkdLxjrZ.jpg",
+        "albumart/4WBxsmvgZKSv1TsAToxmS7.jpg",
+        "albumart/4ZR53bvjJSXV2qn9RMf7Z5.jpg",
+        "albumart/53xbBsFF8cFfbPJVkoUkW2.jpg",
+        "albumart/5CYcoQ8wP5X5VVVjkdafMt.jpg",
+        "albumart/5D1aK366xrYyMx3iKPxp7V.jpg",
+        "albumart/5hdPru2sTJ6Ndx1nvEuzXp.jpg",
+        "albumart/5jsbRN9HMgip7fwjxDYsoU.jpg",
+        "albumart/5kNyheASj9DoFD5J8R5hrY.jpg",
+        "albumart/5PK3ZQccAbcVDBqrQNFXtR.jpg",
+        "albumart/5XnyK1P9vcXJfnQ2ptVnyf.jpg",
+        "albumart/642GSVcQg4qzfwSNzdC8Ua.jpg",
+        "albumart/6aiv9EPWCDFLQkoAjv5NYQ.jpg",
+        "albumart/6DvKQBDKRnjQhkaXtqhCbY.jpg",
+        "albumart/6EHagQfYgr6yjRbxThuUQu.jpg",
+        "albumart/6Gbq8X8rmy5BJwzJY7TgfT.jpg",
+        "albumart/6HnJc6jL36tqxNShp9NA26.jpg",
+        "albumart/6i2AVPLECCYQ13xXuM2Jtg.jpg",
+        "albumart/6iQ5UbB262D9omScL7Quex.jpg",
+        "albumart/6kMmMUaQx4WRruaYnjNsEK.jpg",
+        "albumart/6PKdRjEWQPNTRxJ9pKXfMG.jpg",
+        "albumart/6QtupcwCvXqv7DxBeCSfYd.jpg",
+        "albumart/6RyJRBnHbDeyjVFzHrzFTr.jpg",
+        "albumart/6SFVNkxaHn7GBLUp2xdsrA.jpg",
+        "albumart/6txUGPkD5jDAHB3bv6Pi6d.jpg",
+        "albumart/6VxUwyHh8RCSbsvNB6zhqi.jpg",
+        "albumart/72AgzyR1iwzJiHEMw2g6Xa.jpg",
+        "albumart/79C3NHQBMboWv7PTJkXgzg.jpg",
+        "albumart/7ca7ijWEyW2ShveVWLEeQ9.jpg",
+        "albumart/7emSFWYB5PMbZwFj3By54k.jpg",
+        "albumart/7JECgvQkcLy7ZKRg3Pavty.jpg",
+        "albumart/7k7Ww57ZXTzZvCE3HUSu8F.jpg",
+        "albumart/7kqxiJoCHZpPpZ7xgf1H2M.jpg",
+        "albumart/7msucfkFzdFRHdP59n48SG.jpg",
+        "albumart/7nCiC3bnf15RUmTkfGUJPh.jpg",
+        "albumart/7rgj6aCmJ3fEAUbDWYAHHR.jpg",
+        "albumart/7WWH13pvgJByAocyJEe5P1.jpg",
+        "albumart/7XnaKN2wfTGoc6iyVr9EBA.jpg",
+        "albumart/7yTSGbhhhjSr4safpHEqsV.jpg",
+        "albumart/7ZBRQvUs3nYorpfrWFie9B.jpg",
+        "albumart/83JodxrcAtn8PEpoWX1can.jpg",
+        "albumart/85BW6B8FpyKyVTugZB5VCU.jpg",
+        "albumart/85Zmvv3zKGwFqXTDeAFDS7.jpg",
+        "albumart/8AxqVEG9gcrBpQeiagLiKD.jpg",
+        "albumart/8b5XUMQhEKrfZhfgpX9F4w.jpg",
+        "albumart/8C3HMNASe4atzkkCq8WsrN.jpg",
+        "albumart/8Eu381XPmbJPv2tMaZL8Up.jpg",
+        "albumart/8HRJi9KrdH58hzN6ucp5sG.jpg",
+        "albumart/8LSQNSsZ3rSgNd9yW4wArn.jpg",
+        "albumart/8qvb1BEcbSC5so4fevEPtg.jpg",
+        "albumart/8qvgw4a7299qbBLgKjCfmM.jpg",
+        "albumart/8THAB3St1jobniaRfyM622.jpg",
+        "albumart/8uLfymYzYjEH1tuazpyitv.jpg",
+        "albumart/8Y56rpjZrop2fxZn76mg1T.jpg",
+        "albumart/94fynuGv4tUfeNhsonDede.jpg",
+        "albumart/94krV6zk1F1S1v7GR9yKx6.jpg",
+        "albumart/96xTXX8LkCapjj5bqNthXp.jpg",
+        "albumart/9dA21B7SCqaNE7zgmo2rZD.jpg",
+        "albumart/9ecNucNe5eazZDvga37YYA.jpg",
+        "albumart/9eKa8BoUUxde1jDkmaSmci.jpg",
+        "albumart/9GtXciHYyqXMUeQ8tEs2Af.jpg",
+        "albumart/9hktH5zzbmJSUkjCf3bCsk.jpg",
+        "albumart/9JCqP9X9TANJpJzq1B6i2L.jpg",
+        "albumart/9jLpMXVNZ2ZqFbrp1mLWS2.jpg",
+        "albumart/9JUaY3S9kHMRpdPtNPckgj.jpg",
+        "albumart/9M4ZtryxyVofZQUbHoxWwr.jpg",
+        "albumart/9Rqikdnsmc9PXfKQG8rGeA.jpg",
+        "albumart/9XadfFbRfF4TrAbF8cPGjt.jpg",
+      ];
+
+      let blockCount = 32;
+      const dimensions = [
+        "block2x2",
+        "block1x2",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "block2x1",
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        "block4x1",
+      ];
+      for (let i = 0; i < blockCount; i++) {
+        const height = parseInt(Math.random() * 500, 10);
+        const block = document.createElement("div");
+        block.classList.add("block");
+        // const n = parseInt(Math.random() * 10, 10);
+        const n = i;
+        if (n < dimensions.length && dimensions[n] != null) {
+          block.classList.add(dimensions[n]);
+          blockCount -= 1;
+        }
+
+        const innerblock = document.createElement("div");
+        innerblock.classList.add("block-inner");
+        innerblock.style.minHeight = `${innerblock.style.width}px`;
+
+        const img = document.createElement("img");
+        img.setAttribute("src", `/${images[i]}`);
+        innerblock.appendChild(img);
+        block.appendChild(innerblock);
+
+        container.appendChild(block);
+      }
+      // resize(container);
+      //   window.addEventListener("resize", (ev) => {
+      //     resize(container);
+      //   });
+    </script>
+  </body>
+</html>

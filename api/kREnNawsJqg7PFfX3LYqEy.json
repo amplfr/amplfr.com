@@ -1,0 +1,18 @@
+{
+  "id": "kREnNawsJqg7PFfX3LYqEy",
+  "title": "Just",
+  "duration": "234",
+  "artists": [
+    {
+      "id": "dKsQCazuEHnvVqJUuiVBPV",
+      "name": "Radiohead",
+      "url": "/api/artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+    }
+  ],
+  "album": {
+    "id": "bHkibgUEnX1EXb26YpKfw3",
+    "title": "The Bends",
+    "date": 1995,
+    "url": "/api/album/bHkibgUEnX1EXb26YpKfw3/The+Bends"
+  }
+}

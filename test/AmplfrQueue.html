@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- prettier-ignore -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <link href="/css/item.css" rel="stylesheet" />
+    <link href="/css/collection.css" rel="stylesheet" />
+    <!-- <script src="/js/amplfr.min.js"></script> -->
+    <!-- <script src="/js/amplfr.js"></script> -->
+    <script src="/js/amplfr-item.js"></script>
+    <!-- <script src="/js/collection.js"></script> -->
+    <script src="/js/queue.js"></script>
+    <script src="/js/index.js"></script>
+    <title>Amplfr.com</title>
+  </head>
+  <body>
+    <template>
+      <img src="" alt="" class="artwork" />
+      <slot name="title"></slot>
+      <slot name="artist"></slot>
+      <slot name="album"></slot>
+    </template>
+    <style>
+      :root {
+        --color: #000;
+        --colorAccent: #fff;
+      }
+      *::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 20px;
+        border: 3px solid var(--color);
+      }
+
+      *::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      body {
+        /* --queueGutter: calc(min(600px, 50vw - 32px)); */
+        /* --queueGutter: min(600px, 50vw); */
+        display: inline-block;
+        /* margin: 128px 0px 0px 64px; */
+        transition: margin 300ms;
+        /* width: calc(100vw - var(--queueGutter)); */
+        /* margin-left: var(--queueGutter); */
+        overflow-x: hidden;
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+      }
+      body.queueMin {
+        margin-left: 64px;
+        width: calc(100vw - 64px);
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      input,
+      select,
+      button,
+      span,
+      a,
+      p {
+        color: #000;
+        font-family: "Noto Sans", sans-serif;
+        font-weight: 400;
+        margin: 0px;
+      }
+
+      #queue {
+        z-index: 1;
+        /* position: fixed; */
+        top: 0px;
+        left: 0px;
+        /* background-color: #aaa; */
+        height: 100%;
+        width: 100%;
+        /* margin: 8em 0 4em 0; */
+      }
+      #queue.collection #playing {
+        /* position: fixed; */
+        position: sticky;
+        width: 100dvw;
+        top: 0px;
+        left: 0px;
+        z-index: 24;
+      }
+      /* #queue.collection .controls,
+      #queue.collection > ol.items {
+        transition: width 250ms; */
+      #queue.collection .controls,
+      #queue.collection ol.items,
+      #queue.collection ol.items li {
+        transition: width 250ms;
+      }
+      #queue.collection .controls,
+      #queue.collection ol.items {
+        /* transition: width 250ms; */
+        /* width: calc(min(600px, calc(50vw - 32px)) - 64px); */
+        /* width: var(--queueGutter); */
+      }
+      #queue.collection #whatsnext.controls {
+        display: none;
+      }
+      body.queueMin #queue .controls,
+      body.queueMin #queue > ol.items {
+        overflow-y: hidden;
+        width: 64px;
+      }
+      body.queueMin #queue > ol.items {
+        overflow: visible;
+      }
+      @media (hover: hover) {
+        /* https://benborgers.com/posts/media-hover */
+        body.queueMin #queue .controls:hover,
+        body.queueMin #queue.collection ol.items li:hover {
+          overflow-x: visible;
+          width: var(--queueGutter) !important;
+        }
+      }
+      #queue .items .logo {
+        display: none;
+      }
+      #queue .items {
+        /* background-color: #aaa; */
+        position: static;
+        height: calc(100% - 128px);
+        /* height: calc(100dvh - 256px); */
+        /* max-height: calc(100dvh - 256px); */
+        /* height: calc(100% - 192px); */
+        overflow: unset;
+        height: 100%;
+      }
+
+      #queue .controls {
+        font-size: 2em;
+        z-index: 20;
+      }
+      #queue .controls button:first-of-type {
+        margin-left: 0px;
+      }
+
+      #queue .controls button:first-of-type {
+        margin-left: 0px;
+      }
+      /* #queue #whatsnext.controls { */
+      #queue #controls.controls {
+        position: fixed;
+        bottom: 0px;
+      }
+      #queue #playing.square,
+      #queue #playing.square .item {
+        height: 100vmin;
+        width: 100vmin;
+      }
+
+      @media (max-width: 800px) {
+        .item a.logo svg.logomplfr {
+          display: none;
+        }
+      }
+      @media (max-width: 640px) {
+        /* body {
+          margin-top: 64px;
+          margin-left: 64px;
+          width: calc(100vw - 64px);
+        } */
+        /* body:not(.queueMin) #queue.collection {
+          width: 100%;
+          position: static;
+          margin-left: -64px;
+        } */
+        #queue.collection {
+          height: unset;
+        }
+        #queue.collection #playing {
+          font-size: 1em;
+        }
+        #queue.collection ol.items {
+          position: static;
+        }
+        /* #queue.collection .controls, */
+        #queue.collection ol.items {
+          height: 100%;
+          width: 100dvw;
+        }
+        /* #queue.collection #controls {
+          position: sticky;
+          top: 64px;
+          height: 64px;
+        } */
+        /* #queue.collection #whatsnext.controls {
+          / * position: static; * /
+          position: sticky;
+          height: 64px;
+        } */
+      }
+    </style>
+    <style>
+      body.poster {
+        margin-top: 0px;
+      }
+      body.poster #queue {
+        height: min(100vmin, 100%);
+        top: 0px;
+        margin-top: 100vmin;
+      }
+      body.poster #playing .item {
+        /* display: inline-flex; */
+        flex-direction: column;
+        padding-left: 0px;
+        /* display: block; */
+      }
+      body.poster #playing {
+        height: 100vmin;
+        width: 100vmin;
+      }
+      body.poster #playing .item {
+        height: min(100vmin, 100%);
+        width: 100vmin;
+        /* height: 8em; */
+        overflow: visible;
+        position: absolute;
+        bottom: 0px;
+      }
+      body.poster #playing .item .artwork {
+        height: 100vmin;
+        width: 100vmin;
+        max-width: 100%;
+        /* max-height: 100%; */
+        position: absolute;
+        top: 0px;
+      }
+      body.poster #playing .item button {
+        font-size: 47vmin;
+        margin-top: 20vmin;
+        margin-left: 27vmin;
+      }
+      body.poster #playing .item .title,
+      body.poster #playing .item .artist,
+      body.poster #playing .item .album {
+        width: 100%;
+        /* position: absolute; */
+        /* display: flex; */
+        font-size: 2em;
+        display: inline-block;
+        text-shadow: 1px 1px 2px var(--colorAccent);
+        align-self: flex-end;
+      }
+      /* body.poster #playing .item .title {
+        margin-top: 65vmin;
+        padding-top: 100px;
+      } */
+      body.poster #playing .item * {
+        z-index: 2;
+        line-height: initial;
+        position: relative;
+        bottom: 0px;
+        right: 4px;
+        font-size: 2em;
+      }
+
+      body.poster #playing .logo {
+        /* position: absolute; */
+        font-size: 1em;
+        top: 0px;
+        /* right: 0px; */
+        /* float:right; */
+        filter: drop-shadow(1px 1px 2px var(--colorAccent));
+        bottom: unset;
+      }
+
+      #playing .item button.play {
+        z-index: 4 !important;
+      }
+
+      body.poster #playing .item .album {
+        width: initial;
+      }
+
+      body.fullscreen {
+        margin-top: 0px;
+      }
+      body.fullscreen.queueMin {
+        margin-left: 64px;
+        /* width: 100dvw; */
+      }
+      body.fullscreen #queue.collection {
+        position: static;
+        height: 100vmin;
+      }
+      /* body.fullscreen .collection #playing,
+      body.fullscreen .collection #playing .item {
+        height: 100vh;
+      } */
+      body.fullscreen .collection #playing .item {
+        margin-left: 0px;
+        padding-left: 0px;
+        /* padding-top: calc(100dvh - 256px); */
+        padding-top: calc(100dvh - 4em);
+        padding-right: 8px;
+        /* width: calc(100dvw - 72px); */
+        width: 100dvw;
+        /* width: calc(100dvw + 64px); */
+        /* font-size: 2em; */
+      }
+      body.fullscreen .collection #playing .item * {
+        z-index: 1;
+      }
+      @media (min-width: 1200px) {
+        body.fullscreen .collection #playing .item {
+          font-size: 2em;
+        }
+      }
+      body.fullscreen #queue.collection #playing .item .artwork {
+        top: 0px;
+        /* height: calc(100vmin - 64px); */
+        height: 100vmin;
+        /* width: calc(100vmin - 64px); */
+        width: 100vmin;
+        aspect-ratio: 1 / 1;
+        /* left: 64px; */
+        /* margin: 0px auto; */
+        /* translate: calc(50vw - 50% + 64px); */
+        translate: calc(50vw - 50vmin);
+      }
+      body.fullscreen #queue.collection #playing .item .album,
+      body.fullscreen #queue.collection #playing .item .artist {
+        float: left;
+      }
+      body.fullscreen #queue.collection #playing {
+        position: static;
+        width: calc(100dvw - 64px);
+        margin-left: -64px;
+      }
+      body.fullscreen #queue.collection .controls,
+      body.fullscreen #queue.collection #whatsnext.controls,
+      body.fullscreen #queue ol.items {
+        /* position: fixed; */
+        position: sticky;
+        left: 0px;
+        margin-left: -64px;
+      }
+      /* body.fullscreen #queue.collection #controls {
+        top: 0px;
+      } */
+      body.fullscreen #queue ol.items {
+        height: calc(100dvh - 128px);
+        /* margin: 64px 0px; */
+        /* top: 0px; */
+        position: sticky;
+        margin-left: -64px;
+      }
+      body.fullscreen #queue.collection #whatsnext {
+        /* bottom: 0px; */
+        bottom: unset;
+      }
+
+      body.fullscreen #queue.collection #playing button.play {
+        transform: translate(calc(50dvw + 64px), 50dvh);
+        transform: translate(50dvw, 50dvh);
+        transform: translate(50vw, 50vmin);
+        margin: calc(-1 * 0.5em);
+      }
+    </style>
+    <style>
+      #filters {
+        display: flex;
+        gap: 0.25rem;
+        overflow: auto;
+        /* padding: 9px 0.5rem; */
+        padding: 8px 0.5rem;
+        /* margin-left: 64px; */
+        background: linear-gradient(90deg, #7a7a7a, transparent);
+        position: fixed;
+        z-index: 2;
+      }
+      body.columns #filters {
+        margin-left: 0px;
+      }
+      #filters button {
+        flex-shrink: 0;
+        background-color: rgb(0 0 0 / 25%);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem;
+        border: 0px;
+        color: white;
+        font-size: 1em;
+        font-weight: 500;
+        padding: 0.75rem;
+      }
+      #filters button#search,
+      #filters button#togglePlaylist {
+        /* font-size: 1.5em; */
+        /* padding: 0.7rem; */
+        font-size: 48px;
+        padding-top: unset;
+        padding-bottom: unset;
+        border-radius: unset;
+        background-color: unset;
+        padding-left: unset;
+      }
+      #filters button:active,
+      #filters button:focus,
+      #filters button:target {
+        filter: invert(1);
+        background-color: #000;
+      }
+
+      #also-like-items {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(calc(100% / 13), 1fr));
+        padding: 0.5rem;
+        width: 100%;
+      }
+      #also-like-items > button {
+        display: flex;
+        aspect-ratio: 1;
+      }
+      #also-like-items > button > img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0.25rem;
+      }
+      @media (max-width: 1600px) {
+        #also-like-items {
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 9), 1fr));
+        }
+      }
+      @media (max-width: 1280px) {
+        #also-like-items {
+          /* grid-template-columns: repeat(auto-fit, minmax(calc(100% / 10), 1fr)); */
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 7), 1fr));
+        }
+      }
+      @media (max-width: 800px) {
+        #also-like-items {
+          /* grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr)); */
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 5), 1fr));
+        }
+      }
+      @media (max-width: 600px) {
+        #also-like-items {
+          /* grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); */
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 4), 1fr));
+        }
+      }
+      @media (max-width: 328px) {
+        #also-like-items {
+          /* grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr)); */
+          grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3), 1fr));
+        }
+      }
+      #apps-container {
+        display: grid;
+        gap: 0.2rem;
+        grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+        margin: 1rem 0rem;
+      }
+      #apps-container > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: rgb(var(--theme-medium));
+        padding: 1rem 0.75rem;
+        border-radius: 0.2rem;
+        text-decoration: none;
+      }
+      #apps-container > a > img {
+        height: 2rem;
+        width: 2rem;
+        flex-shrink: 0;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        text-align: center;
+      }
+      #apps-container > a > .label {
+        width: calc(100% - 2.5rem);
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        overflow: hidden;
+      }
+      #apps-container > a > .label > .name {
+        font-size: 0.74rem;
+        color: rgb(0 0 0 / 1);
+      }
+      #apps-container > a > .label > .url {
+        font-size: 0.7rem;
+        color: rgb(0 0 0 / 50%);
+      }
+      #apps-container > a > .label > :is(.name, .url) {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      @media (max-width: 800) {
+        #apps-container {
+          grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+        }
+      }
+
+      div.horiz {
+        display: flex;
+        max-height: 500px;
+        overflow: auto hidden;
+        margin: 8px 0px;
+        width: 100%;
+      }
+      /* body.narrow .horiz {
+        margin-left: -64px;
+      } */
+      div.horiz img {
+        /* thank you [Clippy — CSS clip-path maker](https://bennettfeely.com/clippy/) */
+        -webkit-clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+        clip-path: polygon(15% 0%, 100% 0%, 85% 100%, 0% 100%);
+        margin: 0px -3.4%;
+        margin: 0px -1.1%;
+        margin: 0px -2.1%;
+      }
+      div.horiz img:first-of-type {
+        margin-left: 0px;
+      }
+      div.horiz img:last-of-type {
+        margin-right: 0px;
+      }
+
+      #footer {
+        display: inline;
+        gap: 0.25rem;
+        margin: 1rem 0px;
+        overflow: auto;
+        padding: 1em 0px;
+      }
+      #footer > a {
+        background-color: rgb(0 0 0 / 5%);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem rem;
+        border: 0px;
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+    </style>
+    <style>
+      main {
+        width: 100%;
+        margin-top: 72px;
+      }
+      main img {
+        height: 100%;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+      }
+      main > * {
+        display: block;
+      }
+      main > * {
+        margin: 8px;
+        display: grid;
+        grid: auto-flow dense / repeat(auto-fill, minmax(250px, max-content));
+        grid-gap: 8px;
+      }
+      main > * > * {
+        box-shadow: 4px 4px 4px 0 darkgray;
+      }
+      main .album ol {
+        box-shadow: none;
+      }
+      main .album ol .title {
+        color: initial;
+      }
+      main .artist > img {
+        grid-area: span 2 / span 2;
+      }
+
+      main .artwork {
+        /* width: 50%; */
+        /* max-width: 50%; */
+        float: left;
+        margin-left: 0px;
+        /* width: 814px; */
+        width: 50%;
+        position: sticky;
+        top: 222px;
+      }
+      main .artwork a {
+        height: 200px;
+        width: 200px;
+        aspect-ratio: 1;
+        display: inline-block;
+      }
+      main .artwork a img {
+        /* width: 100%; */
+        height: 100%;
+        aspect-ratio: 1/1;
+      }
+      main .artwork .artistart {
+        height: 400px;
+        width: 400px;
+        float: left;
+        margin-right: 8px;
+      }
+      /* main > * > .title { */
+      main * .title {
+        position: absolute;
+        cursor: pointer;
+        color: white;
+        box-shadow: none;
+        text-shadow: 2px 2px darkgray;
+        /* max-width: 250px; */
+      }
+      main * .title,
+      main * .duration,
+      main * ol li::marker {
+        text-shadow: 2px 2px darkgray;
+      }
+      main > .album {
+        display: grid;
+        /* grid-gap: 8px; */
+        grid: auto-flow dense / repeat(auto-fill, minmax(49%, max-content));
+      }
+      main > .artist > .album {
+        max-width: 450px;
+      }
+      main > .artist > .album ol {
+        max-width: 450px;
+      }
+      main > .artist > .album > .title:after {
+        content: " +";
+      }
+      main .duration {
+        float: right;
+      }
+      main > * > .title {
+        margin-left: 0px;
+      }
+      main * > p.description {
+        grid-column: span 2;
+        padding: 0px 8px 8px 0px;
+      }
+
+      @media (max-width: 900px) {
+        main .artwork > * {
+          height: 49% !important;
+          width: 49% !important;
+          margin: 0px !important;
+          float: unset !important;
+        }
+      }
+      @media (max-width: 640px) {
+        main .artwork {
+          width: 25%;
+        }
+        main .artwork > * {
+          height: 100% !important;
+          width: 100% !important;
+        }
+        main > * > * {
+          /* margin-left: 814px; */
+          margin-left: 25%;
+        }
+        main .artist .title {
+          top: 128px;
+        }
+      }
+    </style>
+    <!-- <main></main> -->
+    <script>
+      const dom_main = document.querySelector("main");
+      const prependMain = (element) => {
+        dom_main.insertAdjacentElement("afterbegin", element);
+      };
+
+      const toggleRollup = (ev) => {
+        // ev.target
+        ev.target.parentNode.querySelector("ol")?.classList.toggle("rollup");
+      };
+      document
+        .querySelectorAll("main .artist .album > .title")
+        .forEach((el) => {
+          el.addEventListener("click", toggleRollup);
+        });
+      // TEST
+      // const dom_main_test = createElement("div");
+      // prependMain(dom_main_test);
+    </script>
+
+    <!-- <div is="amplfr-item" src="/api/kREnNawsJqg7PFfX3LYqEy.json"></div> -->
+
+    <!-- <script>
+      const title = ">Amplfr";
+      const url = document.location.origin + "/api/queue";
+      let json = ["kREnNawsJqg7PFfX3LYqEy"];
+      fetch(url)
+        .then((response) => response.json())
+        .then((json) => {
+          if (Array.isArray(json)) json = json.map((x) => x.id || x);
+
+          json.title = "Queue";
+          json.url = url;
+
+          // let collection = new AmplfrCollection(json);
+          let queue = new AmplfrQueue(json);
+          // let collection = new AmplfrCollection(json, false);
+          // collection = new AmplfrCollection("kREnNawsJqg7PFfX3LYqEy");
+          queue.loop = true;
+          window.queue = queue;
+
+          // DEBUG begin
+          queue.push("album/ssJLoBpTnHbb4ojwjDLKYt");
+          const logEvent = (ev) => {
+            console.log(ev.type);
+            if (ev.detail) console.log(ev.detail);
+          };
+          // queue.addEventListener("change", logEvent);
+          queue.addEventListener("change", (ev) => {
+            logEvent(ev);
+
+            // const previousItem = ev.detail.previous;
+            // if (!!previousItem) previousItem.classL
+            ev.detail.previous?.classList.remove("cover");
+
+            let playingItem = queue.querySelector("#playing .item");
+
+            // this check should only be needed for the first item, before things are fully loaded
+            if (!playingItem) {
+              playingItem = ev.detail.item;
+              playingItem.addEventListener("rendered", (ev2) => {
+                // item.appendLogo();
+                playingItem.insertAdjacentElement(
+                  "beforeend",
+                  dom_button_resize
+                );
+                if (window.innerWidth > window.innerHeight) {
+                  playingItem.classList.add("cover");
+                }
+              });
+            }
+
+            if (window.innerWidth > window.innerHeight) {
+              playingItem.classList.add("cover");
+            }
+          });
+          queue.addEventListener("rendered", logEvent);
+          queue.addEventListener("playedAndAppended", logEvent);
+          queue.addEventListener("played", logEvent);
+          // DEBUG end
+
+          // document.querySelector("#container").appendChild(collection);
+          // document.body.appendChild(queue);
+          document.body.insertAdjacentElement("afterbegin", queue);
+          queue.setAttribute("id", "queue");
+
+          // if (queue.clientWidth < queue.clientHeight)
+          //   queue.querySelector("#playing .item").classList.add("square");
+
+          const dom_controls = document.querySelector("#controls");
+          const dom_queue = document.querySelector("#queue");
+          const dom_ol_queue = document.querySelector("ol#queue");
+
+          // let toggleQueue = createElement("button", {
+          //   classes: {
+          //     "material-symbols-outlined": true,
+          //     activated: !document.body.classList.contains("queueMin"),
+          //   },
+          //   attributes: {
+          //     id: "toggleQueue",
+          //     title: "show or hide Queue",
+          //   },
+          //   innerText: "playlist_play",
+          // });
+          // dom_controls.insertAdjacentElement("afterbegin", toggleQueue);
+          // toggleQueue.addEventListener("click", (ev) => {
+          //   ev.preventDefault();
+          //   // show or hide Queue and update toggleQueue's class to match
+          //   toggleQueue.classList.toggle(
+          //     "activated",
+          //     !document.body.classList.toggle("queueMin")
+          //   );
+          // });
+
+          const wontRun = () => {
+            const dom_button_resize = createElement("button", {
+              classes: ["icon", "material-symbols-outlined"],
+              attributes: {
+                id: "resize",
+                title: "Toggle fullscreen",
+              },
+              // innerText: "open_in_full",
+              innerText: "expand_content",
+            });
+            const toggleResize = () => {
+              // toggle body.fullscreen and save if it was added (true)
+              const isFullscreen = document.body.classList.toggle("fullscreen");
+              document.body.classList.add("queueMin"); // minimize Queue
+
+              // change the icon
+              dom_button_resize.innerText = isFullscreen
+                ? "vertical_align_top"
+                : "expand_content";
+              // ? "maximize"
+              //   : "open_in_full";
+            };
+            dom_button_resize.addEventListener("click", (ev) => {
+              ev.preventDefault();
+              toggleResize();
+            });
+
+            // insert the whatsnext.controls DIV
+            let dom_whatsnext = createElement("div", {
+              classes: "controls",
+              attributes: { id: "whatsnext" },
+            });
+            dom_queue.insertAdjacentElement("beforeend", dom_whatsnext);
+            let dom_addnew = createElement("button", {
+              classes: "material-symbols-outlined",
+              attributes: {
+                id: "addNew",
+                title: "Add more to the Queue",
+              },
+              innerText: "playlist_add",
+            });
+            dom_whatsnext.insertAdjacentElement("beforeend", dom_addnew);
+
+            // move some buttons from #controls to #whatsnext
+            dom_whatsnext.insertAdjacentElement(
+              "beforeend",
+              dom_controls.querySelector("button#loop")
+            );
+            dom_whatsnext.insertAdjacentElement(
+              "beforeend",
+              dom_controls.querySelector("button#shuffle")
+            );
+            dom_whatsnext.insertAdjacentElement(
+              "beforeend",
+              dom_controls.querySelector("button#share")
+            );
+          };
+
+          // let dom_search = dom_controls.querySelector("button#search");
+          document
+            .querySelector("#filters")
+            ?.insertAdjacentElement(
+              "afterbegin",
+              dom_controls.querySelector("button#search")
+            );
+          // ?.insertAdjacentElement("afterbegin", dom_search);
+          let dom_button_playlist = createElement("button", {
+            classes: "material-symbols-outlined",
+            attributes: {
+              id: "togglePlaylist",
+              title: "Show/Hide Playlists",
+            },
+            innerText: "format_list_numbered",
+          });
+          document
+            .querySelector("#filters")
+            ?.insertAdjacentElement("afterbegin", dom_button_playlist);
+
+          // const div_horiz = document.querySelector("div.horiz");
+          // div_horiz.addEventListener("wheel", scrollHorizontal);
+
+          const observeScroll = new IntersectionObserver(
+            ([e]) => {
+              document.body.classList.toggle(
+                "fullscreen",
+                document.body.classList.contains("fullscreen") &&
+                  e.isIntersecting
+                // &&
+                // toggleResize();
+              );
+            },
+            {
+              // threshold: [0.75],
+              threshold: [0.5],
+              // threshold: [0.25],
+              // threshold: [0.1],
+            }
+          );
+          // observeScroll.observe(document.querySelector("#queue #playing"));
+          const observerTarget = document.querySelector("#queue .item.active");
+          observeScroll.observe(observerTarget);
+          // observeScroll.observe(document.querySelector("#queue .items"));
+          // observeScroll.observe(preheader);
+        })
+        .finally(() => {
+          if (window.innerWidth > window.innerHeight) {
+            window.queue.classList.add("landscape");
+          }
+          // const playing = window.queue.querySelector("#playing");
+          // const playingObserver = new MutationObserver((mutations) => {
+          //   mutations.forEach((mutation) => {
+          //     if (mutation.type === "childList") {
+          //       // console.log("A child node has been added or removed.");
+          //       // mutation.target.firstChild.classList.add('cover')
+          //       if (mutation.addedNodes.length > 0)
+          //         mutation.addedNodes[0].classList.add("cover");
+          //     }
+          //   });
+          // });
+
+          // playingObserver.observe(playing, {
+          //   childList: true,
+          //   subtree: false,
+          // });
+        });
+    </script> -->
+
+    <style>
+      amplfr-audio.active,
+      amplfr-item.active {
+        top: 0px;
+        z-index: 4;
+        background-color: white;
+        position: fixed;
+        width: 100%;
+        /* width: calc(100% - 248px); */
+        height: 4em;
+        left: 0px;
+        transition: 150ms linear;
+        font-size: 2em;
+      }
+      amplfr-audio.active *,
+      amplfr-item.active * {
+        position: relative;
+      }
+      amplfr-audio.active .time,
+      amplfr-item.active .time {
+        margin-right: 8px;
+      }
+    </style>
+    <style>
+      amplfr-collection .controls,
+      amplfr-queue .controls {
+        font-size: 2em;
+        z-index: 257;
+        height: 2em;
+        color: #7a7a7a;
+        width: 100%;
+        display: flex;
+        position: fixed;
+        /* position: sticky; */
+        /* top: 4em; */
+        background-color: white;
+        overflow: clip;
+        transition: 150ms linear;
+      }
+      amplfr-collection .controls button:first-of-type,
+      amplfr-queue .controls button:first-of-type {
+        margin-left: 0px;
+      }
+      amplfr-collection > .controls button,
+      amplfr-queue > .controls button {
+        cursor: pointer;
+      }
+      amplfr-collection > .controls *,
+      amplfr-queue > .controls * {
+        margin: 0px auto;
+        font-size: 2em !important;
+        color: #7a7a7a;
+        /* background-color: white; */
+        padding: 0px;
+        margin: 0px auto;
+        height: 100%;
+        border: none;
+      }
+      amplfr-collection > .controls input[type="search"],
+      amplfr-queue > .controls input[type="search"] {
+        font-size: 1em !important;
+        height: 1.5em;
+        height: 2em;
+        width: 2em;
+        margin: auto;
+        margin-right: 0px;
+        padding-left: 2em;
+        transition: width 200ms linear;
+        background: no-repeat 0px center / 2em 2em url(/img/icons/search.png)
+          white;
+        cursor: pointer;
+        overflow-y: visible;
+        max-width: 50%;
+        max-width: max(50vw, 700px);
+      }
+    </style>
+    <amplfr-queue controls="false"></amplfr-queue>
+  </body>
+</html>

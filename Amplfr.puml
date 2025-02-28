@@ -1,0 +1,58 @@
+@startuml
+object AmplfrItemObj {
+  String url,
+  String title,
+  String[] artists,
+}
+
+class AmplfrItem {
+  -AmplfrItemObj data
+  -String domain
+  -String id
+  -String url
+
+  <<constructor>>AmplfrItem(src)
+  -async #fetch()
+  -get #api()
+
+  .. get'ers ..
+  +String album()
+  +String[] artists()
+  +String artwork()
+  -String #href()
+  +String id()
+  +String title()
+  +String url()
+  ..
+
+  .. set'ers ..
+  +url(url)
+  ..
+
+  .. render methods ..
+  connectedCallback()
+  -render()
+  -renderTitle()
+  -renderAlbum()
+  -renderArtists()
+  -renderArtwork()
+  ..
+}
+
+class AmplfrAudio {
+  -AmplfrItem item
+  -Audio media
+
+  <<constructor>>AmplfrAudio(src)
+
+}
+
+
+note right of AmplfrItem : AmplfrItem is base class\nand determines if additional\ndecorators need be applied.
+
+class AmplfrMedia {
+}
+
+HTMLMediaElement <|-- AmplfrMedia
+
+@enduml

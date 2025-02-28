@@ -2,6 +2,7 @@
 
 Website that plays media - audio, audio/video - files sourced from [amplfr.com](//amplfr.com/) using [Amplfr API](//amplfr.github.io/api/), other Providers, and possibly the local device.
 Base HTML page (for backwards compatibility, for more browsers to be able to render), with feature detection and loading.
+Uses [Service Workers](#service-worker) to make calls to API
 
 Main page consists of [Player/Queue](#player), Search, and Body.
 
@@ -46,18 +47,108 @@ A user may add additional items, rearrange already queued items, as well as remo
 
 Presents recommended/suggested albums, items.
 
+Comprised of Amplfr Web Components that are dynamically added after initial page load (using HTMX)
+
 ## Elements
+
+Every section of Amplfr.com is broken up into its Element, comprising the backing service and the Web Component to render the received JSON from that service.
+
+- AmplfrItem
+
+  ```html
+  <amplfr-item src="https://amplfr.com/kREnNawsJqg7PFfX3LYqEy/Just">
+    Just
+    <artist>Radiohead</artist>
+    <album>The Bends</album>
+  </amplfr-item>
+  ```
+
+- AmplfrCollection
+  ```html
+  <!-- prettier-ignore -->
+  <amplfr-collection src="//amplfr.com/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory?">
+    <img
+      class="artwork"
+      src="//amplfr.com/albumart/ssJLoBpTnHbb4ojwjDLKYt.jpg"
+      alt="(What's the Story) Morning Glory?"
+    />
+    (What's the Story) Morning Glory?
+    <released>1995-10-02</released>
+    <artist>Oasis</artist>
+    <item src="//amplfr.com/pLR8y92byj7cycE3UUYTi8/Hello">Hello</item>
+    <item src="//amplfr.com/p3tSa8CY7NoGwx3uzp23sd/Roll+With+It">Roll With It</item>
+    <item src="//amplfr.com/4MZY5TrtyK9XMgSyh51KFk/Wonderwall">Wonderwall</item>
+    <item src="//amplfr.com/undefined">Don’t Look Back in Anger</item>
+    <item src="//amplfr.com/76FGzRC35hZd9nHaaowZ8X/Hey+Now!">Hey Now!</item>
+    <item src="//amplfr.com/7v7mWRZuj6iHENvgHbAQeh/Some+Might+Say">Some Might Say</item>
+    <item src="//amplfr.com/65V8XCk735iotDfYEE6LTK/Cast+No+Shadow">Cast No Shadow</item>
+    <item src="//amplfr.com/undefined">She’s Electric</item>
+    <item src="//amplfr.com/xjdz242YiH8XkH4mmBojTF/Morning+Glory">Morning Glory</item>
+    <item src="//amplfr.com/czsVRaDCo95YC5DpgXLm6t/Champagne+Supernova">Champagne Supernova</item>
+  </amplfr-collection>
+  ```
+
+Each Web Component can be rendered/styled as one of the following:
+
+- Tile
+  - Small "square" comprised of the artwork, title, and artist(s)
+  - think movie poster, album cover, book cover, etc. with title
+- Banner
+  - Small "rectangle" comprised of the artwork, title, and artist(s)
+  - artwork on the left, with title, artist(s) on the right
+- Pane
+  - Large parcel
+  - an Item Pane is a large/fullscreen media Player for this Item
+    - artwork, title, artist information fades out
+  - a Collection Pane is comprised of the artwork, title, and artist(s), as well as related metadata
+    - Wikipedia blurb
+    - related
+
+Every Web Component fetches its basic data from its service, regardless of how it is to be rendered.
+
+### AmplfrSearch
+
+Web Component
 
 ### AmplfrItem
 
-Javascript class that takes a media URL and creates everything needed to play it back
+Web Component (Javascript class) that takes a media URL and creates everything needed to play it back.
+
+\#Maybe extends `audio` HTML tag (HTMLAudioElement class)
 
 - handles
 
+  - parses given ID or URL, and fetches and loads necessary content into [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_shadow_DOM)
+  - internal style'ing
+  - adjusts to fill container
+
+    ```html
+    <amplfr-audio src="//amplfr.com/kREnNawsJqg7PFfX3LYqEy/Just"></amplfr-audio>
+    ~~~<amplfr-audio data-id="kREnNawsJqg7PFfX3LYqEy"></amplfr-audio>~~~
+    ```
+
+- actions
+
+  - parse ID or URL (onload)
+
+    - fetches and loads necessary metadata
+
+      - Title
+      - Artist(s)
+      - Albumart or poster
+
+    - determines appropriate AmplfrMedia handler and loads it
+
   - setup media
   - play/pause
-  - stop
-  - share
+
+  - buttons and links for additional actions
+
+    - add more Items, Collections, etc.
+
+  - buttons and links for additional metadata, which opens in target "\_amplfr"
+    - share
+    - save
 
 - todo
 
@@ -70,6 +161,30 @@ Javascript class that takes a media URL and creates everything needed to play it
   - [ ] separate playing from displaying, so it can be display only with ability to "upgrade" to playing
 
   -
+
+### AmplfrAudio
+
+Web Component (Javascript class) that encapsulates audio media functions, with focus on loading media from Provider. Non-special methods, properties are inherited.
+
+- minimum methods:
+  - fastSeek()
+  - load()
+    - decode from ID
+    - load media
+  - pause()
+  - play()
+
+### AmplfrVideo
+
+Web Component (Javascript class) that encapsulates video media functions, with focus on loading media from Provider. Non-special methods, properties are inherited.
+
+- minimum methods:
+  - fastSeek()
+  - load()
+    - decode from ID
+    - load media
+  - pause()
+  - play()
 
 ### Play.html
 
@@ -126,6 +241,78 @@ Javascript class that extends AmplfrCollection class to allow a modifiable colle
 - todo
   - [ ] migrate appropriate features from Queue
   - [ ] everything else
+
+## design/layout
+
+Design/layout needs to intelligently incorporaate [Player](#player), [Search](#search), and [Body](#body), all using [Elements](#elements) for mobile, PC, and large format (TV) devices.
+
+incorporate ideas from this [YouTube UI redesign video](https://www.youtube.com/watch?v=OUM6XmhViN4) ([Figma](https://www.figma.com/community/file/1450380484645543336/youtube-redesign) [YouTube Redesign – Figma](https://www.figma.com/community/file/1450380484645543336/youtube-redesign))
+
+- tags along the top to specify what is included in Home
+  - user can filter which tags are included/excluded
+- side navigation buttons
+  - Home
+  -
+
+### item layout
+
+#### wide rectangle
+
+- artwork on the left with title, artist, album/Collection, time text to the right
+- playing icon/button over the arwork and progress bar below title and above artist and album/Collection text
+- ![](./_docs/player%20embed.png)
+- ![](./_docs/amplfr%20play.png)
+- ![](./_docs/Annotation%202022-10-17%20101234.png)
+- ![](./_docs/Annotation%202023-08-17%20180314.png)
+
+- ![](./_docs/cnbcla.png)
+
+#### large square
+
+- (large square) artwork as background with title, artist, album/Collection text (each on its own line)
+  - similar to how music video data was presented on MTV
+
+### small screen (mobile) layout
+
+vertical orientation, toggling between Body/Search and Player/Queue
+
+- Body
+  - similar to Steam.com redesign
+    - carousel of "hero" images at the top
+    - large square tiles for sections
+    - list of rectangle tiles
+    - ![](./_docs/Screenshot_20221025-232059.png)
+  - large artwork transitions from large square to wide tile - similar to [Weawow Android app](https://weawow.com/)
+    - ![Weawow Android weather app](./_docs/Screenshot_20240818-144633.png)
+  - TODO need to figure out the buttons for the bottom bar
+- Player similar to [Phonograph Android app](https://github.com/kabouzeid/Phonograph)'s layout
+  - Player has large artwork displayed
+  - list of upcoming tracks (Queue) is visibile and can be maximized and then scrolled
+  - Player minimized to bar down at the bottom of the screen while Body is displayed
+  - ![Phonograph](./_docs/Screenshot_20220710-015233.png) ![mobile](./_docs/amplfr%20device.png)
+- Queue
+  - white text over artwork image
+  - similar to ![](./_docs/Screenshot_20230219-172002.png)
+
+### large screen layout
+
+widescreen orientation
+Queue and Body can be displayed simulateously, side-by-side
+
+(collapsable) Queue (with Player at the top) on the left side and Body/Search to the right
+
+- Queue
+  - can collapse with just the next 5 (or so) items being visible as well as a Add to Queue button at the bottom of it
+  - mouseover (temporarily) expands the Queue - peek
+  - other buttons/icons for other sections below the Queue
+  - Slack app's left gutter ![Slack redesign](./_docs/Slack%20redesign.png)
+  - Mozilla Thunderbird ![Thunderbird](./_docs/115.png)
+  - YouTube app ![YouTube app](./_docs/PXL_20240723_153433323.jpg)
+- Player
+  - header bar at the top, where it intersects with the Queue on the left
+  - includes Search button that shows when active
+  - logo on the right top corner
+- Body
 
 ## PWA
 

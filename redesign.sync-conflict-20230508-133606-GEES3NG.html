@@ -1,0 +1,669 @@
+<html class="xphone">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <!-- <script src="https://kit.fontawesome.com/1ee8f271b9.js"></script> -->
+    <style>
+      :root {
+        --body-color: 48 48 58;
+
+        --font-color: 255 255 255;
+        --highlight-color: 0 0 0;
+
+        --theme-background: 28 27 30;
+
+        --theme-light: 0 0 0;
+        --theme-medium: 46 44 53;
+        --theme-dark: 0 0 0;
+      }
+
+      html {
+        font-size: 40px;
+      }
+      body {
+        background-color: rgb(var(--body-color));
+        margin: 0px;
+      }
+      body::-webkit-scrollbar {
+        width: 4px;
+      }
+      body::-webkit-scrollbar-track {
+        background-color: rgb(var(--theme-background));
+      }
+      body::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+      }
+      * {
+        box-sizing: border-box;
+      }
+
+      button {
+        all: unset;
+        cursor: pointer;
+      }
+
+      .material-symbols-outlined {
+        font-size: 1.5rem;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      input,
+      select,
+      button,
+      span,
+      a,
+      p {
+        color: rgb(var(--font-color));
+        font-family: "Noto Sans", sans-serif;
+        font-size: 1rem;
+        font-weight: 400;
+        margin: 0px;
+      }
+
+      button,
+      a,
+      input {
+        outline: none;
+      }
+
+      .highlight {
+        color: rgb(var(--highlight-color));
+      }
+
+      .fancy-scrollbar::-webkit-scrollbar {
+        height: 4px;
+        width: 4px;
+      }
+
+      .fancy-scrollbar::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      .fancy-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+      }
+
+      .no-scrollbar::-webkit-scrollbar {
+        height: 0px;
+        width: 0px;
+      }
+
+      /* #phone { */
+      .phone {
+        background-color: rgb(var(--theme-background));
+        box-shadow: rgba(0, 0, 0) 0px 8px 24px;
+        height: 851px;
+        width: 393px;
+        margin: 10px auto;
+        position: relative;
+        /* overflow: hidden; */
+      }
+
+      #main-wrapper {
+        height: 100%;
+        overflow: auto;
+      }
+
+      #main {
+        height: 100%;
+      }
+
+      #content {
+        padding: 0 1rem 4rem 1rem;
+      }
+
+      #links-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 0.75rem;
+      }
+
+      #links-container > a {
+        color: rgb(255 255 255 / 80%);
+        font-size: 0.75rem;
+        text-decoration: none;
+      }
+
+      #links-container > a:is(:hover, :focus) {
+        text-decoration: underline;
+      }
+
+      #playing {
+        width: 100%;
+        /*   height: 142px; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        background: linear-gradient(
+          to top,
+          rgb(var(--theme-medium)) 10%,
+          transparent 60%
+        );
+        margin-top: 0rem;
+        border-radius: 0.5rem;
+        border-bottom-left-radius: 0.2rem;
+        border-bottom-right-radius: 0.2rem;
+      }
+
+      #logo {
+        width: 100%;
+      }
+
+      #search-container {
+        display: flex;
+        gap: 0.2rem;
+        margin-top: 0.2rem;
+      }
+      #search-input-container > input,
+      #search-container > button {
+        background-color: rgb(var(--theme-medium));
+        color: rgb(255 255 255 / 80%);
+        font-size: 1rem;
+        border: none;
+      }
+      #search-container > button {
+        /* width: 3.5rem; */
+        border-radius: 0.2rem;
+        cursor: pointer;
+        padding: 0 1rem;
+      }
+      #search-container > button:first-child {
+        border-bottom-left-radius: 0.5rem;
+      }
+      #search-container > button:last-child {
+        border-bottom-right-radius: 0.5rem;
+      }
+      #search-input-container {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        flex-grow: 1;
+        background-color: rgb(var(--theme-medium));
+        padding-left: 1rem;
+        border-radius: 0.2rem;
+        /*   border-bottom-left-radius: 0.5rem; */
+      }
+      #search-input-container > img {
+        height: 1.5rem;
+      }
+      #search-input-container > input {
+        width: 100%;
+        height: 3.25rem;
+        background-color: transparent;
+        padding: 1rem;
+        padding-left: 0rem;
+      }
+
+      #filters {
+        display: flex;
+        gap: 0.25rem;
+        margin: 0.25rem 0px;
+        overflow: auto;
+      }
+      #filters > button {
+        flex-shrink: 0;
+        background-color: rgb(255 255 255 / 5%);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem;
+        border: 0px;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      #ad {
+        display: flex;
+        border: 1px solid rgb(255 255 255 / 10%);
+        padding: 0.25rem;
+        margin: 1rem 1rem;
+        border-radius: 0.25rem;
+      }
+      #ad > img {
+        width: 100%;
+        border-radius: inherit;
+      }
+
+      #apps-container {
+        display: grid;
+        gap: 0.2rem;
+        grid-template-columns: repeat(2, 1fr);
+        margin: 1rem 0rem;
+      }
+      #apps-container > a {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: rgb(var(--theme-medium));
+        padding: 1rem 0.75rem;
+        border-radius: 0.2rem;
+        text-decoration: none;
+      }
+      #apps-container > a > img {
+        height: 2rem;
+        width: 2rem;
+        flex-shrink: 0;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        text-align: center;
+      }
+      #apps-container > a > .label {
+        width: calc(100% - 2.5rem);
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        overflow: hidden;
+      }
+      #apps-container > a > .label > :is(.name, .url) {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      #apps-container > a > .label > .name {
+        font-size: 0.74rem;
+      }
+      #apps-container > a > .label > .url {
+        font-size: 0.7rem;
+        color: rgb(255 255 255 / 50%);
+      }
+
+      #also-like {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding-bottom: 1rem;
+      }
+
+      #also-like > h3 {
+        font-size: 0.9rem;
+      }
+
+      #also-like-items {
+        display: grid;
+        gap: 0.5rem;
+        grid-template-columns: repeat(3, auto);
+        grid-template-rows: repeat(3, 1fr);
+      }
+
+      #also-like-items > button {
+        display: flex;
+        aspect-ratio: 1;
+      }
+
+      #also-like-items > button > img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-radius: 0.25rem;
+      }
+
+      #header-items {
+        display: flex;
+        gap: 1rem;
+        position: relative;
+        z-index: 3;
+        padding: 0.5rem 1rem;
+        overflow: auto;
+        background: linear-gradient(
+          to bottom,
+          rgb(34, 123, 66) 0%,
+          rgb(10 10 10) 40%,
+          transparent 40%
+        );
+      }
+
+      .header-item-image {
+        position: relative;
+      }
+
+      .header-item-image:after {
+        content: "";
+        height: calc(100% - 0.5rem);
+        width: calc(100% - 0.5rem);
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: -1;
+        background-color: white;
+        margin: -0.25rem;
+        border-radius: 0.5rem;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      }
+
+      .header-item-image > img {
+        width: 200px;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 0.4rem;
+      }
+
+      .header-item-content > .label {
+        display: flex;
+      }
+
+      .header-item-content > .label > p {
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 500;
+        margin-left: 0.25rem;
+      }
+
+      #footer {
+        display: inline;
+        gap: 0.25rem;
+        margin: 1rem 0px;
+        overflow: auto;
+      }
+      #footer > a {
+        background-color: rgb(255 255 255 / 5%);
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.25rem;
+        border: 0px;
+        color: white;
+        font-size: 0.75rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+
+      #nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        position: fixed;
+        /* position: absolute; */
+        left: 0px;
+        bottom: 0px;
+        z-index: 3;
+        background-color: rgb(var(--theme-background));
+        padding: 0.25rem 1rem;
+        border-top: 1px solid rgb(255 255 255 / 10%);
+      }
+      #nav > button {
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        position: relative;
+      }
+      #nav > button.active:after {
+        content: "";
+        height: 0.25rem;
+        width: 1.5rem;
+        position: absolute;
+        top: -0.5rem;
+        left: 50%;
+        translate: -50%;
+        background: var(--linear-gradient);
+        border-bottom-left-radius: 0.25rem;
+        border-bottom-right-radius: 0.25rem;
+      }
+      #nav > button:hover,
+      #nav > button:focus-visible {
+        background-color: rgb(255 255 255 / 10%);
+      }
+      #nav > button > i {
+        width: 1.5rem;
+        font-size: 1.5rem;
+        text-align: center;
+      }
+
+      @media (max-width: 500px) {
+        body {
+          overflow: auto;
+        }
+
+        #phone {
+          height: 100vh;
+          display: flex;
+          width: 100%;
+          margin: 0px auto;
+        }
+
+        #main-wrapper {
+          width: 100%;
+          flex-grow: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body class="fancy-scrollbar">
+    <!-- <div id="phone"> -->
+    <!-- <div id="main-wrapper" class="fancy-scrollbar"> -->
+    <div id="main">
+      <div id="content">
+        <div id="playing">
+          <img
+            id="logo"
+            src="https://m.media-amazon.com/images/I/51kMh4VgbUL.jpg"
+            alt="Google Doodle"
+          />
+        </div>
+        <div id="search-container">
+          <button id="play" type="button">
+            <i class="material-symbols-outlined">play_arrow</i>
+          </button>
+          <button id="playlist" type="button">
+            <i class="material-symbols-outlined">playlist_play</i>
+          </button>
+          <button id="search-input-container" type="button">
+            <i class="material-symbols-outlined">search</i>
+            <input type="text" placeholder="Search anything" />
+          </button>
+        </div>
+        <div id="filters" class="no-scrollbar">
+          <button type="button">latest</button>
+          <button type="button">trending</button>
+          <button type="button">live</button>
+          <button type="button">minutes&colon;0-5</button>
+          <button type="button">minutes&colon;5-30</button>
+          <button type="button">genre&colon;pop</button>
+          <button type="button">genre&colon;classical</button>
+        </div>
+        <div id="ad">
+          <img src="https://assets.codepen.io/1468070/Freevee+Ad.png" alt="" />
+        </div>
+        <div id="apps-container">
+          <a href="#">
+            <img src="https://picsum.photos/500?random=4" />
+            <div class="label">
+              <span class="name">Your Work - CodePen</span>
+              <span class="url">codepen.io</span>
+            </div>
+          </a>
+          <a href="#">
+            <i class="fa-brands fa-youtube"></i>
+            <div class="label">
+              <span class="name">YouTube</span>
+              <span class="url">youtube.com</span>
+            </div>
+          </a>
+          <a href="#">
+            <i class="fa-brands fa-spotify"></i>
+            <div class="label">
+              <span class="name">Spotify</span>
+              <span class="url">spotify.com</span>
+            </div>
+          </a>
+          <a href="#">
+            <i class="fa-brands fa-twitter"></i>
+            <div class="label">
+              <span class="name">Twitter</span>
+              <span class="url">twitter.com</span>
+            </div>
+          </a>
+          <a href="#">
+            <i class="fa-brands fa-airbnb"></i>
+            <div class="label">
+              <span class="name">Airbnb</span>
+              <span class="url">airbnb.com</span>
+            </div>
+          </a>
+          <a href="#">
+            <i class="fa-brands fa-wikipedia-w"></i>
+            <div class="label">
+              <span class="name">Wikipedia</span>
+              <span class="url">wikipedia.com</span>
+            </div>
+          </a>
+          <a href="#">
+            <i class="fa-brands fa-github"></i>
+            <div class="label">
+              <span class="name">Github</span>
+              <span class="url">github.com</span>
+            </div>
+          </a>
+          <a href="#">
+            <i class="fa-brands fa-xbox"></i>
+            <div class="label">
+              <span class="name">Xbox</span>
+              <span class="url">xbox.com</span>
+            </div>
+          </a>
+        </div>
+        <div id="header-items" class="no-scrollbar">
+          <button class="header-item" type="button">
+            <div class="header-item-image">
+              <img
+                src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Z2FyZGVuaW5nfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              />
+            </div>
+            <div class="header-item-content">
+              <div class="label">
+                <p>Gardening Supplies & Yard Care</p>
+              </div>
+            </div>
+          </button>
+          <button class="header-item" type="button">
+            <div class="header-item-image">
+              <img
+                src="https://images.unsplash.com/photo-1512243448106-c5a78f7955c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=776&q=80"
+              />
+            </div>
+            <div class="header-item-content">
+              <div class="label">
+                <p>Scraggly Plant Decoration</p>
+              </div>
+            </div>
+          </button>
+          <button class="header-item" type="button">
+            <div class="header-item-image">
+              <img
+                src="https://images.unsplash.com/photo-1538935732373-f7a495fea3f6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2159&q=80"
+              />
+            </div>
+            <div class="header-item-content">
+              <div class="label">
+                <p>300ft Trees</p>
+              </div>
+            </div>
+          </button>
+        </div>
+        <div id="also-like">
+          <h3>You might also like</h3>
+          <div id="also-like-items">
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1585386931415-464367473a01?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjV8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1571781926291-c477ebfd024b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1625772452859-1c03d5bf1137?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1525904097878-94fb15835963?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1610824352934-c10d87b700cc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mjl8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1634283715079-d91bbed0ece0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NjJ8fHByb2R1Y3RzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZHVjdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://fastly.picsum.photos/id/315/500/500.jpg?hmac=AbWYq_roDJyGvETLXoklwv1TjHEIIamXL4Z03YNQtn0"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://fastly.picsum.photos/id/425/500/500.jpg?hmac=4ew-fBOT81F-SkWSyWcm7xk7oztRic-Ftg5-Se4ZkTk"
+              />
+            </button>
+            <button type="button">
+              <img
+                src="https://fastly.picsum.photos/id/25/500/500.jpg?hmac=fR69NRNJqNFoxd8GXucxFCywmUSjipWJAsMmEDwT4wQ"
+              />
+            </button>
+          </div>
+        </div>
+        <div id="footer" class="no-scrollbar">
+          <a href="/">© Amplfr.com</a>
+          <a href="/terms">Terms of Use</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/legal">Legal Requests</a>
+          <a href="//amplfr.github.io/">API/developer resources</a>
+          <a href="//twitter.com/amplfr">@Amplfr</a>
+        </div>
+      </div>
+    </div>
+    <div id="nav">
+      <button type="button">
+        <i class="material-symbols-outlined">playlist_play</i>
+      </button>
+      <button type="button" class="active">
+        <i class="material-symbols-outlined">home</i>
+      </button>
+      <button type="button">
+        <i class="material-symbols-outlined">groups</i>
+      </button>
+      <button type="button">
+        <i class="material-symbols-outlined">cloud_upload</i>
+      </button>
+      <button type="button">
+        <i class="material-symbols-outlined">menu</i>
+      </button>
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+  </body>
+</html>

@@ -1,0 +1,358 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>amplfr-audio element</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+    <!-- prettier-ignore -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+    <!-- prettier-ignore -->
+    <!-- <script src="/js/amplfr.min.js"></script> -->
+    <!-- <script src="/js/amplfr.js"></script> -->
+    <script src="/js/amplfr-item.js"></script>
+    <!-- <script src="/js/queue.js"></script> -->
+    <!-- <link rel="stylesheet" href="/css/item.css" /> -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"
+      integrity="sha512-YsR46MmyChktsyMMou+Bs74oCa/CDdwft7rJ5wlnmDzMj1mzqncsfJamEEf99Nk7IB0JpTMo5hS8rxB49FUktQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
+  <body>
+    <!-- body style -->
+    <style>
+      body {
+        --gap: 4em;
+        --body-color: white;
+        font-size: 16px;
+        margin: 0px;
+        padding: var(--gap, 4em);
+        padding-bottom: 0em;
+
+        font-family: "Noto Sans", sans-serif;
+      }
+      button {
+        padding: 0px;
+      }
+      .material-symbols-outlined {
+        font-size: 16px;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+    <!-- header -->
+    <style>
+      header {
+        position: fixed;
+        top: 0px;
+        left: var(--gap, 4em);
+        right: var(--gap, 4em);
+        /* display: flex; */
+        height: var(--gap);
+        /* width: 100%; */
+      }
+      header > * {
+        float: right;
+      }
+      header a {
+        text-decoration: none;
+      }
+      .logo,
+      header a,
+      header a.material-symbols-outlined {
+        display: flex;
+        z-index: 8;
+        font-size: var(--gap, 4em);
+        height: 1em;
+        color: var(--body-color);
+        fill: var(--body-color);
+        filter: drop-shadow(2px 2px 2px darkgray);
+      }
+      .logo a svg {
+        height: 1em;
+      }
+      .logo .wide-only {
+        display: initial;
+      }
+
+      button#activateSearch {
+        font-size: 4em;
+        float: left;
+      }
+      input[type="search"] {
+        /* font-size: 4em; */
+        /* height: 1em; */
+        font-size: 3em;
+        height: 1.33em;
+        float: left;
+        width: 0px;
+        width: 100%;
+        /* width: calc(100vw - (2 * var(--gap)) - 0.5em); */
+        width: calc(100vw - (2.66 * var(--gap)) - 0.5em);
+        padding: 0px;
+        border: 0px;
+        /* border-bottom: 1px solid darkgray; */
+        outline: none;
+        transition: width 200ms linear;
+        /* text-decoration: underline 2px solid darkgray; */
+      }
+      /* input[type="search"]:active,
+      input[type="search"]:focus,
+      input[type="search"]:focus-visible,
+      input[type="search"]:focus-within,
+      input[type="search"]:target {
+        width: 100%;
+        width: calc(100vw - (2 * var(--gap)) - 0.5em);
+      } */
+    </style>
+    <header>
+      <button id="activateSearch" class="material-symbols-outlined">
+        search
+      </button>
+      <input
+        type="search"
+        id="search"
+        placeholder="Search songs, artists, lyrics, albums, and more"
+      />
+      <!-- prettier-ignore -->
+      <a href="/" class="logo">
+        <svg style="font-size: 1em" xmlns="//www.w3.org/2000/svg" viewBox="0 0 173 187">
+          <path id="logoA" d="M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z"></path>
+        </svg><svg style="font-size: 1em" class="wide-only" xmlns="//www.w3.org/2000/svg" viewBox="0 0 567 243">
+          <path id="logomplfr" d="M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"></path>
+        </svg></a>
+      <a
+        href="/account"
+        class="material-symbols-outlined"
+        title="Account Settings"
+        >manage_accounts</a
+      >
+      <a href="/upload" class="material-symbols-outlined">cloud_upload</a>
+    </header>
+
+    <!-- item -->
+    <style>
+      amplfr-collection > .item.active {
+        --color: black;
+        --colorAccent: var(--body-color);
+        display: block;
+        margin: 0 auto;
+        height: 4em;
+        color: var(--color);
+        overflow: hidden;
+        font-size: 1em;
+        z-index: 1;
+        box-shadow: 2px 2px 2px darkgray;
+        width: 100%;
+        /* background-color: var(--colorAccent); */
+        background-color: var(--color);
+        background: linear-gradient(90deg, var(--color) 64%, var(--body-color));
+      }
+      amplfr-collection > .item.active * {
+        white-space: nowrap;
+        margin: 0px 4px;
+        color: var(--color);
+        fill: var(--color);
+        color: var(--colorAccent);
+        fill: var(--colorAccent);
+        vertical-align: middle;
+        z-index: 1;
+
+        position: inherit;
+        font-size: 3em;
+        position: relative;
+        font-size: 3.75em;
+        top: -14px;
+      }
+      amplfr-collection > .item.active button {
+        color: var(--color);
+        font-size: 4em;
+        z-index: 128;
+        background-color: unset;
+        border: none;
+        padding: 0px;
+        margin: 0px;
+        cursor: pointer;
+        width: 1em;
+        height: 1em;
+        top: 0px;
+      }
+      amplfr-collection > .item.active button.play {
+        position: absolute;
+        top: 1em;
+        left: 1em;
+
+        color: white;
+        text-shadow: 0 0px 8px var(--colorAccent);
+      }
+      amplfr-collection > .item.active .artwork {
+        background-position: center;
+        background-size: cover;
+        height: 100%;
+        z-index: 0 !important;
+        color: whitesmoke;
+        aspect-ratio: 1 / 1;
+        user-select: none;
+        /* position: absolute; */
+        /* left: 0px; */
+        top: 0px;
+        margin: 0px;
+        float: left;
+        /* box-shadow: 4px 0px 4px darkgray; */
+      }
+      amplfr-collection > .item.active .title {
+        /* font-size: 3em; */
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0px;
+        /* margin-top: auto; */
+        display: inline;
+        padding-left: 4px;
+      }
+      amplfr-collection > .item.active .timeline-container {
+        height: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 0px;
+        padding: 0px;
+        touch-action: none;
+        position: relative;
+        width: calc(100% - 1.07em);
+        margin-left: 1.07em;
+        top: calc(-1 * 0.5em - 2px);
+        position: absolute;
+        margin-top: 2.45em;
+        width: calc(100dvw - 0.8 * var(--gap));
+      }
+      amplfr-collection > .item.active .timeline-container .timeline {
+        appearance: inherit;
+        background-color: var(--color);
+        background-color: var(--colorAccent);
+        /* opacity: 50%; */
+        /* height: 4px; */
+        height: 100%;
+        /* width: calc(100% - 2em); */
+        width: 100%;
+        position: relative;
+        transition: 250ms linear;
+        margin: 0px;
+        top: 0px;
+      }
+      amplfr-collection
+        > .item.active
+        .timeline-container
+        .timeline
+        > thumb-indicator {
+        --scale: 0;
+        position: absolute;
+        transform: translateX(-50%) scale(var(--scale));
+        height: 200%;
+        top: -50%;
+        left: calc(var(--progress-position) * 100%);
+        border-radius: 50%;
+        transition: transform 150ms ease-in-out;
+        transition: right 250ms linear;
+        aspect-ratio: 1 / 1;
+        filter: drop-shadow(2px 2px 4px var(--color));
+      }
+      amplfr-collection > .item.active .timeline-container .timeline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: calc(100% - var(--progress-position) * 100%);
+        background-color: var(--colorAccent);
+        background-color: var(--color);
+      }
+      amplfr-collection > .item.active .time,
+      amplfr-collection > .item.active .icon {
+        /* font-size: 1em; */
+        float: right;
+        cursor: pointer;
+        /* margin: 4px 0px auto 0px; */
+      }
+    </style>
+    <!-- prettier-ignore -->
+    <amplfr-collection is="queue" controls="false">
+      <!-- <amplfr-queue> -->
+      <amplfr-audio
+        src="//upload.wikimedia.org/wikipedia/commons/c/cd/US_Marine_Band_Rhapsody_in_Blue.oga"
+        data-title="Rhapsody in Blue"
+        data-artist="George Gershwin"
+        data-artwork="//upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Rhapsody_in_Blue_cover.jpg/220px-Rhapsody_in_Blue_cover.jpg"
+      ></amplfr-audio>
+      <!-- <amplfr-item src="/api/queue"></amplfr-item> -->
+      <amplfr-item src="/kREnNawsJqg7PFfX3LYqEy/Just"></amplfr-item>
+      <!-- <amplfr-item src="/wWXnqZ4ieknmWq2wUWb8oP"></amplfr-item> -->
+      <!-- <amplfr-item src="/eDu4Y113AnxWJCdqpnCrHv"></amplfr-item> -->
+      <!-- <amplfr-item src="/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"></amplfr-item> -->
+      <amplfr-item src="/api/6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like%20Teen%20Spirit"></amplfr-item>
+      <!-- <amplfr-item src="/api/6HrUVPVYS3PNDJJ4zmQrJw@128.mp3"></amplfr-item> -->
+      <!-- <amplfr-item src="/playlist/UTKtg53PKSDe3h5XMrx64x/matt to kim"></amplfr-item> -->
+    </amplfr-collection>
+    <!-- </amplfr-queue> -->
+    <!-- <amplfr-collection src="/album/ssJLoBpTnHbb4ojwjDLKYt/(What's+the+Story)+Morning+Glory%3F"></amplfr-collection> -->
+
+    <!-- nav -->
+    <style>
+      nav {
+        position: fixed;
+        /* top: 0px; */
+        display: flex;
+        flex-direction: column;
+        font-size: var(--gap, 4em) !important;
+        /* font-size: 4em; */
+        width: 1em;
+        height: 100%;
+        height: calc(100dvh - (var(--gap) * 0.5));
+      }
+      header .material-symbols-outlined,
+      nav .material-symbols-outlined {
+        cursor: pointer;
+        border: none;
+        background-color: transparent;
+        text-decoration: none;
+        color: black;
+        font-size: 1em;
+        height: 1em;
+
+        color: white;
+        fill: white;
+        filter: drop-shadow(2px 2px 2px darkgray);
+      }
+      nav .bottomIcons,
+      nav .midIcons {
+        margin-top: auto;
+      }
+    </style>
+    <!-- prettier-ignore -->
+    <nav>
+        <button id="toggleQueue" class="material-symbols-outlined">playlist_play</button>
+        <button id="toggleMenu" class="material-symbols-outlined hidden">menu</button>
+        <!-- <div class="topIcons"> -->
+        <a href="#" class="material-symbols-outlined hidden" title="Home">vertical_align_top</a>
+        <a href="#recommended" class="material-symbols-outlined" title="Recommended">recommend</a>
+        <a href="#new" class="material-symbols-outlined" title="New">event</a>
+        <a href="#popular" class="material-symbols-outlined" title="Popular">trending_up</a>
+        <a href="#local" class="material-symbols-outlined" title="Local">near_me</a>
+        <a href="#playlists" class="material-symbols-outlined" title="Playlists">queue_music</a>
+        <!-- </div> -->
+
+      <!-- prettier-ignore -->
+      <div class="midIcons">
+          <a href="#favorites" class="material-symbols-outlined" title="Favorites">favorite</a>
+          <a href="#people" class="material-symbols-outlined" title="People">groups</a>
+          <a href="#history" class="material-symbols-outlined" title="History">history</a>
+        </div>
+
+      <!-- prettier-ignore -->
+      <div class="bottomIcons">
+          <a href="#legal" id="legalIcon" class="material-symbols-outlined" title="copyright">copyright</a>
+        </div>
+    </nav>
+  </body>
+</html>

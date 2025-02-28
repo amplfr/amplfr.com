@@ -1,0 +1,46 @@
+(A) @js +internals convert list of links (with albumart background) to tiles that expand on click/tap
+(A) @js +internals "hijax" (think "AJAX") internal links and convert to use API endpoints and populate targeted element with the JSON results
+(B) @js +internals integrate Workbox for Service Worker/caching capabilities
+(B) @js +internals use [workbox-background-sync](https://developer.chrome.com/docs/workbox/modules/workbox-background-sync/) for queued updates/feedback back to various APIs
+(B) @js +internals cache list of results into individual responses - artist/1, artist/2, etc.
+(B) @js +internals Player determines what MIME/media type(s) Client can play - call <code>audioOrVideo.[canPlayType](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/canPlayType)(mediaType)</code> function early in Player.onload() to generate list for media Requests
+(C) @js +internals send back User updates for Playlists (especially Queue)
+(C) @js +internals send back Playing progress updates
+(C) @js +internals +Queue +Player precache initial 10s/10% of queued up Items - maybe use [workbox-range-request](https://developer.chrome.com/docs/workbox/modules/workbox-range-request/)
+(C) @js +internals refactor item.js, artist.js, and album.js into a single file with shared functions yet separate classes
+(D) support for video media; small player is width of Queue where Playing is and large player is fullscreen
+(Z) @js +internals +Queue +Player can handle content from other Providers
+(Z) @js +internals +Queue +Player write an abstract Provider class to handle particulars for each Provider
+(Z) @js +internals +Queue +Player local media files via [](https://github.com/GoogleChromeLabs/browser-fs-access) (fallback for [File System Access API](https://web.dev/browser-fs-access/#the-file-system-access-api))
+(Z) @js +internals +Queue +Player [Apple Music (MusicKit JS)](https://developer.apple.com/documentation/musickitjs)
+(Z) @js +internals +Queue +Player Spotify ([web api](https://developer.spotify.com/web-api/)) maybe using [spotify-web-api-js](https://github.com/JMPerez/spotify-web-api-js)
+(Z) @js +internals +Queue +Player YouTube Music via [ytmusicapi](https://ytmusicapi.readthedocs.io/en/latest/)
+(Z) @js +internals +Queue +Player media files from [Google Drive](https://developers.google.com/drive/api/v3/quickstart/js)
+(Z) @js +internals +Queue +Player SoundCloud
++QueuePanel handles swipe to hide/show ([possible starting point](https://stackoverflow.com/a/49200411))
++QueuePanel +dragdrop handle existing Items being dragged around to change their order
++QueuePanel +dragdrop handle one/more files/folders dropped onto QueuePanel, and add it to the queue (possibly at the position it was dropped)
++QueuePanel +dragdrop handle individual (on page) Item dropped onto a Playlist, and add it to the queue (possibly at the position it was dropped)
++QueuePanel +controls add expandable additional controls - shuffle
++QueuePanel +controls add Playing Actions - next (default), stop, repeat/loop (indefintely), repeat/loop N times
++QueuePanel +controls add Sleep Timer - timer that when it fires, sets Playing Action to stop for Playing
++SearchPanel has own JS and CSS files to populate/draw and style respectively
++SearchPanel handles swipe to hide/show
++SearchPanel unified search across Artist/Album/Item API endpoints
++SearchPanel results as tiles (specific to type, i.e., Artist result --> Artist tile)
++SearchPanel add Tags that can be selected to filter results - ie, duration ranges, genre, BPM (beats per minute)/tempo ranges
++SearchPanel add additional search fields based on supported Metadata, etc. query parameters; possibly based on (parsed) OpenAPI HTML doc
++Style use skeleton loading animation for tiles ([code](https://github.com/WebDevSimplified/skeleton-loading), [video](https://www.youtube.com/watch?v=ZVug65gW-fc))
++Style animate loading of various elements ([video](https://www.youtube.com/watch?v=nJ81DFmgHdU&t=0s), [codepen](https://codepen.io/WebDevSimplified/pen/PoYXzPp)) - eg, centered logo moves to corner (like Gmail's logo/loading animation)
++Style implement Artist tile
++Player +Style use playing Item's albumart as background
++Player +Style hide all Player controls after timeout and show on click/tap/mousemove
++Player +Style make the logo transparent (like broadcast TV stations)
++Ratings +Style +gestures click/tap heart/star to like
++Ratings +Style +gestures long click/tap heart/star to select rating (how many hearts/stars)
++Ratings +Style +gestures drag down to dislike and skip
++Ratings +Style +gestures drag down and left to dislike, skip and never play again (trash can) 
++maybe +Android [Phonograph - github](https://github.com/kabouzeid/Phonograph)
++maybe +Android [WebAPK](https://web.dev/webapks/) - adds Intents for Android
++maybe +Android +iOS [CapacitorJS](https://capacitorjs.com/)
++maybe +Android +iOS [Publish your PWA to the iOS App Store](https://blog.pwabuilder.com/posts/publish-your-pwa-to-the-ios-app-store/)

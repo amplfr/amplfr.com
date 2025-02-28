@@ -1,0 +1,730 @@
+<html>
+  <head>
+    <title>Amplfr.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <style>
+      :root {
+        --font-color: 255 255 255;
+        --body-color: 255 255 255;
+
+        --playing-height: 4em;
+        /* --playing-height: 2em; */
+        --player-width: 33vw;
+        --logo-width: 0px;
+
+        --color: #f5e7a6;
+        --colorAccent: #0b0b18;
+      }
+      /* @media (min-width: 799px) {
+        :root {
+          --playing-height: 8em;
+        }
+      } */
+      @media (max-width: 1023px) {
+        :root {
+          --player-width: 50vw;
+        }
+      }
+      @media (max-width: 799px) {
+        :root {
+          --player-width: 100dvw;
+        }
+      }
+      button {
+        all: unset;
+        cursor: pointer;
+      }
+
+      body {
+        background-color: rgb(var(--body-color));
+        margin: 0px;
+        max-width: 100dvw;
+        width: 100dvw;
+        font-family: "Noto Sans", sans-serif;
+        font-size: 16px;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      input,
+      select,
+      button,
+      span,
+      a,
+      p {
+        /* color: rgb(var(--color)); */
+        color: rgb(var(--body-color));
+        font-family: "Noto Sans", sans-serif;
+        /* font-size: 1rem; */
+        font-weight: 400;
+        margin: 0px;
+      }
+      .nav-small {
+        --player-width: 64px;
+      }
+
+      a i.material-symbols-outlined,
+      button i.material-symbols-outlined {
+        font-size: 1em;
+        height: 1em;
+        width: 1em;
+      }
+    </style>
+    <style>
+      .item {
+        /* font-size: 1em; */
+        margin: 0 auto;
+        width: 100%;
+        height: 4em;
+        color: rgb(var(--font-color));
+        position: relative;
+        padding-left: 4em;
+        /* background: linear-gradient(90deg, var(--colorAccent) 50%, transparent); */
+        background: var(--colorAccent);
+        overflow: hidden;
+      }
+      .item * {
+        /* font-size: 1em; */
+        white-space: nowrap;
+        margin: 0px 4px;
+        vertical-align: top;
+      }
+      .item .artwork {
+        background-position: center;
+        background-size: cover;
+        height: 2em;
+        width: 2em;
+        /* filter: opacity(0.75); */
+        z-index: 1 !important;
+        color: whitesmoke;
+        aspect-ratio: 1 / 1;
+        user-select: none;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        margin: 0px;
+      }
+      .item .title {
+        font-size: 1.75em;
+        margin-right: 100vw;
+      }
+      .item .album {
+        font-style: italic;
+      }
+      .item .time {
+        font-size: 1em;
+        float: right;
+        text-shadow: 1px 1px var(--colorAccent);
+      }
+    </style>
+  </head>
+
+  <body class="">
+    <style>
+      #playing {
+        position: absolute;
+        margin: 0px;
+        padding: 0px;
+        left: 0px;
+        top: 0px;
+        color: var(--color);
+        font-size: var(--playing-height);
+        height: 1em;
+        width: 100dvw;
+        z-index: 3;
+        background: linear-gradient(90deg, var(--colorAccent) 64%, transparent);
+      }
+      #playing .item * {
+        color: var(--color);
+      }
+      #playing .item {
+        height: 100%;
+        width: calc(100dvw - (var(--playing-height) / 2) - var(--logo-width));
+        margin-left: 0px;
+        /* background: linear-gradient(90deg, var(--colorAccent) 64%, transparent); */
+        font-size: 0.25em;
+        background: unset;
+      }
+      #playing .item .artwork {
+        height: 4em;
+        width: 4em;
+      }
+      #playing button {
+        position: absolute;
+        z-index: 4;
+        margin: 0px;
+        filter: opacity(0.75);
+        color: var(--colorAccent);
+        text-align: center;
+        left: 0px;
+        top: 0px;
+        font-size: 1em;
+        height: 1em;
+        width: 1em;
+      }
+      #playing button:hover {
+        filter: drop-shadow(2px 4px 6px var(--color));
+      }
+
+      #playing .timeline-container {
+        height: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin: 0px;
+        position: relative;
+        padding: 0px;
+        touch-action: none;
+        top: -0.425em;
+        margin-left: 1em;
+        width: calc(100dvw - 1em - var(--logo-width));
+      }
+      #playing .timeline-container .timeline {
+        appearance: inherit;
+        background-color: var(--color);
+        opacity: 50%;
+        height: 4px;
+        width: calc(100% - 2em);
+        width: 100%;
+        position: relative;
+        transition: 250ms linear;
+      }
+      #playing .timeline-container .timeline .thumb-indicator {
+        --scale: 0;
+        position: absolute;
+        transform: translateX(-50%) scale(var(--scale));
+        height: 200%;
+        top: -50%;
+        left: calc(var(--progress-position) * 100%);
+        background-color: var(--colorAccent);
+        border-radius: 50%;
+        transition: transform 150ms ease-in-out;
+        transition: right 250ms linear;
+        aspect-ratio: 1 / 1;
+        filter: drop-shadow(2px 2px 4px var(--color));
+      }
+      #playing .timeline-container .timeline::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: calc(100% - var(--progress-position) * 100%);
+        background-color: var(--colorAccent);
+      }
+
+      body.fullscreen #playing {
+        position: static;
+        height: 100vmin;
+        background: var(--colorAccent);
+      }
+
+      /* @media (max-width: 800px) { */
+      :root {
+        /* --logo-width: 240px; */
+        --logo-width: 340px;
+      }
+      #playing .timeline-container {
+        width: calc(100dvw - 0.55em - var(--logo-width));
+      }
+      /* } */
+      @media (max-width: 500px) {
+        :root {
+          /* --logo-width: 88px; */
+          --logo-width: 88px;
+        }
+      }
+    </style>
+    <div id="playing">
+      <button id="play" type="button">
+        <i class="material-symbols-outlined">play_arrow</i>
+      </button>
+      <div title="Just" is="amplfr-item" class="item playing">
+        <img
+          class="artwork"
+          src="https://m.media-amazon.com/images/I/51kMh4VgbUL.jpg"
+          alt="Just"
+        />
+        <a href="//kREnNawsJqg7PFfX3LYqEy/Just" class="title" title="Just"
+          >Just</a
+        >
+        <a
+          href="//artist/dKsQCazuEHnvVqJUuiVBPV/Radiohead"
+          class="artist"
+          data-name="Radiohead"
+          data-id="artist-dKsQCazuEHnvVqJUuiVBPV"
+          title="Radiohead"
+          >Radiohead</a
+        >
+        <a
+          href="//album/bHkibgUEnX1EXb26YpKfw3/The+Bends"
+          class="album"
+          title="The Bends"
+          data-id="album-bHkibgUEnX1EXb26YpKfw3"
+          data-date="1995-01-01"
+          >The Bends</a
+        >
+        <audio
+          preload="metadata"
+          crossorigin="anonymous"
+          id="play-kREnNawsJqg7PFfX3LYqEy"
+        >
+          <source src="//api/kREnNawsJqg7PFfX3LYqEy@128.mp3" type="audio/mp3" />
+        </audio>
+        <div class="time" title="Time elapsed">0:01</div>
+      </div>
+      <div class="timeline-container" style="--progress-position: 0">
+        <div class="timeline"><div class="thumb-indicator"></div></div>
+      </div>
+    </div>
+    <style>
+      header {
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        height: var(--playing-height);
+        max-height: 64px;
+        z-index: 4;
+        color: whitesmoke;
+        filter: invert(0.75) opacity(0.75);
+        color: var(--colorAccent);
+        fill: var(--colorAccent);
+        filter: drop-shadow(-2px 2px 2px var(--color)) opacity(0.75);
+        transition: font-size 200ms;
+
+        /* width: 337px; */
+        display: inline-flex;
+      }
+      #logo {
+        /* position: fixed;
+          top: 0px;
+          right: 0px;
+          height: var(--playing-height);
+          max-height: 64px;
+          z-index: 4; */
+        height: var(--playing-height);
+        max-height: 64px;
+
+        display: flex;
+        /* color: whitesmoke;
+          filter: invert(0.75) opacity(0.75);
+          display: flex;
+          color: var(--colorAccent);
+          fill: var(--colorAccent);
+          filter: drop-shadow(-2px 2px 2px var(--color)) opacity(0.75);
+          transition: font-size 200ms; */
+      }
+      @media (max-width: 500px) {
+        #logo .wide-only {
+          display: none;
+        }
+      }
+      header > a {
+        font-size: var(--playing-height);
+        white-space: nowrap;
+        color: black;
+      }
+    </style>
+    <header>
+      <!-- prettier-ignore -->
+      <a href="/" id="logo"
+      ><svg xmlns="//www.w3.org/2000/svg" viewBox="0 0 173 187">
+        <path
+          id="logoA"
+          d="M 47.00,62.00 C 47.00,62.00 64.95,15.00 64.95,15.00 70.25,0.84 69.60,0.06 78.00,0.00 78.00,0.00 91.00,0.00 91.00,0.00 92.69,0.03 94.87,-0.07 96.30,0.99 97.85,2.14 99.36,6.16 100.15,8.00 100.15,8.00 107.85,27.00 107.85,27.00 107.85,27.00 132.42,87.00 132.42,87.00 135.50,94.33 144.84,115.57 146.00,122.00 146.00,122.00 125.00,109.60 125.00,109.60 125.00,109.60 113.84,101.68 113.84,101.68 113.84,101.68 104.81,79.00 104.81,79.00 104.81,79.00 91.69,44.00 91.69,44.00 91.69,44.00 83.00,19.00 83.00,19.00 83.00,19.00 76.98,42.00 76.98,42.00 76.98,42.00 66.00,73.00 66.00,73.00 66.00,73.00 47.00,62.00 47.00,62.00 Z M 41.00,69.00 C 41.00,69.00 69.00,85.40 69.00,85.40 69.00,85.40 111.00,110.81 111.00,110.81 111.00,110.81 138.00,127.00 138.00,127.00 138.00,127.00 138.00,129.00 138.00,129.00 138.00,129.00 72.00,169.20 72.00,169.20 72.00,169.20 41.00,187.00 41.00,187.00 41.00,187.00 41.00,69.00 41.00,69.00 Z M 31.00,103.00 C 32.82,107.60 32.00,121.34 32.00,127.00 32.00,127.00 32.00,159.00 32.00,159.00 31.98,171.17 27.55,175.11 25.00,186.00 25.00,186.00 0.00,186.00 0.00,186.00 0.00,186.00 10.80,156.00 10.80,156.00 10.80,156.00 31.00,103.00 31.00,103.00 Z M 130.00,144.00 C 130.00,144.00 151.00,132.00 151.00,132.00 151.00,132.00 173.00,186.00 173.00,186.00 173.00,186.00 153.00,186.00 153.00,186.00 153.00,186.00 145.81,184.40 145.81,184.40 145.81,184.40 140.32,172.00 140.32,172.00 140.32,172.00 130.00,144.00 130.00,144.00 Z"
+        ></path></svg><svg
+        class="wide-only"
+        xmlns="//www.w3.org/2000/svg"
+        viewBox="0 0 567 243">
+        <path
+          id="logomplfr"
+          d="M426 37C426 32 426.4 26.9 427.8 22 428.7 18.6 430.1 15.9 432.1 13 439.6 2.2 452.7 0 465 0 465 0 486 2 486 2 486 2 483.6 16 483.6 16 483.3 17.8 483 20.8 481.4 22 479.1 23.7 473.8 22.3 471 22 465.3 21.7 458.3 22.9 454.3 27.2 448.5 33.3 450 46.9 450 55 450 55 476 55 476 55 476 55 476 73 476 73 476 73 450 73 450 73 450 73 450 191 450 191 450 191 426 191 426 191 426 191 426 73 426 73 426 73 406 73 406 73 406 73 406 55 406 55 406 55 426 55 426 55 426 55 426 37 426 37ZM386 3C386 3 386 191 386 191 386 191 362 191 362 191 362 191 362 3 362 3 362 3 386 3 386 3ZM53 52.2C53 52.2 67 52.2 67 52.2 73.6 52.1 80.3 53.8 86 57.2 94.8 62.4 95.6 66.5 101 74 107.2 62.5 120.2 54.2 133 52.2 133 52.2 146 52.2 146 52.2 160 52.2 172.5 58 179 71 185.3 83.6 184 100.2 184 114 184 114 184 191 184 191 184 191 160 191 160 191 160 191 160 102 160 102 160 94.4 159.2 85.9 153.8 80.1 140.5 65.6 116.4 74.1 108.4 90 103 100.7 104 115.3 104 127 104 127 104 191 104 191 104 191 80 191 80 191 80 191 80 102 80 102 80 94.7 78.8 85.7 73.8 80 61.6 66.2 37.5 73.1 28.8 90 23.2 101 24 115.9 24 128 24 128 24 191 24 191 24 191 0 191 0 191 0 191 0 55 0 55 0 55 21 55 21 55 21 55 22 72 22 72 27.8 61.3 41.1 53.8 53 52.2ZM305 57.9C310.4 60.9 316.7 66.2 320.5 71 339.8 95.5 340.6 142 323.9 168 310.4 189.1 280.6 200.9 257 190.1 250.2 187 246 183.3 241 178 241 178 241 243 241 243 241 243 217 243 217 243 217 243 217 55 217 55 217 55 239 55 239 55 239 55 240 71 240 71 250.4 49.1 286.1 47.6 305 57.9ZM552 52.7C555.6 53.4 565.2 56.4 566.2 60.2 566.7 62.1 565.3 65.2 564.7 67 564.7 67 559 81 559 81 552.8 79.2 546.7 75.5 540 76.5 522 79.1 517 99.7 517 115 517 115 517 191 517 191 517 191 493 191 493 191 493 191 493 55 493 55 493 55 514 55 514 55 514 55 515 73 515 73 522.3 56.8 534.1 48.9 552 52.7ZM241.7 146C246.2 161.1 256.2 173.3 273 174 288.3 174.6 300.9 164.9 306.6 151 308.6 145.9 309.4 141.4 310.3 136 313.9 113.8 309.5 77.6 283 71.4 279.4 70.7 273.7 70.9 270 71.4 239.6 78.2 234.3 120.9 241.7 146Z"
+        ></path></svg></a
+
+      ><a href="/upload" id="upload" title="Upload">
+        <i class="material-symbols-outlined">cloud_upload</i></a
+      ><a href="/search" id="upload" title="Search">
+        <i class="material-symbols-outlined">search</i></a
+      >
+    </header>
+    <style>
+      nav {
+        position: fixed;
+        margin: 0px;
+        padding: 0px;
+        left: 0px;
+        height: calc(100dvh - (var(--playing-height)) / 1);
+        width: var(--player-width);
+        max-width: 640px;
+        display: inline-flex;
+        flex-direction: column;
+        overflow-x: clip;
+        transition: width 300ms;
+        box-shadow: 0 0 2px 1px black;
+        backdrop-filter: blur(15px) contrast(0.55);
+      }
+      nav > a,
+      nav button {
+        font-size: 2em;
+        white-space: nowrap;
+        text-shadow: -1px -1px black;
+      }
+      nav a *,
+      nav button * {
+        vertical-align: middle;
+        line-height: 2em;
+      }
+      nav a i.material-symbols-outlined,
+      nav button i.material-symbols-outlined {
+        font-size: 2em;
+        color: var(--color);
+        color: rgb(var(--body-color));
+      }
+      nav a {
+        text-decoration: none;
+      }
+      nav #upload {
+        margin-top: auto;
+      }
+      ol#items {
+        margin-block: 0px;
+        padding-left: 0px;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 0px;
+        list-style-type: none;
+        position: relative;
+        background-color: rgb(var(--font-color));
+        color: rgb(var(--body-color));
+      }
+      ol#items > li {
+        counter-increment: doc;
+        cursor: pointer;
+        width: calc(100% - 4em);
+      }
+      ol#items > li::before {
+        content: counter(doc);
+        text-align: center;
+        position: absolute;
+        font-size: 3.5em;
+        width: 1.15em;
+        line-height: 1.15em;
+        /* color: whitesmoke; */
+        color: rgb(var(--body-color));
+        text-shadow: 0px 0px 8px rgb(0 0 0);
+        z-index: 2;
+        /* opacity: 0.75; */
+      }
+      ol#items > li .item .artwork {
+        font-size: 2em;
+      }
+
+      @media (max-width: 800px) {
+        nav {
+          max-width: 100dvw;
+        }
+      }
+    </style>
+    <nav>
+      <div id="player"></div>
+      <!-- <button id="search" type="button" title="Search">
+        <i class="material-symbols-outlined">search</i>
+        Search & News
+      </button> -->
+      <ol id="items">
+        <li>
+          <div
+            title="Smells Like Teen Spirit"
+            is="amplfr-item"
+            class="item"
+            style="--color: #322d2c; --colorAccent: #b7b4b3"
+          >
+            <img
+              class="artwork"
+              src="https://m.media-amazon.com/images/I/51xJuE2zAwL._UX358_FMwebp_QL85_.jpg"
+              alt="Smells Like Teen Spirit"
+            /><a
+              href="//6HrUVPVYS3PNDJJ4zmQrJw/Smells+Like%20Teen%20Spirit"
+              class="title"
+              title="Smells Like Teen Spirit"
+              >Smells Like Teen Spirit</a
+            >
+            <a
+              href="//artist/mEa7ryXmexWF4qGBrUDf7g/Nirvana"
+              class="artist"
+              data-name="Nirvana"
+              data-area="Aberdeen, US"
+              data-id="artist-mEa7ryXmexWF4qGBrUDf7g"
+              title="Nirvana"
+              >Nirvana</a
+            >
+            <a
+              href="//album/0000000000000000000000/With+the+Lights+Out"
+              class="album"
+              title="With the Lights Out"
+              >With the Lights Out</a
+            >
+            <div class="time">0:00</div>
+          </div>
+        </li>
+        <li>
+          <div
+            title="My Annie"
+            is="amplfr-item"
+            class="item"
+            style="--color: #36110c; --colorAccent: #988c5a"
+          >
+            <img
+              class="artwork"
+              src="https://m.media-amazon.com/images/I/4187EYXP9PL.jpg"
+              alt="My Annie"
+            /><a
+              href="//hdhjfv5sbnGhm6gvvBQmBD/My+Annie"
+              class="title"
+              title="My Annie"
+              >My Annie</a
+            >
+            <a
+              href="//artist/oAf7C1VHUL8qy2UujSgnsw/Craig's+Brother"
+              class="artist"
+              data-name="Craig's Brother"
+              data-area="US"
+              data-id="artist-oAf7C1VHUL8qy2UujSgnsw"
+              title="Craig's Brother"
+              >Craig's Brother</a
+            >
+            <a
+              href="//album/0000000000000000000000/Homecoming"
+              class="album"
+              title="Homecoming"
+              >Homecoming</a
+            >
+            <div class="time">0:00</div>
+            <audio
+              preload="metadata"
+              crossorigin="anonymous"
+              id="play-hdhjfv5sbnGhm6gvvBQmBD"
+            >
+              <source
+                src="//api/hdhjfv5sbnGhm6gvvBQmBD@160.mp3"
+                type="audio/mp3"
+              />
+              <source
+                src="//api/hdhjfv5sbnGhm6gvvBQmBD@128.mp3"
+                type="audio/mp3"
+              />
+            </audio>
+          </div>
+        </li>
+        <li>
+          <div
+            title="Fix You"
+            is="amplfr-item"
+            class="item"
+            style="--color: #dc8542; --colorAccent: #050521"
+          >
+            <img
+              class="artwork"
+              src="https://m.media-amazon.com/images/I/2129S41QTZL.jpg"
+              alt="Fix You"
+            /><a
+              href="//aUrL68afopDCZH7m32qnrE/Fix+You"
+              class="title"
+              title="Fix You"
+              >Fix You</a
+            >
+            <a
+              href="//artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+              class="artist"
+              data-name="Coldplay"
+              data-area="London, GB"
+              data-id="artist-wSv42DNe1JPrei75iEqub7"
+              title="Coldplay"
+              >Coldplay</a
+            ><a
+              href="/album/wJn6t2tuMkKu82KcmmKMSp/X%38Y"
+              class="album"
+              title="X&amp;Y (2005)"
+              data-id="album-wJn6t2tuMkKu82KcmmKMSp"
+              data-year="2005"
+              data-date="2005-06-06"
+              >X&amp;Y</a
+            >
+            <div class="time">0:00</div>
+            <audio
+              preload="metadata"
+              crossorigin="anonymous"
+              id="play-aUrL68afopDCZH7m32qnrE"
+            >
+              <source
+                src="//api/aUrL68afopDCZH7m32qnrE@128.mp3"
+                type="audio/mp3"
+              />
+            </audio>
+          </div>
+        </li>
+        <li>
+          <div
+            title="Speed of Sound"
+            is="amplfr-item"
+            class="item"
+            style="--color: #ce7948; --colorAccent: #060522"
+          >
+            <img
+              class="artwork"
+              src="https://m.media-amazon.com/images/I/2129S41QTZL.jpg"
+              alt="Speed of Sound"
+            /><a
+              href="//eDu4Y113AnxWJCdqpnCrHv/Speed+of%20Sound"
+              class="title"
+              title="Speed of Sound"
+              >Speed of Sound</a
+            >
+            <a
+              href="/artist/wSv42DNe1JPrei75iEqub7/Coldplay"
+              class="artist"
+              data-name="Coldplay"
+              data-area="London, GB"
+              data-id="artist-wSv42DNe1JPrei75iEqub7"
+              title="Coldplay"
+              >Coldplay</a
+            ><a
+              href="/album/wJn6t2tuMkKu82KcmmKMSp/X%38Y/X&amp;Y"
+              class="album"
+              title="X&amp;Y (2005)"
+              data-id="album-wJn6t2tuMkKu82KcmmKMSp"
+              data-year="2005"
+              data-date="2005-06-06"
+              >X&amp;Y</a
+            >
+            <div class="time">0:00</div>
+          </div>
+        </li>
+        <li>
+          <div
+            title="Monkey Wrench"
+            is="amplfr-item"
+            class="item"
+            style="--color: #252a5f; --colorAccent: #af142c"
+          >
+            <img
+              class="artwork"
+              src="https://m.media-amazon.com/images/I/61ZFtaZZXyL._SY355_.jpg"
+              alt="Monkey Wrench"
+            /><a
+              href="//wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench"
+              class="title"
+              title="Monkey Wrench"
+              >Monkey Wrench</a
+            >
+            <a
+              href="//artist/mTKCx7T69sv7EkfSHaDtPb/Foo+Fighters"
+              class="artist"
+              data-name="Foo Fighters"
+              data-area="Seattle, US"
+              data-id="artist-mTKCx7T69sv7EkfSHaDtPb"
+              title="Foo Fighters"
+              >Foo Fighters</a
+            >
+            <a
+              href="//album/0000000000000000000000/The+Color+and+the+Shape"
+              class="album"
+              data-name="The Color and the Shape"
+              title="The Color and the Shape"
+              >The Color and the Shape</a
+            >
+            <div class="time">0:00</div>
+          </div>
+        </li>
+      </ol>
+      <button id="add" type="button">
+        <i class="material-symbols-outlined">playlist_add</i>Add
+      </button>
+      <!-- <button id="playlist" type="button" title="Playlists">
+        <i class="material-symbols-outlined">format_list_numbered</i>Playlists
+      </button> -->
+      <button id="library" type="button" title="Show my Library">
+        <i class="material-symbols-outlined">video_library</i>Library &
+        Subscriptions
+      </button>
+      <button id="audio" type="button" title="Music, Podcasts & Audio">
+        <i class="material-symbols-outlined">volume_up</i>Music, Podcasts &
+        Audio
+      </button>
+      <button id="video" type="button" title="Movies, TV & Video">
+        <i class="material-symbols-outlined">movie</i>Movies, TV & Video
+      </button>
+      <!-- <a href="/upload" id="upload" title="Upload">
+        <i class="material-symbols-outlined">cloud_upload</i>Upload</a
+      > -->
+      <a href="/account" id="account" title="Account Settings">
+        <i class="material-symbols-outlined">manage_accounts</i>Account
+        Settings</a
+      >
+      <button id="menu" type="button" title="Show/Collapse menu">
+        <i class="material-symbols-outlined">menu_open</i>More
+      </button>
+    </nav>
+    <script>
+      const dom_body = document.querySelector("body");
+      const togglePlaylist = (visible = null) => {
+        // dom_body.classList.toggle("nav-small", visible);
+      };
+
+      const dom_nav_show_nav = document.querySelector("button#menu");
+      /**
+       *
+       */
+      dom_nav_show_nav.onclick = (e) => {
+        e.preventDefault();
+        const t = e.currentTarget.firstElementChild;
+        const isVisible = t.innerText == "menu_open";
+
+        // togglePlaylist(isVisible);
+        dom_body.classList.toggle("nav-small", isVisible);
+        t.innerText = !!isVisible ? "menu" : "menu_open";
+      };
+
+      window.onload = () => {};
+    </script>
+    <style>
+      main {
+        width: calc(100dvw - var(--player-width));
+        margin: 0px;
+        margin-top: var(--playing-height);
+        margin-left: var(--player-width);
+        padding: 0px;
+        background-color: green;
+        overflow-x: auto;
+      }
+      body.fullscreen main {
+        margin-top: 0px;
+      }
+    </style>
+    <main></main>
+    <style>
+      footer {
+        position: fixed;
+        margin: 0px;
+        padding: 0px;
+        bottom: 0px;
+        right: 0px;
+        height: 4em;
+        width: calc(100dvw - var(--player-width));
+        background-color: gray;
+      }
+    </style>
+    <!-- <footer></footer> -->
+  </body>
+</html>

@@ -6,6 +6,23 @@ button {
   font-size: 16px;
   font-family: "Noto Sans", sans-serif;
 }
+/* .collection:before {
+  content: "";
+  height: 4em;
+  position: relative;
+  top: 0px;
+  width: 100%;
+  display: block;
+} */
+.collection .item {
+  content: "";
+  height: 4em;
+  position: relative;
+  top: 0px;
+  width: 100%;
+  display: block;
+}
+
 .collection .artwork {
   /* background-position: center; */
   /* background-size: cover; */
@@ -279,4 +296,8 @@ div#queue.landscape #playing {
   position: fixed;
   height: 100vmin;
   width: 100vmin;
+}
+
+amplfr-collection .item:not(.active) button.play {
+  display: none;
 }

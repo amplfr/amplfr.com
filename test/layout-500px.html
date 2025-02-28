@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="App">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <!-- this originates from [Pure CSS implementation of Google Photos / 500px image layout · Issue #6 · xieranmaya/blog](https://github.com/xieranmaya/blog/issues/6)
+      JS Bin - [JS Bin - Collaborative JavaScript Debugging](https://jsbin.com/mexuvijuhi/edit?html,css,js,output)
+      demo - [Cats](https://xieranmaya.github.io/images/cats/cats.html)
+    -->
+    <title>Google Photos / 500px image layout</title>
+    <!-- <base href="https://xieranmaya.github.io/images/cats/" /> -->
+
+    <script>
+      angular
+        .module("App", [])
+        .controller("ImageLayout", ImageLayout);
+
+      function ImageLayout($scope, $http) {
+        $http
+          .get("https://xieranmaya.github.io/images/cats/cats.json")
+          .success(function (imgs) {
+            $scope.imgs = imgs;
+          });
+      }
+    </script>
+  </head>
+  <body ng-controller="ImageLayout">
+    <style>
+      section.masonry {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      section.masonry::after {
+        content: "";
+        flex-grow: 999999999;
+      }
+      section.masonry > div {
+        margin: 2px;
+        background-color: violet;
+        position: relative;
+      }
+      section.masonry > div i {
+        display: block;
+      }
+      section.masonry > div img {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        vertical-align: bottom;
+      }
+    </style>
+
+    <section class="masonry orginal">
+        <!-- prettier-ignore -->
+        <div ng-repeat="img in imgs" style="width:{{img.width*200/img.height}}px; flex-grow:{{img.width*200/img.height}}">
+        <i style="padding-bottom:{{img.height/img.width*100}}%"></i>
+        <!-- prettier-ignore -->
+        <img src="https://xieranmaya.github.io/images/cats/{{img.url}}" alt=""/>
+      </div>
+    </section>
+
+    <section class="masonry working">
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/12XkFAJdUHxFBjorvhpgKw.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/14mBwCSAqyibxKhHCNHPij.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/174qJNfqKzgxiq8KJejpg8.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/22V3C5Y8gEZSNRyiWAJ7AN.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/242dZfLEKzsxKaRNXDKWSM.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/25a8LN9NXb52JeqW1drtXa.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/2jgiNm6kn2vhRgswokxkyG.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/2VKmHaMfsnDYvrL8FfpdwL.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/2VrnohpGSo86EjPAeK2gM8.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/2xsMsQVecdXeksb8BypRc6.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/2xWBDeK2eDCSv9gc2BizTv.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/333geSwRHGfDCyUHBQFXLa.jpg"></div>
+        <!-- prettier-ignore -->
+        <!-- <div><i></i><img src="/albumart/379TuPZL2pQxgAdibfjepw.jpg" /></div> -->
+        <!-- prettier-ignore -->
+        <div><i></i>
+            <div class="twitter-tweet twitter-tweet-rendered" style="display: flex; max-width: 550px; width: 100%; margin-top: 10px; margin-bottom: 10px;"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="" style="position: static; visibility: visible; width: 250px; height: 230px; display: block; flex-grow: 1;" title="X Post" src="https://platform.twitter.com/embed/Tweet.html?dnt=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideCard=false&amp;hideThread=false&amp;id=1782138667739324525&amp;lang=en&amp;origin=https%3A%2F%2Flocalhost%3A8080%2Ftest%2F&amp;sessionId=fc88dc04ba73bc74caf443bb9bf6150b1efd9136&amp;theme=light&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716&amp;width=550px" data-tweet-id="1782138667739324525"></iframe></div>
+            <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+        </div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3AjoTMX8u16JyaZQ2VbWCz.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3dh3NcqDpdceXa2VxvEvRj.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3Fg5wFLxUktZuk5EJnVWsm.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3gHASdnym64pGcrwUKJYnn.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3jwFMNethqPR912LRRZBSL.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3KN9carDaWHD5zZeWtUQRv.jpg"></div>
+        <!-- <div><i></i><img src="/albumart/3NLhHcY8QdziyEPjJiaXBE.jpg" /></div> -->
+        <!-- prettier-ignore -->
+        <div><i></i><amplfr-audio class="block-inner" data-id="rWxxfBZRqNipUTaQ63AX8q"></amplfr-audio></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3QvRBzyzndeATJ1nfbF4hj.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3snT4fEVwfarRjFDWA8N4v.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3Umi6gWd7pm6zwatgUVnZ8.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/3yxKVn3EfRXtxcCvHbuczL.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/43bVzFhmfH3ezYvabEn3Ba.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/45esWPA7isAwnWo5FK48LC.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/48XhHUTwMESnjWwbV8HzZK.jpg"></div>
+        <!-- prettier-ignore -->
+        <div><i></i><img src="/albumart/4d5KGaRxKPLbzMaQquZYh9.jpg"></div>
+      </div>
+    </section>
+    <script>
+        scaleDivByImage = (img) => {
+            const div = img.parentElement
+            const i = div.querySelector("i")
+
+            // if (img == null)
+            //     img = div.querySelector("img")
+
+            const SCALE = 300
+
+            const scaledWidth = img.naturalWidth * SCALE / img.naturalHeight
+            const paddingBottom = img.naturalHeight / img.naturalWidth * 100
+
+            i.style.paddingBottom = `${paddingBottom}%`
+            div.style.width = `${scaledWidth}px`
+            div.style.flexGrow = scaledWidth
+        }
+
+        // document.querySelectorAll("section.masonry.working div").forEach(div => {
+        //     const img = div.querySelector("img")
+
+        //     if (img.complete)
+        //         scaleDivByImage(div, img)
+        //     else {
+        //         img.addEventListener("load", function (ev) {
+        //             const img = ev.target
+        //             const div = img.parent
+        //             scaleDivByImage(div, img)
+        //         });
+        //     }
+        // })
+        document.querySelectorAll("section.masonry.working div img").forEach(img => {
+            // const img = div.querySelector("img")
+
+            if (img.complete) {
+                scaleDivByImage(img)
+            }
+            else {
+                img.addEventListener("load", function (ev) {
+                    const img = ev.target
+                    scaleDivByImage(img)
+                });
+            }
+        })
+    </script>
+</body>
+</html>

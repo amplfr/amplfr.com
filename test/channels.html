@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amplfr Channels</title>
+  </head>
+  <body>
+    <style>
+      .channels {
+        overflow-x: scroll;
+      }
+      .channel {
+        display: flex;
+        flex-direction: row;
+        height: 2rem;
+      }
+      .episode {
+        width: 200px;
+        width: calc(200px * var(--hour, 1));
+        border: 2px black;
+      }
+    </style>
+    <section class="channels">
+      <div class="channel">
+        <img src="/img/icons_OLD/audio.png" alt="" />
+        TBS
+        <details class="episode">
+          <summary class="episode">Law and Order: SVU</summary>
+        </details>
+        <details class="episode">
+          <summary class="episode">Law and Order: Criminal Intent</summary>
+        </details>
+      </div>
+      <div class="channel">
+        <img src="/img/icons_OLD/people.png" alt="" />
+        Cartoon Network
+        <details class="episode">
+          <summary class="episode">The Amazing World of Gumball</summary>
+        </details>
+        <details class="episode">
+          <summary class="episode">The Amazing World of Gumball</summary>
+        </details>
+        <details class="episode">
+          <summary class="episode">The Amazing World of Gumball</summary>
+        </details>
+      </div>
+    </section>
+  </body>
+</html>

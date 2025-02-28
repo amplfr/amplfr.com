@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Amplfr.com</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href="/home/matt/.pandoc/github-markdown.css" />
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Amplfr.com</h1>
+</header>
+<h1 id="amplfrcom"><a href="//amplfr.com/">Amplfr.com</a></h1>
+<p>Website that plays media - audio, audio/video - files sourced from <a
+href="//amplfr.com/">amplfr.com</a> using <a
+href="//amplfr.github.io/api/">Amplfr API</a>, other Providers, and
+possibly the local device. Base HTML page (for backwards compatibility,
+for more browsers to be able to render), with feature detection and
+loading.</p>
+<p>Main page consists of <a href="#player">Player/Queue</a>, Search, and
+Body.</p>
+<h2 id="player">Player</h2>
+<p>Uses <a href="#AmplfrQueue">AmplfrQueue</a> to handle loading,
+playback, and queueing of multiple items (as well as albums, playlists,
+and other collections). Uses GET /api/queue to pull down current list of
+items. Only one item can be played at a time. A user may add additional
+items, rearrange already queued items, as well as remove items.</p>
+<h3 id="playing-items">playing Items</h3>
+<ul>
+<li>primarily cares about User's <a href="api.md#Playlists">_QUEUE</a>
+built-in playlist (publicly known as Playing)
+<ul>
+<li>User can enqueue/replace contents of another Playlist into <a
+href="api.md#Playlists">_QUEUE</a></li>
+</ul></li>
+<li>any changes/additions/deletions made to User's Playlist are sent to
+<a href="api.md#Playlists">Playlist</a> as soon as possible
+<ul>
+<li>allows User to "take his/her Playing playlist with him/her", easily
+switch Clients/Devices</li>
+</ul></li>
+<li>Player lists at least 2 recommended Items to enqueue/play-next to
+encourage User to keep playing</li>
+<li>each recommended Item's options are:
+<ul>
+<li>play now</li>
+<li>play next in <a href="api.md#Playlists">_QUEUE</a></li>
+<li>append to <a href="api.md#Playlists">_QUEUE</a> (default)</li>
+<li>not now (dismiss recommended Item and get another
+recommendation)</li>
+<li>not ever (dismiss recommended Item and get another
+recommendation)</li>
+</ul></li>
+</ul>
+<h3 id="prefetch-next-items-in-_queue">prefetch next Items in <a
+href="api.md#Playlists">_QUEUE</a></h3>
+<ul>
+<li>Service Worker keeps Queue synchronized with Service</li>
+<li>Service Worker downloads Items in Queue
+<ul>
+<li>downloads at least the beginning of Item(s) that User <em>may</em>
+play for smooth playback</li>
+</ul></li>
+</ul>
+<h2 id="search">Search</h2>
+<p>Sends and presents search queries to POST /api/search. Presents the
+returned results Lists suggested searches and available filters. Does
+basic validation (as possible) before submission Use available OpenAPI
+documents to list available filters/options (and their valid ranges) as
+well as help with validation Presented as a panel that may be hidden and
+revealed when needed</p>
+<h2 id="body">Body</h2>
+<p>Presents recommended/suggested albums, items.</p>
+<h2 id="elements">Elements</h2>
+<h3 id="amplfritem">AmplfrItem</h3>
+<p>Javascript class that takes a media URL and creates everything needed
+to play it back</p>
+<ul>
+<li><p>handles</p>
+<ul>
+<li>setup media</li>
+<li>play/pause</li>
+<li>stop</li>
+<li>share</li>
+</ul></li>
+<li><p>todo</p>
+<ul>
+<li>[!] <a href="notes.md#Other_Providers">other providers</a></li>
+</ul>
+<ul class="task-list">
+<li><input type="checkbox" disabled="" />
+add to AmplfrQueue function and control</li>
+<li><input type="checkbox" disabled="" checked="" />
+scale everything based on container size and not whole document
+dimensions</li>
+<li><input type="checkbox" disabled="" />
+pull out non-core functionality into modules as appropriate<ul
+class="task-list">
+<li><input type="checkbox" disabled="" checked="" />
+minify JS files into a single minified file using <a
+href="https://github.com/terser/terser">terser</a></li>
+</ul></li>
+<li><input type="checkbox" disabled="" checked="" />
+basic (yet correct) <a href="https://github.com/jsdoc/jsdoc">jsdoc</a>
+in code document generation</li>
+<li><input type="checkbox" disabled="" />
+separate playing from displaying, so it can be display only with ability
+to "upgrade" to playing</li>
+</ul>
+<ul>
+<li></li>
+</ul></li>
+</ul>
+<h3 id="playhtml">Play.html</h3>
+<p>Webpage plays a single file via AmplfrItem <a
+href="https://amplfr.com/play?title=Rhapsody%20in%20Blue&amp;artist=George%20Gershwin&amp;artwork=/test/Rhapsody_in_Blue_cover.jpg&amp;src=/test/US_Marine_Band_Rhapsody_in_Blue.oga">Rhapsody
+in Blue test</a></p>
+<ul>
+<li>handles
+<ul>
+<li>passes given URL</li>
+<li>cast controls - navigator.mediaSession</li>
+<li>whats next/ related</li>
+</ul></li>
+</ul>
+<h3 id="amplfrcollection">AmplfrCollection</h3>
+<p>Javascript class that extends AmplfrItem class to handle multiple
+AmplfrItems in a (immutable) Collection A Collection can be:</p>
+<ul>
+<li><p>an Album - a static list of Items</p></li>
+<li><p>an Artist - a (unique) set of Items all by the same
+Artist</p></li>
+<li><p>a Playlist - a list of Items added/edited by its Owning
+User</p></li>
+<li><p>a Portfolio - a (unique) set of Items</p></li>
+<li><p>a Channel - an in-order set of Items, with possibility of
+additional Items added over time</p></li>
+<li><p>handles</p>
+<ul>
+<li>previous</li>
+<li>next</li>
+<li>shuffle</li>
+<li><a href="https://web.dev/web-share-target/">share target</a></li>
+<li>changing current item</li>
+<li>(get) length - number of items</li>
+<li>current - gets/sets current item</li>
+<li>contains(itemID) - returns true if item is in Collection</li>
+</ul></li>
+<li><p>todo</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled="" />
+migrate appropriate features from Queue<ul class="task-list">
+<li><input type="checkbox" disabled="" />
+cast controls - navigator.mediaSession</li>
+</ul></li>
+<li><input type="checkbox" disabled="" />
+add to AmplfrQueue function and control</li>
+<li><input type="checkbox" disabled="" />
+separate playing from displaying, so it can be display only with ability
+to "upgrade" to playing</li>
+</ul></li>
+</ul>
+<h3 id="amplfrqueue">AmplfrQueue</h3>
+<p>Javascript class that extends AmplfrCollection class to allow a
+modifiable collection</p>
+<ul>
+<li><p>handles</p>
+<ul>
+<li>adding additional AmplfrItems, AmplfrCollections
+<ul>
+<li>What's Next option</li>
+<li>drag and drop</li>
+</ul></li>
+<li>can rearrange Items</li>
+<li>includes Filters to order and distill what to play now</li>
+<li>can display User's history</li>
+<li>includes search bar and filters</li>
+</ul></li>
+<li><p>todo</p>
+<ul>
+<li>migrate appropriate features from Queue</li>
+<li>everything else</li>
+</ul></li>
+</ul>
+<h2 id="pwa">PWA</h2>
+<p>Uses Progressive Web App (PWA) features (see <a
+href="https://web.dev/app-like-pwas/">this doc</a>) to provide enhanced
+abilities, such as:</p>
+<ul>
+<li><p><a
+href="https://web.dev/app-like-pwas/#offline-content-available-and-media-playable">offline
+content available</a></p></li>
+<li><p><a
+href="https://web.dev/app-like-pwas/#state-synchronized-over-the-cloud">State
+synchronized over the cloud</a></p></li>
+<li><p><a
+href="https://web.dev/app-like-pwas/#quick-actions-in-context-menu">quick
+actions in context menu</a> via <a
+href="https://web.dev/app-shortcuts/">app shortcuts</a></p></li>
+<li><p><a
+href="https://web.dev/app-like-pwas/#content-surfaced-outside-of-app">content
+surfaced outside of app</a></p></li>
+<li><p><a
+href="https://web.dev/app-like-pwas/#lock-screen-media-control-widget">Lock
+screen media control widget</a> with the <a
+href="https://web.dev/media-session/">Media Session API</a></p></li>
+<li><p><a
+href="https://web.dev/app-like-pwas/#sharing-to-and-interacting-with-other-applications">sharing
+with other applications</a></p>
+<ul>
+<li><p>see <a href="">js/sharing.js</a></p></li>
+<li><p>allows User to share to another App (especially Android, maybe
+iOS)</p></li>
+<li><p>use <a href="#shortner">internal URL shortner</a> using first 6
+characters of ID and the whole Title/Name</p>
+<table>
+<thead>
+<tr class="header">
+<th>Shortened URL</th>
+<th>Actual URL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a
+href="https://amplfr.com/aUrL68/Fix+You">https://amplfr.com/aUrL68/Fix+You</a></td>
+<td><a
+href="https://amplfr.com/aUrL68afopDCZH7m32qnrE/Fix+You">https://amplfr.com/aUrL68afopDCZH7m32qnrE/Fix+You</a></td>
+</tr>
+<tr class="even">
+<td><a
+href="https://ampl.fr/@user/wWXnqZ/Monkey+Wrench">https://ampl.fr/@user/wWXnqZ/Monkey+Wrench</a></td>
+<td><a
+href="https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench">https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench</a></td>
+</tr>
+<tr class="odd">
+<td><a
+href="https://amplfr.com/@user/wWXnqZ/Monkey+Wrench">https://amplfr.com/@user/wWXnqZ/Monkey+Wrench</a></td>
+<td><a
+href="https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench">https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench</a></td>
+</tr>
+<tr class="even">
+<td>https://<a
+href="mailto:user@amplfr.com">user@amplfr.com</a>/wWXnqZ/Monkey+Wrench</td>
+<td><a
+href="https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench">https://amplfr.com/wWXnqZ4ieknmWq2wUWb8oP/Monkey+Wrench</a></td>
+</tr>
+</tbody>
+</table></li>
+<li><p>use <a href="https://github.com/datalog/qrcode-svg">QR
+Code-svg</a> to generate on screen QR code for the share URL</p></li>
+<li><p>include Queue's items in the URL (hash) (<a
+href="https://www.scottantipa.com/store-app-state-in-urls">source</a>)</p>
+<ul>
+<li>can safely use up to ~2083 characters in a URL, so up to about 90
+IDs</li>
+<li>can compress longer hash URLs with <a
+href="https://github.com/pieroxy/lz-string">pieroxy/lz-string</a>.compress()
+and Base64.encode() (also decompress)
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode javascript"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> stateString <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(appState)<span class="op">;</span> <span class="co">// appState is a json object</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> compressed <span class="op">=</span> <span class="fu">compress</span>(stateString)<span class="op">;</span> <span class="co">// using lz-string&#39;s compress</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> encoded <span class="op">=</span> Base64<span class="op">.</span><span class="fu">encode</span>(compressed)<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Push that `encoded` string to the url - specifically to window.location.hash</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">// ... Later, on page load or on undo/redo we read the url and</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">// do the following</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> decoded <span class="op">=</span> Base64<span class="op">.</span><span class="fu">decode</span>(encoded)<span class="op">;</span> <span class="co">// same encoded as above, but read from url</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> uncompressed <span class="op">=</span> <span class="fu">uncompress</span>(decoded)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> newState <span class="op">=</span> <span class="bu">JSON</span><span class="op">.</span><span class="fu">parse</span>(uncompressed)<span class="op">;</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">// Now load your application with the newState</span></span></code></pre></div></li>
+<li>URL hash is decompressed and then each ID is fetched</li>
+<li>Any addition/removal of an item causes the window.history to be
+updated
+<ul>
+<li>get free undo/redo with the browser's back/forward buttons</li>
+<li>map Ctrl-Z/Shift-Ctrl-Z to window.history's .back()/.forward()</li>
+</ul></li>
+<li>current item is currently selected, with the following item IDs
+following in the URL</li>
+</ul></li>
+</ul></li>
+<li><p>Media sources</p>
+<ul>
+<li>plays media from Amplfr.com using <a
+href="api.md#Content-Stream">Content-Stream</a>/<a
+href="api.md#Content-Torrent">Content-Torrent</a> for Content Item data
+<ul>
+<li>default option to stream dynamically, based on speed, congestion,
+etc.</li>
+<li>allow User to force high-definition stream
+<ul>
+<li>User is willing to wait up-front in exchange for better quality</li>
+<li>probably need to be a premium $ add-on</li>
+</ul></li>
+<li>handles playing Advertisements as appropriate</li>
+</ul></li>
+<li>uses other <a href="api.md">Amplfr API</a> services
+<ul>
+<li><a href="api.md#Metadata">Metadata</a> to provide additional info
+about the Items</li>
+<li><a href="api.md#Recognition">Recognition</a> to identify what is
+playing</li>
+<li><a href="api.md#Recommendation">Recommendation</a> to suggest
+additional Items</li>
+<li><a href="api.md#Playlists">Playlist</a> to handle Playlist
+management, especially <a href="api.md#Playlists_QUEUE">_QUEUE</a></li>
+</ul></li>
+<li>plays media from <a href="#Other_Providers">other Providers</a>
+<ul>
+<li>User has to have an active account with the Other Provider to be
+able to playback from that Provider</li>
+</ul></li>
+<li>plays media from <a href="#local_media_playback">local
+device</a></li>
+</ul></li>
+</ul>
+<h3 id="service-worker">Service Worker</h3>
+<p>Service Worker (SW, probably sw.js) handles most of the needed
+processing to enable PWA features</p>
+<h3 id="link-capturingcaching">link capturing/caching</h3>
+<p>SW intercepts URL requests - e.g., via fetch() - to fulfill from
+cache, based on the location and desired strategy.</p>
+<p>TODO</p>
+<ul class="task-list">
+<li><input type="checkbox" disabled="" />
+setup initial sw.js</li>
+<li><input type="checkbox" disabled="" />
+setup basic caching for page elements<ul>
+<li>CSS, Javascript, etc. files</li>
+<li>probably use <a
+href="https://developer.chrome.com/docs/workbox/caching-strategies-overview/#stale-while-revalidate">Stale
+while revalidate</a></li>
+</ul></li>
+<li><input type="checkbox" disabled="" />
+setup to <a
+href="https://developer.chrome.com/docs/workbox/serving-cached-audio-and-video/">serve
+cached audio and video</a><ul>
+<li>for media files</li>
+<li>use <a
+href="https://developer.chrome.com/docs/workbox/caching-resources-during-runtime/#setting-an-expiry-for-cache-entries">ExpirationPlugin</a>
+to evict more than <code>maxEntries</code> so as to not fill up the
+storage</li>
+</ul></li>
+<li><input type="checkbox" disabled="" />
+setup separate cache for images<ul>
+<li>image files</li>
+<li>probably use <a
+href="https://developer.chrome.com/docs/workbox/caching-strategies-overview/#stale-while-revalidate">Stale
+while revalidate</a></li>
+<li>use <a
+href="https://developer.chrome.com/docs/workbox/caching-resources-during-runtime/#setting-an-expiry-for-cache-entries">ExpirationPlugin</a>
+to evict more than <code>maxEntries</code> so as to not fill up the
+storage</li>
+</ul></li>
+<li><input type="checkbox" disabled="" />
+make SW installable</li>
+</ul>
+<ul>
+<li>SW cache strategies:
+<ul>
+<li>Network first, falling back to cache
+<ul>
+<li>images
+<ul>
+<li>/img/*</li>
+</ul></li>
+<li>**.js</li>
+<li>**.css</li>
+<li>fonts</li>
+<li>static *.json</li>
+</ul></li>
+<li>Cache first, falling back to network
+<ul>
+<li>media files</li>
+<li>try to keep at least some of these as <a
+href="https://web.dev/persistent-storage/">persistant storage</a></li>
+</ul></li>
+<li>Stale while revalidate
+<ul>
+<li>/api/*/*.json
+<ul>
+<li>/<strong>ID</strong>.json</li>
+<li>/artist/<strong>ID</strong>.json</li>
+<li>/album/<strong>ID</strong>.json</li>
+<li>/channel/<strong>ID</strong>.json</li>
+<li>/playlist/<strong>ID</strong>.json</li>
+<li>/portfolio/<strong>ID</strong>.json</li>
+<li>/search/<strong>ID</strong>.json</li>
+</ul></li>
+<li>/api/queue</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>intercepts all links and checks cache first for any requests
+including:</p>
+<ul>
+<li>//amplfr.com
+<ul>
+<li>/api
+<ul>
+<li>/<strong>ID</strong></li>
+<li>/artist/<strong>ID</strong></li>
+<li>/album/<strong>ID</strong></li>
+<li>/channel/<strong>ID</strong></li>
+<li>/playlist/<strong>ID</strong></li>
+<li>/portfolio/<strong>ID</strong></li>
+<li>/search/<strong>ID</strong></li>
+</ul></li>
+<li>/me</li>
+<li>/my</li>
+<li>/img</li>
+</ul></li>
+<li>//amplfr.net
+<ul>
+<li>/img</li>
+</ul></li>
+</ul>
+<h3 id="background-sync">background sync</h3>
+<p>Use <a
+href="https://developer.chrome.com/blog/background-sync/">background
+sync</a> to update Queue and playback changes/updates. The updates will
+be sent when the user has connectivity - which is immediate if user
+already has connectivity. Registering for a sync using the same tag as a
+pending sync causes it to coalesce with the existing sync.</p>
+<h2 id="features">features</h2>
+<ul>
+<li><p>Player Playing.ended actions - a per-Item action that occurs
+after that Item finishes playing (its 'ended' event)</p>
+<ul>
+<li>play next Item (default)</li>
+<li>stop playing</li>
+<li>repeat/loop (indefinitely)</li>
+<li>repeat/loop N times</li>
+</ul></li>
+<li><p>Player end of list (EOL) Options - a list of 4/+ recommended
+options that User wants Player to do at the end of the current Playlist
+instead of just stopping</p>
+<ul>
+<li>uses <a href="api.md#Recommendation">Recommendation</a> to suggest
+additional Similar Items</li>
+<li>Random - something different, but same tempo/beat/feel</li>
+</ul></li>
+<li><p>Player Pause-at-next-break - when selected, Player will pause at
+the next natural break in the presentation (or at the end of the Item
+playing)</p>
+<ul>
+<li>any Ads won't be presented until play is resumed</li>
+<li>Player will continue to buffer, etc. as needed</li>
+</ul></li>
+<li><p><a
+href="http://www.collegehumor.com/post/7011319/7-options-that-would-make-netflix-even-better">7
+Ways to Make Netflix SO MUCH BETTER</a> #todo</p>
+<ul>
+<li>ask if they're still there in-between item playback not during (or
+at least at decent breaks)</li>
+<li>incognito-mode or hide/remove played items from history</li>
+<li>alternative audio tracks (ie director's commentary, other
+language)</li>
+<li>group Items into <a href="api.md#Playlists">Playlists</a> (ordered),
+<a href="api.md#Portfolios">Portfolios</a> (unordered), <a
+href="api.md#Feeds">Channels</a> (scheduled)</li>
+<li>integration with Twitter, Facebook, etc. - share an Item, <a
+href="api.md#Playlists">Playlist</a>, <a
+href="api.md#Portfolios">Portfolio</a>, <a
+href="api.md#Feeds">Channel</a></li>
+<li>random option - plays a favorite (ie "Play something I like") or
+suggested item</li>
+</ul></li>
+</ul>
+<h3 id="maybe">maybe</h3>
+<ul>
+<li><p>idle detection</p>
+<ul>
+<li>see <a href="">js/idle-detection.js</a></li>
+<li>fires when the device (phone/tablet) hasn't moved for some time</li>
+<li>could be useful for showing a notification that Player will stop
+playing after this item, or in X minutes</li>
+</ul></li>
+<li><p>bluetooth connectivity</p>
+<ul>
+<li>see <a href="">js/bluetooth.js</a></li>
+<li>could be used to match heartrate to song tempo (BPM)</li>
+</ul></li>
+<li><p>file system</p>
+<ul>
+<li>see <a href="">js/file-system.js</a></li>
+<li>could be used to save (purchased) downloaded file</li>
+<li>could be used to read a song, "fingerprint it", and then upload the
+fingerprint for identification</li>
+</ul></li>
+<li><p>Google Play Billing</p>
+<ul>
+<li>see <a
+href="https://developer.chrome.com/docs/android/trusted-web-activity/play-billing/">Use
+Play Billing in your Trusted Web Activity - Chrome Developers</a></li>
+<li>30% fee</li>
+</ul></li>
+<li><p>Party/Guest/DJ Mode</p>
+<ul>
+<li>a Playlist where others can add Songs (like requesting songs from a
+DJ at a party)</li>
+<li>how it works
+<ol type="1">
+<li>a User sets a (new or existing) Playlist so others can add
+<ul>
+<li>the Playlist is set to Shared</li>
+<li>this User is considered the Owner of this Playlist</li>
+<li>User can either share the actual URL or a QR code of the URL for the
+Playlist</li>
+</ul></li>
+<li>other Users access this Playlist, and can add Items to play</li>
+<li>the Owning User can remove or skip songs</li>
+</ol></li>
+<li>if the Playlist is being played via Chromecast (or similar), the QR
+code can be displayed in the corner of the display for others to add
+songs, and see the songlist</li>
+</ul></li>
+</ul>
+<h3 id="serve-locally-dev">serve locally (dev)</h3>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> serve <span class="at">-p</span> 8080   <span class="co"># no SSL</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># with SSL </span><span class="al">FIXME</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> req <span class="at">-x509</span> <span class="at">-newkey</span> rsa:4096 <span class="at">-days</span> 365 <span class="at">-keyout</span> ca-key.pem <span class="at">-out</span> ca-cert.pem    <span class="co"># use same pass phrase</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">openssl</span> rsa <span class="at">-in</span> ca-key.pem <span class="at">-out</span> ca-key-nopass.pem    <span class="co"># use same pass phrase</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> serve <span class="at">-p</span> 8080 <span class="at">--ssl-cert</span> ca-cert.pem <span class="at">--ssl-key</span> ca-key-nopass.pem    <span class="co"># without pass phrase</span></span></code></pre></div>
+</body>
+</html>
